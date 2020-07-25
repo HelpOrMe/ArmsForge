@@ -27,9 +27,7 @@ public abstract class TileEntityRenderBase extends TileEntitySpecialRenderer
         bindTexture(texture);
         GL11.glPushMatrix();
         GL11.glTranslated(x + 0.5f, y, z + 0.5f);
-        // GL11.glScalef(1,1,1);
-        // GL11.glPushMatrix();
-        // GL11.glRotatef(0, 0f, 1f, 0.5f);
+        GL11.glPushMatrix();
         model.renderAll();
         GL11.glPopMatrix();
         GL11.glPopMatrix();

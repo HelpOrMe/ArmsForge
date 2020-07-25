@@ -3,6 +3,10 @@
 
 # Log file
 *.log
+*.log.gz
+
+# Crash reports
+\crash-reports
 
 # BlueJ files
 *.ctxt

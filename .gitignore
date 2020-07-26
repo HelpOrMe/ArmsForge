@@ -7,7 +7,7 @@
 
 # Workspace
 eclipse/
-.idea
+.idea/
 
 # BlueJ files
 *.ctxt

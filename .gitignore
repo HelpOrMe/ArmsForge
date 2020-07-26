@@ -3,6 +3,11 @@
 
 # Log file
 *.log
+*.log.gz
+
+# Workspace
+eclipse/
+.idea/
 
 # BlueJ files
 *.ctxt

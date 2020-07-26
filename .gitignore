@@ -5,8 +5,9 @@
 *.log
 *.log.gz
 
-# Crash reports
-\crash-reports
+# Workspace
+eclipse/
+.idea
 
 # BlueJ files
 *.ctxt

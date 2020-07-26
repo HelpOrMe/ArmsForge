@@ -5,7 +5,6 @@ import helporme.armsforge.common.block.model.IModel;
 import helporme.armsforge.common.block.model.ModelSuite;
 
 import java.util.HashSet;
-import java.util.Set;
 
 public class ModelRegistry
 {

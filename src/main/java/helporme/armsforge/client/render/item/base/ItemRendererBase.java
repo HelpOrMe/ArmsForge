@@ -24,15 +24,7 @@ public class ItemRendererBase implements IItemRenderer
 
     public boolean handleRenderType(ItemStack item, ItemRenderType type)
     {
-        switch (type)
-        {
-            case EQUIPPED:
-            case EQUIPPED_FIRST_PERSON:
-            case ENTITY:
-            case INVENTORY:
-                return true;
-        }
-        return false;
+        return true;
     }
 
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
@@ -49,7 +41,6 @@ public class ItemRendererBase implements IItemRenderer
             case INVENTORY:
                 inventoryRender();
                 break;
-
             default:
                 defaultRender();
         }

@@ -11,12 +11,12 @@ public abstract class BlockContainerBase extends BlockContainer implements IName
 {
     protected String name;
 
-    protected BlockContainerBase(Material material, String blockName)
+    protected BlockContainerBase(Material material, String name)
     {
         super(material);
+        this.name = name;
         setCreativeTab(ArmsForge.tab);
-        name = blockName;
-        setBlockName(blockName);
+        setBlockName(name);
     }
 
     @Override

@@ -17,8 +17,8 @@ public abstract class BlockBase extends Block implements INamedBlock
     protected BlockBase(Material material, String name)
     {
         super(material);
-        setCreativeTab(ArmsForge.tab);
         this.name = name;
+        setCreativeTab(ArmsForge.tab);
         setBlockName(name);
     }
 

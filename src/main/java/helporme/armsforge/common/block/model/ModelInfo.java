@@ -24,7 +24,7 @@ public class ModelInfo
 
     public ModelInfo(String modelName)
     {
-        this("blocks/" + modelName + ".png",modelName + ".obj");
+        this("blocks/" + modelName + ".png", modelName + ".obj");
     }
 
     public ResourceLocation getTexture()

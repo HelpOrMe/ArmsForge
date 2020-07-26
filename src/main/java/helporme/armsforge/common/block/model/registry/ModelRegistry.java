@@ -5,10 +5,11 @@ import helporme.armsforge.common.block.model.IModel;
 import helporme.armsforge.common.block.model.ModelSuite;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class ModelRegistry
 {
-    public static HashSet<ModelSuite> modelSuites = new HashSet<ModelSuite>();
+    private static HashSet<ModelSuite> modelSuites = new HashSet<ModelSuite>();
 
     public static void createDefaultModelSuites()
     {
@@ -17,6 +18,16 @@ public class ModelRegistry
 
     public static void addModelSuiteFrom(IModel model)
     {
-        modelSuites.add(model.getModelSuite());
+        addModelSuite(model.getModelSuite());
+    }
+
+    public static void addModelSuite(ModelSuite modelSuite)
+    {
+        modelSuites.add(modelSuite);
+    }
+
+    public static Iterable<ModelSuite> getAllModelSuites()
+    {
+        return (Iterable<ModelSuite>)modelSuites.clone();
     }
 }

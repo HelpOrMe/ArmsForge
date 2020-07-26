@@ -13,7 +13,7 @@ public class ItemRendererRegistry
 {
     public static void registerItemRenderersFromModelSuites()
     {
-        for (ModelSuite modelSuite : ModelRegistry.modelSuites)
+        for (ModelSuite modelSuite : ModelRegistry.getAllModelSuites())
         {
             Item item = Item.getItemFromBlock(modelSuite.block);
             registerItemRenderer(item, modelSuite.itemRenderer);

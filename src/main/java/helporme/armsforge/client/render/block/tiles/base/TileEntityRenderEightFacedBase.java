@@ -16,8 +16,8 @@ public class TileEntityRenderEightFacedBase extends TileEntityRendererBase
     {
         bindTexture(texture);
         GL11.glPushMatrix();
-        GL11.glTranslated(x + 0.5f, y, z + 0.5f);
-        GL11.glRotated(tile.getBlockMetadata() * -45f, 0, 1, 0);
+        GL11.glTranslated(x + 0.5d, y, z + 0.5d);
+        GL11.glRotated(tile.getBlockMetadata() * -45d, 0, 1, 0);
         model.renderAll();
         GL11.glPopMatrix();
     }

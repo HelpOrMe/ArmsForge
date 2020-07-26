@@ -13,7 +13,7 @@ public class BlocksRegistry
 
     public static void registerBlocksFromModelSuites()
     {
-        for (ModelSuite modelSuite : ModelRegistry.modelSuites)
+        for (ModelSuite modelSuite : ModelRegistry.getAllModelSuites())
         {
             registerBlock(modelSuite.block);
         }

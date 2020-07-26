@@ -1,11 +1,9 @@
 package helporme.armsforge.common.block.base;
 
 import helporme.armsforge.common.block.registry.INamedBlock;
-import helporme.armsforge.common.block.tiles.TileEntityMasterAnvil;
 import helporme.armsforge.common.core.ArmsForge;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 

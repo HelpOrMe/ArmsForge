@@ -9,7 +9,7 @@ public class TilesRegistry
 {
     public static void registerTilesFromModelSuites()
     {
-        for (ModelSuite modelSuite : ModelRegistry.modelSuites)
+        for (ModelSuite modelSuite : ModelRegistry.getAllModelSuites())
         {
             registerTile(modelSuite.tileClass);
         }

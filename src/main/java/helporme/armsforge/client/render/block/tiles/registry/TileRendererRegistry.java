@@ -13,7 +13,7 @@ public class TileRendererRegistry
 {
     public static void registerTileRenderersFromModelSuites()
     {
-        for (ModelSuite modelSuite : ModelRegistry.modelSuites)
+        for (ModelSuite modelSuite : ModelRegistry.getAllModelSuites())
         {
             registerTileRenderer(modelSuite.tileClass, modelSuite.tileRenderer);
         }

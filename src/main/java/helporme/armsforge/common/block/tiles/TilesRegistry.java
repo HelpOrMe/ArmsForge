@@ -12,6 +12,6 @@ public class TilesRegistry
 
     private static void RegisterTile(Class<? extends TileEntity> tileClass)
     {
-        GameRegistry.registerTileEntity(tileClass, tileClass.getName());
+        GameRegistry.registerTileEntity(tileClass, tileClass.getSimpleName());
     }
 }

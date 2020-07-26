@@ -1,5 +1,6 @@
-package helporme.armsforge.client.render.block.tiles;
+package helporme.armsforge.client.render.block.tiles.base;
 
+import helporme.armsforge.common.block.model.IModelInfo;
 import helporme.armsforge.common.core.Version;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -8,17 +9,19 @@ import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
-public abstract class TileEntityRenderBase extends TileEntitySpecialRenderer
+public class TileEntityRenderBase extends TileEntitySpecialRenderer
 {
     protected ResourceLocation texture;
-    protected ResourceLocation modelLocation;
     protected IModelCustom model;
 
-    public TileEntityRenderBase(String texturePath, String modelPath)
+    public TileEntityRenderBase(IModelInfo modelInfo)
     {
-        texture = new ResourceLocation(Version.modid, texturePath);
-        modelLocation = new ResourceLocation(Version.modid, modelPath);
-        model = AdvancedModelLoader.loadModel(modelLocation);
+        model = modelInfo.getModel();
+        texture = modelInfo.getTexture();
+
+        // texture = new ResourceLocation(Version.modid, texturePath);
+        // modelLocation = new ResourceLocation(Version.modid, modelPath);
+        // model = AdvancedModelLoader.loadModel(modelLocation);
     }
 
     @Override

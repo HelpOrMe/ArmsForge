@@ -1,8 +1,8 @@
-package helporme.armsforge.common.block;
+package helporme.armsforge.common.block.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import helporme.armsforge.common.block.BlockMasterAnvil;
 import net.minecraft.block.Block;
-import org.lwjgl.Sys;
 
 public class BlocksRegistry
 {

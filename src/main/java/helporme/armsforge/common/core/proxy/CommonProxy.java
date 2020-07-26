@@ -4,7 +4,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import helporme.armsforge.common.block.BlocksRegistry;
+import helporme.armsforge.common.block.registry.BlocksRegistry;
 import helporme.armsforge.common.block.tiles.TilesRegistry;
 
 public class CommonProxy implements IProxy

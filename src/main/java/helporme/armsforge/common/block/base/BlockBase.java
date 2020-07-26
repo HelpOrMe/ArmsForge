@@ -1,5 +1,6 @@
-package helporme.armsforge.common.block;
+package helporme.armsforge.common.block.base;
 
+import helporme.armsforge.common.block.registry.INamedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 

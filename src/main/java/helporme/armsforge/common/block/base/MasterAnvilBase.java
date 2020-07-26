@@ -1,6 +1,7 @@
-package helporme.armsforge.common.block;
+package helporme.armsforge.common.block.base;
 
 import helporme.armsforge.api.block.IMasterAnvil;
+import helporme.armsforge.common.block.base.BlockContainerBase;
 import net.minecraft.block.material.Material;
 
 public abstract class MasterAnvilBase extends BlockContainerBase implements IMasterAnvil
@@ -8,7 +9,7 @@ public abstract class MasterAnvilBase extends BlockContainerBase implements IMas
     public MasterAnvilBase(String name)
     {
         super(Material.anvil, name);
-        setStepSound(soundTypeAnvil);
+        setStepSound(soundTypeMetal);
     }
 
     @Override

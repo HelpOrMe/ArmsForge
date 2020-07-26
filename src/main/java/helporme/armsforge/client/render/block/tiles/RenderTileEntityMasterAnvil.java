@@ -1,5 +1,7 @@
 package helporme.armsforge.client.render.block.tiles;
 
+import helporme.armsforge.client.render.block.tiles.base.TileEntityRenderBase;
+
 public class RenderTileEntityMasterAnvil extends TileEntityRenderBase
 {
     public RenderTileEntityMasterAnvil()

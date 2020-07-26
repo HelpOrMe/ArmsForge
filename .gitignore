@@ -6,8 +6,8 @@
 *.log.gz
 
 # Workspace
-eclipse\
-.idea\
+eclipse/
+.idea/
 
 # BlueJ files
 *.ctxt

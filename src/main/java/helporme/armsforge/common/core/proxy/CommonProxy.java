@@ -1,6 +1,5 @@
 package helporme.armsforge.common.core.proxy;
 
-import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -13,6 +12,7 @@ public class CommonProxy implements IProxy
     public void preInit(FMLPreInitializationEvent event)
     {
         BlocksRegistry.createDefaultBlocks();
+        IntegrationManager.prepareThaumcraft();
     }
 
     public void init(FMLInitializationEvent event)
@@ -24,7 +24,6 @@ public class CommonProxy implements IProxy
     {
         BlocksRegistry.registerBlocks();
         TilesRegistry.registerTilesFromBlocks();
-        IntegrationManager.prepareThaumcraft();
         IntegrationManager.registerThaumcraft();
     }
 }

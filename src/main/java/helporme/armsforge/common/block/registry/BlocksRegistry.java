@@ -1,10 +1,7 @@
 package helporme.armsforge.common.block.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import helporme.armsforge.common.block.BlockArmorerTable;
-import helporme.armsforge.common.block.BlockArmorsmithTable;
-import helporme.armsforge.common.block.BlockMasterAnvil;
-import helporme.armsforge.common.block.BlockSupportTable;
+import helporme.armsforge.common.block.*;
 import net.minecraft.block.Block;
 
 import java.util.HashMap;
@@ -17,6 +14,7 @@ public class BlocksRegistry
     {
         addBlocks(
                 new BlockMasterAnvil(),
+                new BlockMasterAnvilGold(),
                 new BlockArmorerTable(),
                 new BlockArmorsmithTable(),
                 new BlockSupportTable());

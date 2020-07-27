@@ -6,5 +6,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public interface IModelContainer
 {
     @SideOnly(Side.CLIENT)
+    ModelInfo getModelInfo();
+
+    @SideOnly(Side.CLIENT)
     ModelSuite getModelSuite();
 }

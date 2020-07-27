@@ -1,6 +1,6 @@
 package helporme.armsforge.common.integration.thaumcraft.wrapper;
 
-import helporme.armsforge.common.integration.thaumcraft.ThauminiconCategory;
+import helporme.armsforge.common.integration.thaumcraft.ThaumonomiconCategory;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
@@ -13,7 +13,7 @@ public class ResearchItemExtended extends ResearchItem
 {
     public ResearchItemExtended(String key, AspectList tags, int col, int row, int complex)
     {
-        super(key, ThauminiconCategory.name, tags, col, row, complex, ThaumcraftResearchesHelper.getResearchIcon(key));
+        super(key, ThaumonomiconCategory.name, tags, col, row, complex, ThaumcraftResearchesHelper.getResearchIcon(key));
         setPages(); // Set empty array instead of null
     }
 
@@ -24,9 +24,14 @@ public class ResearchItemExtended extends ResearchItem
 
     public void addPages(ResearchPage... pages)
     {
-        setPages(pages);
-        // List<ResearchPage> currentPages = new ArrayList<ResearchPage>(Arrays.asList(getPages()));
-        // currentPages.addAll(Arrays.asList(pages));
-        // setPages((ResearchPage[])currentPages.toArray());
+        List<ResearchPage> currentPages = new ArrayList<ResearchPage>(Arrays.asList(getPages()));
+        currentPages.addAll(Arrays.asList(pages));
+
+        ResearchPage[] extendedPages = new ResearchPage[currentPages.size()];
+        for (int i = 0; i < currentPages.size(); i++)
+        {
+            extendedPages[i] = currentPages.get(i);
+        }
+        setPages(extendedPages);
     }
 }

@@ -8,7 +8,7 @@ public final class ThaumcraftResearchesHelper
 {
     public static ResourceLocation getResearchIcon(String key)
     {
-        String path = "textures/thauminicon/researches/" + key + "ResearchIcon.png";
+        String path = "textures/thaumonomicon/researches/" + key + "ResearchIcon.png";
         return new ResourceLocation(Version.modid, path);
     }
 

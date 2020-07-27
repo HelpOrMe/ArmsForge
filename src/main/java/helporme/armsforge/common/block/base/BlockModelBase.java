@@ -47,10 +47,14 @@ public abstract class BlockModelBase extends BlockContainerBase implements IMode
         createNewTileEntity(world, world.getBlockMetadata(x, y, z));
     }
 
-    @SideOnly(Side.CLIENT)
+    public ModelInfo getModelInfo()
+    {
+        return new ModelInfo(name);
+    }
+
     public ModelSuite getModelSuite()
     {
-        ModelInfo modelInfo = new ModelInfo(name);
+        ModelInfo modelInfo = getModelInfo();
         return new ModelSuite(this, getTileClass(),
                 new TileEntityRenderEightFacedBase(modelInfo), new ItemRendererBase(modelInfo), modelInfo);
     }

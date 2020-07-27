@@ -11,9 +11,10 @@ public class BlockSupportTable extends BlockModelBase
     public BlockSupportTable()
     {
         super(Material.iron, "SupportTable");
-        setHardness(15f);
+        setHardness(5f);
         setResistance(10f);
-        setHarvestLevel("pickaxe", 2);
+        setHarvestLevel("axe", 1);
+        setStepSound(soundTypeWood);
     }
 
     @Override

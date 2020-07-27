@@ -1,5 +1,6 @@
 # Blocks
 tile.MasterAnvil.name=Master Anvil
+tile.MasterAnvilGold.name=Golden Master Anvil
 tile.ArmorerTable.name=Armorer Table
 tile.ArmorsmithTable.name=Armorsmith Table
 tile.SupportTable.name=Support Table

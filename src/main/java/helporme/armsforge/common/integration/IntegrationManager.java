@@ -1,7 +1,7 @@
 package helporme.armsforge.common.integration;
 
 import helporme.armsforge.common.integration.thaumcraft.ThaumcraftResearches;
-import helporme.armsforge.common.integration.thaumcraft.ThauminiconCategory;
+import helporme.armsforge.common.integration.thaumcraft.ThaumonomiconCategory;
 
 public class IntegrationManager
 {
@@ -12,7 +12,7 @@ public class IntegrationManager
 
     public static void registerThaumcraft()
     {
-        ThauminiconCategory.register();
+        ThaumonomiconCategory.register();
         ThaumcraftResearches.registerResearches();
     }
 }

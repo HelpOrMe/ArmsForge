@@ -11,9 +11,10 @@ public class BlockArmorsmithTable extends BlockModelBase
     public BlockArmorsmithTable()
     {
         super(Material.iron, "ArmorsmithTable");
-        setHardness(15f);
+        setHardness(10f);
         setResistance(10f);
         setHarvestLevel("pickaxe", 2);
+        setStepSound(soundTypeMetal);
     }
 
     @Override

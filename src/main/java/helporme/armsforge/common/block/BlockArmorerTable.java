@@ -11,9 +11,10 @@ public class BlockArmorerTable extends BlockModelBase
     public BlockArmorerTable()
     {
         super(Material.iron, "ArmorerTable");
-        setHardness(15f);
+        setHardness(10f);
         setResistance(10f);
         setHarvestLevel("pickaxe", 2);
+        setStepSound(soundTypeMetal);
     }
 
     @Override

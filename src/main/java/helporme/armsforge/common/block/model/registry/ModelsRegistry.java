@@ -17,8 +17,7 @@ public final class ModelsRegistry
         {
             if (block instanceof IModelContainer)
             {
-                IModelContainer model = (IModelContainer)block;
-                addModelSuiteFrom(model);
+                addModelSuiteFrom((IModelContainer)block);
             }
         }
     }

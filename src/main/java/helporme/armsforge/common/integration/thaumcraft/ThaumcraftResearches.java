@@ -1,9 +1,8 @@
 package helporme.armsforge.common.integration.thaumcraft;
 
+import helporme.armsforge.common.integration.thaumcraft.wrapper.ResearchItemExtended;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchItem;
-
-import helporme.armsforge.common.integration.thaumcraft.wrapper.ResearchItemExtended;
 
 import java.util.HashMap;
 

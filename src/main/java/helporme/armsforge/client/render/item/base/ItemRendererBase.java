@@ -15,11 +15,13 @@ public class ItemRendererBase implements IItemRenderer
 {
     protected IModelCustom model;
     protected ResourceLocation texture;
+    protected float scale;
 
     public ItemRendererBase(ModelInfo modelInfo)
     {
         model = modelInfo.getModel();
         texture = modelInfo.getTexture();
+        scale = 1;
     }
 
     public boolean handleRenderType(ItemStack item, ItemRenderType type)
@@ -56,8 +58,7 @@ public class ItemRendererBase implements IItemRenderer
     protected void inventoryRender()
     {
         bindBlockTexture();
-        GL11.glTranslatef(0.72f, 0.0f, 0.72f);
-        GL11.glScalef(1.22f, 1.22f, 1.22f);
+        GL11.glTranslatef(0.55f, 0.0f, 0.55f);
         model.renderAll();
         GL11.glPopMatrix();
     }

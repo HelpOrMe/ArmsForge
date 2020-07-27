@@ -7,12 +7,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public interface IProxy
 {
-    @EventHandler
     void preInit(FMLPreInitializationEvent event);
 
-    @EventHandler
     void init(FMLInitializationEvent event);
 
-    @EventHandler
     void postInit(FMLPostInitializationEvent event);
 }

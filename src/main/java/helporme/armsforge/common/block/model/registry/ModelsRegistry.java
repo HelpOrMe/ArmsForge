@@ -1,6 +1,6 @@
 package helporme.armsforge.common.block.model.registry;
 
-import helporme.armsforge.common.block.model.IModel;
+import helporme.armsforge.common.block.model.IModelContainer;
 import helporme.armsforge.common.block.model.ModelSuite;
 import helporme.armsforge.common.block.registry.BlocksRegistry;
 import net.minecraft.block.Block;
@@ -11,19 +11,19 @@ public final class ModelsRegistry
 {
     private static HashSet<ModelSuite> modelSuites = new HashSet<ModelSuite>();
 
-    public static void createModelSuites()
+    public static void createModelSuitesFromBlocks()
     {
         for (Block block : BlocksRegistry.getAllBlocks())
         {
-            if (block instanceof IModel)
+            if (block instanceof IModelContainer)
             {
-                IModel model = (IModel)block;
+                IModelContainer model = (IModelContainer)block;
                 addModelSuiteFrom(model);
             }
         }
     }
 
-    public static void addModelSuiteFrom(IModel model)
+    public static void addModelSuiteFrom(IModelContainer model)
     {
         addModelSuite(model.getModelSuite());
     }

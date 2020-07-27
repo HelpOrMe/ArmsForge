@@ -1,5 +1,6 @@
 package helporme.armsforge.client.proxy;
 
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,7 +16,13 @@ public class ClientProxy extends CommonProxy
     public void preInit(FMLPreInitializationEvent event)
     {
         super.preInit(event);
-        ModelsRegistry.createModelSuites();
+        ModelsRegistry.createModelSuitesFromBlocks();
+    }
+
+    @Override
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        super.postInit(event);
         TileRendererRegistry.registerTileRenderersFromModelSuites();
         ItemRendererRegistry.registerItemRenderersFromModelSuites();
     }

@@ -5,6 +5,6 @@
     "mcversion": ${mcversion},
     "logoFile": "assets/armsforge/textures/logo.jpg",
     "authorList": ["Cross_King", "HelpOrMe"],
-    "credits": "mcmodding.ru"
-    // "dependencies": ""
+    "credits": "mcmodding.ru",
+    "dependencies": ["Thaumcraft"]
 }]

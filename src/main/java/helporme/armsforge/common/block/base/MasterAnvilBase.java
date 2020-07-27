@@ -1,5 +1,7 @@
 package helporme.armsforge.common.block.base;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.api.block.IMasterAnvil;
 import helporme.armsforge.client.render.block.tiles.base.TileEntityRenderEightFacedBase;
 import helporme.armsforge.common.block.model.IModel;
@@ -37,6 +39,7 @@ public abstract class MasterAnvilBase extends BlockContainerBase implements IMas
         return false;
     }
 
+    @SideOnly(Side.CLIENT)
     public ModelSuite getModelSuite()
     {
         ModelSuite modelSuite = new ModelSuite(this, new ModelInfo(name));

@@ -1,8 +1,7 @@
 package helporme.armsforge.common.block.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import helporme.armsforge.common.block.model.ModelSuite;
-import helporme.armsforge.common.block.model.registry.ModelRegistry;
+import helporme.armsforge.common.block.BlockMasterAnvil;
 import net.minecraft.block.Block;
 
 import java.util.HashMap;
@@ -11,12 +10,9 @@ public class BlocksRegistry
 {
     private static HashMap<String, Block> blocks = new HashMap<String, Block>();
 
-    public static void registerBlocksFromModelSuites()
+    public static void registerDefaultBlocks()
     {
-        for (ModelSuite modelSuite : ModelRegistry.getAllModelSuites())
-        {
-            registerBlock(modelSuite.block);
-        }
+        registerBlock(new BlockMasterAnvil());
     }
 
     public static void registerBlock(Block block)
@@ -39,5 +35,10 @@ public class BlocksRegistry
     public static Block getBlockByName(String name)
     {
         return blocks.get(name);
+    }
+
+    public static Iterable<Block> getAllBlocks()
+    {
+        return blocks.values();
     }
 }

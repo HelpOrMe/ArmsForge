@@ -1,1 +1,10 @@
+# Blocks
 tile.MasterAnvil.name=Master Anvil
+
+# Thaumcraft
+tc.research_category.armsforge=Arms Forge
+
+tc.research_name.opening=Opening research name
+tc.research_text.opening=Opening research text
+tc.research_page.opening.1=Text from en_US 1
+tc.research_page.opening.2=Text from en_US 2

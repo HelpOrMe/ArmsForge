@@ -1,18 +1,26 @@
 package helporme.armsforge.common.block.model.registry;
 
-import helporme.armsforge.common.block.BlockMasterAnvil;
 import helporme.armsforge.common.block.model.IModel;
 import helporme.armsforge.common.block.model.ModelSuite;
+import helporme.armsforge.common.block.registry.BlocksRegistry;
+import net.minecraft.block.Block;
 
 import java.util.HashSet;
 
-public class ModelRegistry
+public final class ModelsRegistry
 {
     private static HashSet<ModelSuite> modelSuites = new HashSet<ModelSuite>();
 
-    public static void createDefaultModelSuites()
+    public static void createModelSuites()
     {
-        addModelSuiteFrom(new BlockMasterAnvil());
+        for (Block block : BlocksRegistry.getAllBlocks())
+        {
+            if (block instanceof IModel)
+            {
+                IModel model = (IModel)block;
+                addModelSuiteFrom(model);
+            }
+        }
     }
 
     public static void addModelSuiteFrom(IModel model)
@@ -27,6 +35,6 @@ public class ModelRegistry
 
     public static Iterable<ModelSuite> getAllModelSuites()
     {
-        return (Iterable<ModelSuite>)modelSuites.clone();
+        return new HashSet<ModelSuite>(modelSuites);
     }
 }

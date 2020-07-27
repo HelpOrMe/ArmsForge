@@ -1,6 +1,5 @@
 package helporme.armsforge.common.intergration.thaumcraft;
 
-import helporme.armsforge.common.core.Version;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;

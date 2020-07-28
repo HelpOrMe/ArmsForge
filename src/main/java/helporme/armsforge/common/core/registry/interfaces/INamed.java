@@ -1,6 +1,6 @@
 package helporme.armsforge.common.core.registry.interfaces;
 
-public interface INamedBlock
+public interface INamed
 {
     String getName();
 }

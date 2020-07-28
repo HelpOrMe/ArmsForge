@@ -1,6 +1,6 @@
 package helporme.armsforge.common.blocks.base;
 
-import helporme.armsforge.api.block.IMasterAnvil;
+import helporme.armsforge.api.blocks.IMasterAnvil;
 import net.minecraft.block.material.Material;
 
 public abstract class MasterAnvilBase extends BlockModelBase implements IMasterAnvil

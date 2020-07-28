@@ -2,7 +2,7 @@ package helporme.armsforge.common.core.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import helporme.armsforge.common.blocks.*;
-import helporme.armsforge.common.core.registry.interfaces.INamedBlock;
+import helporme.armsforge.common.core.registry.interfaces.INamed;
 import net.minecraft.block.Block;
 
 import java.util.HashMap;
@@ -32,9 +32,9 @@ public class BlocksRegistry
     public static void addBlock(Block block)
     {
         String name = block.getClass().getSimpleName();
-        if (block instanceof INamedBlock)
+        if (block instanceof INamed)
         {
-            INamedBlock namedBlock = (INamedBlock)block;
+            INamed namedBlock = (INamed)block;
             name = namedBlock.getName();
         }
         blocks.put(name, block);

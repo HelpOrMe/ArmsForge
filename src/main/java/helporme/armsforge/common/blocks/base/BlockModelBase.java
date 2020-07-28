@@ -1,5 +1,7 @@
 package helporme.armsforge.common.blocks.base;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.client.render.block.tiles.base.TileEntityRenderEightFacedBase;
 import helporme.armsforge.client.render.item.base.ItemRendererBase;
 import helporme.armsforge.common.blocks.models.IModelContainer;
@@ -19,18 +21,21 @@ public abstract class BlockModelBase extends BlockContainerBase implements IMode
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public boolean renderAsNormalBlock()
     {
         return false;
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public int getRenderType()
     {
         return -1;
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public boolean isOpaqueCube()
     {
         return false;
@@ -44,11 +49,13 @@ public abstract class BlockModelBase extends BlockContainerBase implements IMode
         createNewTileEntity(world, world.getBlockMetadata(x, y, z));
     }
 
+    @SideOnly(Side.CLIENT)
     public ModelInfo getModelInfo()
     {
         return new ModelInfo(name);
     }
 
+    @SideOnly(Side.CLIENT)
     public ModelSuite getModelSuite()
     {
         ModelInfo modelInfo = getModelInfo();

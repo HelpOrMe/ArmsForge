@@ -1,4 +1,4 @@
-package helporme.armsforge.common.block.model;
+package helporme.armsforge.common.blocks.models;
 
 import helporme.armsforge.client.render.block.tiles.base.TileEntityRendererBase;
 import helporme.armsforge.client.render.item.base.ItemRendererBase;

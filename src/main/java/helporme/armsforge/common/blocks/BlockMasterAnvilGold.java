@@ -1,8 +1,8 @@
-package helporme.armsforge.common.block;
+package helporme.armsforge.common.blocks;
 
-import helporme.armsforge.common.block.base.MasterAnvilBase;
-import helporme.armsforge.common.block.model.ModelInfo;
-import helporme.armsforge.common.block.tiles.TileEntityMasterAnvil;
+import helporme.armsforge.common.blocks.base.MasterAnvilBase;
+import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.blocks.tiles.TileEntityMasterAnvil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 

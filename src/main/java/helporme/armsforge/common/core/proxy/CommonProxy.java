@@ -3,8 +3,8 @@ package helporme.armsforge.common.core.proxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import helporme.armsforge.common.block.registry.BlocksRegistry;
-import helporme.armsforge.common.block.tiles.registry.TilesRegistry;
+import helporme.armsforge.common.blocks.registry.BlocksRegistry;
+import helporme.armsforge.common.blocks.tiles.registry.TilesRegistry;
 import helporme.armsforge.common.integration.IntegrationManager;
 
 public class CommonProxy implements IProxy

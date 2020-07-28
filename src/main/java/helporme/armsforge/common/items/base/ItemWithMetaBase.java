@@ -10,36 +10,45 @@ import net.minecraft.util.IIcon;
 
 import java.util.List;
 
-public class ItemWithSubTypesBase extends ItemBase
+public class ItemWithMetaBase extends ItemBase
 {
     @SideOnly(Side.CLIENT)
     protected IIcon[] icons;
-    protected int typesCount;
+    protected int maxMeta;
 
-    public ItemWithSubTypesBase(String name, int typesCount)
+    public ItemWithMetaBase(String name, int maxMeta)
     {
         super(name);
-        this.typesCount = typesCount;
+        this.maxMeta = maxMeta;
         setHasSubtypes(true);
         setMaxDamage(0);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int damage)
+    public void registerIcons(IIconRegister register)
     {
-        return icons[damage];
+        icons = new IIcon[maxMeta];
+        for (int i = 0; i < maxMeta; i++)
+        {
+            icons[i] = register.registerIcon(iconString + "_" + i);
+        }
     }
-
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister register)
+    public IIcon getIconFromDamage(int damage)
     {
-        icons = new IIcon[typesCount];
-        for (int i = 0; i < typesCount; i++)
+        damage = Math.min(damage, icons.length - 1);
+        return icons[damage];
+    }
+
+    @Override
+    public void getSubItems(Item item, CreativeTabs tab, List list)
+    {
+        for (int i = 0; i < maxMeta; i++)
         {
-            icons[i] = register.registerIcon(iconString + "_" + i);
+            list.add(new ItemStack(item, 1, i));
         }
     }
 
@@ -47,14 +56,5 @@ public class ItemWithSubTypesBase extends ItemBase
     public String getUnlocalizedName(ItemStack stack)
     {
         return getUnlocalizedName() + "_" + stack.getItemDamage();
-    }
-
-    @Override
-    public void getSubItems(Item item, CreativeTabs tab, List list)
-    {
-        for (int i = 0; i < typesCount; i++)
-        {
-            list.add(new ItemStack(item, 1, i));
-        }
     }
 }

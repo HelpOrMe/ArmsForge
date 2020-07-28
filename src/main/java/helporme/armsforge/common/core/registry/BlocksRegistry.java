@@ -2,8 +2,11 @@ package helporme.armsforge.common.core.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import helporme.armsforge.common.blocks.*;
+import helporme.armsforge.common.blocks.base.BlockWithMetaBase;
 import helporme.armsforge.common.core.registry.interfaces.INamed;
+import helporme.armsforge.common.items.base.ItemBlockBase;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 
 import java.util.HashMap;
 
@@ -18,7 +21,9 @@ public class BlocksRegistry
                 new BlockMasterAnvilGold(),
                 new BlockArmorerTable(),
                 new BlockArmorsmithTable(),
-                new BlockSupportTable());
+                new BlockSupportTable(),
+                new MetalBlock()
+        );
     }
 
     public static void addBlocks(Block... blocks)
@@ -44,8 +49,26 @@ public class BlocksRegistry
     {
         for (String name : blocks.keySet())
         {
-            GameRegistry.registerBlock(getBlockByName(name), name);
+            Block block = getBlockByName(name);
+            if (block instanceof BlockWithMetaBase)
+            {
+                registerBlockWithItem(block, name);
+            }
+            else
+            {
+                registerBlock(block, name);
+            }
         }
+    }
+
+    public static void registerBlockWithItem(Block block, String name)
+    {
+        GameRegistry.registerBlock(block, ItemBlockBase.class, name);
+    }
+
+    public static void registerBlock(Block block, String name)
+    {
+        GameRegistry.registerBlock(block, name);
     }
 
     public static Block getBlockByName(String name)

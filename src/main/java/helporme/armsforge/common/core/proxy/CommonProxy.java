@@ -5,6 +5,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import helporme.armsforge.common.core.registry.BlocksRegistry;
 import helporme.armsforge.common.core.registry.ItemsRegistry;
+import helporme.armsforge.common.core.registry.RecipesRegistry;
 import helporme.armsforge.common.core.registry.TilesRegistry;
 import helporme.armsforge.common.integration.IntegrationManager;
 
@@ -27,6 +28,7 @@ public class CommonProxy implements IProxy
         BlocksRegistry.registerBlocks();
         ItemsRegistry.registerItems();
         TilesRegistry.registerTilesFromBlocks();
+        RecipesRegistry.addDefaultRecipes();
         IntegrationManager.registerThaumcraft();
     }
 }

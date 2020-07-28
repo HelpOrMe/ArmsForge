@@ -5,9 +5,8 @@ import helporme.armsforge.api.items.hammer.DefaultHammerTypes;
 import helporme.armsforge.common.core.registry.interfaces.INamed;
 import helporme.armsforge.common.items.base.ItemBase;
 import helporme.armsforge.common.items.base.ItemHammerBase;
-import helporme.armsforge.common.items.base.ItemWithSubTypesBase;
+import helporme.armsforge.common.items.base.ItemWithMetaBase;
 import net.minecraft.item.Item;
-import thaumcraft.common.items.armor.ItemFortressArmor;
 
 import java.util.HashMap;
 
@@ -24,15 +23,16 @@ public final class ItemsRegistry
     public static void AddResources()
     {
         addItems(
-                new ItemWithSubTypesBase("ChainCanvasBig", 10),
-                new ItemWithSubTypesBase("ChainCanvasMedium", 10),
-                new ItemWithSubTypesBase("ChainCanvasSmall", 10),
-                new ItemWithSubTypesBase("HandfulRings", 10),
-                new ItemWithSubTypesBase("HandfulRivets", 10),
-                new ItemWithSubTypesBase("IngotBasic", 9),
-                new ItemWithSubTypesBase("Ring", 10),
-                new ItemWithSubTypesBase("Rivet", 10),
-                new ItemWithSubTypesBase("Wire", 10),
+                new ItemWithMetaBase("ChainCanvasBig", 10),
+                new ItemWithMetaBase("ChainCanvasMedium", 10),
+                new ItemWithMetaBase("ChainCanvasSmall", 10),
+                new ItemWithMetaBase("HandfulRings", 10),
+                new ItemWithMetaBase("HandfulRivets", 10),
+                new ItemWithMetaBase("IngotBasic", 9),
+                new ItemWithMetaBase("Ring", 10),
+                new ItemWithMetaBase("Rivet", 10),
+                new ItemWithMetaBase("Wire", 10),
+
                 new ItemBase("CommonCloth"),
                 new ItemBase("CottonWool"),
                 new ItemBase("PackingStuds"),

@@ -1,7 +1,7 @@
-package helporme.armsforge.common.block;
+package helporme.armsforge.common.blocks;
 
-import helporme.armsforge.common.block.base.BlockModelBase;
-import helporme.armsforge.common.block.tiles.TileEntityArmorsmithTable;
+import helporme.armsforge.common.blocks.base.BlockModelBase;
+import helporme.armsforge.common.blocks.tiles.TileEntityArmorsmithTable;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

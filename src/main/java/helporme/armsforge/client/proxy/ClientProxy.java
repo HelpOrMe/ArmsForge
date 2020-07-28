@@ -6,7 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.client.render.block.tiles.registry.TileRendererRegistry;
 import helporme.armsforge.client.render.item.registry.ItemRendererRegistry;
-import helporme.armsforge.common.block.model.registry.ModelsRegistry;
+import helporme.armsforge.common.blocks.models.registry.ModelsRegistry;
 import helporme.armsforge.common.core.proxy.CommonProxy;
 
 @SideOnly(Side.CLIENT)

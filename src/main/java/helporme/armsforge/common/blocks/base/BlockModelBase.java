@@ -1,10 +1,10 @@
-package helporme.armsforge.common.block.base;
+package helporme.armsforge.common.blocks.base;
 
 import helporme.armsforge.client.render.block.tiles.base.TileEntityRenderEightFacedBase;
 import helporme.armsforge.client.render.item.base.ItemRendererBase;
-import helporme.armsforge.common.block.model.IModelContainer;
-import helporme.armsforge.common.block.model.ModelInfo;
-import helporme.armsforge.common.block.model.ModelSuite;
+import helporme.armsforge.common.blocks.models.IModelContainer;
+import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.blocks.models.ModelSuite;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;

@@ -1,4 +1,4 @@
-package helporme.armsforge.common.block.model;
+package helporme.armsforge.common.blocks.models;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

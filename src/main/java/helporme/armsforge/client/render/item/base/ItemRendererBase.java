@@ -2,7 +2,7 @@ package helporme.armsforge.client.render.item.base;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.common.block.model.ModelInfo;
+import helporme.armsforge.common.blocks.models.ModelInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

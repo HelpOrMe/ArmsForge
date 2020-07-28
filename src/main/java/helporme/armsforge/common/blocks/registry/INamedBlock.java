@@ -1,4 +1,4 @@
-package helporme.armsforge.common.block.registry;
+package helporme.armsforge.common.blocks.registry;
 
 public interface INamedBlock
 {

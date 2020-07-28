@@ -1,4 +1,4 @@
-package helporme.armsforge.common.block.model;
+package helporme.armsforge.common.blocks.models;
 
 import helporme.armsforge.common.core.Version;
 import net.minecraft.util.ResourceLocation;

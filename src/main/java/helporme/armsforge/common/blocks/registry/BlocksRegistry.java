@@ -1,7 +1,7 @@
-package helporme.armsforge.common.block.registry;
+package helporme.armsforge.common.blocks.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import helporme.armsforge.common.block.*;
+import helporme.armsforge.common.blocks.*;
 import net.minecraft.block.Block;
 
 import java.util.HashMap;

@@ -1,8 +1,8 @@
-package helporme.armsforge.common.block.model.registry;
+package helporme.armsforge.common.blocks.models.registry;
 
-import helporme.armsforge.common.block.model.IModelContainer;
-import helporme.armsforge.common.block.model.ModelSuite;
-import helporme.armsforge.common.block.registry.BlocksRegistry;
+import helporme.armsforge.common.blocks.models.IModelContainer;
+import helporme.armsforge.common.blocks.models.ModelSuite;
+import helporme.armsforge.common.blocks.registry.BlocksRegistry;
 import net.minecraft.block.Block;
 
 import java.util.HashSet;

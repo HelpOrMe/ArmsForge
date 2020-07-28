@@ -1,4 +1,4 @@
-package helporme.armsforge.common.block.base;
+package helporme.armsforge.common.blocks.base;
 
 import helporme.armsforge.api.block.IMasterAnvil;
 import net.minecraft.block.material.Material;

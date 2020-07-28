@@ -1,6 +1,6 @@
 package helporme.armsforge.client.render.block.tiles.base;
 
-import helporme.armsforge.common.block.model.ModelInfo;
+import helporme.armsforge.common.blocks.models.ModelInfo;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;

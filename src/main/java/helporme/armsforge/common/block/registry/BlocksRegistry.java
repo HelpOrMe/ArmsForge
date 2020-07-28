@@ -1,7 +1,7 @@
 package helporme.armsforge.common.block.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import helporme.armsforge.common.block.BlockMasterAnvil;
+import helporme.armsforge.common.block.*;
 import net.minecraft.block.Block;
 
 import java.util.HashMap;
@@ -10,12 +10,25 @@ public class BlocksRegistry
 {
     private static HashMap<String, Block> blocks = new HashMap<String, Block>();
 
-    public static void registerDefaultBlocks()
+    public static void createDefaultBlocks()
     {
-        registerBlock(new BlockMasterAnvil());
+        addBlocks(
+                new BlockMasterAnvil(),
+                new BlockMasterAnvilGold(),
+                new BlockArmorerTable(),
+                new BlockArmorsmithTable(),
+                new BlockSupportTable());
     }
 
-    public static void registerBlock(Block block)
+    public static void addBlocks(Block... blocks)
+    {
+        for (Block block : blocks)
+        {
+            addBlock(block);
+        }
+    }
+
+    public static void addBlock(Block block)
     {
         String name = block.getClass().getSimpleName();
         if (block instanceof INamedBlock)
@@ -23,13 +36,15 @@ public class BlocksRegistry
             INamedBlock namedBlock = (INamedBlock)block;
             name = namedBlock.getName();
         }
-        GameRegistry.registerBlock(block, name);
         blocks.put(name, block);
     }
 
-    public static boolean isContainsBlockWithName(String name)
+    public static void registerBlocks()
     {
-        return blocks.containsKey(name);
+        for (String name : blocks.keySet())
+        {
+            GameRegistry.registerBlock(getBlockByName(name), name);
+        }
     }
 
     public static Block getBlockByName(String name)

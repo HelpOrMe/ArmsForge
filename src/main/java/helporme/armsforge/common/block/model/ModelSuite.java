@@ -25,9 +25,8 @@ public class ModelSuite
         this.modelInfo = modelInfo;
     }
 
-    public ModelSuite(Block block, ModelInfo modelInfo)
+    public ModelSuite(Block block, Class<? extends TileEntity> tileClass, ModelInfo modelInfo)
     {
-        this(block, TileEntity.class, new TileEntityRendererBase(modelInfo),
-                new ItemRendererBase(modelInfo), modelInfo);
+        this(block, tileClass, new TileEntityRendererBase(modelInfo), new ItemRendererBase(modelInfo), modelInfo);
     }
 }

@@ -1,10 +1,14 @@
 # Blocks
 tile.MasterAnvil.name=Master Anvil
+tile.MasterAnvilGold.name=Golden Master Anvil
+tile.ArmorerTable.name=Armorer Table
+tile.ArmorsmithTable.name=Armorsmith Table
+tile.SupportTable.name=Support Table
 
 # Thaumcraft
 tc.research_category.armsforge=Arms Forge
 
 tc.research_name.opening=Opening research name
 tc.research_text.opening=Opening research text
-tc.research_page.opening.1=Text from en_US 1
-tc.research_page.opening.2=Text from en_US 2
+tc.research_page.opening.1=Opening text 1
+tc.research_page.opening.2=Opening text 2

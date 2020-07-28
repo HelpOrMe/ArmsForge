@@ -8,6 +8,7 @@
 # Workspace
 eclipse/
 .idea/
+.gradle/
 
 # BlueJ files
 *.ctxt

@@ -1,11 +1,12 @@
 package helporme.armsforge.common.blocks.base;
 
-import helporme.armsforge.common.core.registry.interfaces.INamedBlock;
+import helporme.armsforge.common.core.Version;
+import helporme.armsforge.common.core.registry.interfaces.INamed;
 import helporme.armsforge.common.core.ArmsForge;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
-public abstract class BlockBase extends Block implements INamedBlock
+public abstract class BlockBase extends Block implements INamed
 {
     protected String name;
 
@@ -15,6 +16,8 @@ public abstract class BlockBase extends Block implements INamedBlock
         this.name = name;
         setCreativeTab(ArmsForge.tab);
         setBlockName(name);
+        setBlockTextureName(Version.modid + ":" + name);
+
     }
 
     public String getName()

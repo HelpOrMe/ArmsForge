@@ -1,4 +1,4 @@
-package helporme.armsforge.api.block;
+package helporme.armsforge.api.blocks;
 
 public interface IMasterAnvil
 {

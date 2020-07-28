@@ -1,6 +1,6 @@
 package helporme.armsforge.common.core.tab;
 
-import helporme.armsforge.common.blocks.registry.BlocksRegistry;
+import helporme.armsforge.common.core.registry.BlocksRegistry;
 import helporme.armsforge.common.core.Version;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

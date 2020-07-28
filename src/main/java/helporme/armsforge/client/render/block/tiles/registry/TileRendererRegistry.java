@@ -3,8 +3,8 @@ package helporme.armsforge.client.render.block.tiles.registry;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.common.block.model.ModelSuite;
-import helporme.armsforge.common.block.model.registry.ModelRegistry;
+import helporme.armsforge.common.blocks.models.ModelSuite;
+import helporme.armsforge.common.blocks.models.registry.ModelsRegistry;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
@@ -13,7 +13,7 @@ public class TileRendererRegistry
 {
     public static void registerTileRenderersFromModelSuites()
     {
-        for (ModelSuite modelSuite : ModelRegistry.getAllModelSuites())
+        for (ModelSuite modelSuite : ModelsRegistry.getAllModelSuites())
         {
             registerTileRenderer(modelSuite.tileClass, modelSuite.tileRenderer);
         }

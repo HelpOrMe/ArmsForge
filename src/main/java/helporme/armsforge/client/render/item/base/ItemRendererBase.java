@@ -2,7 +2,7 @@ package helporme.armsforge.client.render.item.base;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.common.block.model.ModelInfo;
+import helporme.armsforge.common.blocks.models.ModelInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -15,24 +15,18 @@ public class ItemRendererBase implements IItemRenderer
 {
     protected IModelCustom model;
     protected ResourceLocation texture;
+    protected float scale;
 
     public ItemRendererBase(ModelInfo modelInfo)
     {
         model = modelInfo.getModel();
         texture = modelInfo.getTexture();
+        scale = 1;
     }
 
     public boolean handleRenderType(ItemStack item, ItemRenderType type)
     {
-        switch (type)
-        {
-            case EQUIPPED:
-            case EQUIPPED_FIRST_PERSON:
-            case ENTITY:
-            case INVENTORY:
-                return true;
-        }
-        return false;
+        return true;
     }
 
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
@@ -49,7 +43,6 @@ public class ItemRendererBase implements IItemRenderer
             case INVENTORY:
                 inventoryRender();
                 break;
-
             default:
                 defaultRender();
         }
@@ -65,8 +58,7 @@ public class ItemRendererBase implements IItemRenderer
     protected void inventoryRender()
     {
         bindBlockTexture();
-        GL11.glTranslatef(0.72f, 0.0f, 0.72f);
-        GL11.glScalef(1.22f, 1.22f, 1.22f);
+        GL11.glTranslatef(0.55f, 0.0f, 0.55f);
         model.renderAll();
         GL11.glPopMatrix();
     }

@@ -1,4 +1,6 @@
-package helporme.armsforge.api.items.hammer;
+package helporme.armsforge.common.items.hammers;
+
+import helporme.armsforge.api.items.hammer.HammerType;
 
 public final class DefaultHammerTypes
 {

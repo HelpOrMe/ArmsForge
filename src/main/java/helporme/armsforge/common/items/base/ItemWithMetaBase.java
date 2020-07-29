@@ -10,7 +10,6 @@ import java.util.List;
 
 public class ItemWithMetaBase extends ItemBase
 {
-    @SideOnly(Side.CLIENT)
     protected int maxMeta;
 
     public ItemWithMetaBase(String name, int maxMeta)

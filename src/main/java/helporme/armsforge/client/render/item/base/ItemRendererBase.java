@@ -1,7 +1,5 @@
 package helporme.armsforge.client.render.item.base;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -10,7 +8,6 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
-@SideOnly(Side.CLIENT)
 public class ItemRendererBase implements IItemRenderer
 {
     protected IModelCustom model;
@@ -22,16 +19,19 @@ public class ItemRendererBase implements IItemRenderer
         texture = modelInfo.getTexture();
     }
 
+    @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type)
     {
         return true;
     }
 
+    @Override
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
     {
         return true;
     }
 
+    @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
         switch (type)

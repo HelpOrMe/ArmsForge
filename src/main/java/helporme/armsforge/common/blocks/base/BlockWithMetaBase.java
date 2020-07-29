@@ -11,7 +11,6 @@ import java.util.List;
 
 public class BlockWithMetaBase extends BlockBase
 {
-    @SideOnly(Side.CLIENT)
     protected int maxMeta;
 
     public BlockWithMetaBase(Material material, String name, int maxMeta)
@@ -38,6 +37,6 @@ public class BlockWithMetaBase extends BlockBase
 
     protected int correctMeta(int meta)
     {
-        return Math.min(meta, maxMeta);
+        return Math.min(meta, maxMeta - 1);
     }
 }

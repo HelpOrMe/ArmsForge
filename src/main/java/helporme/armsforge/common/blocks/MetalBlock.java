@@ -1,6 +1,6 @@
 package helporme.armsforge.common.blocks;
 
-import helporme.armsforge.client.render.colors.Colors;
+import helporme.armsforge.common.registry.utils.Colors;
 import helporme.armsforge.common.blocks.base.BlockColoredBase;
 import net.minecraft.block.material.Material;
 

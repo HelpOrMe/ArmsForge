@@ -4,7 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import helporme.armsforge.common.blocks.*;
 import helporme.armsforge.common.blocks.base.BlockWithMetaBase;
 import helporme.armsforge.common.items.base.ItemBlockBase;
-import helporme.armsforge.common.registry.interfaces.INamed;
+import helporme.armsforge.common.registry.utils.INamed;
 import net.minecraft.block.Block;
 
 import java.util.HashMap;

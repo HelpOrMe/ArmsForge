@@ -1,12 +1,12 @@
 package helporme.armsforge.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import helporme.armsforge.api.items.hammer.DefaultHammerTypes;
-import helporme.armsforge.client.render.colors.Colors;
+import helporme.armsforge.common.items.hammers.DefaultHammerTypes;
+import helporme.armsforge.common.registry.utils.Colors;
 import helporme.armsforge.common.items.base.ItemBase;
 import helporme.armsforge.common.items.base.ItemColoredBase;
 import helporme.armsforge.common.items.base.ItemHammerBase;
-import helporme.armsforge.common.registry.interfaces.INamed;
+import helporme.armsforge.common.registry.utils.INamed;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;

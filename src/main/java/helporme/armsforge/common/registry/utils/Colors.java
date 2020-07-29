@@ -1,4 +1,4 @@
-package helporme.armsforge.client.render.colors;
+package helporme.armsforge.common.registry.utils;
 
 public final class Colors
 {

@@ -8,7 +8,6 @@ import helporme.armsforge.common.registry.ModelsRegistry;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
-@SideOnly(Side.CLIENT)
 public final class TileRendererRegistry
 {
     public static void registerTileRenderersFromModelSuites()

@@ -8,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 
-@SideOnly(Side.CLIENT)
 public final class ItemRendererRegistry
 {
     public static void registerItemRenderersFromModelSuites()

@@ -2,7 +2,7 @@ package helporme.armsforge.common.items.base;
 
 import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.core.Version;
-import helporme.armsforge.common.registry.interfaces.INamed;
+import helporme.armsforge.common.registry.utils.INamed;
 import net.minecraft.item.Item;
 
 public class ItemBase extends Item implements INamed

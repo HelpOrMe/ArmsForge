@@ -1,4 +1,4 @@
-package helporme.armsforge.common.core.registry.recipes;
+package helporme.armsforge.common.registry.recipes;
 
 public abstract class RecipeList
 {

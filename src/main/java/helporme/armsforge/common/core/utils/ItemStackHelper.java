@@ -1,7 +1,7 @@
 package helporme.armsforge.common.core.utils;
 
 import helporme.armsforge.common.core.Version;
-import helporme.armsforge.common.core.registry.ItemsRegistry;
+import helporme.armsforge.common.registry.ItemsRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 

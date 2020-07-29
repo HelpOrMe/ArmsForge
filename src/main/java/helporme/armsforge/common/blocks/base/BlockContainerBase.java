@@ -1,6 +1,6 @@
 package helporme.armsforge.common.blocks.base;
 
-import helporme.armsforge.common.core.registry.interfaces.INamed;
+import helporme.armsforge.common.registry.interfaces.INamed;
 import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.core.Version;
 import net.minecraft.block.BlockContainer;

@@ -11,7 +11,7 @@ public class BlockColoredBase extends BlockWithMetaBase
 
     public BlockColoredBase(Material material, String name, int[] colors)
     {
-        super(material, name, colors.length - 1);
+        super(material, name, colors.length);
         this.colors = colors;
     }
 
@@ -26,7 +26,6 @@ public class BlockColoredBase extends BlockWithMetaBase
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess world, int x, int y, int z)
     {
-        int meta = correctMeta(world.getBlockMetadata(x, y, z));
-        return colors[meta];
+        return colors[correctMeta(world.getBlockMetadata(x, y, z))];
     }
 }

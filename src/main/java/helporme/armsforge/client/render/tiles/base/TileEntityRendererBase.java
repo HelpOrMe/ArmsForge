@@ -1,4 +1,4 @@
-package helporme.armsforge.client.render.block.tiles.base;
+package helporme.armsforge.client.render.tiles.base;
 
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -24,7 +24,9 @@ public class TileEntityRendererBase extends TileEntitySpecialRenderer
         bindTexture(texture);
         GL11.glPushMatrix();
         GL11.glTranslated(x + 0.5f, y, z + 0.5f);
+        GL11.glPushMatrix();
         model.renderAll();
+        GL11.glPopMatrix();
         GL11.glPopMatrix();
     }
 }

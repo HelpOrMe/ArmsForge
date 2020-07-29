@@ -24,9 +24,9 @@ public class BlockWithMetaBase extends BlockBase
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List list)
     {
-        for (int i = 0; i < maxMeta + 1; i++)
+        for (int meta = 0; meta < maxMeta + 1; meta++)
         {
-            list.add(new ItemStack(item, 1, i));
+            list.add(new ItemStack(item, 1, meta));
         }
     }
 

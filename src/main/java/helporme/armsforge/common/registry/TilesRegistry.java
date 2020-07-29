@@ -1,8 +1,7 @@
-package helporme.armsforge.common.core.registry;
+package helporme.armsforge.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import helporme.armsforge.common.blocks.base.BlockContainerBase;
-import helporme.armsforge.common.core.registry.BlocksRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 

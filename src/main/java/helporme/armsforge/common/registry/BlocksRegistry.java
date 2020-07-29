@@ -1,12 +1,11 @@
-package helporme.armsforge.common.core.registry;
+package helporme.armsforge.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import helporme.armsforge.common.blocks.*;
 import helporme.armsforge.common.blocks.base.BlockWithMetaBase;
-import helporme.armsforge.common.core.registry.interfaces.INamed;
+import helporme.armsforge.common.registry.interfaces.INamed;
 import helporme.armsforge.common.items.base.ItemBlockBase;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
 
 import java.util.HashMap;
 
@@ -14,6 +13,7 @@ public class BlocksRegistry
 {
     private static HashMap<String, Block> blocks = new HashMap<String, Block>();
 
+    //TODO: BlockList's
     public static void createDefaultBlocks()
     {
         addBlocks(

@@ -1,4 +1,4 @@
-package helporme.armsforge.common.blocks.tiles;
+package helporme.armsforge.common.tiles;
 
 public class TileEntityMasterAnvilGold extends TileEntityMasterAnvil
 { }

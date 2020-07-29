@@ -1,4 +1,4 @@
-package helporme.armsforge.client.render.block.tiles.base;
+package helporme.armsforge.client.render.tiles.base;
 
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import net.minecraft.tileentity.TileEntity;
@@ -18,7 +18,9 @@ public class TileEntityRenderEightFacedBase extends TileEntityRendererBase
         GL11.glPushMatrix();
         GL11.glTranslated(x + 0.5d, y, z + 0.5d);
         GL11.glRotated(tile.getBlockMetadata() * -45d, 0, 1, 0);
+        GL11.glPushMatrix();
         model.renderAll();
+        GL11.glPopMatrix();
         GL11.glPopMatrix();
     }
 }

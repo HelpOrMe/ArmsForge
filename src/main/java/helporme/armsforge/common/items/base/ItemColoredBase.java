@@ -17,7 +17,6 @@ public class ItemColoredBase extends ItemWithMetaBase
     @SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack stack, int p_82790_2_)
     {
-        int meta = correctMeta(stack.getItemDamage());
-        return colors[meta];
+        return colors[correctMeta(stack.getItemDamage())];
     }
 }

@@ -1,4 +1,4 @@
-package helporme.armsforge.common.core.registry.recipes;
+package helporme.armsforge.common.registry.recipes;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import helporme.armsforge.common.core.utils.ItemStackHelper;

@@ -1,8 +1,8 @@
-package helporme.armsforge.common.core.registry;
+package helporme.armsforge.common.registry;
 
-import helporme.armsforge.common.core.registry.recipes.RecipeList;
-import helporme.armsforge.common.core.registry.recipes.SmeltingRecipes;
-import helporme.armsforge.common.core.registry.recipes.WorkbanchRecipes;
+import helporme.armsforge.common.registry.recipes.RecipeList;
+import helporme.armsforge.common.registry.recipes.SmeltingRecipes;
+import helporme.armsforge.common.registry.recipes.WorkbanchRecipes;
 
 public final class RecipesRegistry
 {

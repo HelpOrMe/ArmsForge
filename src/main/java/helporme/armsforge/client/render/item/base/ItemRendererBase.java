@@ -15,13 +15,11 @@ public class ItemRendererBase implements IItemRenderer
 {
     protected IModelCustom model;
     protected ResourceLocation texture;
-    protected float scale;
 
     public ItemRendererBase(ModelInfo modelInfo)
     {
         model = modelInfo.getModel();
         texture = modelInfo.getTexture();
-        scale = 1;
     }
 
     public boolean handleRenderType(ItemStack item, ItemRenderType type)

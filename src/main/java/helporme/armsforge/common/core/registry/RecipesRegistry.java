@@ -19,7 +19,7 @@ public final class RecipesRegistry
         for (int i = 0; i < 9; i++)
         {
             Block block = BlocksRegistry.getBlockByName("MetalBlock");
-            Item ingot = ItemsRegistry.getItemByName("IngotBasic");
+            Item ingot = ItemsRegistry.getItemByName("MetalIngot");
 
             ItemStack blockStack = new ItemStack(block, 1, i);
             ItemStack ingotStack = new ItemStack(ingot, 1, i);

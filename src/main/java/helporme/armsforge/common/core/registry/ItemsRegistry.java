@@ -29,7 +29,7 @@ public final class ItemsRegistry
                 new ItemColoredBase("ChainCanvasSmall", Colors.chainColors),
                 new ItemColoredBase("HandfulRings", Colors.chainColors),
                 new ItemColoredBase("HandfulRivets", Colors.rivetColors),
-                new ItemColoredBase("IngotBasic", Colors.metalColors),
+                new ItemColoredBase("MetalIngot", Colors.metalColors),
                 new ItemColoredBase("Ring", Colors.chainColors),
                 new ItemColoredBase("Rivet", Colors.rivetColors),
                 new ItemColoredBase("Wire", Colors.wireColors),

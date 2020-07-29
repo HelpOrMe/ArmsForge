@@ -1,6 +1,8 @@
 package helporme.armsforge.common.registry.recipes;
 
-public abstract class RecipeList
+import helporme.armsforge.common.registry.RegistryList;
+
+public abstract class RecipeList extends RegistryList
 {
-    public abstract void addDefaultRecipes();
+
 }

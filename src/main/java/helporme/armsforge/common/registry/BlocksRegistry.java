@@ -1,51 +1,43 @@
 package helporme.armsforge.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import helporme.armsforge.common.blocks.*;
 import helporme.armsforge.common.blocks.base.BlockWithMetaBase;
 import helporme.armsforge.common.items.base.ItemBlockBase;
-import helporme.armsforge.common.registry.utils.INamed;
+import helporme.armsforge.common.registry.blocks.BlocksList;
+import helporme.armsforge.common.registry.blocks.FunctionalBlocksList;
+import helporme.armsforge.common.registry.blocks.ResourceBlocksList;
 import net.minecraft.block.Block;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class BlocksRegistry
 {
-    private static HashMap<String, Block> blocks = new HashMap<String, Block>();
+    private static BlocksList[] blocksLists = new BlocksList[]
+            {
+                    new ResourceBlocksList(),
+                    new FunctionalBlocksList()
+            };
 
-    //TODO: BlockList's
+
     public static void createDefaultBlocks()
     {
-        addBlocks(
-                new BlockMasterAnvil(),
-                new BlockMasterAnvilGold(),
-                new BlockArmorerTable(),
-                new BlockArmorsmithTable(),
-                new BlockSupportTable(),
-                new MetalBlock()
-        );
-    }
-
-    public static void addBlocks(Block... blocks)
-    {
-        for (Block block : blocks)
+        for (BlocksList blocksList : blocksLists)
         {
-            addBlock(block);
+            blocksList.createDefault();
         }
-    }
-
-    public static void addBlock(Block block)
-    {
-        String name = block.getClass().getSimpleName();
-        if (block instanceof INamed)
-        {
-            INamed namedBlock = (INamed)block;
-            name = namedBlock.getName();
-        }
-        blocks.put(name, block);
     }
 
     public static void registerBlocks()
+    {
+        for (BlocksList blocksList : blocksLists)
+        {
+            registerBlocksFrom(blocksList.getBlocks());
+        }
+    }
+
+    public static void registerBlocksFrom(Map<String, Block> blocks)
     {
         for (String name : blocks.keySet())
         {
@@ -73,11 +65,24 @@ public class BlocksRegistry
 
     public static Block getBlockByName(String name)
     {
-        return blocks.get(name);
+        for (BlocksList blocksList : blocksLists)
+        {
+            Map<String, Block> blocks = blocksList.getBlocks();
+            if (blocks.containsKey(name))
+            {
+                return blocks.get(name);
+            }
+        }
+        throw new IllegalArgumentException("Can't get a block with name: " + name);
     }
 
     public static Iterable<Block> getAllBlocks()
     {
-        return blocks.values();
+        List<Block> allBlocks = new ArrayList<Block>();
+        for (BlocksList blocksList : blocksLists)
+        {
+            allBlocks.addAll(blocksList.getBlocks().values());
+        }
+        return allBlocks;
     }
 }

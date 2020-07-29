@@ -1,100 +1,68 @@
 package helporme.armsforge.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import helporme.armsforge.common.items.hammers.DefaultHammerTypes;
-import helporme.armsforge.common.registry.utils.Colors;
-import helporme.armsforge.common.items.base.ItemBase;
-import helporme.armsforge.common.items.base.ItemColoredBase;
-import helporme.armsforge.common.items.base.ItemHammerBase;
-import helporme.armsforge.common.registry.utils.INamed;
+import helporme.armsforge.common.registry.items.ItemsList;
+import helporme.armsforge.common.registry.items.ResourcesList;
+import helporme.armsforge.common.registry.items.ToolsList;
 import net.minecraft.item.Item;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public final class ItemsRegistry
 {
-    private static HashMap<String, Item> items = new HashMap<String, Item>();
+    private static ItemsList[] itemsLists = new ItemsList[]
+            {
+                    new ResourcesList(),
+                    new ToolsList()
+            };
 
     public static void createDefaultItems()
     {
-        AddResources();
-        AddTools();
-    }
-
-    //TODO: ItemsList's
-    public static void AddResources()
-    {
-        addItems(
-                new ItemColoredBase("ChainCanvasBig", Colors.chainColors),
-                new ItemColoredBase("ChainCanvasMedium", Colors.chainColors),
-                new ItemColoredBase("ChainCanvasSmall", Colors.chainColors),
-                new ItemColoredBase("HandfulRings", Colors.chainColors),
-                new ItemColoredBase("HandfulRivets", Colors.rivetColors),
-                new ItemColoredBase("MetalIngot", Colors.metalColors),
-                new ItemColoredBase("Ring", Colors.chainColors),
-                new ItemColoredBase("Rivet", Colors.rivetColors),
-                new ItemColoredBase("Wire", Colors.wireColors),
-                new ItemColoredBase("MetalPlate", Colors.plateColors),
-
-                new ItemBase("CommonCloth"),
-                new ItemBase("CottonWool"),
-                new ItemBase("PackingStuds"),
-                new ItemBase("Stud"),
-                new ItemBase("TanningSolution")
-        );
-    }
-
-    public static void AddTools()
-    {
-        addItems(
-                new ItemHammerBase("SmallhammerIron", DefaultHammerTypes.smallIron),
-                new ItemHammerBase("SmallhammerSteel", DefaultHammerTypes.smallSteel),
-                new ItemHammerBase("SmallhammerThaum", DefaultHammerTypes.smallThaum),
-
-                new ItemHammerBase("MediumhammerIron", DefaultHammerTypes.mediumIron),
-                new ItemHammerBase("MediumhammerSteel", DefaultHammerTypes.mediumSteel),
-                new ItemHammerBase("MediumhammerThaum", DefaultHammerTypes.mediumThaum),
-
-                new ItemHammerBase("BighammerIron", DefaultHammerTypes.bigIron),
-                new ItemHammerBase("BighammerSteel", DefaultHammerTypes.bigSteel),
-                new ItemHammerBase("BighammerThaum", DefaultHammerTypes.bigThaum)
-        );
-    }
-
-    public static void addItems(Item... items)
-    {
-        for (Item item : items)
+        for (ItemsList itemsList : itemsLists)
         {
-            addItem(item);
+            itemsList.createDefault();
         }
-    }
-
-    public static void addItem(Item item)
-    {
-        String name = item.getClass().getSimpleName();
-        if (item instanceof INamed)
-        {
-            INamed namedItem = (INamed)item;
-            name = namedItem.getName();
-        }
-        items.put(name, item);
     }
 
     public static void registerItems()
     {
+        for (ItemsList itemsList : itemsLists)
+        {
+            registerItemsFrom(itemsList.getItems());
+        }
+    }
+
+    public static void registerItemsFrom(Map<String, Item> items)
+    {
         for (String name : items.keySet())
         {
-            GameRegistry.registerItem(getItemByName(name), name);
+            GameRegistry.registerItem(items.get(name), name);
         }
     }
 
     public static Item getItemByName(String name)
     {
-        return items.get(name);
+        for (ItemsList itemsList : itemsLists)
+        {
+            Map<String, Item> items = itemsList.getItems();
+            if (items.containsKey(name))
+            {
+                return items.get(name);
+            }
+        }
+        throw new IllegalArgumentException("Can't get an item with name: " + name);
     }
 
-    public static Iterable<Item> getAllItems()
+    public static Collection<Item> getAllItems()
     {
-        return items.values();
+        List<Item> allItems = new ArrayList<Item>();
+        for (ItemsList itemsList : itemsLists)
+        {
+            allItems.addAll(itemsList.getItems().values());
+        }
+        return allItems;
     }
 }

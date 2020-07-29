@@ -6,7 +6,7 @@ import helporme.armsforge.common.core.utils.ItemStackHelper;
 public class SmeltingRecipes extends RecipeList
 {
     @Override
-    public void addDefaultRecipes()
+    public void createDefault()
     {
         GameRegistry.addSmelting(
                 ItemStackHelper.getBlockStack("minecraft:iron_block"),

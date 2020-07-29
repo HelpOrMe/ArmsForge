@@ -12,11 +12,11 @@ public final class RecipesRegistry
                     new SmeltingRecipes()
             };
 
-    public static void addDefaultRecipes()
+    public static void createDefaultRecipes()
     {
-        for (RecipeList list : recipeLists)
+        for (RecipeList recipeList : recipeLists)
         {
-            list.addDefaultRecipes();
+            recipeList.createDefault();
         }
     }
 }

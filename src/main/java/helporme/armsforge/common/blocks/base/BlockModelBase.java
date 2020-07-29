@@ -2,8 +2,8 @@ package helporme.armsforge.common.blocks.base;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.client.render.tiles.base.TileEntityRenderEightFacedBase;
 import helporme.armsforge.client.render.item.base.ItemRendererBase;
+import helporme.armsforge.client.render.tiles.base.TileEntityRenderEightFacedBase;
 import helporme.armsforge.common.blocks.models.IModelContainer;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.blocks.models.ModelSuite;

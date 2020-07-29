@@ -1,7 +1,7 @@
 package helporme.armsforge.common.blocks.models;
 
-import helporme.armsforge.client.render.tiles.base.TileEntityRendererBase;
 import helporme.armsforge.client.render.item.base.ItemRendererBase;
+import helporme.armsforge.client.render.tiles.base.TileEntityRendererBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;

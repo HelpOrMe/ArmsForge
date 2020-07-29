@@ -14,6 +14,7 @@ public class ItemColoredBase extends ItemWithMetaBase
         this.colors = colors;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack stack, int p_82790_2_)
     {

@@ -6,6 +6,7 @@ import helporme.armsforge.common.core.utils.RecipesHelper;
 
 public class WorkbanchRecipes extends RecipeList
 {
+    @Override
     public void addDefaultRecipes()
     {
         addSimpleBlockRecipes();

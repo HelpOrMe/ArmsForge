@@ -8,6 +8,7 @@ public class ItemToolBase extends ItemBase
         this.setMaxStackSize(1);
     }
 
+    @Override
     public boolean isFull3D()
     {
         return true;

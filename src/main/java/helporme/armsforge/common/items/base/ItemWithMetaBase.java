@@ -30,6 +30,7 @@ public class ItemWithMetaBase extends ItemBase
         }
     }
 
+    @Override
     public String getUnlocalizedName(ItemStack stack)
     {
         return getUnlocalizedName() + "_" + stack.getItemDamage();

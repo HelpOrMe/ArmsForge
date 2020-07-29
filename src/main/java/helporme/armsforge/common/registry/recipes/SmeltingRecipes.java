@@ -5,6 +5,7 @@ import helporme.armsforge.common.core.utils.ItemStackHelper;
 
 public class SmeltingRecipes extends RecipeList
 {
+    @Override
     public void addDefaultRecipes()
     {
         GameRegistry.addSmelting(

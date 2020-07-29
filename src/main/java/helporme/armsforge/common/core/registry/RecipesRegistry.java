@@ -25,15 +25,15 @@ public final class RecipesRegistry
             ItemStack ingotStack = new ItemStack(ingot, 1, i);
             ItemStack ingotsStack = new ItemStack(ingot, 9, i);
 
-            GameRegistry.addShapelessRecipe(blockStack, repeatItemStack(ingotStack, 9));
+            GameRegistry.addShapelessRecipe(blockStack, repeat(ingotStack, 9));
             GameRegistry.addShapelessRecipe(ingotsStack, blockStack);
         }
     }
 
-    private static Object[] repeatItemStack(ItemStack stack, int repeatTimes)
+    private static Object[] repeat(ItemStack stack, int times)
     {
         ArrayList<ItemStack> itemStacks = new ArrayList<ItemStack>();
-        for (int i = 0; i < repeatTimes; i++)
+        for (int i = 0; i < times; i++)
         {
             itemStacks.add(stack);
         }

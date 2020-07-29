@@ -1,5 +1,7 @@
 package helporme.armsforge.common.blocks.base;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.common.core.Version;
 import helporme.armsforge.common.core.registry.interfaces.INamed;
 import helporme.armsforge.common.core.ArmsForge;

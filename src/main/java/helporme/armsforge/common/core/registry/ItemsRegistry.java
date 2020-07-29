@@ -2,10 +2,11 @@ package helporme.armsforge.common.core.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import helporme.armsforge.api.items.hammer.DefaultHammerTypes;
+import helporme.armsforge.client.render.colors.Colors;
 import helporme.armsforge.common.core.registry.interfaces.INamed;
 import helporme.armsforge.common.items.base.ItemBase;
+import helporme.armsforge.common.items.base.ItemColoredBase;
 import helporme.armsforge.common.items.base.ItemHammerBase;
-import helporme.armsforge.common.items.base.ItemWithMetaBase;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
@@ -23,20 +24,20 @@ public final class ItemsRegistry
     public static void AddResources()
     {
         addItems(
-                new ItemWithMetaBase("ChainCanvasBig", 10),
-                new ItemWithMetaBase("ChainCanvasMedium", 10),
-                new ItemWithMetaBase("ChainCanvasSmall", 10),
-                new ItemWithMetaBase("HandfulRings", 10),
-                new ItemWithMetaBase("HandfulRivets", 10),
-                new ItemWithMetaBase("IngotBasic", 9),
-                new ItemWithMetaBase("Ring", 10),
-                new ItemWithMetaBase("Rivet", 10),
-                new ItemWithMetaBase("Wire", 10),
+                new ItemColoredBase("ChainCanvasBig", Colors.chainColors),
+                new ItemColoredBase("ChainCanvasMedium", Colors.chainColors),
+                new ItemColoredBase("ChainCanvasSmall", Colors.chainColors),
+                new ItemColoredBase("HandfulRings", Colors.chainColors),
+                new ItemColoredBase("HandfulRivets", Colors.rivetColors),
+                new ItemColoredBase("IngotBasic", Colors.metalColors),
+                new ItemColoredBase("Ring", Colors.chainColors),
+                new ItemColoredBase("Rivet", Colors.rivetColors),
+                new ItemColoredBase("Wire", Colors.wireColors),
+                new ItemColoredBase("MetalPlate", Colors.plateColors),
 
                 new ItemBase("CommonCloth"),
                 new ItemBase("CottonWool"),
                 new ItemBase("PackingStuds"),
-                new ItemBase("SteelPlate"),
                 new ItemBase("Stud"),
                 new ItemBase("TanningSolution")
         );

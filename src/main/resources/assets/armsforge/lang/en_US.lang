@@ -5,6 +5,16 @@ tile.ArmorerTable.name=Armorer Table
 tile.ArmorsmithTable.name=Armorsmith Table
 tile.SupportTable.name=Support Table
 
+tile.MetalBlock_0.name=Holy metal Block
+tile.MetalBlock_1.name=Crimson metal Block
+tile.MetalBlock_2.name=Damned metal Block
+tile.MetalBlock_3.name=End metal Block
+tile.MetalBlock_4.name=Mithril metal Block
+tile.MetalBlock_5.name=Gnome metal Block
+tile.MetalBlock_6.name=Bronze Block
+tile.MetalBlock_7.name=Steel block
+tile.MetalBlock_8.name=Carbon metal Block
+
 # Thaumcraft
 tc.research_category.armsforge=Arms Forge
 

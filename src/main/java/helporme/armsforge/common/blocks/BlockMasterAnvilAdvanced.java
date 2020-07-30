@@ -6,11 +6,11 @@ import helporme.armsforge.common.tiles.TileEntityMasterAnvil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockMasterAnvilGold extends MasterAnvilBase
+public class BlockMasterAnvilAdvanced extends MasterAnvilBase
 {
-    public BlockMasterAnvilGold()
+    public BlockMasterAnvilAdvanced()
     {
-        super("MasterAnvilGold");
+        super("MasterAnvilAdvanced");
         setHardness(12.5f);
         setResistance(12.5f);
         setHarvestLevel("pickaxe", 2);
@@ -27,11 +27,5 @@ public class BlockMasterAnvilGold extends MasterAnvilBase
     public TileEntity createNewTileEntity(World world, int par2)
     {
         return new TileEntityMasterAnvil();
-    }
-
-    @Override
-    public ModelInfo getModelInfo()
-    {
-        return new ModelInfo("blocks/MasterAnvilGold.png", "MasterAnvil.obj");
     }
 }

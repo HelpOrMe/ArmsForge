@@ -1,11 +1,11 @@
 package helporme.armsforge.common.blocks;
 
-import helporme.armsforge.common.blocks.base.BlockCraftingPlaceBase;
+import helporme.armsforge.common.blocks.base.BlockCraftingTableBase;
 import helporme.armsforge.common.tiles.TileEntityMasterAnvilAdvanced;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockMasterAnvilAdvanced extends BlockCraftingPlaceBase
+public class BlockMasterAnvilAdvanced extends BlockCraftingTableBase
 {
     public BlockMasterAnvilAdvanced()
     {

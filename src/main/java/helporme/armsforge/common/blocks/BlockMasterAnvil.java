@@ -2,15 +2,15 @@ package helporme.armsforge.common.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.client.render.tiles.TileEntityCraftingPlaceRenderer;
-import helporme.armsforge.common.blocks.base.BlockCraftingPlaceBase;
+import helporme.armsforge.client.render.tiles.base.TileEntityCrafingTableRendererBase;
+import helporme.armsforge.common.blocks.base.BlockCraftingTableBase;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntityMasterAnvil;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockMasterAnvil extends BlockCraftingPlaceBase
+public class BlockMasterAnvil extends BlockCraftingTableBase
 {
     public BlockMasterAnvil()
     {
@@ -37,6 +37,6 @@ public class BlockMasterAnvil extends BlockCraftingPlaceBase
     @SideOnly(Side.CLIENT)
     public TileEntitySpecialRenderer getTileRenderer(ModelInfo modelInfo)
     {
-        return new TileEntityCraftingPlaceRenderer(modelInfo);
+        return new TileEntityCrafingTableRendererBase(modelInfo);
     }
 }

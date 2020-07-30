@@ -1,4 +1,4 @@
-package helporme.armsforge.client.render.tiles;
+package helporme.armsforge.client.render.tiles.base;
 
 import helporme.armsforge.client.render.tiles.base.TileEntityFacedRendererBase;
 import helporme.armsforge.common.blocks.models.ModelInfo;
@@ -11,9 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityCraftingPlaceRenderer extends TileEntityFacedRendererBase
+public class TileEntityCrafingTableRendererBase extends TileEntityFacedRendererBase
 {
-    public TileEntityCraftingPlaceRenderer(ModelInfo modelInfo)
+    public TileEntityCrafingTableRendererBase(ModelInfo modelInfo)
     {
         super(modelInfo);
     }

@@ -1,12 +1,11 @@
 package helporme.armsforge.common.blocks;
 
-import helporme.armsforge.common.blocks.base.MasterAnvilBase;
-import helporme.armsforge.common.blocks.models.ModelInfo;
-import helporme.armsforge.common.tiles.TileEntityMasterAnvil;
+import helporme.armsforge.common.blocks.base.BlockCraftingPlaceBase;
+import helporme.armsforge.common.tiles.TileEntityMasterAnvilAdvanced;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockMasterAnvilAdvanced extends MasterAnvilBase
+public class BlockMasterAnvilAdvanced extends BlockCraftingPlaceBase
 {
     public BlockMasterAnvilAdvanced()
     {
@@ -20,12 +19,12 @@ public class BlockMasterAnvilAdvanced extends MasterAnvilBase
     @Override
     public Class<? extends TileEntity> getTileClass()
     {
-        return TileEntityMasterAnvil.class;
+        return TileEntityMasterAnvilAdvanced.class;
     }
 
     @Override
     public TileEntity createNewTileEntity(World world, int par2)
     {
-        return new TileEntityMasterAnvil();
+        return new TileEntityMasterAnvilAdvanced();
     }
 }

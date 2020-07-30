@@ -1,10 +1,13 @@
 package helporme.armsforge.common.blocks.models;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.common.core.Version;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
+@SideOnly(Side.CLIENT)
 public class ModelInfo
 {
     protected ResourceLocation texture;

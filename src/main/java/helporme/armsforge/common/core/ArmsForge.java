@@ -11,6 +11,9 @@ import helporme.armsforge.common.core.proxy.ProxyInfo;
 import helporme.armsforge.common.core.tab.ArmsForgeTab;
 import net.minecraft.creativetab.CreativeTabs;
 
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
 @Mod(modid = Version.modid, useMetadata = true)
 public class ArmsForge
 {

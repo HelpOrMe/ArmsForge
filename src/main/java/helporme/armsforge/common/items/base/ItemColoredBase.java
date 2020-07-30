@@ -10,7 +10,7 @@ public class ItemColoredBase extends ItemWithMetaBase
 
     public ItemColoredBase(String name, int[] colors)
     {
-        super(name, colors.length - 1);
+        super(name, colors.length);
         this.colors = colors;
     }
 

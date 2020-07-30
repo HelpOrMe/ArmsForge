@@ -1,6 +1,7 @@
 package helporme.armsforge.common.registry;
 
 import helporme.armsforge.common.blocks.models.IModelContainer;
+import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.blocks.models.ModelSuite;
 import net.minecraft.block.Block;
 
@@ -16,14 +17,17 @@ public final class ModelsRegistry
         {
             if (block instanceof IModelContainer)
             {
-                addModelSuiteFrom((IModelContainer)block);
+                addModelSuite(getModelSuiteFrom((IModelContainer)block));
             }
         }
     }
 
-    public static void addModelSuiteFrom(IModelContainer model)
+    public static ModelSuite getModelSuiteFrom(IModelContainer model)
     {
-        addModelSuite(model.getModelSuite());
+        ModelInfo modelInfo = model.getModelInfo();
+        return new ModelSuite(
+                model.getBlock(), model.getTileClass(), model.getTileRenderer(modelInfo),
+                model.getItemRenderer(modelInfo), modelInfo);
     }
 
     public static void addModelSuite(ModelSuite modelSuite)

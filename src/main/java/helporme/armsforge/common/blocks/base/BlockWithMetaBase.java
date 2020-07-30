@@ -11,19 +11,19 @@ import java.util.List;
 
 public class BlockWithMetaBase extends BlockBase
 {
-    protected int maxMeta;
+    protected int metaCount;
 
-    public BlockWithMetaBase(Material material, String name, int maxMeta)
+    public BlockWithMetaBase(Material material, String name, int metaCount)
     {
         super(material, name);
-        this.maxMeta = maxMeta;
+        this.metaCount = metaCount;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List list)
     {
-        for (int meta = 0; meta < maxMeta + 1; meta++)
+        for (int meta = 0; meta < metaCount; meta++)
         {
             list.add(new ItemStack(item, 1, meta));
         }
@@ -37,6 +37,6 @@ public class BlockWithMetaBase extends BlockBase
 
     protected int correctMeta(int meta)
     {
-        return Math.min(meta, maxMeta - 1);
+        return Math.min(meta, metaCount - 1);
     }
 }

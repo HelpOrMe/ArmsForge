@@ -8,12 +8,12 @@ import java.util.List;
 
 public class ItemWithMetaBase extends ItemBase
 {
-    protected int maxMeta;
+    protected int metaCount;
 
-    public ItemWithMetaBase(String name, int maxMeta)
+    public ItemWithMetaBase(String name, int metaCount)
     {
         super(name);
-        this.maxMeta = maxMeta;
+        this.metaCount = metaCount;
         setHasSubtypes(true);
         setMaxDamage(0);
     }
@@ -21,7 +21,7 @@ public class ItemWithMetaBase extends ItemBase
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list)
     {
-        for (int i = 0; i < maxMeta + 1; i++)
+        for (int i = 0; i < metaCount; i++)
         {
             list.add(new ItemStack(item, 1, i));
         }
@@ -30,11 +30,11 @@ public class ItemWithMetaBase extends ItemBase
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        return getUnlocalizedName() + "_" + stack.getItemDamage();
+        return getUnlocalizedName() + "_" + correctMeta(stack.getItemDamage());
     }
 
     protected int correctMeta(int meta)
     {
-        return Math.min(meta, maxMeta);
+        return Math.min(meta, metaCount - 1);
     }
 }

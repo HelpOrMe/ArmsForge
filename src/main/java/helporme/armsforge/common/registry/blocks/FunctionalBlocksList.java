@@ -8,7 +8,7 @@ public class FunctionalBlocksList extends BlocksList
     {
         addBlocks(
                 new BlockMasterAnvil(),
-                new BlockMasterAnvilAdvanced(),
+                new BlockThaumAnvil(),
                 new BlockPrimalAnvil(),
                 new BlockArmorerTable(),
                 new BlockArmorsmithTable(),

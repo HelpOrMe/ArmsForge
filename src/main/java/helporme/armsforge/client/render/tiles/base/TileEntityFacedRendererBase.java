@@ -16,17 +16,16 @@ public class TileEntityFacedRendererBase extends TileEntityRendererBase
     @Override
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeDelta)
     {
-        rotateIndex = tile.getBlockMetadata();
         bindTexture(texture);
         GL11.glPushMatrix();
         GL11.glTranslated(x + 0.5d, y, z + 0.5d);
-        setFaceRotation();
+        setFaceRotationFrom(tile);
         model.renderAll();
         GL11.glPopMatrix();
     }
 
-    protected void setFaceRotation()
+    protected void setFaceRotationFrom(TileEntity tile)
     {
-        GL11.glRotatef(rotateIndex * -45f, 0, 1, 0);
+        GL11.glRotatef(tile.getBlockMetadata() * -45f, 0, 1, 0);
     }
 }

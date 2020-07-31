@@ -1,11 +1,6 @@
 package helporme.armsforge.common.tiles;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.client.render.info.PrimalAnvilRenderInfo;
-
-public class TileEntityPrimalAnvil extends TileEntityMasterAnvilAdvanced
+public class TileEntityPrimalAnvil extends TileEntityThaumAnvil
 {
-    @SideOnly(Side.CLIENT)
-    public PrimalAnvilRenderInfo renderInfo = new PrimalAnvilRenderInfo();
+
 }

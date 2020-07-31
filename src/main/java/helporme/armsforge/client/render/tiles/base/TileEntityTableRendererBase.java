@@ -21,6 +21,11 @@ public class TileEntityTableRendererBase extends TileEntityFacedRendererBase
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeDelta)
     {
         super.renderTileEntityAt(tile, x, y, z, timeDelta);
+        renderItemStackFromTile(tile, x, y, z);
+    }
+
+    protected void renderItemStackFromTile(TileEntity tile, double x, double y, double z)
+    {
         if (tile instanceof TileEntityTableBase)
         {
             TileEntityTableBase masterAnvil = (TileEntityTableBase)tile;
@@ -37,36 +42,36 @@ public class TileEntityTableRendererBase extends TileEntityFacedRendererBase
         EntityItem entityItem = new EntityItem(tile.getWorldObj(), 0d, 0d, 0d, itemStack);
         GL11.glPushMatrix();
         entityItem.hoverStart = 0.0F;
-        setItemTransformAt(itemStack, x, y, z);
+        setItemTransformAt(tile, itemStack, x, y, z);
         RenderItem.renderInFrame = true;
         RenderManager.instance.renderEntityWithPosYaw(entityItem, 0.0d, 0.0d, 0.0d, 0.0f, 0.0f);
         RenderItem.renderInFrame = false;
         GL11.glPopMatrix();
     }
 
-    protected void setItemTransformAt(ItemStack itemStack, double x, double y, double z)
+    protected void setItemTransformAt(TileEntity tile, ItemStack itemStack, double x, double y, double z)
     {
         if (itemStack.getItem() instanceof ItemBlock)
         {
-            setItem3dTransformAt(x, y, z);
+            setItem3dTransformAt(tile, x, y, z);
         }
         else
         {
-            setItem2dTransformAt(x, y, z);
+            setItem2dTransformAt(tile, x, y, z);
         }
     }
 
-    protected void setItem3dTransformAt(double x, double y, double z)
+    protected void setItem3dTransformAt(TileEntity tile, double x, double y, double z)
     {
         GL11.glTranslated(x + 0.5d, y + 0.875d, z + 0.5d);
         GL11.glScalef(0.85f, 0.85f, 0.85f);
-        setFaceRotation();
+        setFaceRotationFrom(tile);
     }
 
-    protected void setItem2dTransformAt(double x, double y, double z)
+    protected void setItem2dTransformAt(TileEntity tile, double x, double y, double z)
     {
         GL11.glTranslated(x + 0.5d, y + 0.69d, z + 0.5d);
-        setFaceRotation();
+        setFaceRotationFrom(tile);
         GL11.glRotatef(90f, 1f, 0f, 0f);
         GL11.glTranslatef(0, -0.2f, -0.2f);
     }

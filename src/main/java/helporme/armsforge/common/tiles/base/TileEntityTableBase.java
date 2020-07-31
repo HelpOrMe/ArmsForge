@@ -1,6 +1,6 @@
 package helporme.armsforge.common.tiles.base;
 
-public class TileEntityCraftingTableBase extends TileEntityInventoryBase
+public class TileEntityTableBase extends TileEntityInventoryBase
 {
     @Override
     public int getSizeInventory()

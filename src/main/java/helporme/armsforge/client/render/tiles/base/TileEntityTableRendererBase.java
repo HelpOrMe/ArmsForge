@@ -1,8 +1,7 @@
 package helporme.armsforge.client.render.tiles.base;
 
-import helporme.armsforge.client.render.tiles.base.TileEntityFacedRendererBase;
 import helporme.armsforge.common.blocks.models.ModelInfo;
-import helporme.armsforge.common.tiles.TileEntityMasterAnvil;
+import helporme.armsforge.common.tiles.base.TileEntityTableBase;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;
@@ -11,9 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityCrafingTableRendererBase extends TileEntityFacedRendererBase
+public class TileEntityTableRendererBase extends TileEntityFacedRendererBase
 {
-    public TileEntityCrafingTableRendererBase(ModelInfo modelInfo)
+    public TileEntityTableRendererBase(ModelInfo modelInfo)
     {
         super(modelInfo);
     }
@@ -22,9 +21,9 @@ public class TileEntityCrafingTableRendererBase extends TileEntityFacedRendererB
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeDelta)
     {
         super.renderTileEntityAt(tile, x, y, z, timeDelta);
-        if (tile instanceof TileEntityMasterAnvil)
+        if (tile instanceof TileEntityTableBase)
         {
-            TileEntityMasterAnvil masterAnvil = (TileEntityMasterAnvil)tile;
+            TileEntityTableBase masterAnvil = (TileEntityTableBase)tile;
             ItemStack itemOnCraftingPlace = masterAnvil.getStackInSlot(0);
             if (itemOnCraftingPlace != null)
             {

@@ -1,12 +1,17 @@
 package helporme.armsforge.common.blocks;
 
-import helporme.armsforge.common.blocks.base.BlockModelBase;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import helporme.armsforge.client.render.TileEntityTableUpRendererBase;
+import helporme.armsforge.common.blocks.base.BlockTableBase;
+import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntityArmorsmithTable;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockArmorsmithTable extends BlockModelBase
+public class BlockArmorsmithTable extends BlockTableBase
 {
     public BlockArmorsmithTable()
     {
@@ -27,5 +32,12 @@ public class BlockArmorsmithTable extends BlockModelBase
     public TileEntity createNewTileEntity(World world, int par2)
     {
         return new TileEntityArmorsmithTable();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public TileEntitySpecialRenderer getTileRenderer(ModelInfo modelInfo)
+    {
+        return new TileEntityTableUpRendererBase(modelInfo);
     }
 }

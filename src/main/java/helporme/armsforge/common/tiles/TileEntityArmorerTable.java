@@ -1,6 +1,8 @@
 package helporme.armsforge.common.tiles;
 
-import net.minecraft.tileentity.TileEntity;
+import helporme.armsforge.common.tiles.base.TileEntityTableBase;
 
-public class TileEntityArmorerTable extends TileEntity
-{ }
+public class TileEntityArmorerTable extends TileEntityTableBase
+{
+
+}

@@ -1,27 +1,40 @@
 package helporme.armsforge.common.blocks.base;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.api.blocks.IMasterAnvil;
-import helporme.armsforge.common.tiles.base.TileEntityCraftingTableBase;
+import helporme.armsforge.client.render.tiles.base.TileEntityTableRendererBase;
+import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.tiles.base.TileEntityTableBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public abstract class BlockCraftingTableBase extends BlockModelBase implements IMasterAnvil
+public abstract class BlockTableBase extends BlockModelBase implements IMasterAnvil
 {
-    public BlockCraftingTableBase(String name)
+    public BlockTableBase(Material material, String name)
     {
-        super(Material.anvil, name);
+        super(material, name);
         setStepSound(soundTypeAnvil);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public TileEntitySpecialRenderer getTileRenderer(ModelInfo modelInfo)
+    {
+        return new TileEntityTableRendererBase(modelInfo);
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        TileEntityCraftingTableBase tile = (TileEntityCraftingTableBase)world.getTileEntity(x, y, z);
+        //TODO: IActionAccessProvider
+        TileEntityTableBase tile = (TileEntityTableBase)world.getTileEntity(x, y, z);
         return tryPutItemFromTableAt(player, tile) || tryPutItemOnTableFrom(player, tile);
     }
 
-    protected boolean tryPutItemFromTableAt(EntityPlayer player, TileEntityCraftingTableBase tile)
+    protected boolean tryPutItemFromTableAt(EntityPlayer player, TileEntityTableBase tile)
     {
         ItemStack itemStackFromTable = tile.getStackInSlot(0);
         if (itemStackFromTable != null && player.inventory.addItemStackToInventory(itemStackFromTable))
@@ -33,7 +46,7 @@ public abstract class BlockCraftingTableBase extends BlockModelBase implements I
         return false;
     }
 
-    protected boolean tryPutItemOnTableFrom(EntityPlayer player, TileEntityCraftingTableBase tile)
+    protected boolean tryPutItemOnTableFrom(EntityPlayer player, TileEntityTableBase tile)
     {
         ItemStack itemStackFromTable = tile.getStackInSlot(0);
         if (itemStackFromTable == null && player.inventory.getCurrentItem() != null)

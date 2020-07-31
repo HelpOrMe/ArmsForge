@@ -1,16 +1,16 @@
 package helporme.armsforge.common.blocks;
 
-import helporme.armsforge.common.blocks.base.BlockModelBase;
+import helporme.armsforge.common.blocks.base.BlockTableBase;
 import helporme.armsforge.common.tiles.TileEntitySupportTable;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockSupportTable extends BlockModelBase
+public class BlockSupportTable extends BlockTableBase
 {
     public BlockSupportTable()
     {
-        super(Material.iron, "SupportTable");
+        super(Material.wood, "SupportTable");
         setHardness(5f);
         setResistance(10f);
         setHarvestLevel("axe", 1);

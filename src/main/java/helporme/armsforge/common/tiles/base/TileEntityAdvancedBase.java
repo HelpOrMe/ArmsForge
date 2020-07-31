@@ -1,6 +1,5 @@
-package helporme.armsforge.common.tiles;
+package helporme.armsforge.common.tiles.base;
 
-import helporme.armsforge.common.tiles.base.TileEntityBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;

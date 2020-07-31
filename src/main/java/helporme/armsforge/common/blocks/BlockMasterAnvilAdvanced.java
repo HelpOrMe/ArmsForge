@@ -1,15 +1,16 @@
 package helporme.armsforge.common.blocks;
 
-import helporme.armsforge.common.blocks.base.BlockCraftingTableBase;
+import helporme.armsforge.common.blocks.base.BlockTableBase;
 import helporme.armsforge.common.tiles.TileEntityMasterAnvilAdvanced;
+import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockMasterAnvilAdvanced extends BlockCraftingTableBase
+public class BlockMasterAnvilAdvanced extends BlockTableBase
 {
     public BlockMasterAnvilAdvanced()
     {
-        super("MasterAnvilAdvanced");
+        super(Material.anvil,"MasterAnvilAdvanced");
         setHardness(12.5f);
         setResistance(12.5f);
         setHarvestLevel("pickaxe", 2);

@@ -1,6 +1,5 @@
 package helporme.armsforge.common.tiles.base;
 
-import helporme.armsforge.common.tiles.TileEntityAdvancedBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

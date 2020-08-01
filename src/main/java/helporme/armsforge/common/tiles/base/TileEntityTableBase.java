@@ -1,5 +1,7 @@
 package helporme.armsforge.common.tiles.base;
 
+import helporme.armsforge.forge.wrapper.tiles.TileEntityInventoryBase;
+
 public class TileEntityTableBase extends TileEntityInventoryBase
 {
     @Override

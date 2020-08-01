@@ -2,7 +2,7 @@ package helporme.armsforge.common.registry.utils;
 
 import helporme.armsforge.api.items.hammer.HammerType;
 
-public final class DefaultHammerTypes
+public final class HammerTypes
 {
     public static final HammerType smallIron = new HammerType(1, 1, 1000);
     public static final HammerType smallSteel = new HammerType(1, 2, 4000);

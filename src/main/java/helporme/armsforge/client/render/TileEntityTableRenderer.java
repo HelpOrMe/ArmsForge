@@ -1,7 +1,8 @@
-package helporme.armsforge.client.render.tiles.base;
+package helporme.armsforge.client.render;
 
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.tiles.base.TileEntityTableBase;
+import helporme.armsforge.forge.wrapper.render.blocks.TileEntityFacedRendererBase;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;
@@ -10,9 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityTableRendererBase extends TileEntityFacedRendererBase
+public class TileEntityTableRenderer extends TileEntityFacedRendererBase
 {
-    public TileEntityTableRendererBase(ModelInfo modelInfo)
+    public TileEntityTableRenderer(ModelInfo modelInfo)
     {
         super(modelInfo);
     }
@@ -32,12 +33,12 @@ public class TileEntityTableRendererBase extends TileEntityFacedRendererBase
             ItemStack itemOnCraftingPlace = masterAnvil.getStackInSlot(0);
             if (itemOnCraftingPlace != null)
             {
-                renderItemStackAt(masterAnvil, itemOnCraftingPlace, x, y, z);
+                renderItemStack(masterAnvil, itemOnCraftingPlace, x, y, z);
             }
         }
     }
 
-    protected void renderItemStackAt(TileEntity tile, ItemStack itemStack, double x, double y, double z)
+    protected void renderItemStack(TileEntity tile, ItemStack itemStack, double x, double y, double z)
     {
         EntityItem entityItem = new EntityItem(tile.getWorldObj(), 0d, 0d, 0d, itemStack);
         GL11.glPushMatrix();

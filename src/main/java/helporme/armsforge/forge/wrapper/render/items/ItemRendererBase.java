@@ -1,4 +1,4 @@
-package helporme.armsforge.client.render.item.base;
+package helporme.armsforge.forge.wrapper.render.items;
 
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import net.minecraft.client.Minecraft;

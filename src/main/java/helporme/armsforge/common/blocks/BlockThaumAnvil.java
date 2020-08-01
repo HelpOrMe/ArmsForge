@@ -2,8 +2,7 @@ package helporme.armsforge.common.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.client.render.TileEntityThaumAnvilRendererBase;
-import helporme.armsforge.client.render.tiles.base.TileEntityFacedRendererBase;
+import helporme.armsforge.client.render.TileEntityThaumAnvilRenderer;
 import helporme.armsforge.common.blocks.base.BlockTableBase;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntityThaumAnvil;
@@ -39,6 +38,6 @@ public class BlockThaumAnvil extends BlockTableBase
     @SideOnly(Side.CLIENT)
     public TileEntitySpecialRenderer getTileRenderer(ModelInfo modelInfo)
     {
-        return new TileEntityThaumAnvilRendererBase(modelInfo);
+        return new TileEntityThaumAnvilRenderer(modelInfo);
     }
 }

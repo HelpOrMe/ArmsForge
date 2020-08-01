@@ -1,7 +1,6 @@
 package helporme.armsforge.client.render;
 
 import helporme.armsforge.client.render.info.PrimalAnvilRenderInfo;
-import helporme.armsforge.client.render.tiles.base.TileEntityTableRendererBase;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.core.Version;
 import helporme.armsforge.common.tiles.TileEntityPrimalAnvil;
@@ -9,7 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityPrimalAnvilRenderer extends TileEntityTableRendererBase
+public class TileEntityPrimalAnvilRenderer extends TileEntityTableRenderer
 {
     protected PrimalAnvilRenderInfo renderInfo = new PrimalAnvilRenderInfo();
 
@@ -99,13 +98,14 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityTableRendererBase
 
     protected void renderFlags()
     {
+        GL11.glTranslated(0, renderInfo.anvilYOffset, 0);
         model.renderOnly("FlagPillars", "Flag_1", "Flag_2");
     }
 
     @Override
     protected void setItem3dTransformAt(TileEntity tile, double x, double y, double z)
     {
-        GL11.glTranslated(x + 0.5d, y + 0.875d + renderInfo.anvilYOffset, z + 0.5d);
+        GL11.glTranslated(x + 0.5d, y + 0.810d + renderInfo.anvilYOffset, z + 0.5d);
         GL11.glScalef(0.85f, 0.85f, 0.85f);
         setFaceRotationFrom(tile);
     }
@@ -113,7 +113,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityTableRendererBase
     @Override
     protected void setItem2dTransformAt(TileEntity tile, double x, double y, double z)
     {
-        GL11.glTranslated(x + 0.5d, y + 0.69d + renderInfo.anvilYOffset, z + 0.5d);
+        GL11.glTranslated(x + 0.5d, y + 0.635d + renderInfo.anvilYOffset, z + 0.5d);
         setFaceRotationFrom(tile);
         GL11.glRotatef(90f, 1f, 0f, 0f);
         GL11.glTranslatef(0, -0.2f, -0.2f);

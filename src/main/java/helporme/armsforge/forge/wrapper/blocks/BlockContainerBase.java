@@ -1,34 +1,24 @@
-package helporme.armsforge.common.blocks.base;
+package helporme.armsforge.forge.wrapper.blocks;
 
-import helporme.armsforge.common.core.ArmsForge;
-import helporme.armsforge.common.core.Version;
 import helporme.armsforge.common.registry.utils.INamed;
-import helporme.armsforge.common.tiles.base.TileEntityBase;
+import helporme.armsforge.forge.wrapper.tiles.TileEntityBase;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public abstract class BlockContainerBase extends BlockContainer implements INamed
+public abstract class BlockContainerBase extends BlockBase implements ITileEntityProvider, INamed
 {
-    protected String name;
-
     protected BlockContainerBase(Material material, String name)
     {
-        super(material);
-        this.name = name;
-        setCreativeTab(ArmsForge.tab);
-        setBlockName(name);
-        setBlockTextureName(Version.modid + ":" + name);
+        super(material, name);
     }
 
     public String getName()
     {
         return name;
     }
-
-    public abstract Class<? extends TileEntity> getTileClass();
 
     public void breakBlock(World world, int x, int y, int z, Block block, int meta)
     {
@@ -38,6 +28,8 @@ public abstract class BlockContainerBase extends BlockContainer implements IName
             TileEntityBase tileEntityBase = (TileEntityBase)tile;
             tileEntityBase.onRemove();
         }
-        super.breakBlock(world, x, y, z, block, meta);
+        world.removeTileEntity(x, y, z);
     }
+
+    public abstract Class<? extends TileEntity> getTileClass();
 }

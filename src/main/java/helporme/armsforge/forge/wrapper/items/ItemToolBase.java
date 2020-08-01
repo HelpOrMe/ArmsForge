@@ -1,4 +1,4 @@
-package helporme.armsforge.common.items.base;
+package helporme.armsforge.forge.wrapper.items;
 
 public class ItemToolBase extends ItemBase
 {

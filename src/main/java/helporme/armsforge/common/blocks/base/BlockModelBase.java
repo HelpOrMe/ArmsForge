@@ -2,8 +2,9 @@ package helporme.armsforge.common.blocks.base;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.client.render.item.base.ItemRendererBase;
-import helporme.armsforge.client.render.tiles.base.TileEntityFacedRendererBase;
+import helporme.armsforge.forge.wrapper.blocks.BlockContainerBase;
+import helporme.armsforge.forge.wrapper.render.items.ItemRendererBase;
+import helporme.armsforge.forge.wrapper.render.blocks.TileEntityFacedRendererBase;
 import helporme.armsforge.common.blocks.models.IModelContainer;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import net.minecraft.block.Block;

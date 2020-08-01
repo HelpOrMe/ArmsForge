@@ -1,12 +1,12 @@
-package helporme.armsforge.client.render.tiles.base;
+package helporme.armsforge.client.render;
 
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityTableUpRendererBase extends TileEntityTableRendererBase
+public class TileEntityTableUpRenderer extends TileEntityTableRenderer
 {
-    public TileEntityTableUpRendererBase(ModelInfo modelInfo)
+    public TileEntityTableUpRenderer(ModelInfo modelInfo)
     {
         super(modelInfo);
     }

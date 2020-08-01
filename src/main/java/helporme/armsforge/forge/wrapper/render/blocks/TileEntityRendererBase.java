@@ -1,4 +1,4 @@
-package helporme.armsforge.client.render.tiles.base;
+package helporme.armsforge.forge.wrapper.render.blocks;
 
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

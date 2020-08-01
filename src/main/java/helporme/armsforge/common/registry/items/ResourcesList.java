@@ -1,7 +1,7 @@
 package helporme.armsforge.common.registry.items;
 
-import helporme.armsforge.common.items.base.ItemBase;
-import helporme.armsforge.common.items.base.ItemColoredBase;
+import helporme.armsforge.forge.wrapper.items.ItemBase;
+import helporme.armsforge.forge.wrapper.items.ItemColoredBase;
 import helporme.armsforge.common.registry.utils.Colors;
 
 public class ResourcesList extends ItemsList

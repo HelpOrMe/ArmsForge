@@ -1,4 +1,4 @@
-package helporme.armsforge.common.items.base;
+package helporme.armsforge.forge.wrapper.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

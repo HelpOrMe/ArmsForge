@@ -1,4 +1,4 @@
-package helporme.armsforge.common.tiles.base;
+package helporme.armsforge.forge.wrapper.tiles;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;

@@ -1,7 +1,5 @@
-package helporme.armsforge.common.blocks.base;
+package helporme.armsforge.forge.wrapper.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -20,7 +18,6 @@ public class BlockWithMetaBase extends BlockBase
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List list)
     {
         for (int meta = 0; meta < metaCount; meta++)

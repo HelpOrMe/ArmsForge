@@ -1,4 +1,4 @@
-package helporme.armsforge.common.items.hammers;
+package helporme.armsforge.common.registry.utils;
 
 import helporme.armsforge.api.items.hammer.HammerType;
 

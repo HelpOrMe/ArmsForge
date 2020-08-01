@@ -1,4 +1,4 @@
-package helporme.armsforge.common.items.base;
+package helporme.armsforge.forge.wrapper.items;
 
 import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.core.Version;

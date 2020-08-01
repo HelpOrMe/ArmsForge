@@ -1,6 +1,7 @@
-package helporme.armsforge.common.core.utils;
+package helporme.armsforge.common.registry.utils;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 
 public final class RecipesHelper

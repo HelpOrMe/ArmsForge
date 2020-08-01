@@ -1,8 +1,8 @@
 package helporme.armsforge.common.registry.recipes;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import helporme.armsforge.common.core.utils.ItemStackHelper;
-import helporme.armsforge.common.core.utils.RecipesHelper;
+import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
+import helporme.armsforge.common.registry.utils.RecipesHelper;
 
 public class WorkbanchRecipes extends RecipeList
 {

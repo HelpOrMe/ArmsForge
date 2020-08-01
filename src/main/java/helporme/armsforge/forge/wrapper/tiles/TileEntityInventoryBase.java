@@ -1,5 +1,7 @@
-package helporme.armsforge.common.tiles.base;
+package helporme.armsforge.forge.wrapper.tiles;
 
+import helporme.armsforge.forge.wrapper.inventory.IInventoryExtend;
+import helporme.armsforge.forge.wrapper.utils.InventoryHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -7,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-public class TileEntityInventoryBase extends TileEntityAdvancedBase implements IInventory
+public class TileEntityInventoryBase extends TileEntityAdvancedBase implements IInventory, IInventoryExtend
 {
     protected ItemStack[] items = new ItemStack[getSizeInventory()];
 
@@ -61,15 +63,33 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
     }
 
     @Override
-    public int getSizeInventory()
+    public boolean hasSpaceForItem(ItemStack itemStack)
     {
-        return 27;
+        return InventoryHelper.hasSpaceForItem(itemStack, this, getSizeInventory());
     }
 
     @Override
-    public int getInventoryStackLimit()
+    public boolean hasSpaceForItemAt(ItemStack itemStack, int slot)
     {
-        return 64;
+        return InventoryHelper.hasSpaceForItemAt(itemStack, this, slot);
+    }
+
+    @Override
+    public boolean isStackableAt(ItemStack itemStack, int slot)
+    {
+        return InventoryHelper.isStackableAt(itemStack, this, slot);
+    }
+
+    @Override
+    public boolean isEmptyAt(int slot)
+    {
+        return InventoryHelper.isEmptyAt(this, slot);
+    }
+
+    @Override
+    public ItemStack popItem(int slot)
+    {
+        return decrStackSize(0, getInventoryStackLimit());
     }
 
     @Override
@@ -80,7 +100,7 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
         {
             throw new IllegalArgumentException(
                     "Trying to decrease stack size, but stack is null." +
-                    " Slot " + slot + ", size" + size + ". " + getTileInfo());
+                    " Slot " + slot + ", size " + size + ". " + getTileInfo());
         }
 
         if (itemStack.stackSize <= size)
@@ -132,7 +152,19 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
 
     protected String getTileInfo()
     {
-        return "Tile " + toString() + ", at " + xCoord + " " + yCoord + " " + zCoord;
+        return "Tile " + toString() + ", at x" + xCoord + " y" + yCoord + " z" + zCoord;
+    }
+
+    @Override
+    public int getSizeInventory()
+    {
+        return 27;
+    }
+
+    @Override
+    public int getInventoryStackLimit()
+    {
+        return 64;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package helporme.armsforge.common.tiles.base;
+package helporme.armsforge.forge.wrapper.tiles;
 
 import net.minecraft.tileentity.TileEntity;
 

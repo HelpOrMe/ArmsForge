@@ -6,8 +6,12 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import helporme.armsforge.client.fx.IParticleFxEngine;
+import helporme.armsforge.client.fx.ParticleEngine;
 import helporme.armsforge.common.core.proxy.IProxy;
 import helporme.armsforge.common.core.proxy.ProxyInfo;
+import helporme.armsforge.common.core.server.DefaultActionAccessProvider;
+import helporme.armsforge.common.core.server.IActionAccessProvider;
 import helporme.armsforge.common.core.tab.ArmsForgeTab;
 import net.minecraft.creativetab.CreativeTabs;
 
@@ -15,6 +19,9 @@ import net.minecraft.creativetab.CreativeTabs;
 public class ArmsForge
 {
     public static final CreativeTabs tab = new ArmsForgeTab();
+
+    public static IActionAccessProvider accessProvider = new DefaultActionAccessProvider();
+    public static IParticleFxEngine fxEngine = new ParticleEngine();
 
     @SidedProxy(serverSide = ProxyInfo.serverProxy, clientSide = ProxyInfo.clientProxy)
     public static IProxy proxy;

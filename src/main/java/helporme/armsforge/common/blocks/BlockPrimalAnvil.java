@@ -3,6 +3,8 @@ package helporme.armsforge.common.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.client.render.TileEntityPrimalAnvilRenderer;
+import helporme.armsforge.client.render.info.PrimalAnvilRenderInfo;
+import helporme.armsforge.common.blocks.base.BlockCraftingTableBase;
 import helporme.armsforge.common.blocks.base.BlockTableBase;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntityPrimalAnvil;
@@ -11,7 +13,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockPrimalAnvil extends BlockTableBase
+public class BlockPrimalAnvil extends BlockCraftingTableBase
 {
     public BlockPrimalAnvil()
     {

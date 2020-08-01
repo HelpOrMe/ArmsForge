@@ -1,8 +1,8 @@
 package helporme.armsforge.common.tiles;
 
-import helporme.armsforge.common.tiles.base.TileEntityTableBase;
+import helporme.armsforge.common.tiles.base.TileEntityCraftingTableBase;
 
-public class TileEntityArmorsmithTable extends TileEntityTableBase
+public class TileEntityArmorsmithTable extends TileEntityCraftingTableBase
 {
 
 }

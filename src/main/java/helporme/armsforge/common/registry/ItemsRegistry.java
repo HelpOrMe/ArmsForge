@@ -1,6 +1,7 @@
 package helporme.armsforge.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import helporme.armsforge.common.registry.items.HammersList;
 import helporme.armsforge.common.registry.items.ItemsList;
 import helporme.armsforge.common.registry.items.ResourcesList;
 import helporme.armsforge.common.registry.items.ToolsList;
@@ -16,6 +17,7 @@ public final class ItemsRegistry
     private static ItemsList[] itemsLists = new ItemsList[]
             {
                     new ResourcesList(),
+                    new HammersList(),
                     new ToolsList()
             };
 

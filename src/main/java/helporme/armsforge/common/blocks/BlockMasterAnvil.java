@@ -1,16 +1,18 @@
 package helporme.armsforge.common.blocks;
 
+import helporme.armsforge.common.blocks.base.BlockCraftingTableBase;
 import helporme.armsforge.common.blocks.base.BlockTableBase;
 import helporme.armsforge.common.tiles.TileEntityMasterAnvil;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockMasterAnvil extends BlockTableBase
+public class BlockMasterAnvil extends BlockCraftingTableBase
 {
     public BlockMasterAnvil()
     {
         super(Material.anvil,"MasterAnvil");
+        setStepSound(soundTypeAnvil);
         setHardness(10f);
         setResistance(10f);
         setHarvestLevel("pickaxe", 2);

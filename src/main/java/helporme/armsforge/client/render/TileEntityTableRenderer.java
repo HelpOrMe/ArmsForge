@@ -71,9 +71,10 @@ public class TileEntityTableRenderer extends TileEntityFacedRendererBase
 
     protected void setItem2dTransformAt(TileEntity tile, double x, double y, double z)
     {
-        GL11.glTranslated(x + 0.5d, y + 0.69d, z + 0.5d);
+        GL11.glTranslated(x + 0.5d, y + 0.89d, z + 0.5d);
         setFaceRotationFrom(tile);
-        GL11.glRotatef(90f, 1f, 0f, 0f);
-        GL11.glTranslatef(0, -0.2f, -0.2f);
+        GL11.glRotatef(-90f, 1f, 0f, 0f);
+        GL11.glTranslatef(0, 0.2f, 0);
+        GL11.glRotatef(180f, 0f, 0f, 1f);
     }
 }

@@ -11,16 +11,8 @@ public final class Colors
     public static final int bronzeColor = 0xFFCB6B;
     public static final int steelColor = 0x919191;
     public static final int goldColor = 0xD2C81E;
-    public static final int carbonColor = 0x646464;
+    public static final int carbonColor = 0x252525;
     public static final int ironColor = 0x7D7D7D;
-
-    public static final int[] allColors = new int[]
-            {
-                    holyColor, crimsonColor, damnedColor,
-                    endColor, mithrilColor, gnomeColor,
-                    bronzeColor, steelColor, goldColor,
-                    carbonColor, ironColor
-            };
 
     public static final int[] metalColors = new int[]
             {

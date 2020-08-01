@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 public class TileEntityPrimalAnvilRenderer extends TileEntityTableRenderer
 {
-    protected PrimalAnvilRenderInfo renderInfo = new PrimalAnvilRenderInfo();
+    protected PrimalAnvilRenderInfo renderInfo;
 
     public TileEntityPrimalAnvilRenderer(ModelInfo modelInfo)
     {
@@ -20,8 +20,13 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityTableRenderer
     @Override
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeDelta)
     {
-        renderAnvil((TileEntityPrimalAnvil)tile, x, y, z, timeDelta);
-        renderItemStackFromTile(tile, x, y, z);
+        TileEntityPrimalAnvil primalAnvil = (TileEntityPrimalAnvil)tile;
+        renderInfo = primalAnvil.renderInfo;
+        if (renderInfo != null)
+        {
+            renderAnvil((TileEntityPrimalAnvil)tile, x, y, z, timeDelta);
+            renderItemStackFromTile(tile, x, y, z);
+        }
     }
 
     protected void renderAnvil(TileEntityPrimalAnvil tilePrimalAnvil, double x, double y, double z, float timeDelta)
@@ -98,7 +103,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityTableRenderer
 
     protected void renderFlags()
     {
-        GL11.glTranslated(0, renderInfo.anvilYOffset, 0);
+        GL11.glTranslated(0, renderInfo.anvilYOffset / -3, 0);
         model.renderOnly("FlagPillars", "Flag_1", "Flag_2");
     }
 
@@ -113,9 +118,10 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityTableRenderer
     @Override
     protected void setItem2dTransformAt(TileEntity tile, double x, double y, double z)
     {
-        GL11.glTranslated(x + 0.5d, y + 0.635d + renderInfo.anvilYOffset, z + 0.5d);
+        GL11.glTranslated(x + 0.5d, y + 0.84d + renderInfo.anvilYOffset, z + 0.5d);
         setFaceRotationFrom(tile);
-        GL11.glRotatef(90f, 1f, 0f, 0f);
-        GL11.glTranslatef(0, -0.2f, -0.2f);
+        GL11.glRotatef(-90f, 1f, 0f, 0f);
+        GL11.glTranslatef(0, 0.2f, 0);
+        GL11.glRotatef(180f, 0f, 0f, 1f);
     }
 }

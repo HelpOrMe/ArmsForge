@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.client.render.TileEntityTableRenderer;
 import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.tiles.base.TileEntityTableBase;
 import helporme.armsforge.forge.wrapper.utils.InventoryHelper;
 import net.minecraft.block.material.Material;
@@ -17,7 +18,6 @@ public abstract class BlockTableBase extends BlockModelBase
     public BlockTableBase(Material material, String name)
     {
         super(material, name);
-        setStepSound(soundTypeAnvil);
     }
 
     @Override
@@ -29,9 +29,12 @@ public abstract class BlockTableBase extends BlockModelBase
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        //TODO: IActionAccessProvider
-        TileEntityTableBase table = (TileEntityTableBase)world.getTileEntity(x, y, z);
-        return tryAddItemToTableFromPlayer(table, player) || tryAddItemToPlayerFromTable(player, table);
+        if (ArmsForge.accessProvider.canInteractWith(player, world, x, y, z))
+        {
+            TileEntityTableBase table = (TileEntityTableBase)world.getTileEntity(x, y, z);
+            return tryAddItemToTableFromPlayer(table, player) || tryAddItemToPlayerFromTable(player, table);
+        }
+        return false;
     }
 
     protected boolean tryAddItemToTableFromPlayer(TileEntityTableBase table, EntityPlayer player)

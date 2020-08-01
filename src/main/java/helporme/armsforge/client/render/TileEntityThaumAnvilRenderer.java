@@ -3,13 +3,14 @@ package helporme.armsforge.client.render;
 import helporme.armsforge.client.render.info.ThaumAnvilRenderInfo;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.core.Version;
+import helporme.armsforge.common.tiles.TileEntityThaumAnvil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class TileEntityThaumAnvilRenderer extends TileEntityTableRenderer
 {
-    protected ThaumAnvilRenderInfo renderInfo = new ThaumAnvilRenderInfo();
+    protected ThaumAnvilRenderInfo renderInfo;
 
     public TileEntityThaumAnvilRenderer(ModelInfo modelInfo)
     {
@@ -19,8 +20,13 @@ public class TileEntityThaumAnvilRenderer extends TileEntityTableRenderer
     @Override
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeDelta)
     {
-        renderAnvil(tile, x, y, z, timeDelta);
-        renderItemStackFromTile(tile, x, y, z);
+        TileEntityThaumAnvil thaumAnvil = (TileEntityThaumAnvil)tile;
+        renderInfo = thaumAnvil.renderInfo;
+        if (renderInfo != null)
+        {
+            renderAnvil(tile, x, y, z, timeDelta);
+            renderItemStackFromTile(tile, x, y, z);
+        }
     }
 
     protected void renderAnvil(TileEntity tile, double x, double y, double z, float timeDelta)

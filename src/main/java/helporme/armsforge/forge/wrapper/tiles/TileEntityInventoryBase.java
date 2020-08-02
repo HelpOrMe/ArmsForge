@@ -112,8 +112,7 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
             itemStack = itemStack.splitStack(size);
         }
 
-        worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-        markDirty();
+        markDirtyAndUpdate();
         return itemStack;
     }
 
@@ -146,8 +145,7 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
         }
 
         items[slot] = itemStack;
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        markDirty();
+        markDirtyAndUpdate();
     }
 
     protected String getTileInfo()

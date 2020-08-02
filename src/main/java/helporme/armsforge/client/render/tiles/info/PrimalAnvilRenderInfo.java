@@ -1,6 +1,6 @@
-package helporme.armsforge.client.render.info;
+package helporme.armsforge.client.render.tiles.info;
 
-public class PrimalAnvilRenderInfo
+public class PrimalAnvilRenderInfo extends TextureFramesRenderInfo
 {
     public int currentTextureFrame = 0;
     public int textureFramesCount = 4;

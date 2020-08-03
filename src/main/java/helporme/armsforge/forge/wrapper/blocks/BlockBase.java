@@ -4,6 +4,7 @@ import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.core.Version;
 import helporme.armsforge.common.registry.utils.INamed;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 
 public class BlockBase extends Block implements INamed

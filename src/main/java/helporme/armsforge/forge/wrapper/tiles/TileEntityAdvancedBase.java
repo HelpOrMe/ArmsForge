@@ -20,4 +20,10 @@ public class TileEntityAdvancedBase extends TileEntityBase
         NBTTagCompound tag = pkt.func_148857_g();
         readFromNBT(tag);
     }
+
+    public void markDirtyAndUpdate()
+    {
+        markDirty();
+        worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+    }
 }

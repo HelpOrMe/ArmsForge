@@ -1,6 +1,6 @@
-package helporme.armsforge.client.render.info;
+package helporme.armsforge.client.render.tiles.info;
 
-public class ThaumAnvilRenderInfo
+public class TextureFramesRenderInfo
 {
     public int currentTextureFrame = 0;
     public int textureFramesCount = 3;

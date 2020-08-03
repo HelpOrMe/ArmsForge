@@ -1,7 +1,7 @@
 package helporme.armsforge.common.registry.items;
 
 import helporme.armsforge.common.items.ItemHammer;
-import helporme.armsforge.common.registry.utils.HammerTypes;
+import helporme.armsforge.api.recipes.Hammers;
 
 public class HammersList extends ItemsList
 {
@@ -9,17 +9,17 @@ public class HammersList extends ItemsList
     public void createDefault()
     {
         addItems(
-                new ItemHammer("SmallhammerIron", HammerTypes.smallIron),
-                new ItemHammer("SmallhammerSteel", HammerTypes.smallSteel),
-                new ItemHammer("SmallhammerThaum", HammerTypes.smallThaum),
+                new ItemHammer("SmallhammerIron", Hammers.smallIron, 1000),
+                new ItemHammer("SmallhammerSteel", Hammers.smallSteel, 4000),
+                new ItemHammer("SmallhammerThaum", Hammers.smallThaum, 7000),
 
-                new ItemHammer("MediumhammerIron", HammerTypes.mediumIron),
-                new ItemHammer("MediumhammerSteel", HammerTypes.mediumSteel),
-                new ItemHammer("MediumhammerThaum", HammerTypes.mediumThaum),
+                new ItemHammer("MediumhammerIron", Hammers.mediumIron, 1000),
+                new ItemHammer("MediumhammerSteel", Hammers.mediumSteel, 4000),
+                new ItemHammer("MediumhammerThaum", Hammers.mediumThaum, 7000),
 
-                new ItemHammer("BighammerIron", HammerTypes.bigIron),
-                new ItemHammer("BighammerSteel", HammerTypes.bigSteel),
-                new ItemHammer("BighammerThaum", HammerTypes.bigThaum)
+                new ItemHammer("BighammerIron", Hammers.bigIron, 1000),
+                new ItemHammer("BighammerSteel", Hammers.bigSteel, 4000),
+                new ItemHammer("BighammerThaum", Hammers.bigThaum, 7000)
         );
     }
 }

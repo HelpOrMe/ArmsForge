@@ -1,4 +1,4 @@
-package helporme.armsforge.client.render;
+package helporme.armsforge.client.render.tiles.base;
 
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.tiles.base.TileEntityTableBase;

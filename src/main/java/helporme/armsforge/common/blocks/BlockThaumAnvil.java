@@ -2,9 +2,8 @@ package helporme.armsforge.common.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.client.render.TileEntityThaumAnvilRenderer;
+import helporme.armsforge.client.render.tiles.TileEntityThaumAnvilRenderer;
 import helporme.armsforge.common.blocks.base.BlockCraftingTableBase;
-import helporme.armsforge.common.blocks.base.BlockTableBase;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntityThaumAnvil;
 import net.minecraft.block.material.Material;

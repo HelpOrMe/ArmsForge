@@ -2,7 +2,7 @@ package helporme.armsforge.common.blocks.base;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.client.render.TileEntityTableRenderer;
+import helporme.armsforge.client.render.tiles.base.TileEntityTableRenderer;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.tiles.base.TileEntityTableBase;

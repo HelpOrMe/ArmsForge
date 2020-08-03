@@ -7,7 +7,7 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockColoredBase extends BlockWithMetaBase
 {
-    protected int[] colors;
+    protected final int[] colors;
 
     public BlockColoredBase(Material material, String name, int[] colors)
     {

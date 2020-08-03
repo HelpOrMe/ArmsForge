@@ -22,7 +22,7 @@ public class CommonProxy implements IProxy
         BlocksRegistry.registerBlocks();
         ItemsRegistry.registerItems();
         TilesRegistry.registerTilesFromBlocks();
-        RecipesRegistry.createDefaultRecipes();
+        RecipesRegistry.addDefaultRecipes();
 
         IntegrationManager.prepareThaumcraft();
     }

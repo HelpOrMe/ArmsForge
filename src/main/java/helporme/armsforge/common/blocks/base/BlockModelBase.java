@@ -47,7 +47,7 @@ public abstract class BlockModelBase extends BlockContainerBase implements IMode
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack itemStack)
     {
-        int dir = MathHelper.floor_double((player.rotationYaw * 8f) / 360F + 0.5d);
+        int dir = MathHelper.floor_double((player.rotationYaw * 4f) / 360F + 0.5d);
         world.setBlockMetadataWithNotify(x, y, z, dir, 3);
         createNewTileEntity(world, world.getBlockMetadata(x, y, z));
     }

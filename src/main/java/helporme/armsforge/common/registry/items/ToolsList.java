@@ -5,7 +5,7 @@ import helporme.armsforge.common.items.ItemScrewdriver;
 public class ToolsList extends ItemsList
 {
     @Override
-    public void createDefault()
+    public void addDefault()
     {
         addItems(
                 new ItemScrewdriver()

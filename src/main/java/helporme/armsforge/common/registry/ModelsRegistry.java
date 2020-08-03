@@ -9,7 +9,7 @@ import java.util.HashSet;
 
 public final class ModelsRegistry
 {
-    private static HashSet<ModelSuite> modelSuites = new HashSet<ModelSuite>();
+    private static final HashSet<ModelSuite> modelSuites = new HashSet<>();
 
     public static void createModelSuitesFromBlocks()
     {
@@ -37,6 +37,6 @@ public final class ModelsRegistry
 
     public static Iterable<ModelSuite> getAllModelSuites()
     {
-        return new HashSet<ModelSuite>(modelSuites);
+        return new HashSet<>(modelSuites);
     }
 }

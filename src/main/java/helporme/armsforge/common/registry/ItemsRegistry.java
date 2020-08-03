@@ -14,7 +14,7 @@ import java.util.Map;
 
 public final class ItemsRegistry
 {
-    private static ItemsList[] itemsLists = new ItemsList[]
+    private static final ItemsList[] itemsLists = new ItemsList[]
             {
                     new ResourcesList(),
                     new HammersList(),
@@ -25,7 +25,7 @@ public final class ItemsRegistry
     {
         for (ItemsList itemsList : itemsLists)
         {
-            itemsList.createDefault();
+            itemsList.addDefault();
         }
     }
 
@@ -60,7 +60,7 @@ public final class ItemsRegistry
 
     public static Collection<Item> getAllItems()
     {
-        List<Item> allItems = new ArrayList<Item>();
+        List<Item> allItems = new ArrayList<>();
         for (ItemsList itemsList : itemsLists)
         {
             allItems.addAll(itemsList.getItems().values());

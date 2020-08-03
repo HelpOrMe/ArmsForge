@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ItemWithMetaBase extends ItemBase
 {
-    protected int metaCount;
+    protected final int metaCount;
 
     public ItemWithMetaBase(String name, int metaCount)
     {

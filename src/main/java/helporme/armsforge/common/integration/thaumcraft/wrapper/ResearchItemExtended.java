@@ -24,7 +24,7 @@ public class ResearchItemExtended extends ResearchItem
 
     public void addPages(ResearchPage... pages)
     {
-        List<ResearchPage> currentPages = new ArrayList<ResearchPage>(Arrays.asList(getPages()));
+        List<ResearchPage> currentPages = new ArrayList<>(Arrays.asList(getPages()));
         currentPages.addAll(Arrays.asList(pages));
 
         ResearchPage[] extendedPages = new ResearchPage[currentPages.size()];

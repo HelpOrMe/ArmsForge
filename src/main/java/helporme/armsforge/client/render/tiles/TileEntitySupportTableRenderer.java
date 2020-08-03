@@ -11,8 +11,8 @@ import net.minecraftforge.client.model.IModelCustom;
 
 public class TileEntitySupportTableRenderer extends TileEntityTableRenderer
 {
-    protected IModelCustom defaultModel;
-    protected IModelCustom shelfModel;
+    protected final IModelCustom defaultModel;
+    protected final IModelCustom shelfModel;
 
     public TileEntitySupportTableRenderer(ModelInfo modelInfo)
     {

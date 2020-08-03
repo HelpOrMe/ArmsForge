@@ -10,8 +10,8 @@ import org.lwjgl.opengl.GL11;
 
 public class ItemRendererBase implements IItemRenderer
 {
-    protected IModelCustom model;
-    protected ResourceLocation texture;
+    protected final IModelCustom model;
+    protected final ResourceLocation texture;
 
     public ItemRendererBase(ModelInfo modelInfo)
     {

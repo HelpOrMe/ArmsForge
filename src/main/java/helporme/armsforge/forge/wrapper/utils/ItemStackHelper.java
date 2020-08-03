@@ -56,7 +56,7 @@ public final class ItemStackHelper
 
     public static Object[] repeatStack(ItemStack stack, int times)
     {
-        ArrayList<ItemStack> itemStacks = new ArrayList<ItemStack>();
+        ArrayList<ItemStack> itemStacks = new ArrayList<>();
         for (int i = 0; i < times; i++)
         {
             itemStacks.add(stack);

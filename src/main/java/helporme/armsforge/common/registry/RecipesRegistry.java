@@ -1,22 +1,24 @@
 package helporme.armsforge.common.registry;
 
-import helporme.armsforge.common.registry.recipes.RecipeList;
+import helporme.armsforge.common.registry.recipes.AnvilRecipes;
+import helporme.armsforge.common.registry.recipes.RecipesList;
 import helporme.armsforge.common.registry.recipes.SmeltingRecipes;
 import helporme.armsforge.common.registry.recipes.WorkbanchRecipes;
 
 public final class RecipesRegistry
 {
-    private static RecipeList[] recipeLists = new RecipeList[]
+    private static final RecipesList[] recipeLists = new RecipesList[]
             {
                     new WorkbanchRecipes(),
-                    new SmeltingRecipes()
+                    new SmeltingRecipes(),
+                    new AnvilRecipes()
             };
 
-    public static void createDefaultRecipes()
+    public static void addDefaultRecipes()
     {
-        for (RecipeList recipeList : recipeLists)
+        for (RecipesList recipeList : recipeLists)
         {
-            recipeList.createDefault();
+            recipeList.addDefault();
         }
     }
 }

@@ -20,8 +20,8 @@ public class ArmsForge
 {
     public static final CreativeTabs tab = new ArmsForgeTab();
 
-    public static IActionAccessProvider accessProvider = new DefaultActionAccessProvider();
-    public static IParticleFxEngine fxEngine = new ParticleEngine();
+    public static final IActionAccessProvider accessProvider = new DefaultActionAccessProvider();
+    public static final IParticleFxEngine fxEngine = new ParticleEngine();
 
     @SidedProxy(serverSide = ProxyInfo.serverProxy, clientSide = ProxyInfo.clientProxy)
     public static IProxy proxy;

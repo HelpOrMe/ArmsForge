@@ -1,13 +1,14 @@
 package helporme.armsforge.common.registry.recipes;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import helporme.armsforge.common.registry.RegistryList;
 import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
 import helporme.armsforge.common.registry.utils.RecipesHelper;
 
-public class WorkbanchRecipes extends RecipeList
+public class WorkbanchRecipes extends RecipesList
 {
     @Override
-    public void createDefault()
+    public void addDefault()
     {
         addSimpleBlockRecipes();
         addMasterAnvilRecipe();

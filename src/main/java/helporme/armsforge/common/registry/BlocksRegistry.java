@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class BlocksRegistry
 {
-    private static BlocksList[] blocksLists = new BlocksList[]
+    private static final BlocksList[] blocksLists = new BlocksList[]
             {
                     new ResourceBlocksList(),
                     new FunctionalBlocksList()
@@ -25,7 +25,7 @@ public class BlocksRegistry
     {
         for (BlocksList blocksList : blocksLists)
         {
-            blocksList.createDefault();
+            blocksList.addDefault();
         }
     }
 
@@ -78,7 +78,7 @@ public class BlocksRegistry
 
     public static Iterable<Block> getAllBlocks()
     {
-        List<Block> allBlocks = new ArrayList<Block>();
+        List<Block> allBlocks = new ArrayList<>();
         for (BlocksList blocksList : blocksLists)
         {
             allBlocks.addAll(blocksList.getBlocks().values());

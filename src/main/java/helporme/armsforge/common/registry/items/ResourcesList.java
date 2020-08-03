@@ -7,7 +7,7 @@ import helporme.armsforge.common.registry.utils.Colors;
 public class ResourcesList extends ItemsList
 {
     @Override
-    public void createDefault()
+    public void addDefault()
     {
         addItems(
                 new ItemColoredBase("ChainCanvasBig", Colors.chainColors),

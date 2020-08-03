@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public final class ThaumcraftResearches
 {
-    private static HashMap<String, ResearchItem> researches = new HashMap<String, ResearchItem>();
+    private static final HashMap<String, ResearchItem> researches = new HashMap<>();
 
     public static void createDefaultResearches()
     {

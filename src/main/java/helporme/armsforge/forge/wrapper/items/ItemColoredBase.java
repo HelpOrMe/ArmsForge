@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 public class ItemColoredBase extends ItemWithMetaBase
 {
-    protected int[] colors;
+    protected final int[] colors;
 
     public ItemColoredBase(String name, int[] colors)
     {

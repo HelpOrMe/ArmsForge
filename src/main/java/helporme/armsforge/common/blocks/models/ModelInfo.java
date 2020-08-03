@@ -10,8 +10,8 @@ import net.minecraftforge.client.model.IModelCustom;
 @SideOnly(Side.CLIENT)
 public class ModelInfo
 {
-    protected ResourceLocation texture;
-    protected IModelCustom model;
+    protected final ResourceLocation texture;
+    protected final IModelCustom model;
 
     public ModelInfo(String localTexturePath, String localModelPath)
     {

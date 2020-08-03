@@ -10,7 +10,7 @@ import java.util.Map;
 
 public abstract class TileEntityTextureFramesTableRenderer extends TileEntityTableRenderer
 {
-    protected Map<Integer, ResourceLocation> textureFramesCache = new HashMap<Integer, ResourceLocation>();
+    protected final Map<Integer, ResourceLocation> textureFramesCache = new HashMap<>();
 
     public TileEntityTextureFramesTableRenderer(ModelInfo modelInfo)
     {

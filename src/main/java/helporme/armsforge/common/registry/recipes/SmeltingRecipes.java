@@ -1,12 +1,13 @@
 package helporme.armsforge.common.registry.recipes;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import helporme.armsforge.common.registry.RegistryList;
 import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
 
-public class SmeltingRecipes extends RecipeList
+public class SmeltingRecipes extends RecipesList
 {
     @Override
-    public void createDefault()
+    public void addDefault()
     {
         GameRegistry.addSmelting(
                 ItemStackHelper.getBlockStack("minecraft:iron_block"),

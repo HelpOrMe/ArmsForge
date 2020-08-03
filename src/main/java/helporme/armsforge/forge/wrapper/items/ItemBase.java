@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 
 public class ItemBase extends Item implements INamed
 {
-    protected String name;
+    protected final String name;
 
     public ItemBase(String name)
     {

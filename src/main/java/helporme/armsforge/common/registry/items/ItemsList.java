@@ -9,7 +9,7 @@ import java.util.Map;
 
 public abstract class ItemsList extends RegistryList
 {
-    protected HashMap<String, Item> items = new HashMap<String, Item>();
+    protected final HashMap<String, Item> items = new HashMap<>();
 
     public void addItems(Item... items)
     {
@@ -37,6 +37,6 @@ public abstract class ItemsList extends RegistryList
 
     public Map<String, Item> getItems()
     {
-        return new HashMap<String, Item>(items);
+        return new HashMap<>(items);
     }
 }

@@ -26,6 +26,6 @@ public class TileEntityFacedRendererBase extends TileEntityRendererBase
 
     protected void setFaceRotationFrom(TileEntity tile)
     {
-        GL11.glRotatef(tile.getBlockMetadata() * -45f, 0, 1, 0);
+        GL11.glRotatef(tile.getBlockMetadata() * -90f, 0, 1, 0);
     }
 }

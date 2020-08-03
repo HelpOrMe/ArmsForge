@@ -31,7 +31,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityTextureFramesTableR
 
     protected void renderAnvil(TileEntityPrimalAnvil tilePrimalAnvil, double x, double y, double z, float timeDelta)
     {
-        currentRenderInfo = tilePrimalAnvil.renderInfo;;
+        currentRenderInfo = tilePrimalAnvil.renderInfo;
         rotateIndex = tilePrimalAnvil.getBlockMetadata();
 
         bindTexture(currentRenderInfo, timeDelta);

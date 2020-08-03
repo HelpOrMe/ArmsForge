@@ -17,6 +17,9 @@ buildscript {
 
 apply plugin: 'forge'
 
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 version = "0.1.0"
 group= "com.helporme.armsforge" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Arms Forge"

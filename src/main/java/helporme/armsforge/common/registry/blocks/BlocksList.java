@@ -9,7 +9,7 @@ import java.util.Map;
 
 public abstract class BlocksList extends RegistryList
 {
-    protected HashMap<String, Block> blocks = new HashMap<String, Block>();
+    protected final HashMap<String, Block> blocks = new HashMap<>();
 
     public void addBlocks(Block... blocks)
     {
@@ -37,6 +37,6 @@ public abstract class BlocksList extends RegistryList
 
     public Map<String, Block> getBlocks()
     {
-        return new HashMap<String, Block>(blocks);
+        return new HashMap<>(blocks);
     }
 }

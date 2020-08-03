@@ -39,14 +39,17 @@ public abstract class BlockTableBase extends BlockModelBase
 
     protected boolean tryAddItemToTableFromPlayer(TileEntityTableBase table, EntityPlayer player)
     {
-        boolean tableHasSpaceForItem = table.isEmptyAt(0);
-        boolean playerHasItem = player.inventory.getCurrentItem() != null;
-
-        if (tableHasSpaceForItem && playerHasItem)
+        ItemStack itemStackAtHand = player.inventory.getCurrentItem();
+        boolean playerHasItem = itemStackAtHand != null;
+        if (playerHasItem)
         {
-            table.setInventorySlotContents(0, popItemFromHand(player, table.getInventoryStackLimit()));
-            player.inventory.markDirty();
-            return true;
+            boolean tableHasSpaceForItem = table.hasSpaceForItem(itemStackAtHand);
+            if (tableHasSpaceForItem)
+            {
+                addItemToTable(popItemFromHand(player, table.getInventoryStackLimit()), table);
+                player.inventory.markDirty();
+                return true;
+            }
         }
         return false;
     }
@@ -54,6 +57,11 @@ public abstract class BlockTableBase extends BlockModelBase
     protected ItemStack popItemFromHand(EntityPlayer player, int count)
     {
         return player.inventory.decrStackSize(player.inventory.currentItem, count);
+    }
+
+    public void addItemToTable(ItemStack itemStack, TileEntityTableBase table)
+    {
+        table.setInventorySlotContents(0, itemStack);
     }
 
     protected boolean tryAddItemToPlayerFromTable(EntityPlayer player, TileEntityTableBase table)
@@ -65,11 +73,16 @@ public abstract class BlockTableBase extends BlockModelBase
             boolean playerHasSpaceForItem = InventoryHelper.hasSpaceForItem(itemStackOnTable, player.inventory, 27);
             if (playerHasSpaceForItem)
             {
-                player.inventory.addItemStackToInventory(table.popItem(0));
+                player.inventory.addItemStackToInventory(getItemFromTable(table));
                 player.inventory.markDirty();
                 return true;
             }
         }
         return false;
+    }
+
+    public ItemStack getItemFromTable(TileEntityTableBase table)
+    {
+        return table.popItem(0);
     }
 }

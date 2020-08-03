@@ -1,4 +1,4 @@
-package helporme.armsforge.api.items.hammer;
+package helporme.armsforge.api.items;
 
 public interface IHammer
 {

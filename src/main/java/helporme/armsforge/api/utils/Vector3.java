@@ -1,12 +1,12 @@
-package helporme.armsforge.api;
+package helporme.armsforge.api.utils;
 
 import net.minecraft.util.MathHelper;
 
 public class Vector3
 {
-    public float x;
-    public float y;
-    public float z;
+    public final float x;
+    public final float y;
+    public final float z;
 
     public Vector3(float x, float y, float z)
     {

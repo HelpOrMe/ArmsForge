@@ -4,7 +4,7 @@ import helporme.armsforge.common.blocks.MetalBlock;
 
 public class ResourceBlocksList extends BlocksList
 {
-    public void createDefault()
+    public void addDefault()
     {
         addBlocks(
                 new MetalBlock()

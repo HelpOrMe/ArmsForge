@@ -9,7 +9,7 @@ import java.util.List;
 
 public class BlockWithMetaBase extends BlockBase
 {
-    protected int metaCount;
+    protected final int metaCount;
 
     public BlockWithMetaBase(Material material, String name, int metaCount)
     {

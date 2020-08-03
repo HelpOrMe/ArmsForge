@@ -6,7 +6,7 @@ import helporme.armsforge.forge.wrapper.items.ItemToolBase;
 
 public class ItemHammer extends ItemToolBase implements IHammer
 {
-    protected HammerType hammerType;
+    protected final HammerType hammerType;
 
     public ItemHammer(String name, HammerType hammerType, int maxDamage)
     {

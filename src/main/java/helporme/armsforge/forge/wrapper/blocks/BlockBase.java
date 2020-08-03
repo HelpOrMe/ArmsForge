@@ -9,7 +9,7 @@ import net.minecraft.block.material.Material;
 
 public class BlockBase extends Block implements INamed
 {
-    protected String name;
+    protected final String name;
 
     protected BlockBase(Material material, String name)
     {

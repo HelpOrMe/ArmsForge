@@ -2,9 +2,9 @@ package helporme.armsforge.common.core.utils;
 
 public class Color
 {
-    public float r;
-    public float g;
-    public float b;
+    public final float r;
+    public final float g;
+    public final float b;
 
     public Color(int r, int g, int b)
     {

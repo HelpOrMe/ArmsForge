@@ -4,7 +4,7 @@ import helporme.armsforge.common.blocks.*;
 
 public class FunctionalBlocksList extends BlocksList
 {
-    public void createDefault()
+    public void addDefault()
     {
         addBlocks(
                 new BlockMasterAnvil(),

@@ -10,11 +10,11 @@ import net.minecraftforge.client.IItemRenderer;
 @SideOnly(Side.CLIENT)
 public class ModelSuite
 {
-    public Block block;
-    public Class<? extends TileEntity> tileClass;
-    public TileEntitySpecialRenderer tileRenderer;
-    public IItemRenderer itemRenderer;
-    public ModelInfo modelInfo;
+    public final Block block;
+    public final Class<? extends TileEntity> tileClass;
+    public final TileEntitySpecialRenderer tileRenderer;
+    public final IItemRenderer itemRenderer;
+    public final ModelInfo modelInfo;
 
     public ModelSuite(Block block, Class<? extends TileEntity> tileClass, TileEntitySpecialRenderer tileRenderer,
                       IItemRenderer itemRenderer, ModelInfo modelInfo)

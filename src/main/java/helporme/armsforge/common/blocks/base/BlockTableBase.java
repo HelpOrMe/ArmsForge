@@ -4,7 +4,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.client.render.tiles.base.TileEntityTableRenderer;
 import helporme.armsforge.common.blocks.models.ModelInfo;
-import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.tiles.base.TileEntityTableBase;
 import helporme.armsforge.forge.wrapper.utils.InventoryHelper;
 import net.minecraft.block.material.Material;
@@ -29,26 +28,23 @@ public abstract class BlockTableBase extends BlockModelBase
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        if (ArmsForge.accessProvider.canInteractWith(player, world, x, y, z))
-        {
-            TileEntityTableBase table = (TileEntityTableBase)world.getTileEntity(x, y, z);
-            return tryAddItemToTableFromPlayer(table, player) || tryAddItemToPlayerFromTable(player, table);
-        }
-        return false;
+        TileEntityTableBase table = (TileEntityTableBase)world.getTileEntity(x, y, z);
+        return tryAddItemToTableFromPlayer(table, player) || tryAddItemToPlayerFromTable(player, table);
     }
 
     protected boolean tryAddItemToTableFromPlayer(TileEntityTableBase table, EntityPlayer player)
     {
         ItemStack itemStackAtHand = player.inventory.getCurrentItem();
-        boolean playerHasItem = itemStackAtHand != null;
-        if (playerHasItem)
+        if (itemStackAtHand != null)
         {
-            boolean tableHasSpaceForItem = table.hasSpaceForItem(itemStackAtHand);
-            if (tableHasSpaceForItem)
+            for (int slot = 0; slot < table.getSizeInventory(); slot++)
             {
-                addItemToTable(popItemFromHand(player, table.getInventoryStackLimit()), table);
-                player.inventory.markDirty();
-                return true;
+                if (table.isEmptyAt(slot) && table.isItemValidForSlot(slot, itemStackAtHand))
+                {
+                    table.setInventorySlotContents(slot, popItemFromHand(player, table.getInventoryStackLimit()));
+                    player.inventory.markDirty();
+                    return true;
+                }
             }
         }
         return false;
@@ -59,30 +55,22 @@ public abstract class BlockTableBase extends BlockModelBase
         return player.inventory.decrStackSize(player.inventory.currentItem, count);
     }
 
-    public void addItemToTable(ItemStack itemStack, TileEntityTableBase table)
-    {
-        table.setInventorySlotContents(0, itemStack);
-    }
-
     protected boolean tryAddItemToPlayerFromTable(EntityPlayer player, TileEntityTableBase table)
     {
-        boolean tableHasItem = !table.isEmptyAt(0);
-        if (tableHasItem)
+        for (int slot = 0; slot < table.getSizeInventory(); slot++)
         {
-            ItemStack itemStackOnTable = table.getStackInSlot(0);
-            boolean playerHasSpaceForItem = InventoryHelper.hasSpaceForItem(itemStackOnTable, player.inventory, 27);
-            if (playerHasSpaceForItem)
+            ItemStack itemStackOnTable = table.getStackInSlot(slot);
+            if (itemStackOnTable != null)
             {
-                player.inventory.addItemStackToInventory(getItemFromTable(table));
-                player.inventory.markDirty();
-                return true;
+                boolean playerHasSpaceForItem = InventoryHelper.hasSpaceFor(itemStackOnTable, player.inventory, 27);
+                if (playerHasSpaceForItem)
+                {
+                    player.inventory.addItemStackToInventory(table.popItemAt(slot));
+                    player.inventory.markDirty();
+                    return true;
+                }
             }
         }
         return false;
-    }
-
-    public ItemStack getItemFromTable(TileEntityTableBase table)
-    {
-        return table.popItem(0);
     }
 }

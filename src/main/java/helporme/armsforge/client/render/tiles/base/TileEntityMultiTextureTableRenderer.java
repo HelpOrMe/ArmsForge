@@ -3,22 +3,27 @@ package helporme.armsforge.client.render.tiles.base;
 import helporme.armsforge.client.render.tiles.info.TextureFramesRenderInfo;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.core.Version;
+import helporme.armsforge.common.tiles.base.TileEntityCraftingTableBase;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class TileEntityTextureFramesTableRenderer extends TileEntityTableRenderer
+public abstract class TileEntityMultiTextureTableRenderer extends TileEntityCraftingTableRenderer
 {
     protected final Map<Integer, ResourceLocation> textureFramesCache = new HashMap<>();
 
-    public TileEntityTextureFramesTableRenderer(ModelInfo modelInfo)
+    public TileEntityMultiTextureTableRenderer(ModelInfo modelInfo)
     {
         super(modelInfo);
     }
 
-    protected void bindTexture(TextureFramesRenderInfo renderInfo, float timeDelta)
+    @Override
+    protected void bindTexture(TileEntity tile, float timeDelta)
     {
+        TextureFramesRenderInfo renderInfo = getRenderInfo();
         renderInfo.timeBetweenFrames += timeDelta;
         if (renderInfo.timeBetweenFrames >= renderInfo.cooldownBetweenFrames)
         {
@@ -49,4 +54,6 @@ public abstract class TileEntityTextureFramesTableRenderer extends TileEntityTab
     }
 
     protected abstract String getTextureName();
+
+    protected abstract TextureFramesRenderInfo getRenderInfo();
 }

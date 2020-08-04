@@ -63,9 +63,9 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
     }
 
     @Override
-    public boolean hasSpaceForItem(ItemStack itemStack)
+    public boolean hasSpaceFor(ItemStack itemStack)
     {
-        return InventoryHelper.hasSpaceForItem(itemStack, this, getSizeInventory());
+        return InventoryHelper.hasSpaceFor(itemStack, this, getSizeInventory());
     }
 
     @Override
@@ -87,9 +87,9 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
     }
 
     @Override
-    public ItemStack popItem(int slot)
+    public ItemStack popItemAt(int slot)
     {
-        return decrStackSize(0, getInventoryStackLimit());
+        return decrStackSize(slot, getInventoryStackLimit());
     }
 
     @Override
@@ -100,7 +100,7 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
         {
             throw new IllegalArgumentException(
                     "Trying to decrease stack size, but stack is null." +
-                    " Slot " + slot + ", size " + size + ". " + getTileInfo());
+                    " Slot " + slot + ", size " + size + ". ");
         }
 
         if (itemStack.stackSize <= size)
@@ -127,9 +127,8 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
     {
         if (slot >= items.length)
         {
-            throw new IllegalArgumentException(
-                    "Trying to get stack in slot " + slot + ", but inventory size is " + getSizeInventory() +
-                            ". " + getTileInfo());
+            throw new ArrayIndexOutOfBoundsException(
+                    "Trying to process stack in slot " + slot + ", but inventory size is " + getSizeInventory());
         }
         return items[slot];
     }
@@ -139,18 +138,19 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
     {
         if (slot >= items.length)
         {
+            throw new ArrayIndexOutOfBoundsException(
+                    "Trying to process stack in slot " + slot + ", but inventory size is " + getSizeInventory());
+        }
+
+        if (!isItemValidForSlot(slot, itemStack))
+        {
             throw new IllegalArgumentException(
-                    "Trying to set stack in slot " + slot + ", but inventory size is " + getSizeInventory() +
-                            ". " + getTileInfo());
+                    "Trying to set ItemStack " + itemStack.toString() +
+                    " in invalid slot " + slot);
         }
 
         items[slot] = itemStack;
         markDirtyAndUpdate();
-    }
-
-    protected String getTileInfo()
-    {
-        return "Tile " + toString() + ", at x" + xCoord + " y" + yCoord + " z" + zCoord;
     }
 
     @Override
@@ -198,7 +198,6 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemStack)
     {
-        //TODO: Automation boolean in config
         return true;
     }
 }

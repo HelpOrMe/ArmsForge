@@ -12,7 +12,7 @@ public final class RecipesHelper
         {
             metal = ItemStackHelper.clone(metal, 1, meta);
             nugget = ItemStackHelper.clone(nugget, 1, meta);
-            GameRegistry.addShapelessRecipe(metal, ItemStackHelper.repeatStack(nugget, 9));
+            GameRegistry.addShapelessRecipe(metal, (Object[])ItemStackHelper.repeatStack(nugget, 9));
             nugget = ItemStackHelper.clone(nugget, 9);
             GameRegistry.addShapelessRecipe(nugget, metal);
         }

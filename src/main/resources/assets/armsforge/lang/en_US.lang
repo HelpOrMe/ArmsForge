@@ -2,7 +2,7 @@
 tile.MasterAnvil.name=Master Anvil
 tile.MasterAnvilGold.name=Golden Master Anvil
 tile.ArmorerTable.name=Armorer Table
-tile.ArmorsmithTable.name=Armorsmith Table
+tile.ArmssmithTable.name=Arms smith Table
 tile.SupportTable.name=Support Table
 
 tile.MetalBlock_0.name=Holy metal Block

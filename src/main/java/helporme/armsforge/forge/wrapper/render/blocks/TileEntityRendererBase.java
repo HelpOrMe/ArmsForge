@@ -1,5 +1,6 @@
 package helporme.armsforge.forge.wrapper.render.blocks;
 
+import helporme.armsforge.api.utils.Vector3;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -21,12 +22,25 @@ public class TileEntityRendererBase extends TileEntitySpecialRenderer
     @Override
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeDelta)
     {
+        bindTexture(tile, timeDelta);
+        GL11.glPushMatrix();
+        setTileEntityOffsetAt(tile, new Vector3(x, y, z), timeDelta);
+        renderModel(tile, timeDelta);
+        GL11.glPopMatrix();
+    }
+
+    protected void bindTexture(TileEntity tile, float timeDelta)
+    {
         bindTexture(texture);
-        GL11.glPushMatrix();
-        GL11.glTranslated(x + 0.5f, y, z + 0.5f);
-        GL11.glPushMatrix();
+    }
+
+    protected void setTileEntityOffsetAt(TileEntity tile, Vector3 position, float timeDelta)
+    {
+        GL11.glTranslatef(position.x + 0.5f, position.y, position.z + 0.5f);
+    }
+
+    protected void renderModel(TileEntity tile, float timeDelta)
+    {
         model.renderAll();
-        GL11.glPopMatrix();
-        GL11.glPopMatrix();
     }
 }

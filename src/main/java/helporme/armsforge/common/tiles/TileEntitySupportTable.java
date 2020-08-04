@@ -2,12 +2,19 @@ package helporme.armsforge.common.tiles;
 
 import helporme.armsforge.api.blocks.tables.ISupportTable;
 import helporme.armsforge.common.tiles.base.TileEntityTableBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntitySupportTable extends TileEntityTableBase implements ISupportTable
 {
     public boolean isShelf = false;
+
+    @Override
+    public ItemStack getItemOnTable()
+    {
+        return getStackInSlot(0);
+    }
 
     @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound)

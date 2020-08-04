@@ -1,40 +1,31 @@
 package helporme.armsforge.common.tiles.base;
 
-import helporme.armsforge.api.ArmsForgeApi;
-import helporme.armsforge.api.items.HammerType;
 import helporme.armsforge.api.items.IHammer;
-import helporme.armsforge.api.recipes.HammerBlowPattern;
-import helporme.armsforge.api.recipes.ICraftingTableRecipe;
+import helporme.armsforge.api.items.IRecipeItem;
 import helporme.armsforge.api.utils.Vector3Int;
 import helporme.armsforge.api.blocks.tables.ICraftingTable;
 import helporme.armsforge.api.blocks.tables.ISupportTable;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.*;
 
 public abstract class TileEntityCraftingTableBase extends TileEntityTableBase implements ICraftingTable
 {
-    public boolean recipeActive = false;
-    public ICraftingTableRecipe currentRecipe;
-    public Iterator<HammerBlowPattern> generator;
-
-    public HammerType hammerTypeForNextBlow;
-    public float timeLeftToBlow;
-
     @Override
     public int getSizeInventory()
     {
         return 2;
     }
 
-
     @Override
-    public void updateEntity()
+    public boolean isItemValidForSlot(int slot, ItemStack itemStack)
     {
-        if (recipeActive)
+        if (itemStack.getItem() instanceof IRecipeItem || slot == 1)
         {
-            worldObj.getTotalWorldTime();
+            return itemStack.getItem() instanceof IRecipeItem && slot == 1;
         }
+        return true;
     }
 
     @Override

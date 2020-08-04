@@ -67,9 +67,19 @@ public final class ArmsForgeApi
         }
     }
 
-    public static Set<ICraftingTableRecipe> getRecipesForCraftingTable(CraftingTableType tableType)
+    public static ICraftingTableRecipe[] getCraftingTableRecipesFor(CraftingTableType tableType)
     {
-        return recipes.get(tableType);
+        return recipes.get(tableType).toArray(new ICraftingTableRecipe[0]);
+    }
+
+    public static ICraftingTableRecipe[] getAllCraftingTableRecipes()
+    {
+        Set<ICraftingTableRecipe> recipeSet = new HashSet<>();
+        for (CraftingTableType table : recipes.keySet())
+        {
+            recipeSet.addAll(recipes.get(table));
+        }
+        return recipeSet.toArray(new ICraftingTableRecipe[0]);
     }
 
     public static void addRecipeIconNameToTable(String iconTextureName, CraftingTableType tableType)
@@ -77,8 +87,13 @@ public final class ArmsForgeApi
         recipeIconForTable.put(tableType, iconTextureName);
     }
 
-    public static String getRecipeIconName(CraftingTableType tableType)
+    public static String getRecipeIconName(CraftingTableType craftingTableType)
     {
-        return recipeIconForTable.get(tableType);
+        return recipeIconForTable.get(craftingTableType);
+    }
+
+    public static CraftingTableType[] getCraftingTableTypes()
+    {
+        return recipes.keySet().toArray(new CraftingTableType[0]);
     }
 }

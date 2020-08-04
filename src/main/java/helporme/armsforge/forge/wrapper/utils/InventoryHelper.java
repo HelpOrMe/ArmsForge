@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 
 public final class InventoryHelper
 {
-    public static boolean hasSpaceForItem(ItemStack itemStack, IInventory inventory, int slotLimit)
+    public static boolean hasSpaceFor(ItemStack itemStack, IInventory inventory, int slotLimit)
     {
         slotLimit %= (inventory.getSizeInventory() + 1);
         for (int slot = 0; slot < slotLimit; slot++)

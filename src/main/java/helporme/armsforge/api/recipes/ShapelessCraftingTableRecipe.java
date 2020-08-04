@@ -8,15 +8,23 @@ import java.util.Set;
 
 public class ShapelessCraftingTableRecipe implements ICraftingTableRecipe
 {
-    public final CraftingTableType craftingTableType;
-    public final ItemStack result;
-    public final ItemStack[] ingredients;
+    protected final String name;
+    protected final CraftingTableType craftingTableType;
+    protected final ItemStack result;
+    protected final ItemStack[] ingredients;
 
     public ShapelessCraftingTableRecipe(CraftingTableType craftingTableType, ItemStack result, ItemStack... ingredients)
     {
+        this.name = result.getItem().getUnlocalizedName();
         this.craftingTableType = craftingTableType;
         this.result = result;
         this.ingredients = ingredients;
+    }
+
+    @Override
+    public String getName()
+    {
+        return name;
     }
 
     @Override

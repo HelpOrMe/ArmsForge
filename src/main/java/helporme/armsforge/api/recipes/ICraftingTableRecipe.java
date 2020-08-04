@@ -11,6 +11,8 @@ import java.util.Set;
 
 public interface ICraftingTableRecipe
 {
+    String getName();
+
     CraftingTableType getCraftingTableType();
 
     boolean isSupportTablesValid(Set<ISupportTable> supportTables);

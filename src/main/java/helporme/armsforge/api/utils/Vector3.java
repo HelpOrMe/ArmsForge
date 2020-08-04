@@ -8,11 +8,16 @@ public class Vector3
     public final float y;
     public final float z;
 
+    public Vector3(double x, double y, double z)
+    {
+        this((float)x, (float)y, (float)z);
+    }
+
     public Vector3(float x, float y, float z)
     {
         this.x = x;
         this.y = y;
-        this.z = z ;
+        this.z = z;
     }
 
     public static Vector3 lerp(Vector3 a, Vector3 b, float t)

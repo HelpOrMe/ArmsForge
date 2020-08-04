@@ -4,9 +4,9 @@ import net.minecraft.item.ItemStack;
 
 public interface IInventoryExtend
 {
-    ItemStack popItem(int slot);
+    ItemStack popItemAt(int slot);
 
-    boolean hasSpaceForItem(ItemStack itemStack);
+    boolean hasSpaceFor(ItemStack itemStack);
 
     boolean hasSpaceForItemAt(ItemStack itemStack, int slot);
 

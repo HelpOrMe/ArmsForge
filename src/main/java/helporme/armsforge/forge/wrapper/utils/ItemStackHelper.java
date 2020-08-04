@@ -3,65 +3,37 @@ package helporme.armsforge.forge.wrapper.utils;
 import helporme.armsforge.common.core.Version;
 import helporme.armsforge.common.registry.ItemsRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public final class ItemStackHelper
 {
-    public static ItemStack getOwnBlockStack(String blockName)
+    public static ItemStack getItemStack(String itemName)
     {
-        return getOwnBlockStack(blockName, 0);
+        return getItemStack(itemName, 0);
     }
 
-    public static ItemStack getOwnBlockStack(String blockName, int meta)
+    public static ItemStack getItemStack(String itemName, int meta)
     {
-        return getOwnBlockStack(blockName, 1, meta);
+        return getItemStack(itemName, 1, meta);
     }
 
-    public static ItemStack getOwnBlockStack(String blockName, int count, int meta)
+    public static ItemStack getItemStack(String itemName, int count, int meta)
     {
-        return getBlockStack(Version.modid + ":" + blockName, count, meta);
+        return new ItemStack((Item)Item.itemRegistry.getObject(itemName), count, meta);
     }
 
-    public static ItemStack getBlockStack(String blockName)
+    public static ItemStack[] repeatStack(ItemStack stack, int times)
     {
-        return getBlockStack(blockName, 0);
-    }
-
-    public static ItemStack getBlockStack(String blockName, int meta)
-    {
-        return getBlockStack(blockName, 1, meta);
-    }
-
-    public static ItemStack getBlockStack(String blockName, int count, int meta)
-    {
-        return new ItemStack(Block.getBlockFromName(blockName), count, meta);
-    }
-
-    public static ItemStack getOwnItemStack(String itemName)
-    {
-        return getOwnItemStack(itemName, 0);
-    }
-
-    public static ItemStack getOwnItemStack(String itemName, int meta)
-    {
-        return getOwnItemStack(itemName, 1, meta);
-    }
-
-    public static ItemStack getOwnItemStack(String itemName, int count, int meta)
-    {
-        return new ItemStack(ItemsRegistry.getItemByName(itemName), count, meta);
-    }
-
-    public static Object[] repeatStack(ItemStack stack, int times)
-    {
-        ArrayList<ItemStack> itemStacks = new ArrayList<>();
+        Set<ItemStack> itemStackSet = new HashSet<>();
         for (int i = 0; i < times; i++)
         {
-            itemStacks.add(stack);
+            itemStackSet.add(stack);
         }
-        return itemStacks.toArray();
+        return itemStackSet.toArray(new ItemStack[0]);
     }
 
     public static ItemStack clone(ItemStack stack)

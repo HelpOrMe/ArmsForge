@@ -1,13 +1,17 @@
 package helporme.armsforge.client.render.tiles;
 
-import helporme.armsforge.client.render.tiles.base.TileEntityTextureFramesTableRenderer;
+import helporme.armsforge.api.utils.Vector3;
+import helporme.armsforge.client.render.tiles.base.TileEntityMultiTextureTableRenderer;
 import helporme.armsforge.client.render.tiles.info.PrimalAnvilRenderInfo;
+import helporme.armsforge.client.render.tiles.info.TextureFramesRenderInfo;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntityPrimalAnvil;
+import helporme.armsforge.common.tiles.base.TileEntityCraftingTableBase;
+import helporme.armsforge.common.tiles.base.TileEntityTableBase;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityPrimalAnvilRenderer extends TileEntityTextureFramesTableRenderer
+public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRenderer
 {
     protected PrimalAnvilRenderInfo currentRenderInfo;
 
@@ -23,30 +27,26 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityTextureFramesTableR
     }
 
     @Override
+    protected TextureFramesRenderInfo getRenderInfo()
+    {
+        return currentRenderInfo;
+    }
+
+    @Override
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeDelta)
     {
-        renderAnvil((TileEntityPrimalAnvil)tile, x, y, z, timeDelta);
-        renderItemStackFromTile(tile, x, y, z);
+        TileEntityPrimalAnvil primalAnvil = (TileEntityPrimalAnvil)tile;
+        currentRenderInfo = primalAnvil.renderInfo;
+        super.renderTileEntityAt(tile, x, y, z, timeDelta);
     }
 
-    protected void renderAnvil(TileEntityPrimalAnvil tilePrimalAnvil, double x, double y, double z, float timeDelta)
-    {
-        currentRenderInfo = tilePrimalAnvil.renderInfo;
-        rotateIndex = tilePrimalAnvil.getBlockMetadata();
-
-        bindTexture(currentRenderInfo, timeDelta);
-        GL11.glPushMatrix();
-        GL11.glTranslated(x + 0.5d, y, z + 0.5d);
-        setFaceRotationFrom(tilePrimalAnvil);
-        renderAllModel(timeDelta);
-        GL11.glPopMatrix();
-    }
-
-    protected void renderAllModel(float timeDelta)
+    @Override
+    protected void renderModel(TileEntity tile, float timeDelta)
     {
         renderAnvilBase(timeDelta);
         renderChains(timeDelta);
         renderFlags();
+        tryRenderRecipe((TileEntityCraftingTableBase)tile);
     }
 
     protected void renderAnvilBase(float timeDelta)
@@ -58,7 +58,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityTextureFramesTableR
         currentRenderInfo.anvilYOffset += currentRenderInfo.anvilYOffsetSpeed * timeDelta * currentRenderInfo.anvilYOffsetSign;
 
         GL11.glPushMatrix();
-        GL11.glTranslated(0, currentRenderInfo.anvilYOffset, 0);
+        GL11.glTranslatef(0, currentRenderInfo.anvilYOffset, 0);
         model.renderOnly("Anvil");
         GL11.glPopMatrix();
     }
@@ -70,33 +70,44 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityTextureFramesTableR
         renderChain(2, -currentRenderInfo.chainRotationAngle);
     }
 
-    protected void renderChain(int chainIndex, double angle)
+    protected void renderChain(int chainIndex, float angle)
     {
         GL11.glPushMatrix();
-        GL11.glRotated(angle, 0, 1, 0);
+        GL11.glRotatef(angle, 0, 1, 0);
         model.renderOnly("Chain_" + chainIndex);
         GL11.glPopMatrix();
     }
 
     protected void renderFlags()
     {
-        GL11.glTranslated(0, currentRenderInfo.anvilYOffset / -3, 0);
+        GL11.glTranslatef(0, currentRenderInfo.anvilYOffset / -3, 0);
         model.renderOnly("FlagPillars", "Flag_1", "Flag_2");
     }
 
     @Override
-    protected void setItem3dTransformAt(TileEntity tile, double x, double y, double z)
+    protected void tryRenderRecipe(TileEntityCraftingTableBase craftingTable)
     {
-        GL11.glTranslated(x + 0.5d, y + 0.810d + currentRenderInfo.anvilYOffset, z + 0.5d);
-        GL11.glScalef(0.85f, 0.85f, 0.85f);
-        setFaceRotationFrom(tile);
+        boolean hasRecipe = !craftingTable.isEmptyAt(1);
+        if (hasRecipe)
+        {
+            GL11.glTranslatef(0, currentRenderInfo.anvilYOffset, 0);
+            model.renderPart("Recipe");
+        }
     }
 
-    @Override
-    protected void setItem2dTransformAt(TileEntity tile, double x, double y, double z)
+    protected void setItem3dTransformAt(TileEntityTableBase table, Vector3 position)
     {
-        GL11.glTranslated(x + 0.5d, y + 0.84d + currentRenderInfo.anvilYOffset, z + 0.5d);
-        setFaceRotationFrom(tile);
+        float y = position.y + 0.878f + currentRenderInfo.anvilYOffset;
+        GL11.glTranslatef(position.x + 0.5f, y, position.z + 0.5f);
+        GL11.glScalef(0.85f, 0.85f, 0.85f);
+        setFaceRotationFrom(table);
+    }
+
+    protected void setItem2dTransformAt(TileEntityTableBase table, Vector3 position)
+    {
+        float y = position.y + 0.9f + currentRenderInfo.anvilYOffset;
+        GL11.glTranslatef(position.x + 0.5f, y, position.z + 0.5f);
+        setFaceRotationFrom(table);
         GL11.glRotatef(-90f, 1f, 0f, 0f);
         GL11.glTranslatef(0, 0.2f, 0);
         GL11.glRotatef(180f, 0f, 0f, 1f);

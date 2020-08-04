@@ -1,5 +1,6 @@
 package helporme.armsforge.client.render.tiles.base;
 
+import helporme.armsforge.api.utils.Vector3;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.tiles.base.TileEntityTableBase;
 import helporme.armsforge.forge.wrapper.render.blocks.TileEntityFacedRendererBase;
@@ -22,57 +23,56 @@ public class TileEntityTableRenderer extends TileEntityFacedRendererBase
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeDelta)
     {
         super.renderTileEntityAt(tile, x, y, z, timeDelta);
-        renderItemStackFromTile(tile, x, y, z);
+        renderItemStacksFromTable((TileEntityTableBase)tile, new Vector3(x, y, z));
     }
 
-    protected void renderItemStackFromTile(TileEntity tile, double x, double y, double z)
+    protected void renderItemStacksFromTable(TileEntityTableBase table, Vector3 position)
     {
-        if (tile instanceof TileEntityTableBase)
+        for (int slot = 0; slot < table.getSizeInventory(); slot++)
         {
-            TileEntityTableBase masterAnvil = (TileEntityTableBase)tile;
-            ItemStack itemOnCraftingPlace = masterAnvil.getStackInSlot(0);
-            if (itemOnCraftingPlace != null)
+            if (!table.isEmptyAt(slot))
             {
-                renderItemStack(masterAnvil, itemOnCraftingPlace, x, y, z);
+                renderItemStack(table, slot, position);
             }
         }
     }
 
-    protected void renderItemStack(TileEntity tile, ItemStack itemStack, double x, double y, double z)
+    protected void renderItemStack(TileEntityTableBase table, int slot, Vector3 position)
     {
-        EntityItem entityItem = new EntityItem(tile.getWorldObj(), 0d, 0d, 0d, itemStack);
+        ItemStack itemStack = table.getStackInSlot(slot);
+        EntityItem entityItem = new EntityItem(table.getWorldObj(), 0d, 0d, 0d, itemStack);
         GL11.glPushMatrix();
         entityItem.hoverStart = 0.0F;
-        setItemTransformAt(tile, itemStack, x, y, z);
+        setItemTransformAt(table, itemStack, position);
         RenderItem.renderInFrame = true;
         RenderManager.instance.renderEntityWithPosYaw(entityItem, 0.0d, 0.0d, 0.0d, 0.0f, 0.0f);
         RenderItem.renderInFrame = false;
         GL11.glPopMatrix();
     }
 
-    protected void setItemTransformAt(TileEntity tile, ItemStack itemStack, double x, double y, double z)
+    protected void setItemTransformAt(TileEntityTableBase table, ItemStack itemStack, Vector3 position)
     {
         if (itemStack.getItem() instanceof ItemBlock)
         {
-            setItem3dTransformAt(tile, x, y, z);
+            setItem3dTransformAt(table, position);
         }
         else
         {
-            setItem2dTransformAt(tile, x, y, z);
+            setItem2dTransformAt(table, position);
         }
     }
 
-    protected void setItem3dTransformAt(TileEntity tile, double x, double y, double z)
+    protected void setItem3dTransformAt(TileEntityTableBase table, Vector3 position)
     {
-        GL11.glTranslated(x + 0.5d, y + 0.875d, z + 0.5d);
+        GL11.glTranslatef(position.x + 0.5f, position.y + 0.878f, position.z + 0.5f);
         GL11.glScalef(0.85f, 0.85f, 0.85f);
-        setFaceRotationFrom(tile);
+        setFaceRotationFrom(table);
     }
 
-    protected void setItem2dTransformAt(TileEntity tile, double x, double y, double z)
+    protected void setItem2dTransformAt(TileEntityTableBase table, Vector3 position)
     {
-        GL11.glTranslated(x + 0.5d, y + 0.89d, z + 0.5d);
-        setFaceRotationFrom(tile);
+        GL11.glTranslatef(position.x + 0.5f, position.y + 0.9f, position.z + 0.5f);
+        setFaceRotationFrom(table);
         GL11.glRotatef(-90f, 1f, 0f, 0f);
         GL11.glTranslatef(0, 0.2f, 0);
         GL11.glRotatef(180f, 0f, 0f, 1f);

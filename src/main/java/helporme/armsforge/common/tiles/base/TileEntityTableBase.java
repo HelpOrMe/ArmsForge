@@ -14,18 +14,6 @@ public class TileEntityTableBase extends TileEntityInventoryBase implements ITab
     }
 
     @Override
-    public ItemStack getItemOnTable()
-    {
-        return getStackInSlot(0);
-    }
-
-    @Override
-    public void removeItemFromTable()
-    {
-        setInventorySlotContents(0, null);
-    }
-
-    @Override
     public Vector3 getPosition()
     {
         return new Vector3(xCoord, yCoord, zCoord);

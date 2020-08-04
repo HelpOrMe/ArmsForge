@@ -4,7 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import helporme.armsforge.common.registry.items.HammersList;
 import helporme.armsforge.common.registry.items.ItemsList;
 import helporme.armsforge.common.registry.items.ResourcesList;
-import helporme.armsforge.common.registry.items.ToolsList;
+import helporme.armsforge.common.registry.items.MiscList;
 import net.minecraft.item.Item;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public final class ItemsRegistry
             {
                     new ResourcesList(),
                     new HammersList(),
-                    new ToolsList()
+                    new MiscList()
             };
 
     public static void createDefaultItems()

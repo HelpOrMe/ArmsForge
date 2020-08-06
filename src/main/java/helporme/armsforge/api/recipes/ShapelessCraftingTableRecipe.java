@@ -2,20 +2,26 @@ package helporme.armsforge.api.recipes;
 
 import helporme.armsforge.api.blocks.tables.CraftingTableType;
 import helporme.armsforge.api.blocks.tables.ISupportTable;
+import helporme.armsforge.api.recipes.table.TablesShape;
 import net.minecraft.item.ItemStack;
-
-import java.util.Set;
 
 public class ShapelessCraftingTableRecipe implements ICraftingTableRecipe
 {
-    protected final String name;
-    protected final CraftingTableType craftingTableType;
-    protected final ItemStack result;
-    protected final ItemStack[] ingredients;
+    protected String name;
+    protected CraftingTableType craftingTableType;
+    protected ItemStack result;
+    protected ItemStack[] ingredients;
 
-    public ShapelessCraftingTableRecipe(CraftingTableType craftingTableType, ItemStack result, ItemStack... ingredients)
+    public ShapelessCraftingTableRecipe(CraftingTableType craftingTableType,
+                                        ItemStack result, ItemStack... ingredients)
     {
-        this.name = result.getItem().getUnlocalizedName();
+        this(craftingTableType, result.getItem().getUnlocalizedName(), result, ingredients);
+    }
+
+    public ShapelessCraftingTableRecipe(CraftingTableType craftingTableType,
+                                        String name,ItemStack result, ItemStack... ingredients)
+    {
+        this.name = name;
         this.craftingTableType = craftingTableType;
         this.result = result;
         this.ingredients = ingredients;
@@ -34,28 +40,27 @@ public class ShapelessCraftingTableRecipe implements ICraftingTableRecipe
     }
 
     @Override
-    public boolean isSupportTablesValid(Set<ISupportTable> supportTables)
+    public boolean isTablesShapeValid(TablesShape tablesShape)
     {
-        for (ItemStack ingredient : ingredients)
-        {
-            if (!isTablesHasItem(supportTables, ingredient))
-            {
-                return false;
-            }
-        }
         return true;
     }
 
-    protected boolean isTablesHasItem(Set<ISupportTable> supportTables, ItemStack itemStack)
+    @Override
+    public ItemStack[] getIngredients()
     {
-        for (ISupportTable supportTable : supportTables)
+        return ingredients;
+    }
+
+    protected boolean isSupportTableContains(ISupportTable supportTable, ItemStack ingredient)
+    {
+        if (supportTable.hasItem())
         {
-            if (!supportTable.getItemOnTable().isItemEqual(itemStack))
-            {
-                return false;
-            }
+            ItemStack itemStackOnTable = supportTable.getItem();
+            boolean hasIngredientOnTable = itemStackOnTable.isItemEqual(ingredient);
+            boolean validSizeOnTable = itemStackOnTable.stackSize >= ingredient.stackSize;
+            return hasIngredientOnTable && validSizeOnTable;
         }
-        return true;
+        return false;
     }
 
     @Override

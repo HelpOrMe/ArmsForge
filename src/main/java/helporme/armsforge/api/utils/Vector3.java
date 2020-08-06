@@ -4,13 +4,18 @@ import net.minecraft.util.MathHelper;
 
 public class Vector3
 {
-    public final float x;
-    public final float y;
-    public final float z;
+    public float x;
+    public float y;
+    public float z;
 
     public Vector3(double x, double y, double z)
     {
         this((float)x, (float)y, (float)z);
+    }
+
+    public Vector3(Vector3Int vectorInt)
+    {
+        this(vectorInt.x, vectorInt.y, vectorInt.z);
     }
 
     public Vector3(float x, float y, float z)
@@ -28,6 +33,16 @@ public class Vector3
     public static float distance(Vector3 a, Vector3 b)
     {
         return a.minus(b).sqrMagnitude();
+    }
+
+    public static Vector3 min(Vector3 a, Vector3 b)
+    {
+        return new Vector3(Math.min(a.x, b.x), Math.min(a.y, b.y), Math.min(a.z, b.z));
+    }
+
+    public static Vector3 max(Vector3 a, Vector3 b)
+    {
+        return new Vector3(Math.max(a.x, b.x), Math.max(a.y, b.y), Math.max(a.z, b.z));
     }
 
     public float sqrMagnitude()
@@ -57,6 +72,22 @@ public class Vector3
 
     public String toString()
     {
-        return "(" + x + ", " + y + ", " + z + ")";
+        return "Vector3(" + x + ", " + y + ", " + z + ")";
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        if (object == this) return true;
+        if (!(object instanceof Vector3)) return false;
+
+        Vector3 vector = (Vector3)object;
+        return x == vector.x && y == vector.y && z == vector.z;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Float.hashCode(x) ^ Float.hashCode(y) << 2 ^ Float.hashCode(z) >> 2;
     }
 }

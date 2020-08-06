@@ -2,8 +2,8 @@ package helporme.armsforge.client.render.tiles.base;
 
 import helporme.armsforge.api.utils.Vector3;
 import helporme.armsforge.common.blocks.models.ModelInfo;
-import helporme.armsforge.common.tiles.base.TileEntityCraftingTableBase;
-import helporme.armsforge.common.tiles.base.TileEntityTableBase;
+import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
+import helporme.armsforge.common.tiles.base.TileEntityTable;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityCraftingTableRenderer extends TileEntityTableRenderer
@@ -14,7 +14,7 @@ public class TileEntityCraftingTableRenderer extends TileEntityTableRenderer
     }
 
     @Override
-    protected void renderItemStack(TileEntityTableBase table, int slot, Vector3 position)
+    protected void renderItemStack(TileEntityTable table, int slot, Vector3 position)
     {
         if (slot == 0)
         {
@@ -26,10 +26,10 @@ public class TileEntityCraftingTableRenderer extends TileEntityTableRenderer
     protected void renderModel(TileEntity tile, float timeDelta)
     {
         model.renderAllExcept("Recipe");
-        tryRenderRecipe((TileEntityCraftingTableBase)tile);
+        tryRenderRecipe((TileEntityCraftingTable)tile);
     }
 
-    protected void tryRenderRecipe(TileEntityCraftingTableBase craftingTable)
+    protected void tryRenderRecipe(TileEntityCraftingTable craftingTable)
     {
         boolean hasRecipe = !craftingTable.isEmptyAt(1);
         if (hasRecipe)

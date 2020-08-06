@@ -15,18 +15,15 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public abstract class BlockCraftingTable extends BlockTableBase
 {
-    //TODO: Config
-    public final int tableFoundRadius = 9;
-
     public BlockCraftingTable(Material material, String name)
     {
         super(material, name);
@@ -48,58 +45,51 @@ public abstract class BlockCraftingTable extends BlockTableBase
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        if (playerHasDebugToolAtHands(player))
+        if (!world.isRemote)
         {
-            return processDebugToolLogic(world, x, y, z);
-        }
-        if (playerHasHammerAtHands(player))
-        {
-            return processHammerLogic(world, x, y, z, player);
+            ICraftingTable craftingTable = (ICraftingTable)world.getTileEntity(x, y, z);
+            if (playerHasAtHand(player, IDebugTool.class))
+            {
+                processDebugToolLogic(craftingTable, world);
+            }
+            else if (playerHasAtHand(player, IHammer.class))
+            {
+                processHammerLogic(craftingTable, player);
+            }
+            return true;
         }
         return super.onBlockActivated(world, x, y, z, player, par6, par7, par8, par9);
     }
 
-    protected boolean playerHasDebugToolAtHands(EntityPlayer player)
+    protected <T> boolean playerHasAtHand(EntityPlayer player, Class<T> type)
     {
         ItemStack itemStackInHand = player.inventory.getCurrentItem();
-        return itemStackInHand != null && itemStackInHand.getItem() instanceof IDebugTool;
+        return itemStackInHand != null && type.isInstance(itemStackInHand.getItem());
     }
 
-    protected boolean processDebugToolLogic(World world, int x, int y, int z)
+    protected void processDebugToolLogic(ICraftingTable craftingTable, World world)
     {
-        if (world.isRemote)
-        {
-            ICraftingTable craftingTable = (ICraftingTable)world.getTileEntity(x, y, z);
-            List<Vector3> targets = getPositionsFrom(craftingTable.getSupportTablesNear(tableFoundRadius));
-            DebugHelper.spawnDebugParticleVertLines(world, targets);
-        }
-        return true;
+        List<Vector3> targets = getCorrectPositionsFrom(craftingTable.getSupportTablesNear());
+        DebugHelper.spawnDebugParticleVertLines(world, targets);
     }
 
-    protected boolean playerHasHammerAtHands(EntityPlayer player)
-    {
-        ItemStack itemStackInHand = player.inventory.getCurrentItem();
-        return itemStackInHand != null && itemStackInHand.getItem() instanceof IHammer;
-    }
-
-    protected boolean processHammerLogic(World world, int x, int y, int z, EntityPlayer player)
-    {
-        if (world.isRemote)
-        {
-            ICraftingTable craftingTable = (ICraftingTable)world.getTileEntity(x, y, z);
-            craftingTable.onHammerBlow((IHammer)player.inventory.getCurrentItem().getItem());
-        }
-        return true;
-    }
-
-    protected List<Vector3> getPositionsFrom(Set<ISupportTable> supportTables)
+    protected List<Vector3> getCorrectPositionsFrom(ISupportTable[] supportTables)
     {
         List<Vector3> positions = new ArrayList<>();
         Vector3 offset = new Vector3(0.5f, 1f, 0.5f);
         for (ISupportTable supportTable : supportTables)
         {
-            positions.add(supportTable.getPosition().add(offset));
+            positions.add(new Vector3(supportTable.getPosition()).add(offset));
         }
         return positions;
+    }
+
+    protected void processHammerLogic(ICraftingTable craftingTable, EntityPlayer player)
+    {
+        if (playerHasAtHand(player, IHammer.class))
+        {
+            IHammer hammerAtHands = (IHammer)player.inventory.getCurrentItem().getItem();
+            craftingTable.onHammerBlow(hammerAtHands);
+        }
     }
 }

@@ -2,7 +2,7 @@ package helporme.armsforge.client.render.tiles.base;
 
 import helporme.armsforge.api.utils.Vector3;
 import helporme.armsforge.common.blocks.models.ModelInfo;
-import helporme.armsforge.common.tiles.base.TileEntityTableBase;
+import helporme.armsforge.common.tiles.base.TileEntityTable;
 import helporme.armsforge.forge.wrapper.render.blocks.TileEntityFacedRendererBase;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -23,10 +23,10 @@ public class TileEntityTableRenderer extends TileEntityFacedRendererBase
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeDelta)
     {
         super.renderTileEntityAt(tile, x, y, z, timeDelta);
-        renderItemStacksFromTable((TileEntityTableBase)tile, new Vector3(x, y, z));
+        renderItemStacksFromTable((TileEntityTable)tile, new Vector3(x, y, z));
     }
 
-    protected void renderItemStacksFromTable(TileEntityTableBase table, Vector3 position)
+    protected void renderItemStacksFromTable(TileEntityTable table, Vector3 position)
     {
         for (int slot = 0; slot < table.getSizeInventory(); slot++)
         {
@@ -37,7 +37,7 @@ public class TileEntityTableRenderer extends TileEntityFacedRendererBase
         }
     }
 
-    protected void renderItemStack(TileEntityTableBase table, int slot, Vector3 position)
+    protected void renderItemStack(TileEntityTable table, int slot, Vector3 position)
     {
         ItemStack itemStack = table.getStackInSlot(slot);
         EntityItem entityItem = new EntityItem(table.getWorldObj(), 0d, 0d, 0d, itemStack);
@@ -50,7 +50,7 @@ public class TileEntityTableRenderer extends TileEntityFacedRendererBase
         GL11.glPopMatrix();
     }
 
-    protected void setItemTransformAt(TileEntityTableBase table, ItemStack itemStack, Vector3 position)
+    protected void setItemTransformAt(TileEntityTable table, ItemStack itemStack, Vector3 position)
     {
         if (itemStack.getItem() instanceof ItemBlock)
         {
@@ -62,14 +62,14 @@ public class TileEntityTableRenderer extends TileEntityFacedRendererBase
         }
     }
 
-    protected void setItem3dTransformAt(TileEntityTableBase table, Vector3 position)
+    protected void setItem3dTransformAt(TileEntityTable table, Vector3 position)
     {
         GL11.glTranslatef(position.x + 0.5f, position.y + 0.878f, position.z + 0.5f);
         GL11.glScalef(0.85f, 0.85f, 0.85f);
         setFaceRotationFrom(table);
     }
 
-    protected void setItem2dTransformAt(TileEntityTableBase table, Vector3 position)
+    protected void setItem2dTransformAt(TileEntityTable table, Vector3 position)
     {
         GL11.glTranslatef(position.x + 0.5f, position.y + 0.9f, position.z + 0.5f);
         setFaceRotationFrom(table);

@@ -4,14 +4,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.api.ArmsForgeApi;
 import helporme.armsforge.api.blocks.tables.CraftingTableType;
-import helporme.armsforge.api.items.IRecipeItem;
+import helporme.armsforge.api.items.IItemRecipe;
 import helporme.armsforge.api.recipes.ICraftingTableRecipe;
 import helporme.armsforge.forge.wrapper.items.ItemBase;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class ItemRecipe extends ItemBase implements IRecipeItem
+public class ItemRecipe extends ItemBase implements IItemRecipe
 {
     protected IIcon[] icons;
     protected int[] iconRanges;

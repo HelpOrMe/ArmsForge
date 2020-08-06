@@ -2,10 +2,11 @@ package helporme.armsforge.api;
 
 import helporme.armsforge.api.blocks.tables.CraftingTableType;
 import helporme.armsforge.api.items.HammerType;
-import helporme.armsforge.api.items.IHammer;
-import helporme.armsforge.api.recipes.HammerTypes;
+import helporme.armsforge.api.recipes.hammer.HammerBlowPattern;
+import helporme.armsforge.api.recipes.hammer.HammerTypes;
 import helporme.armsforge.api.recipes.ICraftingTableRecipe;
 import helporme.armsforge.api.recipes.ShapelessCraftingTableRecipe;
+import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -14,9 +15,10 @@ import java.util.*;
 public final class ArmsForgeApi
 {
     private static final Map<HammerType, Item> hammerItems = new HashMap<>();
-    private static final Map<String, IHammer[]> specialHammersForItems = new HashMap<>();
+    private static final Map<String, HammerBlowPattern[]> hammerBlowsPatternsForItems = new HashMap<>();
 
-    private static final Map<CraftingTableType, Set<ICraftingTableRecipe>> recipes = new HashMap<>();
+    private static final Map<CraftingTableType, Set<String>> recipeNamesByTables = new HashMap<>();
+    private static final Map<String, ICraftingTableRecipe> recipes = new HashMap<>();
     private static final Map<CraftingTableType, String> recipeIconForTable = new HashMap<>();
 
     public static void addHammer(Item hammerItem, HammerType hammerType)
@@ -29,24 +31,19 @@ public final class ArmsForgeApi
         return hammerItems.get(hammerType);
     }
 
-    public static void attachSpecialHammersToItem(ItemStack itemStack, IHammer... hammer)
+    public static void attachHammerBlowsPatternsToItem(ItemStack itemStack, HammerBlowPattern... hammerBlowPattern)
     {
-        specialHammersForItems.put(convertItemToString(itemStack), hammer);
+        hammerBlowsPatternsForItems.put(ItemStackHelper.convertItemStackToString(itemStack), hammerBlowPattern);
     }
 
-    public static IHammer[] getHammersForItem(ItemStack itemStack)
+    public static HammerBlowPattern[] getHammerBlowsPatternsForItem(ItemStack itemStack)
     {
-        String itemString = convertItemToString(itemStack);
-        if (specialHammersForItems.containsKey(itemString))
+        String itemString = ItemStackHelper.convertItemStackToString(itemStack);
+        if (hammerBlowsPatternsForItems.containsKey(itemString))
         {
-            return specialHammersForItems.get(itemString);
+            return hammerBlowsPatternsForItems.get(itemString);
         }
-        return new IHammer[] { (IHammer)hammerItems.get(HammerTypes.mediumIron) };
-    }
-
-    private static String convertItemToString(ItemStack itemStack)
-    {
-        return Item.itemRegistry.getNameForObject(itemStack.getItem()) + ":" + itemStack.getItemDamage();
+        return new HammerBlowPattern[] { new HammerBlowPattern(HammerTypes.mediumIron) };
     }
 
     public static void addCraftingTableRecipes(CraftingTableType craftingTableType, ItemStack result, ItemStack... ingredients)
@@ -58,28 +55,41 @@ public final class ArmsForgeApi
     {
         for (ICraftingTableRecipe newRecipe : newRecipes)
         {
+            addCraftingRecipe(newRecipe);
+
             CraftingTableType tableType = newRecipe.getCraftingTableType();
-            if (!recipes.containsKey(tableType))
+            if (!recipeNamesByTables.containsKey(tableType))
             {
-                recipes.put(tableType, new HashSet<>());
+                recipeNamesByTables.put(tableType, new HashSet<>());
             }
-            recipes.get(tableType).add(newRecipe);
+            recipeNamesByTables.get(tableType).add(newRecipe.getName());
         }
+    }
+
+    private static void addCraftingRecipe(ICraftingTableRecipe recipe)
+    {
+        recipes.put(recipe.getName(), recipe);
     }
 
     public static ICraftingTableRecipe[] getCraftingTableRecipesFor(CraftingTableType tableType)
     {
-        return recipes.get(tableType).toArray(new ICraftingTableRecipe[0]);
+        Set<String> recipeNames = recipeNamesByTables.get(tableType);
+        Set<ICraftingTableRecipe> recipes = new HashSet<>();
+        for (String recipeName : recipeNames)
+        {
+            recipes.add(getRecipeByName(recipeName));
+        }
+        return recipes.toArray(new ICraftingTableRecipe[0]);
     }
 
     public static ICraftingTableRecipe[] getAllCraftingTableRecipes()
     {
-        Set<ICraftingTableRecipe> recipeSet = new HashSet<>();
-        for (CraftingTableType table : recipes.keySet())
-        {
-            recipeSet.addAll(recipes.get(table));
-        }
-        return recipeSet.toArray(new ICraftingTableRecipe[0]);
+        return recipes.values().toArray(new ICraftingTableRecipe[0]);
+    }
+
+    public static ICraftingTableRecipe getRecipeByName(String name)
+    {
+        return recipes.get(name);
     }
 
     public static void addRecipeIconNameToTable(String iconTextureName, CraftingTableType tableType)
@@ -94,6 +104,6 @@ public final class ArmsForgeApi
 
     public static CraftingTableType[] getCraftingTableTypes()
     {
-        return recipes.keySet().toArray(new CraftingTableType[0]);
+        return recipeNamesByTables.keySet().toArray(new CraftingTableType[0]);
     }
 }

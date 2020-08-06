@@ -27,42 +27,6 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
-    {
-        super.writeToNBT(nbtTagCompound);
-
-        NBTTagList nbtTagList = new NBTTagList();
-        for (int slot = 0; slot < items.length; slot++)
-        {
-            ItemStack itemStack = items[slot];
-            if (itemStack != null)
-            {
-                NBTTagCompound itemNBT = new NBTTagCompound();
-                itemNBT.setInteger("Slot", slot);
-                itemStack.writeToNBT(itemNBT);
-                nbtTagList.appendTag(itemNBT);
-            }
-        }
-        nbtTagCompound.setTag("Items", nbtTagList);
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound nbtTagCompound)
-    {
-        super.readFromNBT(nbtTagCompound);
-
-        items = new ItemStack[getSizeInventory()];
-        NBTTagList nbtTagList = nbtTagCompound.getTagList("Items", 10);
-        for (int i = 0; i < nbtTagList.tagCount(); i++)
-        {
-            NBTTagCompound itemNBT = nbtTagList.getCompoundTagAt(i);
-            int slot = itemNBT.getInteger("Slot");
-            ItemStack itemStack = ItemStack.loadItemStackFromNBT(itemNBT);
-            items[slot] = itemStack;
-        }
-    }
-
-    @Override
     public boolean hasSpaceFor(ItemStack itemStack)
     {
         return InventoryHelper.hasSpaceFor(itemStack, this, getSizeInventory());
@@ -199,5 +163,41 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
     public boolean isItemValidForSlot(int slot, ItemStack itemStack)
     {
         return true;
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.writeToNBT(nbtTagCompound);
+
+        NBTTagList nbtTagList = new NBTTagList();
+        for (int slot = 0; slot < items.length; slot++)
+        {
+            ItemStack itemStack = items[slot];
+            if (itemStack != null)
+            {
+                NBTTagCompound itemNBT = new NBTTagCompound();
+                itemNBT.setInteger("Slot", slot);
+                itemStack.writeToNBT(itemNBT);
+                nbtTagList.appendTag(itemNBT);
+            }
+        }
+        nbtTagCompound.setTag("Items", nbtTagList);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.readFromNBT(nbtTagCompound);
+
+        items = new ItemStack[getSizeInventory()];
+        NBTTagList nbtTagList = nbtTagCompound.getTagList("Items", 10);
+        for (int i = 0; i < nbtTagList.tagCount(); i++)
+        {
+            NBTTagCompound itemNBT = nbtTagList.getCompoundTagAt(i);
+            int slot = itemNBT.getInteger("Slot");
+            ItemStack itemStack = ItemStack.loadItemStackFromNBT(itemNBT);
+            items[slot] = itemStack;
+        }
     }
 }

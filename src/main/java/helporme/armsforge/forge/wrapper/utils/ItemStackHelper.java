@@ -26,7 +26,7 @@ public final class ItemStackHelper
         return new ItemStack((Item)Item.itemRegistry.getObject(itemName), count, meta);
     }
 
-    public static ItemStack[] repeatStack(ItemStack stack, int times)
+    public static ItemStack[] repeatItemStack(ItemStack stack, int times)
     {
         Set<ItemStack> itemStackSet = new HashSet<>();
         for (int i = 0; i < times; i++)
@@ -34,6 +34,11 @@ public final class ItemStackHelper
             itemStackSet.add(stack);
         }
         return itemStackSet.toArray(new ItemStack[0]);
+    }
+
+    public static String convertItemStackToString(ItemStack itemStack)
+    {
+        return Item.itemRegistry.getNameForObject(itemStack.getItem()) + ":" + itemStack.getItemDamage();
     }
 
     public static ItemStack clone(ItemStack stack)

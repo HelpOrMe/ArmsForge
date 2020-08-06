@@ -2,7 +2,7 @@ package helporme.armsforge.common.registry.items;
 
 import helporme.armsforge.api.ArmsForgeApi;
 import helporme.armsforge.common.items.ItemHammer;
-import helporme.armsforge.api.recipes.HammerTypes;
+import helporme.armsforge.api.recipes.hammer.HammerTypes;
 
 public class HammersList extends ItemsList
 {

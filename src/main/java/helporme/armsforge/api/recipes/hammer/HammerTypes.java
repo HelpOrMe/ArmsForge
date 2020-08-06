@@ -1,4 +1,4 @@
-package helporme.armsforge.api.recipes;
+package helporme.armsforge.api.recipes.hammer;
 
 import helporme.armsforge.api.items.HammerType;
 

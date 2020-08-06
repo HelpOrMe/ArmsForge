@@ -49,7 +49,7 @@ public class ItemRendererBase implements IItemRenderer
     protected void defaultRender()
     {
         bindBlockTexture();
-        model.renderAll();
+        renderModel();
         GL11.glPopMatrix();
     }
 
@@ -57,7 +57,7 @@ public class ItemRendererBase implements IItemRenderer
     {
         bindBlockTexture();
         GL11.glTranslatef(0.55f, 0.0f, 0.55f);
-        model.renderAll();
+        renderModel();
         GL11.glPopMatrix();
     }
 
@@ -66,5 +66,10 @@ public class ItemRendererBase implements IItemRenderer
         Minecraft mc = Minecraft.getMinecraft();
         mc.renderEngine.bindTexture(texture);
         GL11.glPushMatrix();
+    }
+
+    protected void renderModel()
+    {
+        model.renderAll();
     }
 }

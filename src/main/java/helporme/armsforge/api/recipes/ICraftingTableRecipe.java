@@ -1,13 +1,8 @@
 package helporme.armsforge.api.recipes;
 
 import helporme.armsforge.api.blocks.tables.CraftingTableType;
-import helporme.armsforge.api.blocks.tables.ICraftingTable;
-import helporme.armsforge.api.blocks.tables.ISupportTable;
+import helporme.armsforge.api.recipes.table.TablesShape;
 import net.minecraft.item.ItemStack;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 
 public interface ICraftingTableRecipe
 {
@@ -15,7 +10,9 @@ public interface ICraftingTableRecipe
 
     CraftingTableType getCraftingTableType();
 
-    boolean isSupportTablesValid(Set<ISupportTable> supportTables);
+    boolean isTablesShapeValid(TablesShape tablesShape);
+
+    ItemStack[] getIngredients();
 
     ItemStack getResultItem();
 }

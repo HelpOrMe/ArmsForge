@@ -2,19 +2,24 @@ package helporme.armsforge.api.blocks.tables;
 
 public class CraftingTableType
 {
-    public String tableName;
+    public String name;
     public int tir;
     public int[] subTirs = new int[0];
 
-    public CraftingTableType(String tableName, int tir, int... subTirs)
+    public CraftingTableType()
     {
-        this(tableName, tir);
+
+    }
+
+    public CraftingTableType(String name, int tir, int... subTirs)
+    {
+        this(name, tir);
         this.subTirs = subTirs;
     }
 
-    public CraftingTableType(String tableName, int tir)
+    public CraftingTableType(String name, int tir)
     {
-        this.tableName = tableName;
+        this.name = name;
         this.tir = tir;
     }
 
@@ -25,19 +30,19 @@ public class CraftingTableType
         if (!(object instanceof CraftingTableType)) return false;
 
         CraftingTableType tableType = (CraftingTableType)object;
-        return nameEquals(tableType) && tirEquals(tableType);
+        return nameEquals(tableType) && tirWithSubTirsEquals(tableType);
     }
 
     @Override
     public int hashCode()
     {
-        int hash = tableName.hashCode();
+        int hash = name.hashCode();
         return ((hash << 5) + hash) ^ tir;
     }
 
     public boolean nameEquals(CraftingTableType tableType)
     {
-        return tableName.equals(tableType.tableName);
+        return name.equals(tableType.name);
     }
 
     public boolean tirWithSubTirsEquals(CraftingTableType tableType)

@@ -2,7 +2,6 @@ package helporme.armsforge.client.render.items;
 
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.forge.wrapper.render.items.ItemRendererBase;
-import org.lwjgl.opengl.GL11;
 
 public class ItemCraftingTableRenderer extends ItemRendererBase
 {
@@ -12,10 +11,8 @@ public class ItemCraftingTableRenderer extends ItemRendererBase
     }
 
     @Override
-    protected void defaultRender()
+    protected void renderModel()
     {
-        bindBlockTexture();
         model.renderAllExcept("Recipe");
-        GL11.glPopMatrix();
     }
 }

@@ -6,7 +6,7 @@ import helporme.armsforge.common.core.Version;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class ArmssmithRecipes extends RecipesList
+public class ArmorsmithRecipes extends RecipesList
 {
     @Override
     public void addDefault()

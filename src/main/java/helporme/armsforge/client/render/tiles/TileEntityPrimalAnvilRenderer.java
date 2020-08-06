@@ -6,8 +6,8 @@ import helporme.armsforge.client.render.tiles.info.PrimalAnvilRenderInfo;
 import helporme.armsforge.client.render.tiles.info.TextureFramesRenderInfo;
 import helporme.armsforge.common.blocks.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntityPrimalAnvil;
-import helporme.armsforge.common.tiles.base.TileEntityCraftingTableBase;
-import helporme.armsforge.common.tiles.base.TileEntityTableBase;
+import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
+import helporme.armsforge.common.tiles.base.TileEntityTable;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
@@ -46,7 +46,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
         renderAnvilBase(timeDelta);
         renderChains(timeDelta);
         renderFlags();
-        tryRenderRecipe((TileEntityCraftingTableBase)tile);
+        tryRenderRecipe((TileEntityCraftingTable)tile);
     }
 
     protected void renderAnvilBase(float timeDelta)
@@ -85,7 +85,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
     }
 
     @Override
-    protected void tryRenderRecipe(TileEntityCraftingTableBase craftingTable)
+    protected void tryRenderRecipe(TileEntityCraftingTable craftingTable)
     {
         boolean hasRecipe = !craftingTable.isEmptyAt(1);
         if (hasRecipe)
@@ -95,7 +95,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
         }
     }
 
-    protected void setItem3dTransformAt(TileEntityTableBase table, Vector3 position)
+    protected void setItem3dTransformAt(TileEntityTable table, Vector3 position)
     {
         float y = position.y + 0.878f + currentRenderInfo.anvilYOffset;
         GL11.glTranslatef(position.x + 0.5f, y, position.z + 0.5f);
@@ -103,7 +103,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
         setFaceRotationFrom(table);
     }
 
-    protected void setItem2dTransformAt(TileEntityTableBase table, Vector3 position)
+    protected void setItem2dTransformAt(TileEntityTable table, Vector3 position)
     {
         float y = position.y + 0.9f + currentRenderInfo.anvilYOffset;
         GL11.glTranslatef(position.x + 0.5f, y, position.z + 0.5f);

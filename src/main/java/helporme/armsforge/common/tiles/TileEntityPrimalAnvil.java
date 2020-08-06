@@ -5,9 +5,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.api.blocks.tables.CraftingTableType;
 import helporme.armsforge.api.blocks.tables.CraftingTableTypes;
 import helporme.armsforge.client.render.tiles.info.PrimalAnvilRenderInfo;
-import helporme.armsforge.common.tiles.base.TileEntityCraftingTableBase;
+import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
 
-public class TileEntityPrimalAnvil extends TileEntityCraftingTableBase
+public class TileEntityPrimalAnvil extends TileEntityCraftingTable
 {
     @SideOnly(Side.CLIENT)
     public final PrimalAnvilRenderInfo renderInfo = new PrimalAnvilRenderInfo();

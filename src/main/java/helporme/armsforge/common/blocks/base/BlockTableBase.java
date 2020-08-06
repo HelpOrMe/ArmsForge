@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.client.render.tiles.base.TileEntityTableRenderer;
 import helporme.armsforge.common.blocks.models.ModelInfo;
-import helporme.armsforge.common.tiles.base.TileEntityTableBase;
+import helporme.armsforge.common.tiles.base.TileEntityTable;
 import helporme.armsforge.forge.wrapper.utils.InventoryHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -28,11 +28,11 @@ public abstract class BlockTableBase extends BlockModelBase
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        TileEntityTableBase table = (TileEntityTableBase)world.getTileEntity(x, y, z);
+        TileEntityTable table = (TileEntityTable)world.getTileEntity(x, y, z);
         return tryAddItemToTableFromPlayer(table, player) || tryAddItemToPlayerFromTable(player, table);
     }
 
-    protected boolean tryAddItemToTableFromPlayer(TileEntityTableBase table, EntityPlayer player)
+    protected boolean tryAddItemToTableFromPlayer(TileEntityTable table, EntityPlayer player)
     {
         ItemStack itemStackAtHand = player.inventory.getCurrentItem();
         if (itemStackAtHand != null)
@@ -55,7 +55,7 @@ public abstract class BlockTableBase extends BlockModelBase
         return player.inventory.decrStackSize(player.inventory.currentItem, count);
     }
 
-    protected boolean tryAddItemToPlayerFromTable(EntityPlayer player, TileEntityTableBase table)
+    protected boolean tryAddItemToPlayerFromTable(EntityPlayer player, TileEntityTable table)
     {
         for (int slot = 0; slot < table.getSizeInventory(); slot++)
         {

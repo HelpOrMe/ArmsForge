@@ -1,20 +1,19 @@
-package helporme.armsforge.api.recipes;
+package helporme.armsforge.api.recipes.hammer;
 
 import helporme.armsforge.api.ArmsForgeApi;
-import helporme.armsforge.api.items.IHammer;
 import net.minecraft.item.ItemStack;
 
 import java.util.Iterator;
 import java.util.Random;
 
-public class HammerBlowGenerator implements Iterator<IHammer>
+public class HammerBlowsPatternGenerator implements Iterator<HammerBlowPattern>
 {
     protected final Random random = new Random();
 
     protected ItemStack[] ingredients;
     protected int ingredientIndex;
 
-    public HammerBlowGenerator(ItemStack... ingredients)
+    public HammerBlowsPatternGenerator(ItemStack... ingredients)
     {
         this.ingredients = ingredients;
         ingredientIndex = ingredients.length;
@@ -23,20 +22,20 @@ public class HammerBlowGenerator implements Iterator<IHammer>
     @Override
     public boolean hasNext()
     {
-        return ingredientIndex > 0;
+        return ingredientIndex >= 0;
     }
 
     @Override
-    public IHammer next()
+    public HammerBlowPattern next()
     {
         ingredientIndex--;
-        return getNextHammer();
+        return getNextBlow();
     }
 
-    public IHammer getNextHammer()
+    public HammerBlowPattern getNextBlow()
     {
         ItemStack ingredient = ingredients[ingredientIndex];
-        IHammer[] hammers = ArmsForgeApi.getHammersForItem(ingredient);
-        return hammers[random.nextInt(hammers.length)];
+        HammerBlowPattern[] hammerBlowPatterns = ArmsForgeApi.getHammerBlowsPatternsForItem(ingredient);
+        return hammerBlowPatterns[random.nextInt(hammerBlowPatterns.length)];
     }
 }

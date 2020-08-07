@@ -12,4 +12,6 @@ public interface ITable
     ItemStack getItem();
 
     void setItem(ItemStack itemStack);
+
+    void decrStackSize(int size);
 }

@@ -39,20 +39,47 @@ public abstract class BlockTableBase extends BlockModelBase
         {
             for (int slot = 0; slot < table.getSizeInventory(); slot++)
             {
-                if (table.isEmptyAt(slot) && table.isItemValidForSlot(slot, itemStackAtHand))
+                if (table.isItemValidForSlot(slot, itemStackAtHand))
                 {
-                    table.setInventorySlotContents(slot, popItemFromHand(player, table.getInventoryStackLimit()));
-                    player.inventory.markDirty();
-                    return true;
+                    return tryAddOneItemToTableFromPlayer(table, slot, player) ||
+                            tryFillStackAtTableByPlayer(table, slot, player);
                 }
             }
         }
         return false;
     }
 
-    protected ItemStack popItemFromHand(EntityPlayer player, int count)
+    protected boolean tryAddOneItemToTableFromPlayer(TileEntityTable table, int slot, EntityPlayer player)
     {
-        return player.inventory.decrStackSize(player.inventory.currentItem, count);
+        if (table.isEmptyAt(slot))
+        {
+            table.setInventorySlotContents(slot, popItemFromHand(player));
+            player.inventory.markDirty();
+            return true;
+        }
+        return false;
+    }
+
+    protected boolean tryFillStackAtTableByPlayer(TileEntityTable table, int slot, EntityPlayer player)
+    {
+        ItemStack itemStackAtHand = player.inventory.getCurrentItem();
+        ItemStack itemStackOnTable = table.getStackInSlot(slot);
+
+        if (itemStackOnTable.isItemEqual(itemStackAtHand))
+        {
+            InventoryHelper.fillSlotWithItem(table, slot, itemStackAtHand);
+            if (itemStackAtHand.stackSize == 0)
+            {
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    protected ItemStack popItemFromHand(EntityPlayer player)
+    {
+        return player.inventory.decrStackSize(player.inventory.currentItem, 1);
     }
 
     protected boolean tryAddItemToPlayerFromTable(EntityPlayer player, TileEntityTable table)
@@ -62,7 +89,7 @@ public abstract class BlockTableBase extends BlockModelBase
             ItemStack itemStackOnTable = table.getStackInSlot(slot);
             if (itemStackOnTable != null)
             {
-                boolean playerHasSpaceForItem = InventoryHelper.hasSpaceFor(itemStackOnTable, player.inventory, 27);
+                boolean playerHasSpaceForItem = InventoryHelper.hasSpaceForItem(itemStackOnTable, player.inventory, 27);
                 if (playerHasSpaceForItem)
                 {
                     player.inventory.addItemStackToInventory(table.popItemAt(slot));

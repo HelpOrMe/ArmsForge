@@ -46,9 +46,10 @@ public final class ArmsForgeApi
         return new HammerBlowPattern[] { new HammerBlowPattern(HammerTypes.mediumIron) };
     }
 
-    public static void addCraftingTableRecipes(CraftingTableType craftingTableType, ItemStack result, ItemStack... ingredients)
+    public static void addCraftingTableRecipes(CraftingTableType craftingTableType,
+                                               ItemStack result, ItemStack mainItem, ItemStack... ingredients)
     {
-        addCraftingTableRecipes(new ShapelessCraftingTableRecipe(craftingTableType, result, ingredients));
+        addCraftingTableRecipes(new ShapelessCraftingTableRecipe(craftingTableType, result, mainItem, ingredients));
     }
 
     public static void addCraftingTableRecipes(ICraftingTableRecipe... newRecipes)

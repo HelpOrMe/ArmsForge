@@ -10,20 +10,6 @@ public class TileEntitySupportTable extends TileEntityTable implements ISupportT
 {
     public boolean isShelf = false;
 
-    @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
-    {
-        super.writeToNBT(nbtTagCompound);
-        nbtTagCompound.setBoolean("IsShelf", isShelf);
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound nbtTagCompound)
-    {
-        super.readFromNBT(nbtTagCompound);
-        isShelf = nbtTagCompound.getBoolean("IsShelf");
-    }
-
     public void updateShelfStatus()
     {
         TileEntity tileUnderThisTable = worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
@@ -46,4 +32,19 @@ public class TileEntitySupportTable extends TileEntityTable implements ISupportT
             }
         }
     }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.writeToNBT(nbtTagCompound);
+        nbtTagCompound.setBoolean("IsShelf", isShelf);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.readFromNBT(nbtTagCompound);
+        isShelf = nbtTagCompound.getBoolean("IsShelf");
+    }
+
 }

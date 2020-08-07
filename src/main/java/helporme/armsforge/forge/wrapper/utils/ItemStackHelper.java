@@ -41,11 +41,6 @@ public final class ItemStackHelper
         return Item.itemRegistry.getNameForObject(itemStack.getItem()) + ":" + itemStack.getItemDamage();
     }
 
-    public static ItemStack clone(ItemStack stack)
-    {
-        return clone(stack, stack.stackSize, stack.getItemDamage());
-    }
-
     public static ItemStack clone(ItemStack stack, int newSize)
     {
         return new ItemStack(stack.getItem(), newSize, stack.getItemDamage());

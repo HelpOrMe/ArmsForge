@@ -45,17 +45,15 @@ public abstract class BlockCraftingTable extends BlockTableBase
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        if (!world.isRemote)
+        ICraftingTable craftingTable = (ICraftingTable)world.getTileEntity(x, y, z);
+        if (playerHasAtHand(player, IDebugTool.class))
         {
-            ICraftingTable craftingTable = (ICraftingTable)world.getTileEntity(x, y, z);
-            if (playerHasAtHand(player, IDebugTool.class))
-            {
-                processDebugToolLogic(craftingTable, world);
-            }
-            else if (playerHasAtHand(player, IHammer.class))
-            {
-                processHammerLogic(craftingTable, player);
-            }
+            processDebugToolLogic(craftingTable, world);
+            return true;
+        }
+        if (playerHasAtHand(player, IHammer.class))
+        {
+            processHammerLogic(craftingTable, world, player);
             return true;
         }
         return super.onBlockActivated(world, x, y, z, player, par6, par7, par8, par9);
@@ -69,8 +67,11 @@ public abstract class BlockCraftingTable extends BlockTableBase
 
     protected void processDebugToolLogic(ICraftingTable craftingTable, World world)
     {
-        List<Vector3> targets = getCorrectPositionsFrom(craftingTable.getSupportTablesNear());
-        DebugHelper.spawnDebugParticleVertLines(world, targets);
+        if (world.isRemote)
+        {
+            List<Vector3> targets = getCorrectPositionsFrom(craftingTable.getSupportTablesNear());
+            DebugHelper.spawnDebugParticleVertLines(world, targets);
+        }
     }
 
     protected List<Vector3> getCorrectPositionsFrom(ISupportTable[] supportTables)
@@ -84,12 +85,12 @@ public abstract class BlockCraftingTable extends BlockTableBase
         return positions;
     }
 
-    protected void processHammerLogic(ICraftingTable craftingTable, EntityPlayer player)
+    protected void processHammerLogic(ICraftingTable craftingTable, World world, EntityPlayer player)
     {
-        if (playerHasAtHand(player, IHammer.class))
+        if (!world.isRemote)
         {
             IHammer hammerAtHands = (IHammer)player.inventory.getCurrentItem().getItem();
-            craftingTable.onHammerBlow(hammerAtHands);
+            craftingTable.onHammerBlow(hammerAtHands, player);
         }
     }
 }

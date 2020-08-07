@@ -90,9 +90,9 @@ public class TablesShape
         if (sortedSupportTables.containsKey(position))
         {
             ISupportTable table = sortedSupportTables.get(position);
-            if (!table.isEmptyAt(0))
+            if (!table.hasItem())
             {
-                String convertedItemStack = ItemStackHelper.convertItemStackToString(table.getStackInSlot(0));
+                String convertedItemStack = ItemStackHelper.convertItemStackToString(table.getItem());
                 updateItemSymbols(convertedItemStack);
                 chr = itemChars.get(convertedItemStack);
             }

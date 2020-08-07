@@ -36,4 +36,9 @@ public abstract class TileEntityTable extends TileEntityInventoryBase implements
     {
         setInventorySlotContents(0, itemStack);
     }
+
+    public void decrStackSize(int count)
+    {
+        decrStackSize(0, count);
+    }
 }

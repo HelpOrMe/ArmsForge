@@ -29,25 +29,25 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
     @Override
     public boolean hasSpaceFor(ItemStack itemStack)
     {
-        return InventoryHelper.hasSpaceFor(itemStack, this, getSizeInventory());
+        return InventoryHelper.hasSpaceForItem(itemStack, this, getSizeInventory());
     }
 
     @Override
     public boolean hasSpaceForItemAt(ItemStack itemStack, int slot)
     {
-        return InventoryHelper.hasSpaceForItemAt(itemStack, this, slot);
+        return InventoryHelper.isSlotHasSpaceForItem(itemStack, this, slot);
     }
 
     @Override
     public boolean isStackableAt(ItemStack itemStack, int slot)
     {
-        return InventoryHelper.isStackableAt(itemStack, this, slot);
+        return InventoryHelper.isSlotStackable(itemStack, this, slot);
     }
 
     @Override
     public boolean isEmptyAt(int slot)
     {
-        return InventoryHelper.isEmptyAt(this, slot);
+        return InventoryHelper.isSlotEmpty(this, slot);
     }
 
     @Override

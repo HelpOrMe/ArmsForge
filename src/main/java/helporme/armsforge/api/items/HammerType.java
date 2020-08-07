@@ -18,7 +18,7 @@ public class HammerType
         if (!(object instanceof HammerType)) return false;
 
         HammerType hammerType = (HammerType)object;
-        return size == hammerType.size && tir == hammerType.size;
+        return size == hammerType.size && tir == hammerType.tir;
     }
 
     @Override

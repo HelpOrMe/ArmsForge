@@ -1,83 +1,64 @@
 package helporme.armsforge.common.tiles.base;
 
+import helporme.armsforge.api.ArmsForgeApi;
 import helporme.armsforge.api.blocks.tables.CraftingTableType;
 import helporme.armsforge.api.items.HammerType;
 import helporme.armsforge.api.items.IHammer;
 import helporme.armsforge.api.items.IItemRecipe;
 import helporme.armsforge.api.recipes.ICraftingTableRecipe;
+import helporme.armsforge.api.recipes.IRecipeTableStateHandler;
+import helporme.armsforge.api.recipes.hammer.HammerBlowPattern;
 import helporme.armsforge.api.recipes.table.TablesShape;
 import helporme.armsforge.api.utils.Vector3Int;
 import helporme.armsforge.api.blocks.tables.ICraftingTable;
 import helporme.armsforge.api.blocks.tables.ISupportTable;
+import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 
 import java.util.*;
 
-
-// Логика работы стола:
-// 1.   При ударе молотка проверяем можно ли запустить крафт
-// 1.1  Проверяем запущен ли уже крафт
-// 1.2  Проверяем есть ли предмет рецепта на столе
-// ins! Проверяем форму столов с нужной в крафте
-// 1.3  Если крафт можно запустить - запускаем.
-// 1.4  Выбираем рецепт из предмета рецепта
-// 1.5  Берем ингредиенты с рецепта
-// 1.6  Сохраняем в кеш позиции столов вокруг с ингредиентами
-// 1.7  Случайно выбираем индекс ингредиент
-// 1.8  Случайно выбираем тип удара молотком для ингредиента из предоставленных ArmsForgeApi
-//      и выставляем время для удара
-
-// 2.   Если крафт запущен, каждый тик отнимаем с времени для удара 1/20 секунды.
-// 2.2  Если время вышло - прекращаем крафт
-
-// 3.   Обрабатываем удар молотком
-// 3.1  Сверяем тип удара молотка с выбранным типом удара молотка по предмету ранее и
-//      проверяем не вышло ли время
-// 3.11 Если тип удара неправильный или время вышло - прекращаем крафт
-// 3.2  Берем позицию стола с кеша и проверяем есть ли на позиции стол и валидны ли на нем предметы
-// 3.21 Если что-то пошло не так в пункте 2.3 - начинаем пере-поиск столов вокруг и обновляем кеш.
-// 3.22 Если до сих пор предмета нет - прекращаем крафт
-// 3.3  Убираем ингредиент со стола (вычитаем нужное кол-во предметов указанное в ингредиенте)
-// 3.4  Убираем стол из кеша и ингредиент из списка.
-// 3.5  Добавляем индекс ингредиента в список обработанных
-// 3.6  Проверяем, существуют ли ещё ингредиенты
-// 3.61 Если да, повторяем 1.7
-// 3.7  Если нет, заканчиваем крафт и меняем предмет на главном столе предмет на результат крафта
-// 3.8  Очищаем информацию о состоянии крафта
-
 public abstract class TileEntityCraftingTable extends TileEntityTable implements ICraftingTable
 {
-    // TODO: Config
     private static final int radius = 9;
     protected static final Random random = new Random();
 
     protected boolean craftActive = false;
-    protected ICraftingTableRecipe selectedRecipe;
+    protected EntityPlayer craftingPlayer;
+    protected ICraftingTableRecipe recipe;
 
-    protected Map<String, Vector3Int> cachedTablesPositionsByIngredients;
-    protected ISupportTable[] supportTables;
-    protected ItemStack[] ingredients;
+    protected Map<String, LinkedList<Vector3Int>> tablesPositionsByIngredients = new HashMap<>();
+    protected List<ItemStack> ingredients = new ArrayList<>();
     protected int selectedIngredientIndex = 0;
 
     protected HammerType neededHammerType;
     protected float timeLeft;
 
     @Override
-    public void onHammerBlow(IHammer hammer)
+    public void onHammerBlow(IHammer hammer, EntityPlayer player)
     {
-        if (canActivateCraft())
+        if (canPlayerActivateCraft(player))
         {
-            activateCraft();
+            activateCraft(player);
         }
-        else
+        else if (craftActive)
         {
             handleHammerBlow(hammer);
         }
     }
 
-    public boolean canActivateCraft()
+    public boolean canPlayerActivateCraft(EntityPlayer player)
     {
-        return !isCraftActive() && hasRecipe() && isTablesShapeValid();
+        if (!isCraftActive() && hasRecipe())
+        {
+            ICraftingTableRecipe recipe = getRecipe();
+            return recipe.canPlayerActivateCraft(player) &&
+                    isItemOnTableEqualsRecipeMainItem(recipe) &&
+                    isTablesNearContainsRecipeIngredients(recipe) &&
+                    recipe.isTablesShapeValid(getTablesShape());
+        }
+        return false;
     }
 
     @Override
@@ -86,43 +67,269 @@ public abstract class TileEntityCraftingTable extends TileEntityTable implements
         return craftActive;
     }
 
-    public boolean isTablesShapeValid()
+    protected boolean isItemOnTableEqualsRecipeMainItem(ICraftingTableRecipe recipe)
     {
-        if (hasRecipe())
+        ItemStack mainItemStack = recipe.getMainItem();
+        ItemStack itemStackOnTable = getItem();
+        return hasItem() && itemStackOnTable.isItemEqual(mainItemStack) &&
+                itemStackOnTable.stackSize == mainItemStack.stackSize;
+    }
+
+    protected boolean isTablesNearContainsRecipeIngredients(ICraftingTableRecipe recipe)
+    {
+        List<ItemStack> ingredients = recipe.getIngredients();
+
+        for (ISupportTable supportTable : getSupportTablesNear())
         {
-            ICraftingTableRecipe recipe = getRecipe();
-            TablesShape tablesShape = new TablesShape(this, getSupportTablesNear());
-            return recipe.isTablesShapeValid(tablesShape);
+            for (ItemStack ingredient : ingredients)
+            {
+                if (isTableContainsIngredient(supportTable, ingredient))
+                {
+                    ingredients.remove(ingredient);
+                    break;
+                }
+            }
+        }
+        return ingredients.size() == 0;
+    }
+
+    protected boolean isTableContainsIngredient(ISupportTable supportTable, ItemStack ingredient)
+    {
+        if (supportTable.hasItem())
+        {
+            ItemStack itemStackOnTable = supportTable.getItem();
+            boolean hasIngredientOnTable = itemStackOnTable.isItemEqual(ingredient);
+            boolean validSizeOnTable = itemStackOnTable.stackSize >= ingredient.stackSize;
+            return hasIngredientOnTable && validSizeOnTable;
         }
         return false;
     }
 
-    @Override
-    public void activateCraft() {
+    protected TablesShape getTablesShape()
+    {
+        return new TablesShape(this, getSupportTablesNear());
+    }
 
+    public void activateCraft(EntityPlayer player)
+    {
+        craftActive = true;
+
+        recipe = getRecipe();
+        craftingPlayer = player;
+        ingredients = recipe.getIngredients();
+        updateTablesPositionsByIngredients();
+        setNextBlowPattern();
+
+        if (recipe instanceof IRecipeTableStateHandler)
+        {
+            IRecipeTableStateHandler stateHandler = (IRecipeTableStateHandler) recipe;
+            stateHandler.onCraftingStart();
+        }
     }
 
     @Override
-    public void selectRecipe(ICraftingTableRecipe recipe) {
+    public void updateEntity()
+    {
+        if (craftActive)
+        {
+            timeLeft -= 0.05f;
+            if (timeLeft <= 0)
+            {
+                cancelCraft();
+            }
+        }
+    }
 
+    protected void handleHammerBlow(IHammer hammer)
+    {
+        HammerType hammerType = hammer.getHammerType();
+        if (neededHammerType != hammerType || timeLeft <= 0 || !canRemoveIngredientFromTable())
+        {
+            cancelCraft();
+        }
+        else if (!hasIngredients())
+        {
+            endCraft();
+        }
+        else
+        {
+            removeSelectedIngredientFromTable();
+            setNextBlowPattern();
+        }
+    }
+
+    protected boolean canRemoveIngredientFromTable()
+    {
+        ItemStack ingredient = ingredients.get(selectedIngredientIndex);
+        String convertedIngredient = ItemStackHelper.convertItemStackToString(ingredient);
+        ISupportTable tableWithIngredient = getTableWithIngredient(convertedIngredient);
+
+        if (tableWithIngredient == null)
+        {
+            updateTablesPositionsByIngredients();
+            tableWithIngredient = getTableWithIngredient(convertedIngredient);
+            if (tableWithIngredient == null)
+            {
+                return false;
+            }
+        }
+
+        ItemStack itemStackOnTable = tableWithIngredient.getItem();
+        return tableWithIngredient.hasItem() && itemStackOnTable.isItemEqual(ingredient);
+    }
+
+    protected void removeSelectedIngredientFromTable()
+    {
+        ItemStack selectedIngredient = ingredients.get(selectedIngredientIndex);
+        String convertedIngredient = ItemStackHelper.convertItemStackToString(selectedIngredient);
+
+        ISupportTable table = getTableWithIngredient(convertedIngredient);
+        table.decrStackSize(selectedIngredient.stackSize);
+
+        tablesPositionsByIngredients.get(convertedIngredient).removeFirst();
+        ingredients.remove(selectedIngredient);
+    }
+
+    protected ISupportTable getTableWithIngredient(String convertedIngredient)
+    {
+        LinkedList<Vector3Int> tablePositions = tablesPositionsByIngredients.get(convertedIngredient);
+        Vector3Int tablePosition = tablePositions.getFirst();
+        return (ISupportTable)worldObj.getTileEntity(tablePosition.x, tablePosition.y, tablePosition.z);
+    }
+
+    protected boolean hasIngredients()
+    {
+        return ingredients.size() > 0;
+    }
+
+    protected void setNextBlowPattern()
+    {
+        int randomIngredientIndex = random.nextInt(ingredients.size());
+        ItemStack randomIngredient = ingredients.get(randomIngredientIndex);
+
+        HammerBlowPattern[] patterns = ArmsForgeApi.getHammerBlowsPatternsForItem(randomIngredient);
+        int randomPatternIndex = random.nextInt(patterns.length);
+        HammerBlowPattern randomPattern = patterns[randomPatternIndex];
+
+        neededHammerType = randomPattern.hammerType;
+        timeLeft = randomPattern.time;
     }
 
     @Override
-    public ISupportTable[] getSupportTablesNear() {
-        return new ISupportTable[0];
+    public void cancelCraft()
+    {
+        clearCraftInfo();
+
+        if (recipe instanceof IRecipeTableStateHandler)
+        {
+            IRecipeTableStateHandler stateHandler = (IRecipeTableStateHandler) recipe;
+            stateHandler.onCraftingCanceled();
+        }
     }
 
+    protected void endCraft()
+    {
+        if (recipe instanceof IRecipeTableStateHandler)
+        {
+            IRecipeTableStateHandler stateHandler = (IRecipeTableStateHandler) recipe;
+            stateHandler.onCraftingEnd();
+        }
+        setItem(recipe.getResultItem().copy());
+        clearCraftInfo();
+    }
+
+    protected void clearCraftInfo()
+    {
+        craftActive = false;
+        recipe = null;
+        tablesPositionsByIngredients.clear();
+        ingredients.clear();
+        selectedIngredientIndex = 0;
+        neededHammerType = null;
+        timeLeft = 0;
+    }
+
+    protected void updateTablesPositionsByIngredients()
+    {
+        tablesPositionsByIngredients.clear();
+        for (ISupportTable supportTable : getSupportTablesNear())
+        {
+            for (ItemStack ingredient : ingredients)
+            {
+                if (isTableContainsIngredient(supportTable, ingredient))
+                {
+                    cacheSupportTableByIngredient(supportTable, ingredient);
+                    break;
+                }
+            }
+        }
+    }
+
+    protected void cacheSupportTableByIngredient(ISupportTable supportTable, ItemStack ingredient)
+    {
+        String convertedIngredient = ItemStackHelper.convertItemStackToString(ingredient);
+        if (!tablesPositionsByIngredients.containsKey(convertedIngredient))
+        {
+            tablesPositionsByIngredients.put(convertedIngredient, new LinkedList<>());
+        }
+
+        Vector3Int tablePosition = supportTable.getPosition();
+        tablesPositionsByIngredients.get(convertedIngredient).add(tablePosition);
+    }
+
+    @Override
+    public ISupportTable[] getSupportTablesNear()
+    {
+        Set<ISupportTable> tables = new HashSet<>();
+        for (int x = xCoord - radius; x < xCoord + radius; x++)
+        {
+            for (int z = zCoord - radius; z < zCoord + radius; z++)
+            {
+                TileEntity tile = worldObj.getTileEntity(x, yCoord,  z);
+                if (tile instanceof ISupportTable)
+                {
+                    tables.add((ISupportTable)tile);
+                    Vector3Int supportTablePosition = new Vector3Int(x, yCoord, z);
+                    tables.addAll(getSupportShelvesOver(supportTablePosition));
+                }
+            }
+        }
+        return tables.toArray(new ISupportTable[0]);
+    }
+
+    protected List<ISupportTable> getSupportShelvesOver(Vector3Int position)
+    {
+        List<ISupportTable> tables = new ArrayList<>();
+        for (int y = 1; y < 3; y ++)
+        {
+            TileEntity tile = worldObj.getTileEntity(position.x, position.y + y, position.z);
+            if (!(tile instanceof ISupportTable))
+            {
+                break;
+            }
+            tables.add((ISupportTable)tile);
+        }
+        return tables;
+    }
 
     @Override
     public boolean hasRecipe()
     {
-        return isEmptyAt(1);
+        return !isEmptyAt(1);
     }
 
     @Override
-    public IItemRecipe getRecipe()
+    public ItemStack getRecipeItem()
     {
-        return (IItemRecipe)getStackInSlot(1).getItem();
+        return getStackInSlot(1);
+    }
+
+    @Override
+    public ICraftingTableRecipe getRecipe()
+    {
+        ItemStack recipeItemStack = getRecipeItem();
+        IItemRecipe itemRecipe = (IItemRecipe)recipeItemStack.getItem();
+        return itemRecipe.getRecipe(recipeItemStack);
     }
 
     @Override

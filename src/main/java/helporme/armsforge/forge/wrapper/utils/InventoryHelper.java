@@ -5,12 +5,12 @@ import net.minecraft.item.ItemStack;
 
 public final class InventoryHelper
 {
-    public static boolean hasSpaceFor(ItemStack itemStack, IInventory inventory, int slotLimit)
+    public static boolean hasSpaceForItem(ItemStack itemStack, IInventory inventory, int slotLimit)
     {
         slotLimit %= (inventory.getSizeInventory() + 1);
         for (int slot = 0; slot < slotLimit; slot++)
         {
-            if (hasSpaceForItemAt(itemStack, inventory, slot))
+            if (isSlotHasSpaceForItem(itemStack, inventory, slot))
             {
                 return true;
             }
@@ -18,12 +18,12 @@ public final class InventoryHelper
         return false;
     }
 
-    public static boolean hasSpaceForItemAt(ItemStack itemStack, IInventory inventory, int slot)
+    public static boolean isSlotHasSpaceForItem(ItemStack itemStack, IInventory inventory, int slot)
     {
-        return isEmptyAt(inventory, slot) || isStackableAt(itemStack, inventory, slot);
+        return isSlotEmpty(inventory, slot) || isSlotStackable(itemStack, inventory, slot);
     }
 
-    public static boolean isStackableAt(ItemStack itemStack, IInventory inventory, int slot)
+    public static boolean isSlotStackable(ItemStack itemStack, IInventory inventory, int slot)
     {
         ItemStack itemStackAtSlot = inventory.getStackInSlot(slot);
         if (itemStackAtSlot.isItemEqual(itemStack))
@@ -36,8 +36,20 @@ public final class InventoryHelper
         return false;
     }
 
-    public static boolean isEmptyAt(IInventory inventory, int slot)
+    public static boolean isSlotEmpty(IInventory inventory, int slot)
     {
         return inventory.getStackInSlot(slot) == null;
+    }
+
+    public static void fillSlotWithItem(IInventory inventory, int slot, ItemStack itemStack)
+    {
+        ItemStack stackAtSlot = inventory.getStackInSlot(slot);
+        if (stackAtSlot.isItemEqual(itemStack))
+        {
+            int spaceLeft = (inventory.getInventoryStackLimit() - stackAtSlot.stackSize) % stackAtSlot.getMaxStackSize();
+            int sizeToDecrease = Math.min(spaceLeft, itemStack.stackSize);
+            itemStack.stackSize -= sizeToDecrease;
+            stackAtSlot.stackSize += sizeToDecrease;
+        }
     }
 }

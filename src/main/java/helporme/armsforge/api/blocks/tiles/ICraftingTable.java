@@ -1,18 +1,17 @@
-package helporme.armsforge.api.blocks.tables;
+package helporme.armsforge.api.blocks.tiles;
 
-import helporme.armsforge.api.items.IHammer;
-import helporme.armsforge.api.recipes.ICraftingTableRecipe;
 import net.minecraft.entity.player.EntityPlayer;
-
-import java.util.Set;
+import net.minecraft.item.ItemStack;
 
 public interface ICraftingTable extends ITable, IRecipeContainer
 {
     CraftingTableType getTableType();
 
-    void onHammerBlow(IHammer hammer, EntityPlayer player);
+    void onHammerBlow(ItemStack hammerStack, EntityPlayer player);
 
     boolean isCraftActive();
+
+    void cancelCraft();
 
     ISupportTable[] getSupportTablesNear();
 }

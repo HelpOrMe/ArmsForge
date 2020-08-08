@@ -31,7 +31,7 @@ public class TileEntityCraftingTableRenderer extends TileEntityTableRenderer
 
     protected void tryRenderRecipe(TileEntityCraftingTable craftingTable)
     {
-        boolean hasRecipe = !craftingTable.isEmptyAt(1);
+        boolean hasRecipe = !craftingTable.isEmptyInSlot(1);
         if (hasRecipe)
         {
             model.renderPart("Recipe");

@@ -1,8 +1,5 @@
 package helporme.armsforge.forge.wrapper.utils;
 
-import helporme.armsforge.common.core.Version;
-import helporme.armsforge.common.registry.ItemsRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -36,9 +33,17 @@ public final class ItemStackHelper
         return itemStackSet.toArray(new ItemStack[0]);
     }
 
-    public static String convertItemStackToString(ItemStack itemStack)
+    public static String convertItemToString(ItemStack itemStack)
     {
-        return Item.itemRegistry.getNameForObject(itemStack.getItem()) + ":" + itemStack.getItemDamage();
+        return Item.itemRegistry.getNameForObject(itemStack.getItem()) + "@" + itemStack.getItemDamage();
+    }
+
+    public static ItemStack convertStringToItem(String convertedItemStack)
+    {
+        String[] nameAndMeta = convertedItemStack.split("@");
+        String name = nameAndMeta[0];
+        int meta = Integer.parseInt(nameAndMeta[1]);
+        return new ItemStack((Item)Item.itemRegistry.getObject(name), 1, meta);
     }
 
     public static ItemStack clone(ItemStack stack, int newSize)

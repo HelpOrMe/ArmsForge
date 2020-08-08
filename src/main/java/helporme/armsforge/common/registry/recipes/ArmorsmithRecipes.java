@@ -1,7 +1,7 @@
 package helporme.armsforge.common.registry.recipes;
 
 import helporme.armsforge.api.ArmsForgeApi;
-import helporme.armsforge.api.blocks.tables.CraftingTableTypes;
+import helporme.armsforge.api.blocks.tiles.CraftingTableTypes;
 import helporme.armsforge.common.core.Version;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

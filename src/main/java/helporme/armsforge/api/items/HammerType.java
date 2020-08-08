@@ -1,5 +1,7 @@
 package helporme.armsforge.api.items;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 public class HammerType
 {
     public final int size;
@@ -25,5 +27,18 @@ public class HammerType
     public int hashCode()
     {
         return ((size << 5) + size) ^ tir;
+    }
+
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
+        nbtTagCompound.setInteger("tir", tir);
+        nbtTagCompound.setInteger("size", size);
+    }
+
+    public static HammerType fromNBT(NBTTagCompound nbtTagCompound)
+    {
+        int size = nbtTagCompound.getInteger("size");
+        int tir = nbtTagCompound.getInteger("tir");
+        return new HammerType(size, tir);
     }
 }

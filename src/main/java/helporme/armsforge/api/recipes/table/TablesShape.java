@@ -1,7 +1,7 @@
 package helporme.armsforge.api.recipes.table;
 
-import helporme.armsforge.api.blocks.tables.ICraftingTable;
-import helporme.armsforge.api.blocks.tables.ISupportTable;
+import helporme.armsforge.api.blocks.tiles.ICraftingTable;
+import helporme.armsforge.api.blocks.tiles.ISupportTable;
 import helporme.armsforge.api.utils.Vector3Int;
 import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
 import net.minecraft.item.ItemStack;
@@ -90,9 +90,10 @@ public class TablesShape
         if (sortedSupportTables.containsKey(position))
         {
             ISupportTable table = sortedSupportTables.get(position);
-            if (!table.hasItem())
+            if (table.isEmptyInSlot(table.getItemSlot()))
             {
-                String convertedItemStack = ItemStackHelper.convertItemStackToString(table.getItem());
+                ItemStack itemOnTable = table.getStackInSlot(table.getItemSlot());
+                String convertedItemStack = ItemStackHelper.convertItemToString(itemOnTable);
                 updateItemSymbols(convertedItemStack);
                 chr = itemChars.get(convertedItemStack);
             }

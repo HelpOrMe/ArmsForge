@@ -4,13 +4,21 @@ import net.minecraft.item.ItemStack;
 
 public interface IInventoryExtend
 {
-    ItemStack popItemAt(int slot);
+    ItemStack popFirstItem();
 
-    boolean hasSpaceFor(ItemStack itemStack);
+    ItemStack popItemFromSlot(int slot);
 
-    boolean hasSpaceForItemAt(ItemStack itemStack, int slot);
+    void fillSlotWithItem(int slot, ItemStack itemStack);
 
-    boolean isStackableAt(ItemStack itemStack, int slot);
+    ItemStack getFirstItem();
 
-    boolean isEmptyAt(int slot);
+    boolean hasItems();
+
+    boolean hasSpaceForItem(ItemStack itemStack);
+
+    boolean hasSpaceForItemInSlot(ItemStack itemStack, int slot);
+
+    boolean isStackableInSlot(ItemStack itemStack, int slot);
+
+    boolean isEmptyInSlot(int slot);
 }

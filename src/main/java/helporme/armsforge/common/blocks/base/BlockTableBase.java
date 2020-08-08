@@ -12,6 +12,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+//TODO: Refactoring (Remove tries)
+
 public abstract class BlockTableBase extends BlockModelBase
 {
     public BlockTableBase(Material material, String name)
@@ -29,75 +31,60 @@ public abstract class BlockTableBase extends BlockModelBase
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
         TileEntityTable table = (TileEntityTable)world.getTileEntity(x, y, z);
-        return tryAddItemToTableFromPlayer(table, player) || tryAddItemToPlayerFromTable(player, table);
-    }
 
-    protected boolean tryAddItemToTableFromPlayer(TileEntityTable table, EntityPlayer player)
-    {
-        ItemStack itemStackAtHand = player.inventory.getCurrentItem();
-        if (itemStackAtHand != null)
+        ItemStack equippedItem = player.getCurrentEquippedItem();
+        if (equippedItem != null && canPutItemOnTable(equippedItem, table))
         {
-            for (int slot = 0; slot < table.getSizeInventory(); slot++)
-            {
-                if (table.isItemValidForSlot(slot, itemStackAtHand))
-                {
-                    return tryAddOneItemToTableFromPlayer(table, slot, player) ||
-                            tryFillStackAtTableByPlayer(table, slot, player);
-                }
-            }
-        }
-        return false;
-    }
-
-    protected boolean tryAddOneItemToTableFromPlayer(TileEntityTable table, int slot, EntityPlayer player)
-    {
-        if (table.isEmptyAt(slot))
-        {
-            table.setInventorySlotContents(slot, popItemFromHand(player));
-            player.inventory.markDirty();
-            return true;
-        }
-        return false;
-    }
-
-    protected boolean tryFillStackAtTableByPlayer(TileEntityTable table, int slot, EntityPlayer player)
-    {
-        ItemStack itemStackAtHand = player.inventory.getCurrentItem();
-        ItemStack itemStackOnTable = table.getStackInSlot(slot);
-
-        if (itemStackOnTable.isItemEqual(itemStackAtHand))
-        {
-            InventoryHelper.fillSlotWithItem(table, slot, itemStackAtHand);
-            if (itemStackAtHand.stackSize == 0)
+            putItemOnTable(equippedItem, table);
+            if (equippedItem.stackSize == 0)
             {
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+                player.inventory.markDirty();
             }
+            return true;
+        }
+
+        if (canPutItemsFromTableInPlayer(table, player))
+        {
+            putItemsFromTableInPlayer(table, player);
             return true;
         }
         return false;
     }
 
-    protected ItemStack popItemFromHand(EntityPlayer player)
+    protected boolean canPutItemOnTable(ItemStack itemStack, TileEntityTable table)
     {
-        return player.inventory.decrStackSize(player.inventory.currentItem, 1);
+        int itemSlot = table.getItemSlot();
+        return table.hasSpaceForItemInSlot(itemStack, itemSlot) && table.isItemValidForSlot(itemSlot, itemStack);
     }
 
-    protected boolean tryAddItemToPlayerFromTable(EntityPlayer player, TileEntityTable table)
+    protected void putItemOnTable(ItemStack itemStack, TileEntityTable table)
     {
-        for (int slot = 0; slot < table.getSizeInventory(); slot++)
+        int itemSlot = table.getItemSlot();
+
+        if (table.isEmptyInSlot(itemSlot))
         {
-            ItemStack itemStackOnTable = table.getStackInSlot(slot);
-            if (itemStackOnTable != null)
-            {
-                boolean playerHasSpaceForItem = InventoryHelper.hasSpaceForItem(itemStackOnTable, player.inventory, 27);
-                if (playerHasSpaceForItem)
-                {
-                    player.inventory.addItemStackToInventory(table.popItemAt(slot));
-                    player.inventory.markDirty();
-                    return true;
-                }
-            }
+            table.setInventorySlotContents(itemSlot, itemStack.splitStack(1));
+        }
+        else
+        {
+            table.fillSlotWithItem(itemSlot, itemStack);
+        }
+    }
+
+    protected boolean canPutItemsFromTableInPlayer(TileEntityTable table, EntityPlayer player)
+    {
+        if (InventoryHelper.hasItems(table))
+        {
+            ItemStack firstItem = InventoryHelper.getFirstItem(table);
+            return InventoryHelper.hasSpaceForItem(player.inventory, 27, firstItem);
         }
         return false;
+    }
+
+    protected void putItemsFromTableInPlayer(TileEntityTable table, EntityPlayer player)
+    {
+        player.inventory.addItemStackToInventory(InventoryHelper.popFirstItem(table));
+        player.inventory.markDirty();
     }
 }

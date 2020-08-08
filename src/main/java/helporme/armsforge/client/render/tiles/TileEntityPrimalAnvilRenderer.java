@@ -87,7 +87,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
     @Override
     protected void tryRenderRecipe(TileEntityCraftingTable craftingTable)
     {
-        boolean hasRecipe = !craftingTable.isEmptyAt(1);
+        boolean hasRecipe = !craftingTable.isEmptyInSlot(1);
         if (hasRecipe)
         {
             GL11.glTranslatef(0, currentRenderInfo.anvilYOffset, 0);

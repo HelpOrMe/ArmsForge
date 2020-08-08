@@ -1,8 +1,7 @@
 package helporme.armsforge.common.tiles;
 
-import helporme.armsforge.api.blocks.tables.ISupportTable;
+import helporme.armsforge.api.blocks.tiles.ISupportTable;
 import helporme.armsforge.common.tiles.base.TileEntityTable;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 

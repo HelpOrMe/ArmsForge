@@ -1,4 +1,4 @@
-package helporme.armsforge.api.blocks.tables;
+package helporme.armsforge.api.blocks.tiles;
 
 public class CraftingTableType
 {

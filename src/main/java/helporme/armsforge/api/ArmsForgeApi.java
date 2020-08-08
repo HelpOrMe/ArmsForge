@@ -1,6 +1,6 @@
 package helporme.armsforge.api;
 
-import helporme.armsforge.api.blocks.tables.CraftingTableType;
+import helporme.armsforge.api.blocks.tiles.CraftingTableType;
 import helporme.armsforge.api.items.HammerType;
 import helporme.armsforge.api.recipes.hammer.HammerBlowPattern;
 import helporme.armsforge.api.recipes.hammer.HammerTypes;
@@ -33,12 +33,12 @@ public final class ArmsForgeApi
 
     public static void attachHammerBlowsPatternsToItem(ItemStack itemStack, HammerBlowPattern... hammerBlowPattern)
     {
-        hammerBlowsPatternsForItems.put(ItemStackHelper.convertItemStackToString(itemStack), hammerBlowPattern);
+        hammerBlowsPatternsForItems.put(ItemStackHelper.convertItemToString(itemStack), hammerBlowPattern);
     }
 
     public static HammerBlowPattern[] getHammerBlowsPatternsForItem(ItemStack itemStack)
     {
-        String itemString = ItemStackHelper.convertItemStackToString(itemStack);
+        String itemString = ItemStackHelper.convertItemToString(itemStack);
         if (hammerBlowsPatternsForItems.containsKey(itemString))
         {
             return hammerBlowsPatternsForItems.get(itemString);

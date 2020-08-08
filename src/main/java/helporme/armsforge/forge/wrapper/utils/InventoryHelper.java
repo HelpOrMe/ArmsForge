@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 
 public final class InventoryHelper
 {
-    public static boolean hasSpaceForItem(ItemStack itemStack, IInventory inventory, int slotLimit)
+    public static boolean hasSpaceForItem(IInventory inventory, int slotLimit, ItemStack itemStack)
     {
         slotLimit %= (inventory.getSizeInventory() + 1);
         for (int slot = 0; slot < slotLimit; slot++)
@@ -51,5 +51,43 @@ public final class InventoryHelper
             itemStack.stackSize -= sizeToDecrease;
             stackAtSlot.stackSize += sizeToDecrease;
         }
+    }
+
+    public static boolean hasItems(IInventory inventory)
+    {
+        for (int slot = 0; slot < inventory.getSizeInventory(); slot++)
+        {
+            if (!isSlotEmpty(inventory, slot))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static ItemStack getFirstItem(IInventory inventory)
+    {
+        for (int slot = 0; slot < inventory.getSizeInventory(); slot++)
+        {
+            if (!isSlotEmpty(inventory, slot))
+            {
+                return inventory.getStackInSlot(slot);
+            }
+        }
+        return null;
+    }
+
+    public static ItemStack popFirstItem(IInventory inventory)
+    {
+        for (int slot = 0; slot < inventory.getSizeInventory(); slot++)
+        {
+            if (!isSlotEmpty(inventory, slot))
+            {
+                ItemStack firstItem = inventory.getStackInSlot(slot);
+                inventory.setInventorySlotContents(slot, null);
+                return firstItem;
+            }
+        }
+        return null;
     }
 }

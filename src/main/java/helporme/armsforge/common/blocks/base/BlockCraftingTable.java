@@ -2,20 +2,20 @@ package helporme.armsforge.common.blocks.base;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.api.blocks.tables.ISupportTable;
+import helporme.armsforge.api.blocks.tiles.ISupportTable;
 import helporme.armsforge.api.items.IHammer;
 import helporme.armsforge.api.utils.Vector3;
-import helporme.armsforge.api.blocks.tables.ICraftingTable;
 import helporme.armsforge.api.items.IDebugTool;
 import helporme.armsforge.client.render.items.ItemCraftingTableRenderer;
 import helporme.armsforge.client.render.tiles.base.TileEntityCraftingTableRenderer;
 import helporme.armsforge.common.blocks.models.ModelInfo;
-import helporme.armsforge.common.core.utils.DebugHelper;
+import helporme.armsforge.common.core.ArmsForge;
+import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 
@@ -45,36 +45,57 @@ public abstract class BlockCraftingTable extends BlockTableBase
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        ICraftingTable craftingTable = (ICraftingTable)world.getTileEntity(x, y, z);
-        if (playerHasAtHand(player, IDebugTool.class))
+        TileEntityCraftingTable craftingTable = (TileEntityCraftingTable)world.getTileEntity(x, y, z);
+        ItemStack equippedStack = player.getCurrentEquippedItem();
+
+        if (equippedStack != null)
         {
-            processDebugToolLogic(craftingTable, world);
-            return true;
-        }
-        if (playerHasAtHand(player, IHammer.class))
-        {
-            processHammerLogic(craftingTable, world, player);
-            return true;
+            Item equippedItem = equippedStack.getItem();
+
+            if (equippedItem instanceof IDebugTool)
+            {
+                if (world.isRemote)
+                {
+                    List<Vector3> targets = getParticlePositionsFrom(craftingTable.getSupportTablesNear());
+                    ArmsForge.fxEngine.spawnDebugParticleVertLines(world, targets);
+                }
+                return true;
+            }
+
+            if (equippedItem instanceof IHammer)
+            {
+                if (!world.isRemote)
+                {
+                    craftingTable.onHammerBlow(player.inventory.getCurrentItem(), player);
+                }
+                return true;
+            }
+
+            if (canPutRecipeOnTable(equippedStack, craftingTable))
+            {
+                if (!world.isRemote)
+                {
+                    putRecipeOnTable(equippedStack, craftingTable);
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+                    player.inventory.markDirty();
+                }
+                return true;
+            }
         }
         return super.onBlockActivated(world, x, y, z, player, par6, par7, par8, par9);
     }
 
-    protected <T> boolean playerHasAtHand(EntityPlayer player, Class<T> type)
+    protected boolean canPutRecipeOnTable(ItemStack recipeStack, TileEntityCraftingTable table)
     {
-        ItemStack itemStackInHand = player.inventory.getCurrentItem();
-        return itemStackInHand != null && type.isInstance(itemStackInHand.getItem());
+        return table.isEmptyInSlot(table.getRecipeSlot()) && table.isRecipeValid(recipeStack);
     }
 
-    protected void processDebugToolLogic(ICraftingTable craftingTable, World world)
+    protected void putRecipeOnTable(ItemStack recipeStack, TileEntityCraftingTable table)
     {
-        if (world.isRemote)
-        {
-            List<Vector3> targets = getCorrectPositionsFrom(craftingTable.getSupportTablesNear());
-            DebugHelper.spawnDebugParticleVertLines(world, targets);
-        }
+        table.setInventorySlotContents(table.getRecipeSlot(), recipeStack);
     }
 
-    protected List<Vector3> getCorrectPositionsFrom(ISupportTable[] supportTables)
+    protected List<Vector3> getParticlePositionsFrom(ISupportTable[] supportTables)
     {
         List<Vector3> positions = new ArrayList<>();
         Vector3 offset = new Vector3(0.5f, 1f, 0.5f);
@@ -83,14 +104,5 @@ public abstract class BlockCraftingTable extends BlockTableBase
             positions.add(new Vector3(supportTable.getPosition()).add(offset));
         }
         return positions;
-    }
-
-    protected void processHammerLogic(ICraftingTable craftingTable, World world, EntityPlayer player)
-    {
-        if (!world.isRemote)
-        {
-            IHammer hammerAtHands = (IHammer)player.inventory.getCurrentItem().getItem();
-            craftingTable.onHammerBlow(hammerAtHands, player);
-        }
     }
 }

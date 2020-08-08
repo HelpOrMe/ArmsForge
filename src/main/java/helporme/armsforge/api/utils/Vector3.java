@@ -2,6 +2,8 @@ package helporme.armsforge.api.utils;
 
 import net.minecraft.util.MathHelper;
 
+import java.util.Random;
+
 public class Vector3
 {
     public float x;
@@ -33,6 +35,14 @@ public class Vector3
     public static float distance(Vector3 a, Vector3 b)
     {
         return a.minus(b).sqrMagnitude();
+    }
+
+    public static Vector3 getNextRandomOffset(Random random, float max)
+    {
+        float x = random.nextFloat() % max * (random.nextInt(2) == 0 ? -1 : 1);
+        float y = random.nextFloat() % max;
+        float z = random.nextFloat() % max * (random.nextInt(2) == 0 ? -1 : 1);
+        return new Vector3(x, y, z);
     }
 
     public static Vector3 min(Vector3 a, Vector3 b)

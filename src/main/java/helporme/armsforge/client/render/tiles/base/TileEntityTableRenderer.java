@@ -30,7 +30,7 @@ public class TileEntityTableRenderer extends TileEntityFacedRendererBase
     {
         for (int slot = 0; slot < table.getSizeInventory(); slot++)
         {
-            if (!table.isEmptyAt(slot))
+            if (!table.isEmptyInSlot(slot))
             {
                 renderItemStack(table, slot, position);
             }

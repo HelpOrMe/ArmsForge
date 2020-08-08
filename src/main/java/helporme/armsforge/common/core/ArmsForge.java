@@ -6,8 +6,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import helporme.armsforge.client.fx.IParticleFxEngine;
-import helporme.armsforge.client.fx.ParticleEngine;
+import helporme.armsforge.client.fx.engine.IParticleFxEngine;
+import helporme.armsforge.client.fx.engine.ParticleEngine;
+import helporme.armsforge.common.core.network.PacketHandler;
 import helporme.armsforge.common.core.proxy.IProxy;
 import helporme.armsforge.common.core.proxy.ProxyInfo;
 import helporme.armsforge.common.core.server.DefaultActionAccessProvider;
@@ -22,6 +23,7 @@ public class ArmsForge
 
     public static final IActionAccessProvider accessProvider = new DefaultActionAccessProvider();
     public static final IParticleFxEngine fxEngine = new ParticleEngine();
+    public static final PacketHandler packetHandler = new PacketHandler();
 
     @SidedProxy(serverSide = ProxyInfo.serverProxy, clientSide = ProxyInfo.clientProxy)
     public static IProxy proxy;

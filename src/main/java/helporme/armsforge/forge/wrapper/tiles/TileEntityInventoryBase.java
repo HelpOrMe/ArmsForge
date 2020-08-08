@@ -16,44 +16,67 @@ public class TileEntityInventoryBase extends TileEntityAdvancedBase implements I
     @Override
     public void onRemove()
     {
-        for (ItemStack itemStack : items)
+        ItemStack itemStack = popFirstItem();
+        while (itemStack != null)
         {
-            if (itemStack != null)
-            {
-                EntityItem entityItem = new EntityItem(worldObj, xCoord, yCoord + 1d, zCoord, itemStack);
-                worldObj.spawnEntityInWorld(entityItem);
-            }
+            EntityItem entityItem = new EntityItem(worldObj, xCoord, yCoord + 1d, zCoord, itemStack);
+            worldObj.spawnEntityInWorld(entityItem);
+            itemStack = popFirstItem();
         }
     }
 
     @Override
-    public boolean hasSpaceFor(ItemStack itemStack)
+    public ItemStack popFirstItem()
     {
-        return InventoryHelper.hasSpaceForItem(itemStack, this, getSizeInventory());
+        return InventoryHelper.popFirstItem(this);
     }
 
     @Override
-    public boolean hasSpaceForItemAt(ItemStack itemStack, int slot)
+    public ItemStack popItemFromSlot(int slot)
+    {
+        return decrStackSize(slot, getInventoryStackLimit());
+    }
+
+    @Override
+    public void fillSlotWithItem(int slot, ItemStack itemStack)
+    {
+        InventoryHelper.fillSlotWithItem(this, slot, itemStack);
+    }
+
+    @Override
+    public ItemStack getFirstItem()
+    {
+        return InventoryHelper.getFirstItem(this);
+    }
+
+    @Override
+    public boolean hasItems()
+    {
+        return InventoryHelper.hasItems(this);
+    }
+
+    @Override
+    public boolean hasSpaceForItem(ItemStack itemStack)
+    {
+        return InventoryHelper.hasSpaceForItem(this, getSizeInventory(), itemStack);
+    }
+
+    @Override
+    public boolean hasSpaceForItemInSlot(ItemStack itemStack, int slot)
     {
         return InventoryHelper.isSlotHasSpaceForItem(itemStack, this, slot);
     }
 
     @Override
-    public boolean isStackableAt(ItemStack itemStack, int slot)
+    public boolean isStackableInSlot(ItemStack itemStack, int slot)
     {
         return InventoryHelper.isSlotStackable(itemStack, this, slot);
     }
 
     @Override
-    public boolean isEmptyAt(int slot)
+    public boolean isEmptyInSlot(int slot)
     {
         return InventoryHelper.isSlotEmpty(this, slot);
-    }
-
-    @Override
-    public ItemStack popItemAt(int slot)
-    {
-        return decrStackSize(slot, getInventoryStackLimit());
     }
 
     @Override

@@ -9,7 +9,6 @@ import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityBreakingFX;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

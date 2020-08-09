@@ -1,7 +1,7 @@
 package helporme.armsforge.common.registry.blocks;
 
-import helporme.armsforge.common.registry.RegistryList;
-import helporme.armsforge.common.registry.utils.INamed;
+import helporme.armsforge.common.registry.utils.RegistryList;
+import helporme.armsforge.forge.wrapper.items.INamed;
 import net.minecraft.block.Block;
 
 import java.util.HashMap;

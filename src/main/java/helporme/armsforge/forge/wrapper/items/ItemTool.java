@@ -1,10 +1,10 @@
 package helporme.armsforge.forge.wrapper.items;
 
-public class ItemToolBase extends ItemBase
+public class ItemTool extends ItemBase
 {
-    public ItemToolBase(String name)
+    public ItemTool(String name, String itemType)
     {
-        super(name);
+        super(name, itemType);
         this.setMaxStackSize(1);
     }
 

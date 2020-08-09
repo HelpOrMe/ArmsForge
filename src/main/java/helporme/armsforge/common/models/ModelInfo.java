@@ -1,4 +1,4 @@
-package helporme.armsforge.common.blocks.models;
+package helporme.armsforge.common.models;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,11 +23,6 @@ public class ModelInfo
 
         texture = textureLocation;
         model = AdvancedModelLoader.loadModel(modelLocation);
-    }
-
-    public ModelInfo(String modelName)
-    {
-        this("blocks/" + modelName + ".png", modelName + ".obj");
     }
 
     public ResourceLocation getTexture()

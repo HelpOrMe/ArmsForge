@@ -3,7 +3,7 @@ package helporme.armsforge.api.utils;
 public class Vector3Int
 {
     public static final Vector3Int max = new Vector3Int(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
-    public static final Vector3Int min = new Vector3Int(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);;
+    public static final Vector3Int min = new Vector3Int(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
 
     public int x;
     public int y;

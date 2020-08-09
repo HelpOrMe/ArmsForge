@@ -2,11 +2,11 @@ package helporme.armsforge.common.blocks.base;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import helporme.armsforge.common.models.IBlockModelContainer;
 import helporme.armsforge.forge.wrapper.blocks.BlockContainerBase;
 import helporme.armsforge.forge.wrapper.render.items.ItemRendererBase;
 import helporme.armsforge.forge.wrapper.render.blocks.TileEntityFacedRendererBase;
-import helporme.armsforge.common.blocks.models.IModelContainer;
-import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.models.ModelInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -16,9 +16,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 
-public abstract class BlockModelBase extends BlockContainerBase implements IModelContainer
+public abstract class BlockBlockModelBase extends BlockContainerBase implements IBlockModelContainer
 {
-    public BlockModelBase(Material material, String name)
+    public BlockBlockModelBase(Material material, String name)
     {
         super(material, name);
     }
@@ -76,6 +76,6 @@ public abstract class BlockModelBase extends BlockContainerBase implements IMode
     @SideOnly(Side.CLIENT)
     public ModelInfo getModelInfo()
     {
-        return new ModelInfo(name);
+        return new ModelInfo("blocks/" + name + ".png", "blocks/" + name + ".obj");
     }
 }

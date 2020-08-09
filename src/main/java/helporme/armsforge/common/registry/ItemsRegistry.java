@@ -1,10 +1,7 @@
 package helporme.armsforge.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import helporme.armsforge.common.registry.items.HammersList;
-import helporme.armsforge.common.registry.items.ItemsList;
-import helporme.armsforge.common.registry.items.ResourcesList;
-import helporme.armsforge.common.registry.items.MiscList;
+import helporme.armsforge.common.registry.items.*;
 import net.minecraft.item.Item;
 
 import java.util.ArrayList;
@@ -14,26 +11,27 @@ import java.util.Map;
 
 public final class ItemsRegistry
 {
-    private static final ItemsList[] itemsLists = new ItemsList[]
+    private static final ItemList[] ITEM_LISTS = new ItemList[]
             {
-                    new ResourcesList(),
-                    new HammersList(),
+                    new ResourceList(),
+                    new HammerList(),
+                    new WeaponList(),
                     new MiscList()
             };
 
     public static void createDefaultItems()
     {
-        for (ItemsList itemsList : itemsLists)
+        for (ItemList itemList : ITEM_LISTS)
         {
-            itemsList.addDefault();
+            itemList.addDefault();
         }
     }
 
     public static void registerItems()
     {
-        for (ItemsList itemsList : itemsLists)
+        for (ItemList itemList : ITEM_LISTS)
         {
-            registerItemsFrom(itemsList.getItems());
+            registerItemsFrom(itemList.getItems());
         }
     }
 
@@ -47,9 +45,9 @@ public final class ItemsRegistry
 
     public static Item getItemByName(String name)
     {
-        for (ItemsList itemsList : itemsLists)
+        for (ItemList itemList : ITEM_LISTS)
         {
-            Map<String, Item> items = itemsList.getItems();
+            Map<String, Item> items = itemList.getItems();
             if (items.containsKey(name))
             {
                 return items.get(name);
@@ -61,9 +59,9 @@ public final class ItemsRegistry
     public static Collection<Item> getAllItems()
     {
         List<Item> allItems = new ArrayList<>();
-        for (ItemsList itemsList : itemsLists)
+        for (ItemList itemList : ITEM_LISTS)
         {
-            allItems.addAll(itemsList.getItems().values());
+            allItems.addAll(itemList.getItems().values());
         }
         return allItems;
     }

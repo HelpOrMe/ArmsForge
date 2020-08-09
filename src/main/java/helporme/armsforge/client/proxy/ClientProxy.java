@@ -5,7 +5,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import helporme.armsforge.client.registry.ItemRendererRegistry;
 import helporme.armsforge.client.registry.TileRendererRegistry;
 import helporme.armsforge.common.core.proxy.CommonProxy;
-import helporme.armsforge.common.registry.ModelsRegistry;
+import helporme.armsforge.common.registry.BlockModelsRegistry;
 
 public class ClientProxy extends CommonProxy
 {
@@ -13,14 +13,15 @@ public class ClientProxy extends CommonProxy
     public void preInit(FMLPreInitializationEvent event)
     {
         super.preInit(event);
-        ModelsRegistry.createModelSuitesFromBlocks();
+        BlockModelsRegistry.createBlockModelSuites();
     }
 
     @Override
     public void init(FMLInitializationEvent event)
     {
         super.init(event);
-        TileRendererRegistry.registerTileRenderersFromModelSuites();
-        ItemRendererRegistry.registerItemRenderersFromModelSuites();
+        TileRendererRegistry.registerFromBlocks();
+        ItemRendererRegistry.registerFromBlocks();
+        ItemRendererRegistry.registerFromItems();
     }
 }

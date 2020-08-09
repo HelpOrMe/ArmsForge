@@ -1,7 +1,7 @@
 package helporme.armsforge.client.render.tiles.base;
 
 import helporme.armsforge.client.render.tiles.info.TextureFramesRenderInfo;
-import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.models.ModelInfo;
 import helporme.armsforge.common.core.Version;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;

@@ -3,7 +3,7 @@ package helporme.armsforge.common.blocks.base;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.client.render.tiles.base.TileEntityTableRenderer;
-import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.models.ModelInfo;
 import helporme.armsforge.common.tiles.base.TileEntityTable;
 import helporme.armsforge.forge.wrapper.utils.InventoryHelper;
 import net.minecraft.block.material.Material;
@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 //TODO: Refactoring (Remove tries)
 
-public abstract class BlockTableBase extends BlockModelBase
+public abstract class BlockTableBase extends BlockBlockModelBase
 {
     public BlockTableBase(Material material, String name)
     {

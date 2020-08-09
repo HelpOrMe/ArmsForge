@@ -4,7 +4,7 @@ import helporme.armsforge.api.utils.Vector3;
 import helporme.armsforge.client.render.tiles.base.TileEntityMultiTextureTableRenderer;
 import helporme.armsforge.client.render.tiles.info.PrimalAnvilRenderInfo;
 import helporme.armsforge.client.render.tiles.info.TextureFramesRenderInfo;
-import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntityPrimalAnvil;
 import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
 import helporme.armsforge.common.tiles.base.TileEntityTable;

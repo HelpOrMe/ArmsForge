@@ -6,11 +6,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockArmorsmithTable extends BlockCraftingTableHigh
+public class BlockArmssmithTable extends BlockCraftingTableHigh
 {
-    public BlockArmorsmithTable()
+    public BlockArmssmithTable()
     {
-        super(Material.iron, "ArmorsmithTable");
+        super(Material.iron, "ArmssmithTable");
         setHardness(10f);
         setResistance(10f);
         setHarvestLevel("pickaxe", 2);

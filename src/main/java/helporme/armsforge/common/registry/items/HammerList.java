@@ -4,7 +4,7 @@ import helporme.armsforge.api.ArmsForgeApi;
 import helporme.armsforge.common.items.ItemHammer;
 import helporme.armsforge.api.recipes.hammer.HammerTypes;
 
-public class HammersList extends ItemsList
+public class HammerList extends ItemList
 {
     @Override
     public void addDefault()
@@ -23,6 +23,7 @@ public class HammersList extends ItemsList
                 new ItemHammer("BighammerThaum", HammerTypes.bigThaum, 7000)
         );
 
+        //TODO: Move to integration manager
         ArmsForgeApi.addHammer(items.get("SmallhammerIron"), HammerTypes.smallIron);
         ArmsForgeApi.addHammer(items.get("SmallhammerSteel"), HammerTypes.smallSteel);
         ArmsForgeApi.addHammer(items.get("SmallhammerThaum"), HammerTypes.smallThaum);

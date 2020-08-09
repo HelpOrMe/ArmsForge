@@ -1,6 +1,6 @@
 package helporme.armsforge.common.registry.utils;
 
-public final class Colors
+public final class MaterialColors
 {
     public static final int holyColor = 0xFFFFAF;
     public static final int crimsonColor = 0x821C29;

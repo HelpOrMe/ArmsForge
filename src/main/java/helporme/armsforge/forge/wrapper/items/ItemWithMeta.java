@@ -6,13 +6,13 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class ItemWithMetaBase extends ItemBase
+public class ItemWithMeta extends ItemBase
 {
     protected final int metaCount;
 
-    public ItemWithMetaBase(String name, int metaCount)
+    public ItemWithMeta(String name, String itemType, int metaCount)
     {
-        super(name);
+        super(name, itemType);
         this.metaCount = metaCount;
         setHasSubtypes(true);
         setMaxDamage(0);

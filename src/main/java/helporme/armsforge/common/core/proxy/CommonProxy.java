@@ -25,8 +25,8 @@ public class CommonProxy implements IProxy
         TilesRegistry.registerTilesFromBlocks();
         RecipesRegistry.addDefaultRecipes();
 
+        IntegrationManager.registerArmsForge();
         ArmsForge.packetHandler.init();
-        IntegrationManager.prepareThaumcraft();
     }
 
     public void postInit(FMLPostInitializationEvent event)

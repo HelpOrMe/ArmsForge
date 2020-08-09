@@ -1,6 +1,6 @@
 package helporme.armsforge.forge.wrapper.render.items;
 
-import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.models.ModelInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -39,8 +39,7 @@ public class ItemRendererBase implements IItemRenderer
             case EQUIPPED:
             case EQUIPPED_FIRST_PERSON:
             case INVENTORY:
-                inventoryRender();
-                break;
+                inventoryRender(); break;
             default:
                 defaultRender();
         }
@@ -49,6 +48,7 @@ public class ItemRendererBase implements IItemRenderer
     protected void defaultRender()
     {
         bindBlockTexture();
+        GL11.glPushMatrix();
         renderModel();
         GL11.glPopMatrix();
     }
@@ -56,6 +56,7 @@ public class ItemRendererBase implements IItemRenderer
     protected void inventoryRender()
     {
         bindBlockTexture();
+        GL11.glPushMatrix();
         GL11.glTranslatef(0.55f, 0.0f, 0.55f);
         renderModel();
         GL11.glPopMatrix();
@@ -65,7 +66,6 @@ public class ItemRendererBase implements IItemRenderer
     {
         Minecraft mc = Minecraft.getMinecraft();
         mc.renderEngine.bindTexture(texture);
-        GL11.glPushMatrix();
     }
 
     protected void renderModel()

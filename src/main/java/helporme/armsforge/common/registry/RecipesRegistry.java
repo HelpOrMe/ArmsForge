@@ -1,22 +1,22 @@
 package helporme.armsforge.common.registry;
 
-import helporme.armsforge.common.registry.recipes.ArmorsmithRecipes;
-import helporme.armsforge.common.registry.recipes.RecipesList;
-import helporme.armsforge.common.registry.recipes.SmeltingRecipes;
-import helporme.armsforge.common.registry.recipes.WorkbanchRecipes;
+import helporme.armsforge.common.registry.recipes.ArmorsmithRecipeList;
+import helporme.armsforge.common.registry.recipes.RecipeList;
+import helporme.armsforge.common.registry.recipes.SmeltingRecipeList;
+import helporme.armsforge.common.registry.recipes.WorkbanchRecipeList;
 
 public final class RecipesRegistry
 {
-    private static final RecipesList[] recipeLists = new RecipesList[]
+    private static final RecipeList[] recipeLists = new RecipeList[]
             {
-                    new WorkbanchRecipes(),
-                    new SmeltingRecipes(),
-                    new ArmorsmithRecipes()
+                    new WorkbanchRecipeList(),
+                    new SmeltingRecipeList(),
+                    new ArmorsmithRecipeList()
             };
 
     public static void addDefaultRecipes()
     {
-        for (RecipesList recipeList : recipeLists)
+        for (RecipeList recipeList : recipeLists)
         {
             recipeList.addDefault();
         }

@@ -4,9 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockBase extends ItemBlockWithMetadata
+public class ItemBlock extends ItemBlockWithMetadata
 {
-    public ItemBlockBase(Block block)
+    public ItemBlock(Block block)
     {
         super(block, block);
     }

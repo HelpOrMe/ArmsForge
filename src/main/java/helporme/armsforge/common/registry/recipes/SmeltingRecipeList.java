@@ -3,7 +3,7 @@ package helporme.armsforge.common.registry.recipes;
 import cpw.mods.fml.common.registry.GameRegistry;
 import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
 
-public class SmeltingRecipes extends RecipesList
+public class SmeltingRecipeList extends RecipeList
 {
     @Override
     public void addDefault()

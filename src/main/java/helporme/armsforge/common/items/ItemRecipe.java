@@ -18,7 +18,7 @@ public class ItemRecipe extends ItemBase implements IItemRecipe
 
     public ItemRecipe()
     {
-        super("Recipe");
+        super("Recipe", "recipes");
         setMaxStackSize(1);
     }
 

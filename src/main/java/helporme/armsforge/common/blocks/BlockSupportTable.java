@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.client.render.tiles.TileEntitySupportTableRenderer;
 import helporme.armsforge.common.blocks.base.BlockTableBase;
-import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntitySupportTable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

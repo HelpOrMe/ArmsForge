@@ -1,7 +1,7 @@
 package helporme.armsforge.forge.wrapper.render.blocks;
 
 import helporme.armsforge.api.utils.Vector3;
-import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.models.ModelInfo;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 

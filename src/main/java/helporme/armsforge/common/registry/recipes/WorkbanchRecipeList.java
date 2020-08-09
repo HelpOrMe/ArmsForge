@@ -4,7 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
 import helporme.armsforge.common.registry.utils.RecipesHelper;
 
-public class WorkbanchRecipes extends RecipesList
+public class WorkbanchRecipeList extends RecipeList
 {
     @Override
     public void addDefault()

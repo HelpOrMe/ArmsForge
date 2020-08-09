@@ -2,15 +2,15 @@ package helporme.armsforge.common.items;
 
 import helporme.armsforge.api.items.HammerType;
 import helporme.armsforge.api.items.IHammer;
-import helporme.armsforge.forge.wrapper.items.ItemToolBase;
+import helporme.armsforge.forge.wrapper.items.ItemTool;
 
-public class ItemHammer extends ItemToolBase implements IHammer
+public class ItemHammer extends ItemTool implements IHammer
 {
     protected final HammerType hammerType;
 
     public ItemHammer(String name, HammerType hammerType, int maxDamage)
     {
-        super(name);
+        super(name, "tools");
         this.hammerType = hammerType;
         setMaxDamage(maxDamage);
     }

@@ -1,4 +1,4 @@
-package helporme.armsforge.common.registry;
+package helporme.armsforge.common.registry.utils;
 
 public abstract class RegistryList
 {

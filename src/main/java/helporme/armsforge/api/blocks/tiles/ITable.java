@@ -3,7 +3,6 @@ package helporme.armsforge.api.blocks.tiles;
 import helporme.armsforge.api.utils.Vector3Int;
 import helporme.armsforge.forge.wrapper.inventory.IInventoryExtend;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 
 public interface ITable extends ITileEntityUpdatable, IInventory, IInventoryExtend
 {

@@ -1,12 +1,12 @@
 package helporme.armsforge.common.items;
 
 import helporme.armsforge.api.items.IDebugTool;
-import helporme.armsforge.forge.wrapper.items.ItemToolBase;
+import helporme.armsforge.forge.wrapper.items.ItemTool;
 
-public class ItemScrewdriver extends ItemToolBase implements IDebugTool
+public class ItemScrewdriver extends ItemTool implements IDebugTool
 {
     public ItemScrewdriver()
     {
-        super("Screwdriver");
+        super("Screwdriver", "tools");
     }
 }

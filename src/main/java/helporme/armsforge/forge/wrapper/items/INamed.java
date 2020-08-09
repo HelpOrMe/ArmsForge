@@ -1,4 +1,4 @@
-package helporme.armsforge.common.registry.utils;
+package helporme.armsforge.forge.wrapper.items;
 
 public interface INamed
 {

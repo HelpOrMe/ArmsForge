@@ -4,13 +4,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 
-public class ItemColoredBase extends ItemWithMetaBase
+public class ItemColored extends ItemWithMeta
 {
     protected final int[] colors;
 
-    public ItemColoredBase(String name, int[] colors)
+    public ItemColored(String name, String itemType, int[] colors)
     {
-        super(name, colors.length);
+        super(name, itemType, colors.length);
         this.colors = colors;
     }
 

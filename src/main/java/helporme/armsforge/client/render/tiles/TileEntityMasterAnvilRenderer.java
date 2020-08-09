@@ -2,7 +2,7 @@ package helporme.armsforge.client.render.tiles;
 
 import helporme.armsforge.api.utils.Vector3;
 import helporme.armsforge.client.render.tiles.base.TileEntityCraftingTableRenderer;
-import helporme.armsforge.common.blocks.models.ModelInfo;
+import helporme.armsforge.common.models.ModelInfo;
 import helporme.armsforge.common.tiles.base.TileEntityTable;
 import org.lwjgl.opengl.GL11;
 

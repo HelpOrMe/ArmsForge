@@ -1,4 +1,4 @@
-package helporme.armsforge.common.models;
+package helporme.armsforge.forge.wrapper.models;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

@@ -8,7 +8,7 @@ import helporme.armsforge.api.utils.Vector3;
 import helporme.armsforge.api.items.IDebugTool;
 import helporme.armsforge.client.render.items.ItemCraftingTableRenderer;
 import helporme.armsforge.client.render.tiles.base.TileEntityCraftingTableRenderer;
-import helporme.armsforge.common.models.ModelInfo;
+import helporme.armsforge.forge.wrapper.models.ModelInfo;
 import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
 import net.minecraft.block.material.Material;

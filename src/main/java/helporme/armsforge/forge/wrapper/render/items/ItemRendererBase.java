@@ -1,6 +1,6 @@
 package helporme.armsforge.forge.wrapper.render.items;
 
-import helporme.armsforge.common.models.ModelInfo;
+import helporme.armsforge.forge.wrapper.models.ModelInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

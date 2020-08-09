@@ -2,7 +2,7 @@ package helporme.armsforge.client.render.tiles;
 
 import helporme.armsforge.client.render.tiles.base.TileEntityMultiTextureTableRenderer;
 import helporme.armsforge.client.render.tiles.info.TextureFramesRenderInfo;
-import helporme.armsforge.common.models.ModelInfo;
+import helporme.armsforge.forge.wrapper.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntityThaumAnvil;
 import net.minecraft.tileentity.TileEntity;
 

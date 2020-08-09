@@ -1,15 +1,13 @@
-package helporme.armsforge.common.models;
+package helporme.armsforge.forge.wrapper.models;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.common.models.ModelInfo;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.IItemRenderer;
 
-@SideOnly(Side.CLIENT)
-public class BlockModelSuite
+public class ModelBlockSuite
 {
     public final Block block;
     public final Class<? extends TileEntity> tileClass;
@@ -17,7 +15,7 @@ public class BlockModelSuite
     public final IItemRenderer itemRenderer;
     public final ModelInfo modelInfo;
 
-    public BlockModelSuite(Block block, Class<? extends TileEntity> tileClass, TileEntitySpecialRenderer tileRenderer,
+    public ModelBlockSuite(Block block, Class<? extends TileEntity> tileClass, TileEntitySpecialRenderer tileRenderer,
                            IItemRenderer itemRenderer, ModelInfo modelInfo)
     {
         this.block = block;

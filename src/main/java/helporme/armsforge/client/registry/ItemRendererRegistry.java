@@ -1,7 +1,7 @@
 package helporme.armsforge.client.registry;
 
-import helporme.armsforge.common.models.BlockModelSuite;
-import helporme.armsforge.common.models.IItemModelContainer;
+import helporme.armsforge.forge.wrapper.models.ModelBlockSuite;
+import helporme.armsforge.forge.wrapper.models.IItemModelContainer;
 import helporme.armsforge.common.registry.BlockModelsRegistry;
 import helporme.armsforge.common.registry.ItemsRegistry;
 import net.minecraft.item.Item;
@@ -24,7 +24,7 @@ public final class ItemRendererRegistry
 
     public static void registerFromBlocks()
     {
-        for (BlockModelSuite modelSuite : BlockModelsRegistry.getAllModelSuites())
+        for (ModelBlockSuite modelSuite : BlockModelsRegistry.getAllModelSuites())
         {
             Item item = Item.getItemFromBlock(modelSuite.block);
             register(item, modelSuite.itemRenderer);

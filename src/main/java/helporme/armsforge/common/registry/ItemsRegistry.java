@@ -16,6 +16,7 @@ public final class ItemsRegistry
                     new ResourceList(),
                     new HammerList(),
                     new WeaponList(),
+                    new ArmorList(),
                     new MiscList()
             };
 

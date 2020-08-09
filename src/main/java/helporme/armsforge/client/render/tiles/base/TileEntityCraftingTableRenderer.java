@@ -1,7 +1,7 @@
 package helporme.armsforge.client.render.tiles.base;
 
 import helporme.armsforge.api.utils.Vector3;
-import helporme.armsforge.common.models.ModelInfo;
+import helporme.armsforge.forge.wrapper.models.ModelInfo;
 import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
 import helporme.armsforge.common.tiles.base.TileEntityTable;
 import net.minecraft.tileentity.TileEntity;

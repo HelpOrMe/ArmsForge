@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.common.models.IBlockModelContainer;
 import helporme.armsforge.forge.wrapper.blocks.BlockContainerBase;
 import helporme.armsforge.forge.wrapper.render.items.ItemRendererBase;
-import helporme.armsforge.forge.wrapper.render.blocks.TileEntityFacedRendererBase;
+import helporme.armsforge.forge.wrapper.render.blocks.TileEntityFacedRenderer;
 import helporme.armsforge.common.models.ModelInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -62,7 +62,7 @@ public abstract class BlockBlockModelBase extends BlockContainerBase implements 
     @SideOnly(Side.CLIENT)
     public TileEntitySpecialRenderer getTileRenderer(ModelInfo modelInfo)
     {
-        return new TileEntityFacedRendererBase(modelInfo);
+        return new TileEntityFacedRenderer(modelInfo);
     }
 
     @Override

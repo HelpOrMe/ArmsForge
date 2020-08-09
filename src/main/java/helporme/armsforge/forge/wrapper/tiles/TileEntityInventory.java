@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-public class TileEntityInventoryBase extends TileEntityAdvancedBase implements IInventory, IInventoryExtend
+public class TileEntityInventory extends TileEntityAdvanced implements IInventory, IInventoryExtend
 {
     protected ItemStack[] items = new ItemStack[getSizeInventory()];
 

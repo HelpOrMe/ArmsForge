@@ -5,7 +5,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 
-public class TileEntityAdvancedBase extends TileEntityBase
+public class TileEntityAdvanced extends TileEntityBase
 {
     public Packet getDescriptionPacket()
     {

@@ -1,7 +1,7 @@
 package helporme.armsforge.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import helporme.armsforge.forge.wrapper.blocks.BlockWithMetaBase;
+import helporme.armsforge.forge.wrapper.blocks.BlockWithMeta;
 import helporme.armsforge.forge.wrapper.items.ItemBlock;
 import helporme.armsforge.common.registry.blocks.BlocksList;
 import helporme.armsforge.common.registry.blocks.FunctionalBlocksList;
@@ -42,7 +42,7 @@ public class BlocksRegistry
         for (String name : blocks.keySet())
         {
             Block block = getBlockByName(name);
-            if (block instanceof BlockWithMetaBase)
+            if (block instanceof BlockWithMeta)
             {
                 registerBlockWithItem(block, name);
             }

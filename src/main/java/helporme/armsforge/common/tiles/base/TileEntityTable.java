@@ -2,9 +2,9 @@ package helporme.armsforge.common.tiles.base;
 
 import helporme.armsforge.api.blocks.tiles.ITable;
 import helporme.armsforge.api.utils.Vector3Int;
-import helporme.armsforge.forge.wrapper.tiles.TileEntityInventoryBase;
+import helporme.armsforge.forge.wrapper.tiles.TileEntityInventory;
 
-public abstract class TileEntityTable extends TileEntityInventoryBase implements ITable
+public abstract class TileEntityTable extends TileEntityInventory implements ITable
 {
     @Override
     public int getSizeInventory()

@@ -7,11 +7,11 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class BlockWithMetaBase extends BlockBase
+public class BlockWithMeta extends BlockBase
 {
     protected final int metaCount;
 
-    public BlockWithMetaBase(Material material, String name, int metaCount)
+    public BlockWithMeta(Material material, String name, int metaCount)
     {
         super(material, name);
         this.metaCount = metaCount;

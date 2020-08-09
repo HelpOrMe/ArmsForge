@@ -5,11 +5,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
 
-public class BlockColoredBase extends BlockWithMetaBase
+public class BlockColored extends BlockWithMeta
 {
     protected final int[] colors;
 
-    public BlockColoredBase(Material material, String name, int[] colors)
+    public BlockColored(Material material, String name, int[] colors)
     {
         super(material, name, colors.length);
         this.colors = colors;

@@ -8,12 +8,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityRendererBase extends TileEntitySpecialRenderer
+public class TileEntityRenderer extends TileEntitySpecialRenderer
 {
     protected ResourceLocation texture;
     protected IModelCustom model;
 
-    public TileEntityRendererBase(ModelInfo modelInfo)
+    public TileEntityRenderer(ModelInfo modelInfo)
     {
         model = modelInfo.getModel();
         texture = modelInfo.getTexture();

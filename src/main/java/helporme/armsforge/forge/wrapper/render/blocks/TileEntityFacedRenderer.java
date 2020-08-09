@@ -5,9 +5,9 @@ import helporme.armsforge.common.models.ModelInfo;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityFacedRendererBase extends TileEntityRendererBase
+public class TileEntityFacedRenderer extends TileEntityRenderer
 {
-    public TileEntityFacedRendererBase(ModelInfo modelInfo)
+    public TileEntityFacedRenderer(ModelInfo modelInfo)
     {
         super(modelInfo);
     }

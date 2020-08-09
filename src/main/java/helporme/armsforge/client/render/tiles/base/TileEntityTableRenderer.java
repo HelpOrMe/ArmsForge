@@ -3,7 +3,7 @@ package helporme.armsforge.client.render.tiles.base;
 import helporme.armsforge.api.utils.Vector3;
 import helporme.armsforge.common.models.ModelInfo;
 import helporme.armsforge.common.tiles.base.TileEntityTable;
-import helporme.armsforge.forge.wrapper.render.blocks.TileEntityFacedRendererBase;
+import helporme.armsforge.forge.wrapper.render.blocks.TileEntityFacedRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;
@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityTableRenderer extends TileEntityFacedRendererBase
+public class TileEntityTableRenderer extends TileEntityFacedRenderer
 {
     public TileEntityTableRenderer(ModelInfo modelInfo)
     {

@@ -2,6 +2,7 @@ package helporme.armsforge.forge.wrapper.items;
 
 import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.core.Version;
+import helporme.armsforge.forge.wrapper.utils.INamed;
 import net.minecraft.item.Item;
 
 public class ItemBase extends Item implements INamed

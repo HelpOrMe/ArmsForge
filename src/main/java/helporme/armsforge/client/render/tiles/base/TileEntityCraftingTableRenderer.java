@@ -1,7 +1,7 @@
 package helporme.armsforge.client.render.tiles.base;
 
 import helporme.armsforge.api.utils.Vector3;
-import helporme.armsforge.forge.wrapper.models.ModelInfo;
+import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
 import helporme.armsforge.common.tiles.base.TileEntityTable;
 import net.minecraft.tileentity.TileEntity;
@@ -25,7 +25,7 @@ public class TileEntityCraftingTableRenderer extends TileEntityTableRenderer
     @Override
     protected void renderModel(TileEntity tile, float timeDelta)
     {
-        model.renderAllExcept("Recipe");
+        modelInfo.model.renderAllExcept("Recipe");
         tryRenderRecipe((TileEntityCraftingTable)tile);
     }
 
@@ -34,7 +34,7 @@ public class TileEntityCraftingTableRenderer extends TileEntityTableRenderer
         boolean hasRecipe = !craftingTable.isEmptyInSlot(1);
         if (hasRecipe)
         {
-            model.renderPart("Recipe");
+            modelInfo.model.renderPart("Recipe");
         }
     }
 }

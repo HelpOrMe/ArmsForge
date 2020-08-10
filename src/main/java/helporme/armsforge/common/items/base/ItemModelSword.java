@@ -1,8 +1,8 @@
 package helporme.armsforge.common.items.base;
 
 import helporme.armsforge.client.render.items.ItemWeaponRenderer;
-import helporme.armsforge.forge.wrapper.models.IItemModelContainer;
-import helporme.armsforge.forge.wrapper.models.ModelInfo;
+import helporme.armsforge.forge.wrapper.render.models.IItemModelContainer;
+import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import helporme.armsforge.forge.wrapper.items.ItemSword;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.IItemRenderer;

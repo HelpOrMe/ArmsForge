@@ -1,22 +1,18 @@
 package helporme.armsforge.forge.wrapper.render.blocks;
 
 import helporme.armsforge.api.utils.Vector3;
-import helporme.armsforge.forge.wrapper.models.ModelInfo;
+import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
 public class TileEntityRenderer extends TileEntitySpecialRenderer
 {
-    protected ResourceLocation texture;
-    protected IModelCustom model;
+    protected ModelInfo modelInfo;
 
     public TileEntityRenderer(ModelInfo modelInfo)
     {
-        model = modelInfo.getModel();
-        texture = modelInfo.getTexture();
+        this.modelInfo = modelInfo;
     }
 
     @Override
@@ -31,7 +27,7 @@ public class TileEntityRenderer extends TileEntitySpecialRenderer
 
     protected void bindTexture(TileEntity tile, float timeDelta)
     {
-        bindTexture(texture);
+        bindTexture(modelInfo.texture);
     }
 
     protected void setTileEntityOffsetAt(TileEntity tile, Vector3 position, float timeDelta)
@@ -41,6 +37,6 @@ public class TileEntityRenderer extends TileEntitySpecialRenderer
 
     protected void renderModel(TileEntity tile, float timeDelta)
     {
-        model.renderAll();
+        modelInfo.model.renderAll();
     }
 }

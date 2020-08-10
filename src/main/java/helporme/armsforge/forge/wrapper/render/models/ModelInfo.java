@@ -1,4 +1,4 @@
-package helporme.armsforge.forge.wrapper.models;
+package helporme.armsforge.forge.wrapper.render.models;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -10,8 +10,8 @@ import net.minecraftforge.client.model.IModelCustom;
 @SideOnly(Side.CLIENT)
 public class ModelInfo
 {
-    protected final ResourceLocation texture;
-    protected final IModelCustom model;
+    public ResourceLocation texture;
+    public IModelCustom model;
 
     public ModelInfo(String localTexturePath, String localModelPath)
     {
@@ -23,15 +23,5 @@ public class ModelInfo
 
         texture = textureLocation;
         model = AdvancedModelLoader.loadModel(modelLocation);
-    }
-
-    public ResourceLocation getTexture()
-    {
-        return texture;
-    }
-
-    public IModelCustom getModel()
-    {
-        return model;
     }
 }

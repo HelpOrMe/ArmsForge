@@ -4,7 +4,7 @@ import helporme.armsforge.api.utils.Vector3;
 import helporme.armsforge.client.render.tiles.base.TileEntityMultiTextureTableRenderer;
 import helporme.armsforge.client.render.tiles.info.PrimalAnvilRenderInfo;
 import helporme.armsforge.client.render.tiles.info.TextureFramesRenderInfo;
-import helporme.armsforge.forge.wrapper.models.ModelInfo;
+import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntityPrimalAnvil;
 import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
 import helporme.armsforge.common.tiles.base.TileEntityTable;
@@ -59,7 +59,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
 
         GL11.glPushMatrix();
         GL11.glTranslatef(0, currentRenderInfo.anvilYOffset, 0);
-        model.renderOnly("Anvil");
+        modelInfo.model.renderOnly("Anvil");
         GL11.glPopMatrix();
     }
 
@@ -74,14 +74,14 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
     {
         GL11.glPushMatrix();
         GL11.glRotatef(angle, 0, 1, 0);
-        model.renderOnly("Chain_" + chainIndex);
+        modelInfo.model.renderOnly("Chain_" + chainIndex);
         GL11.glPopMatrix();
     }
 
     protected void renderFlags()
     {
         GL11.glTranslatef(0, currentRenderInfo.anvilYOffset / -3, 0);
-        model.renderOnly("FlagPillars", "Flag_1", "Flag_2");
+        modelInfo.model.renderOnly("FlagPillars", "Flag_1", "Flag_2");
     }
 
     @Override
@@ -91,7 +91,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
         if (hasRecipe)
         {
             GL11.glTranslatef(0, currentRenderInfo.anvilYOffset, 0);
-            model.renderPart("Recipe");
+            modelInfo.model.renderPart("Recipe");
         }
     }
 

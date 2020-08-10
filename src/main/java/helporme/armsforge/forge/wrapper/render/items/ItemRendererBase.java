@@ -1,22 +1,18 @@
 package helporme.armsforge.forge.wrapper.render.items;
 
-import helporme.armsforge.forge.wrapper.models.ModelInfo;
+import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
 public class ItemRendererBase implements IItemRenderer
 {
-    protected final IModelCustom model;
-    protected final ResourceLocation texture;
+    protected ModelInfo modelInfo;
 
     public ItemRendererBase(ModelInfo modelInfo)
     {
-        model = modelInfo.getModel();
-        texture = modelInfo.getTexture();
+        this.modelInfo = modelInfo;
     }
 
     @Override
@@ -65,11 +61,11 @@ public class ItemRendererBase implements IItemRenderer
     protected void bindBlockTexture()
     {
         Minecraft mc = Minecraft.getMinecraft();
-        mc.renderEngine.bindTexture(texture);
+        mc.renderEngine.bindTexture(modelInfo.texture);
     }
 
     protected void renderModel()
     {
-        model.renderAll();
+        modelInfo.model.renderAll();
     }
 }

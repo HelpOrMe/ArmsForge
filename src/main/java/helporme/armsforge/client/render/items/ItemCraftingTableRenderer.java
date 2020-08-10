@@ -1,6 +1,6 @@
 package helporme.armsforge.client.render.items;
 
-import helporme.armsforge.forge.wrapper.models.ModelInfo;
+import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import helporme.armsforge.forge.wrapper.render.items.ItemRendererBase;
 
 public class ItemCraftingTableRenderer extends ItemRendererBase
@@ -13,6 +13,6 @@ public class ItemCraftingTableRenderer extends ItemRendererBase
     @Override
     protected void renderModel()
     {
-        model.renderAllExcept("Recipe");
+        modelInfo.model.renderAllExcept("Recipe");
     }
 }

@@ -2,6 +2,7 @@ package helporme.armsforge.forge.wrapper.items;
 
 import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.core.Version;
+import helporme.armsforge.forge.wrapper.utils.INamed;
 
 public class ItemSword extends net.minecraft.item.ItemSword implements INamed
 {

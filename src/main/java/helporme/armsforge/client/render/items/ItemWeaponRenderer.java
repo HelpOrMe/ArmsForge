@@ -1,6 +1,6 @@
 package helporme.armsforge.client.render.items;
 
-import helporme.armsforge.forge.wrapper.models.ModelInfo;
+import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import helporme.armsforge.forge.wrapper.render.items.ItemRendererBase;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;

@@ -1,21 +1,20 @@
-package helporme.armsforge.forge.wrapper.render;
+package helporme.armsforge.forge.wrapper.render.models.armor;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.forge.wrapper.models.ModelInfo;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
 public class ModelOBJRenderer extends ModelRenderer
 {
-    protected ModelInfo modelInfo;
+    protected IModelCustom model;
 
-    public ModelOBJRenderer(ModelInfo modelInfo, ModelBase modelBase, int tX, int tY)
+    public ModelOBJRenderer(ModelBase modelBase, IModelCustom model, int tX, int tY)
     {
         super(modelBase, tX, tY);
-        this.modelInfo = modelInfo;
+        this.model = model;
     }
 
     @SideOnly(Side.CLIENT)
@@ -34,7 +33,7 @@ public class ModelOBJRenderer extends ModelRenderer
                 {
                     if (this.rotationPointX == 0.0F && this.rotationPointY == 0.0F && this.rotationPointZ == 0.0F)
                     {
-                        // renderModel();
+                        renderModel();
 
                         if (this.childModels != null)
                         {
@@ -47,7 +46,7 @@ public class ModelOBJRenderer extends ModelRenderer
                     else
                     {
                         GL11.glTranslatef(this.rotationPointX * p_78785_1_, this.rotationPointY * p_78785_1_, this.rotationPointZ * p_78785_1_);
-                        // renderModel();
+                        renderModel();
 
                         if (this.childModels != null)
                         {
@@ -125,7 +124,7 @@ public class ModelOBJRenderer extends ModelRenderer
                     GL11.glRotatef(this.rotateAngleZ * (180F / (float)Math.PI), 0.0F, 0.0F, 1.0F);
                 }
 
-                // renderModel();
+                renderModel();
                 GL11.glPopMatrix();
             }
         }
@@ -175,8 +174,6 @@ public class ModelOBJRenderer extends ModelRenderer
 
     public void renderModel()
     {
-        Minecraft minecraft = Minecraft.getMinecraft();
-        GL11.glTranslatef(0, 0, 0);
-        modelInfo.getModel().renderAll();
+        model.renderAll();
     }
 }

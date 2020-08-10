@@ -1,7 +1,7 @@
 package helporme.armsforge.client.registry;
 
-import helporme.armsforge.forge.wrapper.models.ModelBlockSuite;
-import helporme.armsforge.forge.wrapper.models.IItemModelContainer;
+import helporme.armsforge.forge.wrapper.render.models.ModelBlockSuite;
+import helporme.armsforge.forge.wrapper.render.models.IItemModelContainer;
 import helporme.armsforge.common.registry.BlockModelsRegistry;
 import helporme.armsforge.common.registry.ItemsRegistry;
 import net.minecraft.item.Item;

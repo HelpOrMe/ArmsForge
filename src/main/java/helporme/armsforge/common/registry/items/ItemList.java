@@ -1,7 +1,7 @@
 package helporme.armsforge.common.registry.items;
 
 import helporme.armsforge.common.registry.utils.RegistryList;
-import helporme.armsforge.forge.wrapper.items.INamed;
+import helporme.armsforge.forge.wrapper.utils.INamed;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;

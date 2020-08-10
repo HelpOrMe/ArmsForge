@@ -1,7 +1,7 @@
 package helporme.armsforge.client.registry;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
-import helporme.armsforge.forge.wrapper.models.ModelBlockSuite;
+import helporme.armsforge.forge.wrapper.render.models.ModelBlockSuite;
 import helporme.armsforge.common.registry.BlockModelsRegistry;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;

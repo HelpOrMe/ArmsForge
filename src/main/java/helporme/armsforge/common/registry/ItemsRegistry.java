@@ -11,7 +11,7 @@ import java.util.Map;
 
 public final class ItemsRegistry
 {
-    private static final ItemList[] ITEM_LISTS = new ItemList[]
+    private static final ItemList[] itemLists = new ItemList[]
             {
                     new ResourceList(),
                     new HammerList(),
@@ -22,7 +22,7 @@ public final class ItemsRegistry
 
     public static void createDefaultItems()
     {
-        for (ItemList itemList : ITEM_LISTS)
+        for (ItemList itemList : itemLists)
         {
             itemList.addDefault();
         }
@@ -30,7 +30,7 @@ public final class ItemsRegistry
 
     public static void registerItems()
     {
-        for (ItemList itemList : ITEM_LISTS)
+        for (ItemList itemList : itemLists)
         {
             registerItemsFrom(itemList.getItems());
         }
@@ -46,7 +46,7 @@ public final class ItemsRegistry
 
     public static Item getItemByName(String name)
     {
-        for (ItemList itemList : ITEM_LISTS)
+        for (ItemList itemList : itemLists)
         {
             Map<String, Item> items = itemList.getItems();
             if (items.containsKey(name))
@@ -60,7 +60,7 @@ public final class ItemsRegistry
     public static Collection<Item> getAllItems()
     {
         List<Item> allItems = new ArrayList<>();
-        for (ItemList itemList : ITEM_LISTS)
+        for (ItemList itemList : itemLists)
         {
             allItems.addAll(itemList.getItems().values());
         }

@@ -2,7 +2,7 @@ package helporme.armsforge.forge.wrapper.blocks;
 
 import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.core.Version;
-import helporme.armsforge.forge.wrapper.items.INamed;
+import helporme.armsforge.forge.wrapper.utils.INamed;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 

@@ -46,9 +46,9 @@ public class ModelOBJBiped extends ModelBiped
         bipedRightLeg.setRotationPoint(-1.9f, 12.0f + pY, 0.0f);
 
         bipedLeftLeg = new ModelOBJLeftLeg(this, modelInfo.model, 0, 16);
-        bipedLeftLeg.mirror = true;
         bipedLeftLeg.addBox(-2.0f, 0.0f, -2.0f, 4, 12, 4, f);
         bipedLeftLeg.setRotationPoint(1.9f, 12.0f + pY, 0.0f);
+        bipedLeftLeg.mirror = true;
     }
 
     public void selectArmorType(int armorSlot)

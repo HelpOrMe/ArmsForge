@@ -1,10 +1,10 @@
-[{
+{
     "modid": "armsforge",
     "name": "Arms Forge",
     "version": ${version},
     "mcversion": ${mcversion},
     "logoFile": "assets/armsforge/textures/logo.jpg",
     "authorList": ["Cross_King", "HelpOrMe"],
-    "credits": "mcmodding.ru",
+    "credits":  "Kimihito, TheAndrey",
     "dependencies": ["Thaumcraft"]
-}]
+}

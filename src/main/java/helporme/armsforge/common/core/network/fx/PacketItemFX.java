@@ -4,7 +4,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import helporme.armsforge.api.utils.Vector3;
-import helporme.armsforge.client.fx.EntityItemFX;
+import helporme.armsforge.client.render.fx.EntityItemFX;
 import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
 import io.netty.buffer.ByteBuf;

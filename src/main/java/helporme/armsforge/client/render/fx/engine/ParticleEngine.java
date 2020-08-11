@@ -1,10 +1,10 @@
-package helporme.armsforge.client.fx.engine;
+package helporme.armsforge.client.render.fx.engine;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.api.utils.Vector3;
-import helporme.armsforge.client.fx.utils.Color;
+import helporme.armsforge.client.render.fx.utils.Color;
 import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.core.network.fx.PacketFX;
 import net.minecraft.client.Minecraft;

@@ -29,6 +29,12 @@ public class HammerType
         return ((size << 5) + size) ^ tir;
     }
 
+    @Override
+    public String toString()
+    {
+        return "(" + size + ", " + tir + ")";
+    }
+
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
         nbtTagCompound.setInteger("tir", tir);

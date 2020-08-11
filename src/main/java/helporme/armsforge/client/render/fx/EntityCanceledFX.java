@@ -1,4 +1,4 @@
-package helporme.armsforge.client.fx;
+package helporme.armsforge.client.render.fx;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -37,17 +37,18 @@ public class EntityCanceledFX extends EntityFX
     public void renderParticle(Tessellator tessellator, float tick, float lrX, float udY, float lrZ, float udX, float udZ)
     {
         Minecraft minecraft = Minecraft.getMinecraft();
+
+        double x = prevPosX + (posX - prevPosX) * tick - interpPosX;
+        double y = prevPosY + (posY - prevPosY) * tick - interpPosY;
+        double z = prevPosZ + (posZ - prevPosZ) * tick - interpPosZ;
+        double scale = 0.1f * particleScale;
+
         minecraft.renderEngine.bindTexture(texture);
 
         GL11.glDepthMask(false);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921f);
-
-        double x = prevPosX + (posX - prevPosX) * tick - interpPosX;
-        double y = prevPosY + (posY - prevPosY) * tick - interpPosY;
-        double z = prevPosZ + (posZ - prevPosZ) * tick - interpPosZ;
-        double scale = 0.1f * particleScale;
 
         tessellator.startDrawingQuads();
         tessellator.setBrightness(getBrightnessForRender(tick));

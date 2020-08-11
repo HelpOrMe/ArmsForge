@@ -31,7 +31,7 @@ public class ItemRecipe extends ItemBase implements IItemRecipe
         icons = new IIcon[craftingTableTypes.length];
         for (int i = 0; i < icons.length; i++)
         {
-            icons[i] = register.registerIcon(ArmsForgeApi.getRecipeIconName(craftingTableTypes[i]));
+            icons[i] = register.registerIcon(ArmsForgeApi.getTableRecipeTextureString(craftingTableTypes[i]));
         }
 
         recalculateIconRanges(craftingTableTypes);
@@ -44,7 +44,7 @@ public class ItemRecipe extends ItemBase implements IItemRecipe
 
         for (int i = 0; i < iconRanges.length; i++)
         {
-            iconRanges[i] = ArmsForgeApi.getCraftingTableRecipesFor(craftingTableTypes[i]).length;
+            iconRanges[i] = ArmsForgeApi.getAllRecipesForTable(craftingTableTypes[i]).length;
         }
 
         for (int i = 1; i < iconRanges.length; i++)

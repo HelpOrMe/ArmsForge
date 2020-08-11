@@ -37,7 +37,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
     {
         TileEntityPrimalAnvil primalAnvil = (TileEntityPrimalAnvil)tile;
         currentRenderInfo = primalAnvil.renderInfo;
-        super.renderTileEntityAt(tile, x, y, z, timeDelta);
+        renderAdditionalObjects(primalAnvil);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
         renderAnvilBase(timeDelta);
         renderChains(timeDelta);
         renderFlags();
-        tryRenderRecipe((TileEntityCraftingTable)tile);
+        super.renderModel(tile, timeDelta);
     }
 
     protected void renderAnvilBase(float timeDelta)
@@ -85,14 +85,10 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
     }
 
     @Override
-    protected void tryRenderRecipe(TileEntityCraftingTable craftingTable)
+    protected void renderRecipe()
     {
-        boolean hasRecipe = !craftingTable.isEmptyInSlot(1);
-        if (hasRecipe)
-        {
-            GL11.glTranslatef(0, currentRenderInfo.anvilYOffset, 0);
-            modelInfo.model.renderPart("Recipe");
-        }
+        GL11.glTranslatef(0, currentRenderInfo.anvilYOffset, 0);
+        modelInfo.model.renderPart("Recipe");
     }
 
     protected void setItem3dTransformAt(TileEntityTable table, Vector3 position)

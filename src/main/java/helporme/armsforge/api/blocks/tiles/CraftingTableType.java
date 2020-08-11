@@ -33,13 +33,6 @@ public class CraftingTableType
         return nameEquals(tableType) && tirWithSubTirsEquals(tableType);
     }
 
-    @Override
-    public int hashCode()
-    {
-        int hash = name.hashCode();
-        return ((hash << 5) + hash) ^ tir;
-    }
-
     public boolean nameEquals(CraftingTableType tableType)
     {
         return name.equals(tableType.name);
@@ -60,5 +53,18 @@ public class CraftingTableType
     public boolean tirEquals(CraftingTableType tableType)
     {
         return tableType.tir == tir;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = name.hashCode();
+        return ((hash << 5) + hash) ^ tir;
+    }
+
+    @Override
+    public String toString()
+    {
+        return name + "@" + tir;
     }
 }

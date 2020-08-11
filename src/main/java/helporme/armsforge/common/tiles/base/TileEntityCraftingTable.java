@@ -30,6 +30,24 @@ public abstract class TileEntityCraftingTable extends TileEntityTable implements
     }
 
     @Override
+    public HammerType getHammerType()
+    {
+        return logic.neededHammerType;
+    }
+
+    @Override
+    public float getMaxTime()
+    {
+        return logic.maxTime;
+    }
+
+    @Override
+    public float getTimeLeft()
+    {
+        return logic.timeLeft;
+    }
+
+    @Override
     public boolean isCraftActive()
     {
         return logic.craftActive;
@@ -152,6 +170,7 @@ public abstract class TileEntityCraftingTable extends TileEntityTable implements
         if (logic.craftActive)
         {
             nbtTagCompound.setFloat("TimeLeft", logic.timeLeft);
+            nbtTagCompound.setFloat("MaxTime", logic.maxTime);
 
             NBTTagCompound hammerNBT = new NBTTagCompound();
             logic.neededHammerType.writeToNBT(hammerNBT);
@@ -167,6 +186,7 @@ public abstract class TileEntityCraftingTable extends TileEntityTable implements
         if (logic.craftActive)
         {
             logic.timeLeft = nbtTagCompound.getFloat("TimeLeft");
+            logic.maxTime = nbtTagCompound.getFloat("MaxTime");
 
             NBTTagCompound hammerNBT = nbtTagCompound.getCompoundTag("NeededHammerType");
             logic.neededHammerType = HammerType.fromNBT(hammerNBT);

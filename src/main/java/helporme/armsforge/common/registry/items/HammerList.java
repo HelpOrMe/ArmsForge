@@ -22,18 +22,5 @@ public class HammerList extends ItemList
                 new ItemHammer("BighammerSteel", HammerTypes.bigSteel, 4000),
                 new ItemHammer("BighammerThaum", HammerTypes.bigThaum, 7000)
         );
-
-        //TODO: Move to integration manager
-        ArmsForgeApi.addHammer(items.get("SmallhammerIron"), HammerTypes.smallIron);
-        ArmsForgeApi.addHammer(items.get("SmallhammerSteel"), HammerTypes.smallSteel);
-        ArmsForgeApi.addHammer(items.get("SmallhammerThaum"), HammerTypes.smallThaum);
-
-        ArmsForgeApi.addHammer(items.get("MediumhammerIron"), HammerTypes.mediumIron);
-        ArmsForgeApi.addHammer(items.get("MediumhammerSteel"), HammerTypes.mediumSteel);
-        ArmsForgeApi.addHammer(items.get("MediumhammerThaum"), HammerTypes.mediumThaum);
-
-        ArmsForgeApi.addHammer(items.get("BighammerIron"), HammerTypes.bigIron);
-        ArmsForgeApi.addHammer(items.get("BighammerSteel"), HammerTypes.bigSteel);
-        ArmsForgeApi.addHammer(items.get("BighammerThaum"), HammerTypes.bigThaum);
     }
 }

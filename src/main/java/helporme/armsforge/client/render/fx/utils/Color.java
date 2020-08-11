@@ -1,4 +1,4 @@
-package helporme.armsforge.client.fx.utils;
+package helporme.armsforge.client.render.fx.utils;
 
 public class Color
 {

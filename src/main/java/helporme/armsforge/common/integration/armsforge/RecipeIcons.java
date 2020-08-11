@@ -18,6 +18,6 @@ public final class RecipeIcons
 
     public static void addIconToTable(String recipeName, CraftingTableType tableType)
     {
-        ArmsForgeApi.addRecipeIconNameToTable(Version.modid + ":recipes/" + recipeName, tableType);
+        ArmsForgeApi.attachRecipeTextureToTable(Version.modid + ":recipes/" + recipeName, tableType);
     }
 }

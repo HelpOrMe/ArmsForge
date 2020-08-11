@@ -1,4 +1,4 @@
-package helporme.armsforge.client.fx;
+package helporme.armsforge.client.render.fx;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

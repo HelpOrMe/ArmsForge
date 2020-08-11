@@ -38,6 +38,7 @@ public class CraftingLogic
     public int selectedIngredientIndex = 0;
 
     public HammerType neededHammerType;
+    public float maxTime;
     public float timeLeft;
 
     public CraftingLogic(ICraftingTable craftingTable)
@@ -278,6 +279,7 @@ public class CraftingLogic
 
         neededHammerType = randomPattern.hammerType;
         timeLeft = randomPattern.time;
+        maxTime = randomPattern.time;
         craftingTable.markDirtyAndUpdate();
     }
 
@@ -329,5 +331,6 @@ public class CraftingLogic
         selectedIngredientIndex = 0;
         neededHammerType = null;
         timeLeft = 0;
+        maxTime = 0;
     }
 }

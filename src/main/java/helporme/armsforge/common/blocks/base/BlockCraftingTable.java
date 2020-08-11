@@ -2,7 +2,7 @@ package helporme.armsforge.common.blocks.base;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.api.blocks.tiles.ISupportTable;
+import helporme.armsforge.api.blocks.tiles.table.ISupportTable;
 import helporme.armsforge.api.items.IHammer;
 import helporme.armsforge.api.utils.Vector3;
 import helporme.armsforge.api.items.IDebugTool;

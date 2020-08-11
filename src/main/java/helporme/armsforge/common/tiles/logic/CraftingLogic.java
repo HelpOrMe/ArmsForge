@@ -1,8 +1,8 @@
 package helporme.armsforge.common.tiles.logic;
 
 import helporme.armsforge.api.ArmsForgeApi;
-import helporme.armsforge.api.blocks.tiles.ICraftingTable;
-import helporme.armsforge.api.blocks.tiles.ISupportTable;
+import helporme.armsforge.api.blocks.tiles.table.ICraftingTable;
+import helporme.armsforge.api.blocks.tiles.table.ISupportTable;
 import helporme.armsforge.api.items.HammerType;
 import helporme.armsforge.api.items.IHammer;
 import helporme.armsforge.api.recipes.ICraftingTableRecipe;
@@ -14,6 +14,7 @@ import helporme.armsforge.api.utils.Vector3Int;
 import helporme.armsforge.common.core.ArmsForge;
 import helporme.armsforge.common.core.network.fx.PacketCanceledFX;
 import helporme.armsforge.common.core.network.fx.PacketItemFX;
+import helporme.armsforge.common.core.network.fx.PacketSuccessfulFX;
 import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -232,7 +233,7 @@ public class CraftingLogic
         ItemStack selectedIngredient = ingredients.get(selectedIngredientIndex);
         String convertedIngredient = ItemStackHelper.convertItemToString(selectedIngredient);
 
-        spawnRemoveIngredientParticle(convertedIngredient);
+        spawnIngredientParticle(convertedIngredient);
 
         ISupportTable table = getTableWithIngredient(convertedIngredient);
         table.decrStackSize(table.getItemSlot(), selectedIngredient.stackSize);
@@ -241,12 +242,13 @@ public class CraftingLogic
         ingredients.remove(selectedIngredient);
     }
 
-    protected void spawnRemoveIngredientParticle(String convertedIngredient)
+    protected void spawnIngredientParticle(String convertedIngredient)
     {
         Vector3Int tablePosition = tablesPositionsByIngredients.get(convertedIngredient).getFirst();
 
         Vector3 position = new Vector3(tablePosition.x + 0.5f, tablePosition.y + 1, tablePosition.z + 0.5f);
         Vector3 motion = new Vector3(1, 2, 1);
+
         PacketItemFX packet = new PacketItemFX(position, motion, convertedIngredient);
         ArmsForge.fxEngine.spawnParticle(packet, craftingTableTile);
     }
@@ -287,7 +289,7 @@ public class CraftingLogic
     {
         craftActive = false;
         clearCraftInfo();
-        spawnCancelParticle();
+        spawnCancelParticles();
 
         if (recipe instanceof IRecipeTableStateHandler)
         {
@@ -296,16 +298,9 @@ public class CraftingLogic
         }
     }
 
-    protected void spawnCancelParticle()
+    protected void spawnCancelParticles()
     {
-        float x = craftingTableTile.xCoord + 0.5f;
-        float y = craftingTableTile.yCoord + 1;
-        float z = craftingTableTile.zCoord + 0.5f;
-
-        Vector3 position = new Vector3(x, y, z);
-        Vector3 motion = new Vector3(1, 2, 1);
-
-        PacketCanceledFX packet = new PacketCanceledFX(position, motion);
+        PacketCanceledFX packet = new PacketCanceledFX(getCorrectCraftingTablePosition(), new Vector3(1, 2, 1));
         ArmsForge.fxEngine.spawnParticle(packet, craftingTableTile);
     }
 
@@ -314,6 +309,8 @@ public class CraftingLogic
         craftActive = false;
         ItemStack resultItem = recipe.getResultItem().copy();
         craftingTable.setInventorySlotContents(craftingTable.getItemSlot(), resultItem);
+
+        spawnSuccessfulParticle();
         clearCraftInfo();
 
         if (recipe instanceof IRecipeTableStateHandler)
@@ -321,6 +318,20 @@ public class CraftingLogic
             IRecipeTableStateHandler stateHandler = (IRecipeTableStateHandler)recipe;
             stateHandler.onCraftingEnd();
         }
+    }
+
+    protected void spawnSuccessfulParticle()
+    {
+        PacketSuccessfulFX packet = new PacketSuccessfulFX(getCorrectCraftingTablePosition(), new Vector3(1, 2, 1));
+        ArmsForge.fxEngine.spawnParticle(packet, craftingTableTile);
+    }
+
+    protected Vector3 getCorrectCraftingTablePosition()
+    {
+        float x = craftingTableTile.xCoord + 0.5f;
+        float y = craftingTableTile.yCoord + 1;
+        float z = craftingTableTile.zCoord + 0.5f;
+        return new Vector3(x, y, z);
     }
 
     protected void clearCraftInfo()

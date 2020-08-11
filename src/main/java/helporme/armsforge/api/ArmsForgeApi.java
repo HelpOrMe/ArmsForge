@@ -1,7 +1,6 @@
 package helporme.armsforge.api;
 
-import helporme.armsforge.api.blocks.tiles.CraftingTableType;
-import helporme.armsforge.api.blocks.tiles.CraftingTableTypes;
+import helporme.armsforge.api.blocks.tiles.table.CraftingTableType;
 import helporme.armsforge.api.items.HammerType;
 import helporme.armsforge.api.recipes.hammer.HammerBlowPattern;
 import helporme.armsforge.api.recipes.hammer.HammerTypes;

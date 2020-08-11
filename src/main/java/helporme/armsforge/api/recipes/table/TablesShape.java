@@ -1,7 +1,7 @@
 package helporme.armsforge.api.recipes.table;
 
-import helporme.armsforge.api.blocks.tiles.ICraftingTable;
-import helporme.armsforge.api.blocks.tiles.ISupportTable;
+import helporme.armsforge.api.blocks.tiles.table.ICraftingTable;
+import helporme.armsforge.api.blocks.tiles.table.ISupportTable;
 import helporme.armsforge.api.utils.Vector3Int;
 import helporme.armsforge.forge.wrapper.utils.ItemStackHelper;
 import net.minecraft.item.ItemStack;

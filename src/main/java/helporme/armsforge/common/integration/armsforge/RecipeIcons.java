@@ -1,8 +1,8 @@
 package helporme.armsforge.common.integration.armsforge;
 
 import helporme.armsforge.api.ArmsForgeApi;
-import helporme.armsforge.api.blocks.tiles.CraftingTableType;
-import helporme.armsforge.api.blocks.tiles.CraftingTableTypes;
+import helporme.armsforge.api.blocks.tiles.table.CraftingTableType;
+import helporme.armsforge.api.blocks.tiles.table.CraftingTableTypes;
 import helporme.armsforge.common.core.Version;
 
 public final class RecipeIcons

@@ -1,6 +1,7 @@
 package helporme.armsforge.common.integration.thaumcraft.wrapper;
 
 import helporme.armsforge.common.core.Version;
+import helporme.armsforge.forge.wrapper.render.ResourceManager;
 import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.research.ResearchPage;
 
@@ -9,7 +10,7 @@ public final class ThaumcraftResearchesHelper
     public static ResourceLocation getResearchIcon(String key)
     {
         String path = "textures/thaumonomicon/researches/" + key + "ResearchIcon.png";
-        return new ResourceLocation(Version.modid, path);
+        return ResourceManager.get(path);
     }
 
     public static ResearchPage[] getLocalizedTextPages(String key, int count)

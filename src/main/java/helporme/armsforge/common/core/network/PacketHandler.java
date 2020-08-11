@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import helporme.armsforge.common.core.Version;
 import helporme.armsforge.common.core.network.fx.PacketCanceledFX;
 import helporme.armsforge.common.core.network.fx.PacketItemFX;
+import helporme.armsforge.common.core.network.fx.PacketSuccessfulFX;
 
 public class PacketHandler extends SimpleNetworkWrapper
 {
@@ -19,5 +20,6 @@ public class PacketHandler extends SimpleNetworkWrapper
     {
         registerMessage(PacketCanceledFX.class, PacketCanceledFX.class, lastId++, Side.CLIENT);
         registerMessage(PacketItemFX.class, PacketItemFX.class, lastId++, Side.CLIENT);
+        registerMessage(PacketSuccessfulFX.class, PacketSuccessfulFX.class, lastId++, Side.CLIENT);
     }
 }

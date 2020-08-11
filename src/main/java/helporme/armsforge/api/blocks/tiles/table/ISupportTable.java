@@ -1,4 +1,4 @@
-package helporme.armsforge.api.blocks.tiles;
+package helporme.armsforge.api.blocks.tiles.table;
 
 public interface ISupportTable extends ITable
 {

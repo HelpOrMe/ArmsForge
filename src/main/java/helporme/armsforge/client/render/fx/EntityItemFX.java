@@ -20,8 +20,8 @@ public class EntityItemFX extends EntityFX
         Item item = itemStack.getItem();
         setParticleIcon(item.getIconFromDamage(itemStack.getItemDamage()));
 
-        this.particleGravity = Blocks.snow.blockParticleGravity;
-        this.particleScale /= 2.0F;
+        particleGravity = Blocks.snow.blockParticleGravity;
+        particleScale /= 2.0F;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package helporme.armsforge.api.blocks.tiles;
+package helporme.armsforge.api.blocks.tiles.table;
 
 import helporme.armsforge.api.recipes.ICraftingTableRecipe;
 import net.minecraft.item.ItemStack;

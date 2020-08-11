@@ -8,16 +8,16 @@ public class HammerTextures
 {
     public static void addAll()
     {
-        ArmsForgeApi.attachHammerTexture(HammerTypes.smallIron, Version.modid + ":SmallhammerIron");
-        ArmsForgeApi.attachHammerTexture(HammerTypes.smallSteel, Version.modid + ":SmallhammerSteel");
-        ArmsForgeApi.attachHammerTexture(HammerTypes.smallThaum, Version.modid + ":SmallhammerThaum");
+        ArmsForgeApi.attachHammerTexture(HammerTypes.smallIron, Version.modid + ":itextures/tems/tools/SmallhammerIron.png");
+        ArmsForgeApi.attachHammerTexture(HammerTypes.smallSteel, Version.modid + ":textures/items/tools/SmallhammerSteel.png");
+        ArmsForgeApi.attachHammerTexture(HammerTypes.smallThaum, Version.modid + ":textures/items/tools/SmallhammerThaum.png");
 
-        ArmsForgeApi.attachHammerTexture(HammerTypes.mediumIron, Version.modid + ":MdeiumhammerIron");
-        ArmsForgeApi.attachHammerTexture(HammerTypes.mediumSteel, Version.modid + ":MdeiumhammerSteel");
-        ArmsForgeApi.attachHammerTexture(HammerTypes.mediumThaum, Version.modid + ":MdeiumhammerThaum");
+        ArmsForgeApi.attachHammerTexture(HammerTypes.mediumIron, Version.modid + ":textures/items/tools/MediumhammerIron.png");
+        ArmsForgeApi.attachHammerTexture(HammerTypes.mediumSteel, Version.modid + ":textures/items/tools/MediumhammerSteel.png");
+        ArmsForgeApi.attachHammerTexture(HammerTypes.mediumThaum, Version.modid + ":textures/items/tools/MediumhammerThaum.png");
 
-        ArmsForgeApi.attachHammerTexture(HammerTypes.bigIron, Version.modid + ":BighammerIron");
-        ArmsForgeApi.attachHammerTexture(HammerTypes.bigSteel, Version.modid + ":BighammerSteel");
-        ArmsForgeApi.attachHammerTexture(HammerTypes.bigThaum, Version.modid + ":BighammerThaum");
+        ArmsForgeApi.attachHammerTexture(HammerTypes.bigIron, Version.modid + ":textures/items/tools/BighammerIron.png");
+        ArmsForgeApi.attachHammerTexture(HammerTypes.bigSteel, Version.modid + ":textures/items/tools/BighammerSteel.png");
+        ArmsForgeApi.attachHammerTexture(HammerTypes.bigThaum, Version.modid + ":textures/items/tools/BighammerThaum.png");
     }
 }

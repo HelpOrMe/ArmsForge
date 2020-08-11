@@ -1,6 +1,7 @@
 package helporme.armsforge.client.render.tiles.base;
 
 import helporme.armsforge.client.render.tiles.info.TextureFramesRenderInfo;
+import helporme.armsforge.forge.wrapper.render.ResourceManager;
 import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import helporme.armsforge.common.core.Version;
 import net.minecraft.tileentity.TileEntity;
@@ -42,8 +43,7 @@ public abstract class TileEntityMultiTextureTableRenderer extends TileEntityCraf
         {
             if (!textureFramesCache.containsKey(textureFrame))
             {
-                ResourceLocation textureLocation = new ResourceLocation(
-                        Version.modid, "textures/blocks/"+ getTextureName() + "_" + textureFrame + ".png");
+                ResourceLocation textureLocation = ResourceManager.get("textures/blocks/"+ getTextureName() + "_" + textureFrame + ".png");
                 textureFramesCache.put(textureFrame, textureLocation);
             }
             modelInfo.texture = textureFramesCache.get(textureFrame);

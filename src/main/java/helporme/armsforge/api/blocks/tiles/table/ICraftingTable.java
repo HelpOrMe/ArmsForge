@@ -1,7 +1,6 @@
-package helporme.armsforge.api.blocks.tiles;
+package helporme.armsforge.api.blocks.tiles.table;
 
 import helporme.armsforge.api.items.HammerType;
-import helporme.armsforge.api.recipes.hammer.HammerBlowPattern;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -13,7 +12,7 @@ public interface ICraftingTable extends ITable, IRecipeContainer
 
     boolean isCraftActive();
 
-    HammerType getHammerType();
+    HammerType getNeededHammerType();
 
     float getMaxTime();
 

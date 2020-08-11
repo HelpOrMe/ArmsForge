@@ -1,6 +1,7 @@
 package helporme.armsforge.client.render.tiles;
 
 import helporme.armsforge.client.render.tiles.base.TileEntityTableRenderer;
+import helporme.armsforge.forge.wrapper.render.ResourceManager;
 import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import helporme.armsforge.common.core.Version;
 import helporme.armsforge.common.tiles.TileEntitySupportTable;
@@ -16,8 +17,7 @@ public class TileEntitySupportTableRenderer extends TileEntityTableRenderer
     public TileEntitySupportTableRenderer(ModelInfo modelInfo)
     {
         super(modelInfo);
-        ResourceLocation shelfModelLocation = new ResourceLocation(
-                Version.modid, "models/blocks/SupportTableShelf.obj");
+        ResourceLocation shelfModelLocation = ResourceManager.get("models/blocks/SupportTableShelf.obj");
         shelfModel = AdvancedModelLoader.loadModel(shelfModelLocation);
     }
 

@@ -1,6 +1,6 @@
 package helporme.armsforge.api.recipes;
 
-import helporme.armsforge.api.blocks.tiles.CraftingTableType;
+import helporme.armsforge.api.blocks.tiles.table.CraftingTableType;
 import helporme.armsforge.api.recipes.table.TablesShape;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

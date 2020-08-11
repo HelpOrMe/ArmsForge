@@ -1,6 +1,6 @@
 package helporme.armsforge.common.tiles.base;
 
-import helporme.armsforge.api.blocks.tiles.ITable;
+import helporme.armsforge.api.blocks.tiles.table.ITable;
 import helporme.armsforge.api.utils.Vector3Int;
 import helporme.armsforge.forge.wrapper.tiles.TileEntityInventory;
 

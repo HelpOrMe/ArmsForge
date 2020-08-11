@@ -1,11 +1,11 @@
 package helporme.armsforge.common.tiles.base;
 
-import helporme.armsforge.api.blocks.tiles.CraftingTableType;
+import helporme.armsforge.api.blocks.tiles.table.CraftingTableType;
 import helporme.armsforge.api.items.HammerType;
 import helporme.armsforge.api.items.IItemRecipe;
 import helporme.armsforge.api.recipes.ICraftingTableRecipe;
-import helporme.armsforge.api.blocks.tiles.ICraftingTable;
-import helporme.armsforge.api.blocks.tiles.ISupportTable;
+import helporme.armsforge.api.blocks.tiles.table.ICraftingTable;
+import helporme.armsforge.api.blocks.tiles.table.ISupportTable;
 import helporme.armsforge.api.utils.Vector3Int;
 import helporme.armsforge.common.tiles.logic.CraftingLogic;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +30,7 @@ public abstract class TileEntityCraftingTable extends TileEntityTable implements
     }
 
     @Override
-    public HammerType getHammerType()
+    public HammerType getNeededHammerType()
     {
         return logic.neededHammerType;
     }

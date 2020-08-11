@@ -4,9 +4,9 @@ import helporme.armsforge.api.utils.Vector3;
 import helporme.armsforge.client.render.tiles.base.TileEntityMultiTextureTableRenderer;
 import helporme.armsforge.client.render.tiles.info.PrimalAnvilRenderInfo;
 import helporme.armsforge.client.render.tiles.info.TextureFramesRenderInfo;
+import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
 import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import helporme.armsforge.common.tiles.TileEntityPrimalAnvil;
-import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
 import helporme.armsforge.common.tiles.base.TileEntityTable;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
@@ -35,9 +35,9 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
     @Override
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeDelta)
     {
+        super.renderTileEntityAt(tile, x, y, z, timeDelta);
         TileEntityPrimalAnvil primalAnvil = (TileEntityPrimalAnvil)tile;
         currentRenderInfo = primalAnvil.renderInfo;
-        renderAdditionalObjects(primalAnvil);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class TileEntityPrimalAnvilRenderer extends TileEntityMultiTextureTableRe
         renderAnvilBase(timeDelta);
         renderChains(timeDelta);
         renderFlags();
-        super.renderModel(tile, timeDelta);
+        renderCustomObjects((TileEntityCraftingTable)tile);
     }
 
     protected void renderAnvilBase(float timeDelta)

@@ -3,7 +3,6 @@ package helporme.armsforge.client.render.tiles.base;
 import helporme.armsforge.client.render.tiles.info.TextureFramesRenderInfo;
 import helporme.armsforge.forge.wrapper.render.ResourceManager;
 import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
-import helporme.armsforge.common.core.Version;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
@@ -13,6 +12,7 @@ import java.util.Map;
 public abstract class TileEntityMultiTextureTableRenderer extends TileEntityCraftingTableRenderer
 {
     protected final Map<Integer, ResourceLocation> textureFramesCache = new HashMap<>();
+    protected TextureFramesRenderInfo renderInfo = new TextureFramesRenderInfo();
 
     public TileEntityMultiTextureTableRenderer(ModelInfo modelInfo)
     {
@@ -22,19 +22,19 @@ public abstract class TileEntityMultiTextureTableRenderer extends TileEntityCraf
     @Override
     protected void bindTexture(TileEntity tile, float timeDelta)
     {
-        TextureFramesRenderInfo renderInfo = getRenderInfo();
-        renderInfo.timeBetweenFrames += timeDelta;
-        if (renderInfo.timeBetweenFrames >= renderInfo.cooldownBetweenFrames)
+        long curTick = tile.getWorldObj().getTotalWorldTime();
+        if (curTick >= renderInfo.nextTick)
         {
-            int futureFrame = renderInfo.currentTextureFrame + renderInfo.textureFrameSign;
-            if (futureFrame >= renderInfo.textureFramesCount || futureFrame < 0)
+            int futureFrame = renderInfo.frameSign;
+            if (futureFrame >= renderInfo.getMaxFrame() || futureFrame < 0)
             {
-                renderInfo.textureFrameSign = -renderInfo.textureFrameSign;
+                renderInfo.frameSign = -renderInfo.frameSign;
             }
-            renderInfo.currentTextureFrame += renderInfo.textureFrameSign;
-            renderInfo.timeBetweenFrames = 0;
+            renderInfo.curFrame += renderInfo.frameSign;
+            renderInfo.curFrame %= renderInfo.getMaxFrame();
+            renderInfo.nextTick = curTick + 20;
         }
-        bindTextureBy(renderInfo.currentTextureFrame);
+        bindTextureBy(renderInfo.curFrame);
     }
 
     protected void bindTextureBy(int textureFrame)
@@ -43,7 +43,8 @@ public abstract class TileEntityMultiTextureTableRenderer extends TileEntityCraf
         {
             if (!textureFramesCache.containsKey(textureFrame))
             {
-                ResourceLocation textureLocation = ResourceManager.get("textures/blocks/"+ getTextureName() + "_" + textureFrame + ".png");
+                ResourceLocation textureLocation = ResourceManager.get(
+                        "textures/blocks/"+ getTextureName() + "_" + textureFrame + ".png");
                 textureFramesCache.put(textureFrame, textureLocation);
             }
             modelInfo.texture = textureFramesCache.get(textureFrame);
@@ -52,6 +53,4 @@ public abstract class TileEntityMultiTextureTableRenderer extends TileEntityCraf
     }
 
     protected abstract String getTextureName();
-
-    protected abstract TextureFramesRenderInfo getRenderInfo();
 }

@@ -9,9 +9,6 @@ import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
 
 public class TileEntityPrimalAnvil extends TileEntityCraftingTable
 {
-    @SideOnly(Side.CLIENT)
-    public final PrimalAnvilRenderInfo renderInfo = new PrimalAnvilRenderInfo();
-
     @Override
     public CraftingTableType getTableType()
     {

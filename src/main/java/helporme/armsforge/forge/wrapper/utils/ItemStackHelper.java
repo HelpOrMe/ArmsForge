@@ -46,6 +46,11 @@ public final class ItemStackHelper
         return new ItemStack((Item)Item.itemRegistry.getObject(name), 1, meta);
     }
 
+    public static boolean absoluteEqual(ItemStack a, ItemStack b)
+    {
+        return a.isItemEqual(b) && a.stackSize == b.stackSize;
+    }
+
     public static ItemStack clone(ItemStack stack, int newSize)
     {
         return new ItemStack(stack.getItem(), newSize, stack.getItemDamage());

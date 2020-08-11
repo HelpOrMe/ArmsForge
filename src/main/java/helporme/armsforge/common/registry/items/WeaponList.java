@@ -1,6 +1,6 @@
 package helporme.armsforge.common.registry.items;
 
-import helporme.armsforge.common.items.weapon.ItemKarolingSword;
+import helporme.armsforge.common.items.weapon.*;
 
 public class WeaponList extends ItemList
 {
@@ -8,7 +8,16 @@ public class WeaponList extends ItemList
     public void addDefault()
     {
         addItems(
-                new ItemKarolingSword()
+                new ItemCinquedaSword(),
+                new ItemCommonSword(),
+                new ItemErzacSword(),
+                new ItemGladiusSword(),
+                new ItemKarolingSword(),
+                new ItemKatanaSword(),
+                new ItemKopisSword(),
+                new ItemNinzatoSword(),
+                new ItemSabreSword(),
+                new ItemScimitarSword()
         );
     }
 }

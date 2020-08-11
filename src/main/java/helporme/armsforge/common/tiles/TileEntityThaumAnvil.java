@@ -7,8 +7,6 @@ import helporme.armsforge.common.tiles.base.TileEntityCraftingTable;
 
 public class TileEntityThaumAnvil extends TileEntityCraftingTable
 {
-    public final ThaumAnvilRenderInfo renderInfo = new ThaumAnvilRenderInfo();
-
     @Override
     public CraftingTableType getTableType()
     {

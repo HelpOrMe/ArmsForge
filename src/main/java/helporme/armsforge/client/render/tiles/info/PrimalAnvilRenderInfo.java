@@ -2,11 +2,16 @@ package helporme.armsforge.client.render.tiles.info;
 
 public class PrimalAnvilRenderInfo extends TextureFramesRenderInfo
 {
-    public final float anvilYOffsetSpeed = 0.001f;
-    public final float maxAnvilYOffset = 0.05f;
-    public float anvilYOffset = 0;
-    public int anvilYOffsetSign = 1;
+    public final float anvilTickDistance = 0.01f;
+    public final float maxAnvilYTicks = 0.05f;
+    public float anvilYTick = 0;
+    public int anvilYSign = 1;
 
-    public final float chainRotationSpeed = 2f;
     public float chainRotationAngle = 0;
+
+    @Override
+    public int getMaxFrame()
+    {
+        return 4;
+    }
 }

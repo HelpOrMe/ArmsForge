@@ -27,6 +27,7 @@ public class EntitySuccessfulFX extends EntityFXBase
         Random random = new Random();
         xSign = random.nextInt(2) == 0 ? -1 : 1;
         zSign = random.nextInt(2) == 0 ? -1 : 1;
+
         motionX *= xSign;
         motionZ *= zSign;
     }

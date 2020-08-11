@@ -161,7 +161,7 @@ public class CraftingLogic
             hammerAtHand.damageItem(hammerAtHand.getMaxDamage() / 10, player);
             cancelCraft();
         }
-        else if (!recipe.getMainItem().isItemEqual(stackOnTable))
+        else if (!ItemStackHelper.absoluteEqual(recipe.getMainItem(), stackOnTable))
         {
             cancelCraft();
         }
@@ -343,5 +343,6 @@ public class CraftingLogic
         neededHammerType = null;
         timeLeft = 0;
         maxTime = 0;
+        craftingTable.markDirtyAndUpdate();
     }
 }

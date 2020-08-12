@@ -1,6 +1,7 @@
 package helporme.armsforge.common.registry.items;
 
 import helporme.armsforge.common.registry.utils.MaterialColors;
+import helporme.armsforge.forge.wrapper.items.ItemColored;
 import helporme.armsforge.forge.wrapper.items.base.ItemBase;
 
 public class ResourceList extends ItemList
@@ -9,17 +10,16 @@ public class ResourceList extends ItemList
     public void addDefault()
     {
         addItems(
-                new ItemResourceColored("ChainCanvasBig", MaterialColors.chainColors),
-                new ItemResourceColored("ChainCanvasMedium", MaterialColors.chainColors),
-                new ItemResourceColored("ChainCanvasSmall", MaterialColors.chainColors),
-                new ItemResourceColored("HandfulRings", MaterialColors.chainColors),
-                new ItemResourceColored("HandfulRivets", MaterialColors.rivetColors),
-                new ItemResourceColored("MetalIngot", MaterialColors.metalColors),
-                new ItemResourceColored("Ring", MaterialColors.chainColors),
-                new ItemResourceColored("Rivet", MaterialColors.rivetColors),
-                new ItemResourceColored("Wire", MaterialColors.wireColors),
-                new ItemResourceColored("MetalPlate", MaterialColors.plateColors),
-        );
+                getColoredResource("ChainCanvasBig", MaterialColors.chainColors),
+                getColoredResource("ChainCanvasMedium", MaterialColors.chainColors),
+                getColoredResource("ChainCanvasSmall", MaterialColors.chainColors),
+                getColoredResource("HandfulRings", MaterialColors.chainColors),
+                getColoredResource("HandfulRivets", MaterialColors.rivetColors),
+                getColoredResource("MetalIngot", MaterialColors.metalColors),
+                getColoredResource("Ring", MaterialColors.chainColors),
+                getColoredResource("Rivet", MaterialColors.rivetColors),
+                getColoredResource("Wire", MaterialColors.wireColors),
+                getColoredResource("MetalPlate", MaterialColors.plateColors));
 
         addResources(
                 "CommonCloth", "CottonWool",  "PackingStuds", "Stud",
@@ -37,13 +37,12 @@ public class ResourceList extends ItemList
                 "Shadow", "PaperStack", "SpatialKozanePlates",
                 "StitchedFabric", "SuperdensePlate", "TannedLeather",
                 "UnicornLether", "MagicRivet", "StrongLaces",
-                "MagicPlate", "HeavenCrystal"
-        );
+                "MagicPlate", "HeavenCrystal");
     }
 
-    public void getColoredResource(String name, int[] colors)
+    public ItemColored getColoredResource(String name, int[] colors)
     {
-        return ItemColored(name, colors, )
+        return new ItemColored(name, "resources", colors);
     }
 
     public void addResources(String... resourceNames)
@@ -51,7 +50,7 @@ public class ResourceList extends ItemList
         ItemBase[] resourceItems = new ItemBase[resourceNames.length];
         for (int i = 0; i < resourceItems.length; i++)
         {
-            resourceItems[i] = new ItemBase(resourceNames[i], "items/resources/" + resourceNames[i]);
+            resourceItems[i] = new ItemBase(resourceNames[i], "resources");
         }
         addItems(resourceItems);
     }

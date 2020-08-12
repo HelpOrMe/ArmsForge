@@ -10,7 +10,7 @@ public class ItemHammer extends ItemTool implements IHammer
 
     public ItemHammer(String name, HammerType hammerType, int maxDamage)
     {
-        super(name, "tools");
+        super(name);
         this.hammerType = hammerType;
         setMaxDamage(maxDamage);
     }

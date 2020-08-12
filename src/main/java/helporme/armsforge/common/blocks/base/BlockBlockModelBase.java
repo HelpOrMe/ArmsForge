@@ -76,6 +76,6 @@ public abstract class BlockBlockModelBase extends BlockContainerBase implements 
     @SideOnly(Side.CLIENT)
     public ModelInfo getModelInfo()
     {
-        return new ModelInfo("blocks/" + name + ".png", "blocks/" + name + ".obj");
+        return new ModelInfo("blocks/" + name, "blocks/" + name);
     }
 }

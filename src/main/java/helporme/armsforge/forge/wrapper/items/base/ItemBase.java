@@ -9,17 +9,12 @@ public class ItemBase extends Item implements INamed
 {
     protected final String name;
 
-    public ItemBase(String name)
-    {
-        this(name, Version.modid + ":" + name);
-    }
-
-    public ItemBase(String name, String iconTexturePath)
+    public ItemBase(String name, String itemType)
     {
         this.name = name;
         setCreativeTab(ArmsForge.tab);
         setUnlocalizedName(name);
-        setTextureName(iconTexturePath);
+        setTextureName(Version.modid + ":" + itemType + "/" + name);
     }
 
     public String getName()

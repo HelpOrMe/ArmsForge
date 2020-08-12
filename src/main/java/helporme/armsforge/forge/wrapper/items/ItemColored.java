@@ -8,9 +8,9 @@ public class ItemColored extends ItemWithMeta
 {
     protected final int[] colors;
 
-    public ItemColored(String name, String iconTexturePath, int[] colors)
+    public ItemColored(String name, String itemType, int[] colors)
     {
-        super(name, iconTexturePath, colors.length);
+        super(name, itemType, colors.length);
         this.colors = colors;
     }
 

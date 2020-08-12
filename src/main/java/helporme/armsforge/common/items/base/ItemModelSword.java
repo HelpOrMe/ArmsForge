@@ -1,10 +1,11 @@
 package helporme.armsforge.common.items.base;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.client.render.items.ItemWeaponRenderer;
-import helporme.armsforge.common.core.Version;
 import helporme.armsforge.forge.wrapper.render.models.IItemModelContainer;
 import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
-import helporme.armsforge.forge.wrapper.items.ItemSword;
+import helporme.armsforge.forge.wrapper.items.base.ItemSword;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.IItemRenderer;
 
@@ -24,15 +25,17 @@ public class ItemModelSword extends ItemSword implements IItemModelContainer
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public IItemRenderer getItemRenderer(ModelInfo modelInfo)
     {
         return new ItemWeaponRenderer(modelInfo);
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public ModelInfo getModelInfo()
     {
         String itemPath = "items/weapons/" + name;
-        return new ModelInfo(atlasTextureStr + ".png", itemPath + ".obj");
+        return new ModelInfo(atlasTextureStr, itemPath);
     }
 }

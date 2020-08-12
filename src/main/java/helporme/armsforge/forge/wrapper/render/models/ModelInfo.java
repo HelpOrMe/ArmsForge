@@ -2,7 +2,6 @@ package helporme.armsforge.forge.wrapper.render.models;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.armsforge.common.core.Version;
 import helporme.armsforge.forge.wrapper.render.ResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
@@ -16,8 +15,8 @@ public class ModelInfo
 
     public ModelInfo(String localTexturePath, String localModelPath)
     {
-        String texturePath = "textures/" + localTexturePath;
-        String modelPath = "models/" + localModelPath;
+        String texturePath = "textures/" + localTexturePath + ".png";
+        String modelPath = "models/" + localModelPath + ".obj";
 
         ResourceLocation textureLocation = ResourceManager.get(texturePath);
         ResourceLocation modelLocation = ResourceManager.get(modelPath);

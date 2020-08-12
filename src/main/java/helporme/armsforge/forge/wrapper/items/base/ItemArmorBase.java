@@ -21,11 +21,16 @@ public class ItemArmorBase extends ItemArmor implements INamed
 
     public ItemArmorBase(ItemArmor.ArmorMaterial material, String name, int renderIndex, int armorType)
     {
+        this(material, name, "armor", renderIndex, armorType);
+    }
+
+    public ItemArmorBase(ItemArmor.ArmorMaterial material, String name, String itemType, int renderIndex, int armorType)
+    {
         super(material, renderIndex, armorType);
         this.name = name;
 
         setCreativeTab(ArmsForge.tab);
-        setTextureName(Version.modid + ":" + name);
+        setTextureName(Version.modid + ":items/" + itemType + "/" + name);
         setUnlocalizedName(getName());
     }
 
@@ -48,7 +53,7 @@ public class ItemArmorBase extends ItemArmor implements INamed
     {
         if (modelInfo == null)
         {
-            modelInfo = new ModelInfo("items/armor/" + name + ".png", "items/armor/" + name + ".obj");
+            modelInfo = new ModelInfo("items/armor/" + name, "items/armor/" + name);
         }
         ModelOBJBiped modelOBJBiped = new ModelOBJBiped(modelInfo, 1, 0, 64, 64);
         modelOBJBiped.selectArmorType(armorSlot);

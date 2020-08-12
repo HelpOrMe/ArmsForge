@@ -7,6 +7,6 @@ public class ItemScrewdriver extends ItemTool implements IDebugTool
 {
     public ItemScrewdriver()
     {
-        super("Screwdriver", "tools");
+        super("Screwdriver");
     }
 }

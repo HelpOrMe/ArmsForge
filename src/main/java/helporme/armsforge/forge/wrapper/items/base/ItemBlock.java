@@ -1,4 +1,4 @@
-package helporme.armsforge.forge.wrapper.items;
+package helporme.armsforge.forge.wrapper.items.base;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlockWithMetadata;

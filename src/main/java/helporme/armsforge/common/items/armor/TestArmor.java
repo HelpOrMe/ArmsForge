@@ -1,6 +1,6 @@
 package helporme.armsforge.common.items.armor;
 
-import helporme.armsforge.forge.wrapper.items.ItemArmorBase;
+import helporme.armsforge.forge.wrapper.items.base.ItemArmorBase;
 
 public class TestArmor extends ItemArmorBase
 {

@@ -6,7 +6,7 @@ import helporme.armsforge.api.ArmsForgeApi;
 import helporme.armsforge.api.blocks.tiles.table.CraftingTableType;
 import helporme.armsforge.api.items.IItemRecipe;
 import helporme.armsforge.api.recipes.ICraftingTableRecipe;
-import helporme.armsforge.forge.wrapper.items.ItemBase;
+import helporme.armsforge.forge.wrapper.items.base.ItemBase;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;

@@ -1,8 +1,7 @@
 package helporme.armsforge.common.registry.items;
 
-import helporme.armsforge.common.items.base.ItemResource;
-import helporme.armsforge.common.items.base.ItemResourceColored;
 import helporme.armsforge.common.registry.utils.MaterialColors;
+import helporme.armsforge.forge.wrapper.items.base.ItemBase;
 
 public class ResourceList extends ItemList
 {
@@ -20,55 +19,40 @@ public class ResourceList extends ItemList
                 new ItemResourceColored("Rivet", MaterialColors.rivetColors),
                 new ItemResourceColored("Wire", MaterialColors.wireColors),
                 new ItemResourceColored("MetalPlate", MaterialColors.plateColors),
-
-                new ItemResource("CommonCloth"),
-                new ItemResource("CottonWool"),
-                new ItemResource("PackingStuds"),
-                new ItemResource("Stud"),
-                new ItemResource("TanningSolution"),
-                new ItemResource("BurnPlate"),
-                new ItemResource("BrigantPlate"),
-                new ItemResource("BlessedPlate"),
-                new ItemResource("AngelFeather"),
-                new ItemResource("Clasp"),
-                new ItemResource("CrimsonFabric"),
-                new ItemResource("CursedPlate"),
-                new ItemResource("DevilScales"),
-                new ItemResource("DragonLeather"),
-                new ItemResource("Edem"),
-                new ItemResource("ElongatedPlate"),
-                new ItemResource("EnderCrystal"),
-                new ItemResource("GodPlate"),
-                new ItemResource("Hell"),
-                new ItemResource("HellLether"),
-                new ItemResource("HellShards"),
-                new ItemResource("ImpSkin"),
-                new ItemResource("KozanePlates"),
-                new ItemResource("Laces"),
-                new ItemResource("LamellarPlates"),
-                new ItemResource("LaminarPlates"),
-                new ItemResource("LeatherPlate"),
-                new ItemResource("MagicLaces"),
-                new ItemResource("MetalScales"),
-                new ItemResource("PaperPlate"),
-                new ItemResource("PressedPaper"),
-                new ItemResource("PrimalFabric"),
-                new ItemResource("ProcessedBone"),
-                new ItemResource("QuiltedFabric"),
-                new ItemResource("QuiltedMagicFabric"),
-                new ItemResource("RunePaper"),
-                new ItemResource("RougeMagicFabric"),
-                new ItemResource("RuneSkin"),
-                new ItemResource("SkinStripes"),
-                new ItemResource("SpatialFabric"),
-                new ItemResource("Shadow"),
-                new ItemResource("PaperStack"),
-                new ItemResource("SpatialKozanePlates"),
-                new ItemResource("StitchedFabric"),
-                new ItemResource("SuperdensePlate"),
-                new ItemResource("TannedLeather"),
-                new ItemResource("UnicornLether"),
-                new ItemResource("MagicRivet")
         );
+
+        addResources(
+                "CommonCloth", "CottonWool",  "PackingStuds", "Stud",
+                "TanningSolution", "BurnPlate",  "BrigantPlate",
+                "BlessedPlate", "AngelFeather", "Clasp", "CursedPlate",
+                "CrimsonFabric", "DevilScales", "DragonLeather",
+                "Edem", "ElongatedPlate", "EnderCrystal",
+                "GodPlate", "Hell", "HellLether", "HellShards",
+                "ImpSkin", "KozanePlates", "Laces", "LamellarPlates",
+                "LaminarPlates", "LeatherPlate", "MagicLaces",
+                "MetalScales", "PaperPlate", "PressedPaper",
+                "PrimalFabric", "ProcessedBone", "QuiltedFabric",
+                "QuiltedMagicFabric", "RunePaper", "RougeMagicFabric",
+                "RuneSkin", "SkinStripes", "SpatialFabric",
+                "Shadow", "PaperStack", "SpatialKozanePlates",
+                "StitchedFabric", "SuperdensePlate", "TannedLeather",
+                "UnicornLether", "MagicRivet", "StrongLaces",
+                "MagicPlate", "HeavenCrystal"
+        );
+    }
+
+    public void getColoredResource(String name, int[] colors)
+    {
+        return ItemColored(name, colors, )
+    }
+
+    public void addResources(String... resourceNames)
+    {
+        ItemBase[] resourceItems = new ItemBase[resourceNames.length];
+        for (int i = 0; i < resourceItems.length; i++)
+        {
+            resourceItems[i] = new ItemBase(resourceNames[i], "items/resources/" + resourceNames[i]);
+        }
+        addItems(resourceItems);
     }
 }

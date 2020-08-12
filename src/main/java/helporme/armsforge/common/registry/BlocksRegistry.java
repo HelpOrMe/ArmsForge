@@ -2,7 +2,7 @@ package helporme.armsforge.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import helporme.armsforge.forge.wrapper.blocks.BlockWithMeta;
-import helporme.armsforge.forge.wrapper.items.ItemBlock;
+import helporme.armsforge.forge.wrapper.items.base.ItemBlock;
 import helporme.armsforge.common.registry.blocks.BlocksList;
 import helporme.armsforge.common.registry.blocks.FunctionalBlocksList;
 import helporme.armsforge.common.registry.blocks.ResourceBlocksList;

@@ -1,5 +1,7 @@
 package helporme.armsforge.forge.wrapper.items;
 
+import helporme.armsforge.forge.wrapper.items.base.ItemBase;
+
 public class ItemTool extends ItemBase
 {
     public ItemTool(String name, String itemType)

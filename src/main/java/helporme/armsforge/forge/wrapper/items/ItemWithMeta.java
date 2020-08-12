@@ -1,5 +1,6 @@
 package helporme.armsforge.forge.wrapper.items;
 
+import helporme.armsforge.forge.wrapper.items.base.ItemBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

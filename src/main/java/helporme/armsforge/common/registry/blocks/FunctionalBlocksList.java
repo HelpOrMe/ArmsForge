@@ -12,7 +12,8 @@ public class FunctionalBlocksList extends BlocksList
                 new BlockPrimalAnvil(),
                 new BlockArmorerTable(),
                 new BlockArmssmithTable(),
-                new BlockSupportTable()
+                new BlockSupportTable(),
+                new BlockEngineerTable()
         );
     }
 }

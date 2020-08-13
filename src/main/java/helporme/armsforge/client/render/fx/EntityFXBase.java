@@ -33,11 +33,6 @@ public class EntityFXBase extends EntityFX
 
         minecraft.renderEngine.bindTexture(texture);
 
-        GL11.glDepthMask(false);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921f);
-
         tessellator.startDrawingQuads();
         tessellator.setBrightness(getBrightnessForRender(tick));
         tessellator.addVertexWithUV(x - lrX * scale - udX * scale, y - udY * scale, z - lrZ * scale - udZ * scale, 0, 0);
@@ -45,10 +40,6 @@ public class EntityFXBase extends EntityFX
         tessellator.addVertexWithUV(x + lrX * scale + udX * scale, y + udY * scale, z + lrZ * scale + udZ * scale, 1, 1);
         tessellator.addVertexWithUV(x + lrX * scale - udX * scale, y - udY * scale, z + lrZ * scale - udZ * scale, 0, 1);
         tessellator.draw();
-
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glDepthMask(true);
-        GL11.glAlphaFunc(GL11.GL_GREATER, 0.1f);
     }
 
     @Override

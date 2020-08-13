@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.api.ArmsForgeApi;
 import helporme.armsforge.api.blocks.tiles.table.CraftingTableType;
 import helporme.armsforge.api.items.IItemRecipe;
+import helporme.armsforge.api.recipes.EmptyCraftingTableRecipe;
 import helporme.armsforge.api.recipes.ICraftingTableRecipe;
 import helporme.armsforge.forge.wrapper.items.base.ItemBase;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -26,6 +27,7 @@ public class ItemRecipe extends ItemBase implements IItemRecipe
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register)
     {
+        super.registerIcons(register);
         CraftingTableType[] craftingTableTypes = ArmsForgeApi.getCraftingTableTypes();
 
         icons = new IIcon[craftingTableTypes.length];
@@ -68,6 +70,12 @@ public class ItemRecipe extends ItemBase implements IItemRecipe
     }
 
     @Override
+    public String getUnlocalizedName(ItemStack itemStack)
+    {
+        return getUnlocalizedName() + "_" + getRecipe(itemStack).getName();
+    }
+
+    @Override
     public ICraftingTableRecipe getRecipe(ItemStack itemStack)
     {
         int damage = itemStack.getItemDamage();
@@ -76,12 +84,6 @@ public class ItemRecipe extends ItemBase implements IItemRecipe
         {
             return recipes[damage];
         }
-        return recipes[0];
-    }
-
-    @Override
-    public String getUnlocalizedName(ItemStack itemStack)
-    {
-        return getUnlocalizedName() + "_" + getRecipe(itemStack).getName();
+        return new EmptyCraftingTableRecipe();
     }
 }

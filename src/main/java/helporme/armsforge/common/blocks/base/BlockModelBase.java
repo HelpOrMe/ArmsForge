@@ -16,9 +16,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 
-public abstract class BlockBlockModelBase extends BlockContainerBase implements IBlockModelContainer
+public abstract class BlockModelBase extends BlockContainerBase implements IBlockModelContainer
 {
-    public BlockBlockModelBase(Material material, String name)
+    public BlockModelBase(Material material, String name)
     {
         super(material, name);
     }

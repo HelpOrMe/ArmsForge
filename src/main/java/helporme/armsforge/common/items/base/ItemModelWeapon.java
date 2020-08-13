@@ -9,19 +9,15 @@ import helporme.armsforge.forge.wrapper.items.base.ItemSword;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.IItemRenderer;
 
-public class ItemModelSword extends ItemSword implements IItemModelContainer
+public class ItemModelWeapon extends ItemSword implements IItemModelContainer
 {
     protected String atlasTextureStr;
 
-    public ItemModelSword(String name, Item.ToolMaterial material)
-    {
-        this(name, material, "items/weapons/SwordsAtlas");
-    }
-
-    public ItemModelSword(String name, Item.ToolMaterial material, String atlasTextureStr)
+    public ItemModelWeapon(String name, Item.ToolMaterial material, String atlasTextureStr)
     {
         super(name, material);
         this.atlasTextureStr = atlasTextureStr;
+        setTextureName(null);
     }
 
     @Override
@@ -36,6 +32,7 @@ public class ItemModelSword extends ItemSword implements IItemModelContainer
     public ModelInfo getModelInfo()
     {
         String itemPath = "items/weapons/" + name;
-        return new ModelInfo(atlasTextureStr, itemPath);
+        String atlasPath = "items/weapons/" + atlasTextureStr;
+        return new ModelInfo(atlasPath, itemPath);
     }
 }

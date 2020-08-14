@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 //TODO: Refactoring (Remove tries)
 
-public abstract class BlockTableBase extends BlockBlockModelBase
+public abstract class BlockTableBase extends BlockModelBase
 {
     public BlockTableBase(Material material, String name)
     {

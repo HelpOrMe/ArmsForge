@@ -8,16 +8,20 @@ public class WeaponList extends ItemList
     public void addDefault()
     {
         addItems(
-                new ItemCinquedaSword(),
-                new ItemCommonSword(),
-                new ItemErzacSword(),
-                new ItemGladiusSword(),
-                new ItemKarolingSword(),
-                new ItemKatanaSword(),
-                new ItemKopisSword(),
-                new ItemNinzatoSword(),
-                new ItemSabreSword(),
-                new ItemScimitarSword()
+                new ItemCinquedaWeapon(),
+                new ItemCommonWeapon(),
+                new ItemErzacWeapon(),
+                new ItemGladiusWeapon(),
+                new ItemKarolingWeapon(),
+                new ItemKatanaWeapon(),
+                new ItemKopisWeapon(),
+                new ItemNinzatoWeapon(),
+                new ItemSabreWeapon(),
+                new ItemScimitarWeapon(),
+                new ItemMaceWeapon(),
+                new ItemMetalclubWeapon(),
+                new ItemHammerWeapon(),
+                new ItemSixfighterWeapon()
         );
     }
 }

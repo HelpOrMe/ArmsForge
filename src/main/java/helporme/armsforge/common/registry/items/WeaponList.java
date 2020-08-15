@@ -21,7 +21,10 @@ public class WeaponList extends ItemList
                 new ItemMaceWeapon(),
                 new ItemMetalclubWeapon(),
                 new ItemHammerWeapon(),
-                new ItemSixfighterWeapon()
-        );
+                new ItemSixfighterWeapon(),
+                new ItemDaggerWeapon(),
+                new ItemBattleknifeWeapon(),
+                new ItemDegenWeapon(),
+                new ItemStickTwoHandedWeapon());
     }
 }

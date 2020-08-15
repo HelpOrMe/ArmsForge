@@ -7,5 +7,5 @@ public interface IPairWeaponMain
 {
     boolean hasSubItem(EntityPlayer player);
 
-    ItemStack getSubItem(EntityPlayer player);
+    ItemStack getSubWeapon(EntityPlayer player);
 }

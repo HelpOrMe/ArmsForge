@@ -31,7 +31,7 @@ public class ItemPairWeaponRenderer extends ItemWeaponRenderer
                 EntityPlayer player = Minecraft.getMinecraft().thePlayer;
                 if (player.getCurrentEquippedItem() != null && weaponMainPair.hasSubItem(player))
                 {
-                    ItemStack pairWeaponSubStack = weaponMainPair.getSubItem(player);
+                    ItemStack pairWeaponSubStack = weaponMainPair.getSubWeapon(player);
                     IPairWeaponSub pairWeaponSub = (IPairWeaponSub)pairWeaponSubStack.getItem();
                     IItemRenderer weaponSubRenderer = pairWeaponSub.getItemRenderer(pairWeaponSub.getModelInfo());
                     GL11.glPushMatrix();

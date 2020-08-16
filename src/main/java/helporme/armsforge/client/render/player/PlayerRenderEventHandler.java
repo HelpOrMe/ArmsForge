@@ -1,10 +1,12 @@
-package helporme.armsforge.client.event;
+package helporme.armsforge.client.render.player;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import helporme.armsforge.api.items.IPairWeaponMain;
+import helporme.armsforge.api.items.ITwoHandedWeapon;
 import net.minecraft.block.Block;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
@@ -17,6 +19,7 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import org.lwjgl.opengl.GL11;
+import scala.util.Right;
 
 public class PlayerRenderEventHandler
 {
@@ -27,16 +30,45 @@ public class PlayerRenderEventHandler
         if (equippedItemStack != null)
         {
             Item equippedItem = equippedItemStack.getItem();
-            if (equippedItem instanceof IPairWeaponMain)
+            swapModelRenderersByItem(event.renderer, equippedItem);
+            handlePairWeapon(event, equippedItem);
+        }
+    }
+
+    public void swapModelRenderersByItem(RenderPlayer renderer, Item item)
+    {
+        ModelBiped[] models = new ModelBiped[] { renderer.modelBipedMain, renderer.modelArmorChestplate, renderer.modelArmor };
+        for (ModelBiped modelBiped : models)
+        {
+            if (true/*item instanceof ITwoHandedWeapon*/)
             {
-                IPairWeaponMain pairWeaponMain = (IPairWeaponMain)equippedItem;
-                if (pairWeaponMain.hasSubItem(event.entityPlayer))
+                if (!(modelBiped.bipedRightArm instanceof RightHandSwapModel))
                 {
-                    ItemStack subItem = pairWeaponMain.getSubItem(event.entityPlayer);
-                    AbstractClientPlayer abstractClient = (AbstractClientPlayer)event.entityPlayer;
-                    renderSubEquippedItem(abstractClient, event.renderer.modelBipedMain, subItem);
-                    setBipedHeldItemState(event.renderer, 1);
+                    RightHandSwapModel rightHandModel = new RightHandSwapModel(modelBiped);
+                    rightHandModel.useSwappedRenderer = true;
+                    modelBiped.bipedRightArm = rightHandModel;
                 }
+                if (!(modelBiped.bipedLeftArm instanceof LeftHandSwapModel))
+                {
+                    LeftHandSwapModel leftHandModel = new LeftHandSwapModel(modelBiped);
+                    leftHandModel.useSwappedRenderer = true;
+                    modelBiped.bipedLeftArm = leftHandModel;
+                }
+            }
+        }
+    }
+
+    public void handlePairWeapon(RenderPlayerEvent.Specials.Pre event, Item item)
+    {
+        if (item instanceof IPairWeaponMain)
+        {
+            IPairWeaponMain pairWeaponMain = (IPairWeaponMain)item;
+            if (pairWeaponMain.hasSubItem(event.entityPlayer))
+            {
+                ItemStack subWeapon = pairWeaponMain.getSubWeapon(event.entityPlayer);
+                AbstractClientPlayer abstractClient = (AbstractClientPlayer)event.entityPlayer;
+                renderItemInLeftHand(abstractClient, event.renderer.modelBipedMain, subWeapon);
+                setBipedHeldLeftItemState(event.renderer, 1);
             }
         }
     }
@@ -45,20 +77,46 @@ public class PlayerRenderEventHandler
     public void onPlayerRender(RenderPlayerEvent.Post event)
     {
         ItemStack equippedItemStack = event.entityPlayer.inventory.getCurrentItem();
-        if (equippedItemStack == null)
+        if (equippedItemStack != null)
         {
-            setBipedHeldItemState(event.renderer, 0);
+            Item equippedItem = equippedItemStack.getItem();
+            if (!(equippedItem instanceof IPairWeaponMain))
+            {
+                setBipedHeldLeftItemState(event.renderer, 0);
+            }
         }
+        turnOffSwappedRenderers(event.renderer);
     }
 
-    public void setBipedHeldItemState(RenderPlayer renderPlayer, int state)
+    public void setBipedHeldLeftItemState(RenderPlayer renderPlayer, int state)
     {
         renderPlayer.modelArmorChestplate.heldItemLeft = state;
         renderPlayer.modelBipedMain.heldItemLeft = state;
         renderPlayer.modelArmor.heldItemLeft = state;
     }
 
-    public void renderSubEquippedItem(AbstractClientPlayer player, ModelBiped modelBiped, ItemStack itemStack)
+    public void turnOffSwappedRenderers(RenderPlayer renderer)
+    {
+        ModelBiped[] models = new ModelBiped[] { renderer.modelBipedMain, renderer.modelArmorChestplate, renderer.modelArmor };
+        for (ModelBiped modelBiped : models)
+        {
+            ModelRenderer[] modelRenderers = new ModelRenderer[] {
+                    /*modelBiped.bipedBody, modelBiped.bipedHead,*/
+                    modelBiped.bipedLeftArm, modelBiped.bipedRightArm,
+                    /*modelBiped.bipedLeftLeg, modelBiped.bipedRightLeg*/ };
+
+            for (ModelRenderer modelRenderer : modelRenderers)
+            {
+                if (modelRenderer instanceof ModelRendererSwapWrapper)
+                {
+
+//                    ((ModelRendererSwapWrapper)modelRenderer).useSwappedRenderer = false;
+                }
+            }
+        }
+    }
+
+    public void renderItemInLeftHand(AbstractClientPlayer player, ModelBiped modelBiped, ItemStack itemStack)
     {
         GL11.glPushMatrix();
         modelBiped.bipedLeftArm.postRender(0.0625F);

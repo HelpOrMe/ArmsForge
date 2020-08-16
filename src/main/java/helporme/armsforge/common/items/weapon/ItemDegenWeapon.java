@@ -3,10 +3,10 @@ package helporme.armsforge.common.items.weapon;
 import helporme.armsforge.api.items.IPairWeaponSub;
 import helporme.armsforge.common.items.base.ItemModelWeapon;
 
-public class ItemSixfighterWeapon extends ItemModelWeapon
+public class ItemDegenWeapon extends ItemModelWeapon implements IPairWeaponSub
 {
-    public ItemSixfighterWeapon()
+    public ItemDegenWeapon()
     {
-        super("Sixfighter", ToolMaterial.IRON, "MacesAtlas");
+        super("Degen", ToolMaterial.IRON, "DaggersAtlas");
     }
 }

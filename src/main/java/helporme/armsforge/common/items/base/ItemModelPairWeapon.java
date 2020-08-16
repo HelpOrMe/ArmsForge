@@ -29,7 +29,7 @@ public class ItemModelPairWeapon extends ItemModelWeapon implements IItemModelCo
     }
 
     @Override
-    public ItemStack getSubItem(EntityPlayer player)
+    public ItemStack getSubWeapon(EntityPlayer player)
     {
         if (player.getCurrentEquippedItem().getItem().equals(this))
         {

@@ -9,10 +9,7 @@ public class LeftHandSwapModel extends ModelRendererSwapWrapper
 
     public LeftHandSwapModel(ModelBiped modelBiped)
     {
-        super(modelBiped, 40, 16);
-        originArm = modelBiped.bipedLeftArm;
-        cubeList = originArm.cubeList;
-        setRotationPoint(originArm.rotationPointX, originArm.rotationPointY, originArm.rotationPointZ);
+        super(modelBiped, modelBiped.bipedLeftArm, 40, 16);
     }
 
     @Override
@@ -28,7 +25,7 @@ public class LeftHandSwapModel extends ModelRendererSwapWrapper
         }
         else
         {
-            originArm.render(f);
+            originalModel.render(f);
         }
     }
 }

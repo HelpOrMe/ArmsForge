@@ -5,14 +5,9 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class RightHandSwapModel extends ModelRendererSwapWrapper
 {
-    protected ModelRenderer originArm;
-
     public RightHandSwapModel(ModelBiped modelBiped)
     {
-        super(modelBiped, 40, 16);
-        originArm = modelBiped.bipedRightArm;
-        cubeList = originArm.cubeList;
-        setRotationPoint(originArm.rotationPointX, originArm.rotationPointY, originArm.rotationPointZ);
+        super(modelBiped, modelBiped.bipedRightArm, 40, 16);
     }
 
     @Override
@@ -27,7 +22,7 @@ public class RightHandSwapModel extends ModelRendererSwapWrapper
         }
         else
         {
-            originArm.render(f);
+            originalModel.render(f);
         }
     }
 }

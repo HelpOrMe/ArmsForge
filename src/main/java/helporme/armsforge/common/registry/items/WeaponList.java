@@ -25,6 +25,14 @@ public class WeaponList extends ItemList
                 new ItemDaggerWeapon(),
                 new ItemBattleknifeWeapon(),
                 new ItemDegenWeapon(),
-                new ItemStickTwoHandedWeapon());
+                new ItemStickTwoHandedWeapon(),
+                new ItemDoubleAxeWeapon(),
+                new ItemFullMetalAxeWeapon(),
+                new ItemLongMaceWeapon(),
+                new ItemMintWeapon(),
+                new ItemWarAxeWeapon(),
+                new ItemSmallEstokWeapon(),
+                new ItemBronzeAxeWeapon(),
+                new ItemStaffWeapon());
     }
 }

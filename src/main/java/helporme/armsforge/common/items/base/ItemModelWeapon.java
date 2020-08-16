@@ -3,6 +3,7 @@ package helporme.armsforge.common.items.base;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.client.render.items.ItemWeaponRenderer;
+import helporme.armsforge.common.core.Version;
 import helporme.armsforge.forge.wrapper.render.models.IItemModelContainer;
 import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import helporme.armsforge.forge.wrapper.items.base.ItemSword;
@@ -17,7 +18,7 @@ public class ItemModelWeapon extends ItemSword implements IItemModelContainer
     {
         super(name, material);
         this.atlasTextureStr = atlasTextureStr;
-        setTextureName(null);
+        setTextureName(Version.modid + ":" + "weapons/" + atlasTextureStr);
     }
 
     @Override

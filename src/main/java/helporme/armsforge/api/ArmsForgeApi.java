@@ -23,7 +23,7 @@ public final class ArmsForgeApi
 
     /**
      * Attach a texture to the hammer type. Used in the hammer icon render over the crafting table
-     * @param hammerType Target hammer type. All hammers with size & tir 0 > 3 texture are already attached
+     * @param hammerType Target hammer type. All hammers with size & tier 0 > 3 texture are already attached
      * @param textureName Texture string. Example: "armsforge:items/tools/BighammerIron.png
      */
     public static void attachHammerTexture(HammerType hammerType, String textureName)

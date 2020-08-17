@@ -25,7 +25,6 @@ public class WeaponList extends ItemList
                 new ItemDaggerWeapon(),
                 new ItemBattleknifeWeapon(),
                 new ItemDegenWeapon(),
-                new ItemStickTwoHandedWeapon(),
                 new ItemDoubleAxeWeapon(),
                 new ItemFullMetalAxeWeapon(),
                 new ItemLongMaceWeapon(),
@@ -33,6 +32,11 @@ public class WeaponList extends ItemList
                 new ItemWarAxeWeapon(),
                 new ItemSmallEstokWeapon(),
                 new ItemBronzeAxeWeapon(),
-                new ItemStaffWeapon());
+                new ItemStaffWeapon(),
+                new ItemGlefaWeapon(),
+                new ItemHalberdWeapon(),
+                new ItemNaginataWeapon(),
+                new ItemSpearWeapon(),
+                new ItemLongFlambergWeapon());
     }
 }

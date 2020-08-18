@@ -29,31 +29,8 @@ public class PlayerRenderEventHandler
         if (equippedItemStack != null)
         {
             Item equippedItem = equippedItemStack.getItem();
-            swapModelRenderersByItem(event.renderer, equippedItem);
+            ModelRendererSwapper.swapModelRenderersByItem(event.renderer, equippedItem);
             handlePairWeapon(event, equippedItem);
-        }
-    }
-
-    public void swapModelRenderersByItem(RenderPlayer renderer, Item item)
-    {
-        ModelBiped[] models = new ModelBiped[] { renderer.modelBipedMain, renderer.modelArmorChestplate, renderer.modelArmor };
-        for (ModelBiped modelBiped : models)
-        {
-            if (item instanceof ITwoHandedWeapon)
-            {
-                if (!(modelBiped.bipedRightArm instanceof RightHandSwapModel))
-                {
-                    modelBiped.bipedRightArm = new RightHandSwapModel(modelBiped);
-                }
-                if (!(modelBiped.bipedLeftArm instanceof LeftHandSwapModel))
-                {
-                    modelBiped.bipedLeftArm = new LeftHandSwapModel(modelBiped);
-                }
-                RightHandSwapModel rightHand = (RightHandSwapModel)modelBiped.bipedRightArm;
-                rightHand.useSwappedRenderer = true;
-                LeftHandSwapModel leftHand = (LeftHandSwapModel)modelBiped.bipedLeftArm;
-                leftHand.useSwappedRenderer = true;
-            }
         }
     }
 
@@ -83,18 +60,17 @@ public class PlayerRenderEventHandler
             {
                 setBipedHeldLeftItemState(event.renderer, 0);
             }
-            if (!(equippedItem instanceof ITwoHandedWeapon) && isEnabledSwapperRenderersExists(event.renderer))
+
+            if (!(equippedItem instanceof ITwoHandedWeapon))
             {
-                turnOffSwappedRenderers(event.renderer);
+                setBipedHeldLeftItemState(event.renderer, 0);
+                ModelRendererSwapper.turnOffTwoHandedSwappedRenderers(event.renderer);
             }
         }
         else
         {
             setBipedHeldLeftItemState(event.renderer, 0);
-            if (isEnabledSwapperRenderersExists(event.renderer))
-            {
-                turnOffSwappedRenderers(event.renderer);
-            }
+            ModelRendererSwapper.turnOffTwoHandedSwappedRenderers(event.renderer);
         }
     }
 
@@ -103,46 +79,6 @@ public class PlayerRenderEventHandler
         renderPlayer.modelArmorChestplate.heldItemLeft = state;
         renderPlayer.modelBipedMain.heldItemLeft = state;
         renderPlayer.modelArmor.heldItemLeft = state;
-    }
-
-    public boolean isEnabledSwapperRenderersExists(RenderPlayer renderer)
-    {
-        for (ModelRenderer modelRenderer : getModelRenderersFrom(renderer.modelBipedMain))
-        {
-            if (modelRenderer instanceof ModelRendererSwapWrapper)
-            {
-                ModelRendererSwapWrapper swappedModel = ((ModelRendererSwapWrapper)modelRenderer);
-                if (swappedModel.useSwappedRenderer)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public void turnOffSwappedRenderers(RenderPlayer renderer)
-    {
-        ModelBiped[] models = new ModelBiped[] { renderer.modelBipedMain, renderer.modelArmorChestplate, renderer.modelArmor };
-        for (ModelBiped modelBiped : models)
-        {
-            for (ModelRenderer modelRenderer : getModelRenderersFrom(modelBiped))
-            {
-                if (modelRenderer instanceof ModelRendererSwapWrapper)
-                {
-                    ModelRendererSwapWrapper swappedModel = ((ModelRendererSwapWrapper)modelRenderer);
-                    swappedModel.useSwappedRenderer = false;
-                }
-            }
-        }
-    }
-
-    public ModelRenderer[] getModelRenderersFrom(ModelBiped modelBiped)
-    {
-        return new ModelRenderer[] {
-            /*modelBiped.bipedBody, modelBiped.bipedHead,*/
-                modelBiped.bipedRightArm, modelBiped.bipedLeftArm,
-            /*modelBiped.bipedLeftLeg, modelBiped.bipedRightLeg*/ };
     }
 
     public void renderItemInLeftHand(AbstractClientPlayer player, ModelBiped modelBiped, ItemStack itemStack)

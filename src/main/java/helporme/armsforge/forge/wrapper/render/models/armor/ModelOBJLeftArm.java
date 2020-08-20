@@ -16,7 +16,7 @@ public class ModelOBJLeftArm extends ModelOBJRenderer
     {
         GL11.glPushMatrix();
         GL11.glRotatef(180, 0, 0, 1);
-        GL11.glTranslatef(-0.5f, -1.46f, 0);
+        GL11.glTranslatef(0.4f, -1.46f, 0);
         model.renderOnly("LeftArm");
         GL11.glPopMatrix();
     }

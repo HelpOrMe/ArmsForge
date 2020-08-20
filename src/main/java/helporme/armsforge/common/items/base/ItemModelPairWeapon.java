@@ -1,16 +1,28 @@
 package helporme.armsforge.common.items.base;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.api.items.IPairWeaponMain;
 import helporme.armsforge.api.items.IPairWeaponSub;
+import helporme.armsforge.client.render.items.ItemPairWeaponRenderer;
 import helporme.armsforge.forge.wrapper.render.models.IItemModelContainer;
+import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.IItemRenderer;
 
 public class ItemModelPairWeapon extends ItemModelWeapon implements IItemModelContainer, IPairWeaponMain
 {
     public ItemModelPairWeapon(String name, ToolMaterial material, String textureAtlas)
     {
         super(name, material, textureAtlas);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IItemRenderer getItemRenderer(ModelInfo modelInfo)
+    {
+        return new ItemPairWeaponRenderer(modelInfo);
     }
 
     @Override

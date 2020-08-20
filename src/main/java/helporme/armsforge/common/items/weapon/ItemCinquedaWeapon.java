@@ -14,11 +14,4 @@ public class ItemCinquedaWeapon extends ItemModelPairWeapon
     {
         super("Cinqueda", ToolMaterial.IRON, "SwordsAtlas");
     }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IItemRenderer getItemRenderer(ModelInfo modelInfo)
-    {
-        return new ItemPairWeaponRenderer(modelInfo);
-    }
 }

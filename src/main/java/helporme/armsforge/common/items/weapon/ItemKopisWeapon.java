@@ -1,8 +1,9 @@
 package helporme.armsforge.common.items.weapon;
 
+import helporme.armsforge.common.items.base.ItemModelPairWeapon;
 import helporme.armsforge.common.items.base.ItemModelWeapon;
 
-public class ItemKopisWeapon extends ItemModelWeapon
+public class ItemKopisWeapon extends ItemModelPairWeapon
 {
     public ItemKopisWeapon()
     {

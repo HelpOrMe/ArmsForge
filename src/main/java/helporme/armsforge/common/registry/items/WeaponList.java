@@ -37,6 +37,14 @@ public class WeaponList extends ItemList
                 new ItemHalberdWeapon(),
                 new ItemNaginataWeapon(),
                 new ItemSpearWeapon(),
-                new ItemLongFlambergWeapon());
+                new ItemLongFlambergWeapon(),
+                new ItemBigMaceWeapon(),
+                new ItemBrodexWeapon(),
+                new ItemClaymoreWeapon(),
+                new ItemLongFlambergWeapon(),
+                new ItemPoleaxeWeapon(),
+                new ItemWarHammerWeapon(),
+                new ItemZweihanderWeapon(),
+                new ItemTowerShieldWeapon());
     }
 }

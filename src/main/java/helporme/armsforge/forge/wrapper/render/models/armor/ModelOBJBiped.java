@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
+import scala.tools.nsc.transform.patmat.Logic;
 
 public class ModelOBJBiped extends ModelBiped
 {
@@ -76,10 +77,23 @@ public class ModelOBJBiped extends ModelBiped
     public void render(Entity entity, float f1, float f2, float f3, float f4, float f5, float f6)
     {
         updateBaseState(entity);
-        Minecraft.getMinecraft().renderEngine.bindTexture(modelInfo.texture);
-        GL11.glPushMatrix();
-        super.render(entity, f1, f2, f3, f4, f5, f6);
-        GL11.glPopMatrix();
+
+        if (requiresMultipleRenderPasses())
+        {
+            for (int pass = 0; pass < getRenderPasses(); pass++)
+            {
+                GL11.glPushMatrix();
+                renderPass(entity, pass, f1, f2, f3, f4, f5, f6);
+                GL11.glPopMatrix();
+            }
+        }
+        else
+        {
+            GL11.glPushMatrix();
+            Minecraft.getMinecraft().renderEngine.bindTexture(modelInfo.texture);
+            originRender(entity, f1, f2, f3, f4, f5, f6);
+            GL11.glPopMatrix();
+        }
     }
 
     public void updateBaseState(Entity entity)
@@ -99,6 +113,23 @@ public class ModelOBJBiped extends ModelBiped
                 aimedBow = itemInUse.getItem() instanceof ItemBow;
             }
         }
+    }
+
+    public boolean requiresMultipleRenderPasses()
+    {
+        return false;
+    }
+
+    public int getRenderPasses()
+    {
+        return 1;
+    }
+
+    public void renderPass(Entity entity, int pass, float f1, float f2, float f3, float f4, float f5, float f6) { }
+
+    public void originRender(Entity entity, float f1, float f2, float f3, float f4, float f5, float f6)
+    {
+        super.render(entity, f1, f2, f3, f4, f5, f6);
     }
 
     @Override

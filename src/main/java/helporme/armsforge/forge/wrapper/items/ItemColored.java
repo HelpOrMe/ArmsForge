@@ -16,7 +16,7 @@ public class ItemColored extends ItemWithMeta
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getColorFromItemStack(ItemStack stack, int p_82790_2_)
+    public int getColorFromItemStack(ItemStack stack, int pass)
     {
         return colors[correctMeta(stack.getItemDamage())];
     }

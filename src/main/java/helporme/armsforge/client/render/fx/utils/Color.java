@@ -17,4 +17,12 @@ public class Color
         this.g = g;
         this.b = b;
     }
+
+    public static Color parse(int hex)
+    {
+        return new Color(
+                (hex & 0xFF0000) >> 16,
+                (hex & 0xFF00) >> 8,
+                (hex & 0xFF));
+    }
 }

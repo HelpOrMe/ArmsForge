@@ -74,6 +74,7 @@ public class ItemWeaponRenderer extends ItemRendererBase
         GL11.glRotatef(90, 0, 1, 0);
         GL11.glRotatef(-45, 0, 0, 1);
         GL11.glTranslatef(0, -0.4f, 0);
+        GL11.glScalef(0.6f, 0.6f, 0.6f);
         renderModel();
         GL11.glPopMatrix();
     }

@@ -10,18 +10,30 @@ import net.minecraftforge.client.model.IModelCustom;
 @SideOnly(Side.CLIENT)
 public class ModelInfo
 {
+    public String localTexturePath;
+    public String localModelPath;
     public ResourceLocation texture;
     public IModelCustom model;
 
     public ModelInfo(String localTexturePath, String localModelPath)
     {
+        this.localTexturePath = localTexturePath;
+        this.localModelPath = localModelPath;
+
+        texture = getTexture(localTexturePath);
+        model = getModel(localModelPath);
+    }
+
+    public static ResourceLocation getTexture(String localTexturePath)
+    {
         String texturePath = "textures/" + localTexturePath + ".png";
+        return ResourceManager.get(texturePath);
+    }
+
+    public static IModelCustom getModel(String localModelPath)
+    {
         String modelPath = "models/" + localModelPath + ".obj";
-
-        ResourceLocation textureLocation = ResourceManager.get(texturePath);
         ResourceLocation modelLocation = ResourceManager.get(modelPath);
-
-        texture = textureLocation;
-        model = AdvancedModelLoader.loadModel(modelLocation);
+        return AdvancedModelLoader.loadModel(modelLocation);
     }
 }

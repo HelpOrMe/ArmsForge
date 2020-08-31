@@ -11,6 +11,9 @@ eclipse/
 .gradle/
 *.db
 
+# Blender
+*.mtl
+
 # BlueJ files
 *.ctxt
 

@@ -3,24 +3,24 @@ package helporme.armsforge.api.blocks.tiles.table;
 public class CraftingTableType
 {
     public String name;
-    public int tir;
-    public int[] subTirs = new int[0];
+    public int tier;
+    public int[] subtiers = new int[0];
 
     public CraftingTableType()
     {
 
     }
 
-    public CraftingTableType(String name, int tir, int... subTirs)
+    public CraftingTableType(String name, int tier, int... subtiers)
     {
-        this(name, tir);
-        this.subTirs = subTirs;
+        this(name, tier);
+        this.subtiers = subtiers;
     }
 
-    public CraftingTableType(String name, int tir)
+    public CraftingTableType(String name, int tier)
     {
         this.name = name;
-        this.tir = tir;
+        this.tier = tier;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class CraftingTableType
         if (!(object instanceof CraftingTableType)) return false;
 
         CraftingTableType tableType = (CraftingTableType)object;
-        return nameEquals(tableType) && tirWithSubTirsEquals(tableType);
+        return nameEquals(tableType) && tierWithSubtiersEquals(tableType);
     }
 
     public boolean nameEquals(CraftingTableType tableType)
@@ -38,33 +38,33 @@ public class CraftingTableType
         return name.equals(tableType.name);
     }
 
-    public boolean tirWithSubTirsEquals(CraftingTableType tableType)
+    public boolean tierWithSubtiersEquals(CraftingTableType tableType)
     {
-        for (int subTir : subTirs)
+        for (int subtier : subtiers)
         {
-            if (subTir == tir)
+            if (subtier == tier)
             {
                 return true;
             }
         }
-        return tirEquals(tableType);
+        return tierEquals(tableType);
     }
 
-    public boolean tirEquals(CraftingTableType tableType)
+    public boolean tierEquals(CraftingTableType tableType)
     {
-        return tableType.tir == tir;
+        return tableType.tier == tier;
     }
 
     @Override
     public int hashCode()
     {
         int hash = name.hashCode();
-        return ((hash << 5) + hash) ^ tir;
+        return ((hash << 5) + hash) ^ tier;
     }
 
     @Override
     public String toString()
     {
-        return name + "@" + tir;
+        return name + "@" + tier;
     }
 }

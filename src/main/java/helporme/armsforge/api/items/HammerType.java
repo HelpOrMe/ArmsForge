@@ -5,12 +5,12 @@ import net.minecraft.nbt.NBTTagCompound;
 public class HammerType
 {
     public final int size;
-    public final int tir;
+    public final int tier;
 
-    public HammerType(int size, int tir)
+    public HammerType(int size, int tier)
     {
         this.size = size;
-        this.tir = tir;
+        this.tier = tier;
     }
 
     @Override
@@ -20,31 +20,31 @@ public class HammerType
         if (!(object instanceof HammerType)) return false;
 
         HammerType hammerType = (HammerType)object;
-        return size == hammerType.size && tir == hammerType.tir;
+        return size == hammerType.size && tier == hammerType.tier;
     }
 
     @Override
     public int hashCode()
     {
-        return ((size << 5) + size) ^ tir;
+        return ((size << 5) + size) ^ tier;
     }
 
     @Override
     public String toString()
     {
-        return "(" + size + ", " + tir + ")";
+        return "(" + size + ", " + tier + ")";
     }
 
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
-        nbtTagCompound.setInteger("tir", tir);
+        nbtTagCompound.setInteger("tier", tier);
         nbtTagCompound.setInteger("size", size);
     }
 
     public static HammerType fromNBT(NBTTagCompound nbtTagCompound)
     {
         int size = nbtTagCompound.getInteger("size");
-        int tir = nbtTagCompound.getInteger("tir");
-        return new HammerType(size, tir);
+        int tier = nbtTagCompound.getInteger("tier");
+        return new HammerType(size, tier);
     }
 }

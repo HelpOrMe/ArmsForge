@@ -37,15 +37,35 @@ public class ItemArmorDyed extends ItemArmorBase
     @SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack stack, int pass)
     {
+        NBTTagCompound displayTagCompound = getColorTag(stack);
+        if (displayTagCompound != null)
+        {
+            return displayTagCompound.getInteger("Color");
+        }
+        return 0xffffff;
+    }
+
+    public void setColor(ItemStack stack, int color)
+    {
+        NBTTagCompound displayTagCompound = getColorTag(stack);
+        if (displayTagCompound != null)
+        {
+            displayTagCompound.setInteger("Color", color);
+        }
+        throw new IllegalArgumentException("Unable to set color from " + stack.toString());
+    }
+
+    protected NBTTagCompound getColorTag(ItemStack stack)
+    {
         NBTTagCompound stackTagCompound = stack.getTagCompound();
         if (stackTagCompound != null && stackTagCompound.hasKey("display", 10))
         {
             NBTTagCompound displayTagCompound = stackTagCompound.getCompoundTag("display");
             if (displayTagCompound.hasKey("Color", 3))
             {
-                return displayTagCompound.getInteger("Color");
+                return displayTagCompound;
             }
         }
-        return 0xffffff;
+        return null;
     }
 }

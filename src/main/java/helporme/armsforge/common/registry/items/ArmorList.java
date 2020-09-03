@@ -13,5 +13,6 @@ public class ArmorList extends ItemList
                 new UnderArmor(3, 2), new UnderArmor(4, 3),
                 new SandArmor(4, 0), new SandArmor(4, 1),
                 new SandArmor(3, 2), new SandArmor(4, 3));
+
     }
 }

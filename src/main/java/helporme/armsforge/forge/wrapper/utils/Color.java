@@ -30,27 +30,27 @@ public class Color
 
     public int parseToHex()
     {
-        return (((int)(r * 255)&0xff) << 16) | (((int)(g * 255)&0xff) << 8) | ((int)(b * 255)&0xff);
+        return (((int)(r * 255) & 0xff) << 16) | (((int)(g * 255) & 0xff) << 8) | ((int)(b * 255) & 0xff);
     }
 
     public void add(Color color)
     {
-        r = (r + color.r) % 1;
-        g = (g + color.g) % 1;
-        b = (b + color.b) % 1;
+        r += color.r;
+        g += color.g;
+        b += color.b;
     }
 
     public void min(Color color)
     {
-        r = (r - color.r) % 1;
-        g = (g - color.g) % 1;
-        b = (b - color.b) % 1;
+        r -= color.r;
+        g -= color.g;
+        b -= color.b;
     }
 
     public void divide(float n)
     {
-        r = (r / n) % 1;
-        g = (g / n) % 1;
-        b = (b / n) % 1;
+        r = r / n;
+        g = g / n;
+        b = b / n;
     }
 }

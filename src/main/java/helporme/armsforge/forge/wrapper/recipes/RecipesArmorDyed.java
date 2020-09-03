@@ -5,70 +5,52 @@ import helporme.armsforge.forge.wrapper.utils.Color;
 import net.minecraft.block.BlockColored;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.world.World;
+import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
-public class RecipesArmorDyed implements IRecipe
+public class RecipesArmorDyed extends RecipesItemConnection
 {
-    @Override
-    public boolean matches(InventoryCrafting inventory, World world)
+    public RecipesArmorDyed()
     {
-        ArmorWithDyes armorWithDyes = getArmorAndDyesFromInventory(inventory);
-        return armorWithDyes.armorStack != null && armorWithDyes.dyes.size() > 0;
+        super(ItemArmorDyed.class, Items.dye);
     }
 
     @Override
-    public ItemStack getCraftingResult(InventoryCrafting inventory)
+    public ItemStack getCraftingResult(ItemConnection itemConnection)
     {
-        ArmorWithDyes armorWithDyes = getArmorAndDyesFromInventory(inventory);
-        ItemStack armorStack = armorWithDyes.armorStack;
-        HashSet<ItemStack> dyes = armorWithDyes.dyes;
-
-        Color middleColor = new Color();
-        for (ItemStack dye : dyes)
-        {
-            middleColor.add(getColorFromDye(dye));
-        }
-        middleColor.divide(dyes.size());
-
+        ItemStack armorStack = itemConnection.majorStack;
         ItemArmorDyed armorItem = (ItemArmorDyed)armorStack.getItem();
-        armorItem.setColor(armorStack, middleColor.parseToHex());
-        return armorStack;
+
+        Color color = getColorFromItemConnection(itemConnection);
+        ItemStack armorStackCopy = armorStack.copy();
+
+        NBTTagCompound tagCompound = new NBTTagCompound();
+        tagCompound.setTag("display", new NBTTagCompound());
+        armorStackCopy.setTagCompound(tagCompound);
+
+        armorItem.setColor(armorStackCopy, color.parseToHex());
+        return armorStackCopy;
     }
 
-    protected ArmorWithDyes getArmorAndDyesFromInventory(InventoryCrafting inventory)
+    protected Color getColorFromItemConnection(ItemConnection itemConnection)
     {
-        ItemStack armorStack = null;
-        HashSet<ItemStack> dyes = new HashSet<>();
+        ItemStack armorStack = itemConnection.majorStack;
+        ItemArmorDyed armorItem = (ItemArmorDyed)armorStack.getItem();
+        ArrayList<ItemStack> dyes = itemConnection.minorStacks;
 
-        for (int i = 0; i < inventory.getSizeInventory(); ++i)
+        if (dyes.size() > 1)
         {
-            ItemStack stack = inventory.getStackInSlot(i);
-
-            if (stack != null)
+            Color color = Color.parseFromHex(armorItem.getColorFromItemStack(armorStack, 0));
+            for (ItemStack dye : dyes)
             {
-                Item item = stack.getItem();
-                if (item instanceof ItemArmorDyed && armorStack == null)
-                {
-                    armorStack = stack;
-                }
-                else if (item == Items.dye)
-                {
-                    dyes.add(stack);
-                }
-                else
-                {
-                    return null;
-                }
+                color.add(getColorFromDye(dye));
             }
+            color.divide(dyes.size() + 1);
+            return color;
         }
-
-        return new ArmorWithDyes(armorStack, dyes);
+        return getColorFromDye(dyes.get(0));
     }
 
     protected Color getColorFromDye(ItemStack dye)
@@ -76,27 +58,5 @@ public class RecipesArmorDyed implements IRecipe
         // ref: net/minecraft/item/crafting/RecipesArmorDyes.java
         float[] colorList = EntitySheep.fleeceColorTable[BlockColored.func_150032_b(dye.getItemDamage())];
         return new Color(colorList[0], colorList[1], colorList[2]);
-    }
-
-    @Override
-    public int getRecipeSize() {
-        return 10;
-    }
-
-    @Override
-    public ItemStack getRecipeOutput() {
-        return null;
-    }
-
-    protected class ArmorWithDyes
-    {
-        public ItemStack armorStack;
-        public HashSet<ItemStack> dyes;
-
-        public ArmorWithDyes(ItemStack armorStack, HashSet<ItemStack> dyes)
-        {
-            this.armorStack = armorStack;
-            this.dyes = dyes;
-        }
     }
 }

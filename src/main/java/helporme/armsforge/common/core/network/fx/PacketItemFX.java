@@ -35,7 +35,6 @@ public class PacketItemFX extends PacketFX implements IMessageHandler<PacketItem
         {
             buffer.writeChar(convertedItem.charAt(i));
         }
-
     }
 
     @Override

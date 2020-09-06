@@ -44,19 +44,6 @@ public final class ItemsRegistry
         }
     }
 
-    public static Item getItemByName(String name)
-    {
-        for (ItemList itemList : itemLists)
-        {
-            Map<String, Item> items = itemList.getItems();
-            if (items.containsKey(name))
-            {
-                return items.get(name);
-            }
-        }
-        throw new IllegalArgumentException("Can't get an item with name: " + name);
-    }
-
     public static Collection<Item> getAllItems()
     {
         List<Item> allItems = new ArrayList<>();

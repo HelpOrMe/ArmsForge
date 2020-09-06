@@ -1,20 +1,11 @@
 package helporme.armsforge.forge.wrapper.render.models.armor;
 
-import helporme.armsforge.client.render.fx.utils.Color;
+import helporme.armsforge.forge.wrapper.utils.Color;
 import helporme.armsforge.forge.wrapper.render.models.ModelInfo;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBow;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL44;
-
-import java.nio.IntBuffer;
 
 public class ModelOBJBipedDyed extends ModelOBJBiped
 {
@@ -29,7 +20,7 @@ public class ModelOBJBipedDyed extends ModelOBJBiped
 
     public void setColor(int color)
     {
-        this.color = Color.parse(color);
+        this.color = Color.parseFromHex(color);
     }
 
     @Override

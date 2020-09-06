@@ -4,7 +4,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.armsforge.api.utils.Vector3;
-import helporme.armsforge.client.render.fx.utils.Color;
+import helporme.armsforge.forge.wrapper.utils.Color;
 import helporme.armsforge.common.core.network.fx.PacketFX;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.tileentity.TileEntity;

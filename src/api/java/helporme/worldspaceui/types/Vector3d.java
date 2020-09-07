@@ -10,44 +10,13 @@ public class Vector3d
     public double y;
     public double z;
 
+    public Vector3d() { }
+
     public Vector3d(double x, double y, double z)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-    }
-
-    public static Vector3d lerp(Vector3d a, Vector3d b, double t)
-    {
-        return a.add(b.minus(a).multiply(t));
-    }
-
-    public static double distance(Vector3d a, Vector3d b)
-    {
-        return a.minus(b).sqrMagnitude();
-    }
-
-    public static Vector3d getNextRandomOffset(Random random, double max)
-    {
-        double x = random.nextDouble() % max * (random.nextInt(2) == 0 ? -1 : 1);
-        double y = random.nextDouble() % max;
-        double z = random.nextDouble() % max * (random.nextInt(2) == 0 ? -1 : 1);
-        return new Vector3d(x, y, z);
-    }
-
-    public static Vector3d min(Vector3d a, Vector3d b)
-    {
-        return new Vector3d(Math.min(a.x, b.x), Math.min(a.y, b.y), Math.min(a.z, b.z));
-    }
-
-    public static Vector3d max(Vector3d a, Vector3d b)
-    {
-        return new Vector3d(Math.max(a.x, b.x), Math.max(a.y, b.y), Math.max(a.z, b.z));
-    }
-
-    public double sqrMagnitude()
-    {
-        return MathHelper.sqrt_double(x * x + y * y + z * z);
     }
 
     public Vector3d divide(double value)
@@ -73,6 +42,11 @@ public class Vector3d
     public String toString()
     {
         return "Vector3(" + x + ", " + y + ", " + z + ")";
+    }
+
+    public Vector3d copy()
+    {
+        return new Vector3d(x, y, z);
     }
 
     @Override

@@ -4,8 +4,8 @@ import helporme.worldspaceui.WorldSpaceUI;
 
 public final class UILayout
 {
-    private static UICallMode mode;
     private static UI ui;
+    private static UICallMode mode;
 
     public static void beginUICalls(UI ui, UICallMode mode)
     {
@@ -13,13 +13,23 @@ public final class UILayout
         {
             WorldSpaceUI.logger.error(
                     "Illegal access to beginUICalls. Current UI is \"" +
-                    UILayout.ui.getClass().getName() + ":" + ui.getUniqueId() +
+                    UILayout.ui.getClass().getName() + ":" + ui.uniqueId +
                     "\" with mode \"" + UILayout.mode + "\"");
             return;
         }
 
-        UILayout.mode = mode;
         UILayout.ui = ui;
+        UILayout.mode = mode;
+    }
+
+    public static UI getCurrentUI()
+    {
+        return ui;
+    }
+
+    public static UICallMode getCurrentMode()
+    {
+        return mode;
     }
 
     public static void endUICalls()

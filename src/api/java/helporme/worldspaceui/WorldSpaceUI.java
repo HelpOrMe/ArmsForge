@@ -32,28 +32,26 @@ public class WorldSpaceUI
     }
 
     @SideOnly(Side.SERVER)
-    public static void openUI(UI ui, TargetFilter targetFilter, boolean updateOnServer)
+    public static void openUI(UI ui, ITargetFilter targetFilter)
     {
         network.sendUIOpen(ui, targetFilter);
-        map.uiLocations.put(ui.location, ui);
-        if (updateOnServer)
-        {
-            map.serverUIUpdatePool.put(ui.getUniqueId(), ui);
-        }
+        map.locationToUISet.put(ui.location, ui.uniqueId);
+        map.serverUIUpdatePool.put(ui.uniqueId, ui);
     }
 
     @SideOnly(Side.SERVER)
-    public static void closeUI(int uiUniqueId, TargetFilter targetFilter)
+    public static void closeUI(int uiUniqueId, ITargetFilter targetFilter)
     {
         network.sendUIClose(uiUniqueId, targetFilter);
+        map.locationToUISet.remove(map.serverUIUpdatePool.get(uiUniqueId).location, uiUniqueId);
         map.serverUIUpdatePool.remove(uiUniqueId);
     }
 
     @SideOnly(Side.CLIENT)
     public static void openUI(UI ui)
     {
-        map.renderPool.put(ui.getUniqueId(), ui);
-        map.clientUIUpdatePool.put(ui.getUniqueId(), ui);
+        map.renderPool.put(ui.uniqueId, ui);
+        map.clientUIUpdatePool.put(ui.uniqueId, ui);
     }
 
     @SideOnly(Side.CLIENT)

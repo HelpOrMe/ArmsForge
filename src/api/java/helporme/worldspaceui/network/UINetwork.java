@@ -2,7 +2,7 @@ package helporme.worldspaceui.network;
 
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
-import helporme.worldspaceui.TargetFilter;
+import helporme.worldspaceui.ITargetFilter;
 import helporme.worldspaceui.WorldSpaceUI;
 import helporme.worldspaceui.ui.UI;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -23,9 +23,11 @@ public class UINetwork extends SimpleNetworkWrapper
     {
         registerMessage(OpenUIPacket.class, OpenUIPacket.class, lastId++, Side.CLIENT);
         registerMessage(CloseUIPacket.class, CloseUIPacket.class, lastId++, Side.CLIENT);
+        registerMessage(SyncUILocationPacket.class, SyncUILocationPacket.class, lastId++, Side.CLIENT);
+        registerMessage(SyncUITargetPacket.class, SyncUITargetPacket.class, lastId++, Side.CLIENT);
     }
 
-    public void sendUIOpen(UI ui, TargetFilter targetFilter)
+    public void sendUIOpen(UI ui, ITargetFilter targetFilter)
     {
         WorldServer world = DimensionManager.getWorld(ui.location.dimension);
         double range = targetFilter.getRange();
@@ -37,12 +39,12 @@ public class UINetwork extends SimpleNetworkWrapper
             if (targetFilter.canSendTo(player))
             {
                 sendTo(new OpenUIPacket(ui), player);
-                WorldSpaceUI.map.uiPlayers.put(ui.getUniqueId(), player);
+                WorldSpaceUI.map.uiPlayers.put(ui.uniqueId, player);
             }
         }
     }
 
-    public void sendUIClose(int uiUniqueIndex, TargetFilter targetFilter)
+    public void sendUIClose(int uiUniqueIndex, ITargetFilter targetFilter)
     {
         EntityPlayerMP[] uiPlayers = WorldSpaceUI.map.uiPlayers.get(uiUniqueIndex).toArray(new EntityPlayerMP[0]);
         for (EntityPlayerMP player : uiPlayers)
@@ -52,6 +54,30 @@ public class UINetwork extends SimpleNetworkWrapper
                 sendTo(new CloseUIPacket(uiUniqueIndex), player);
             }
             WorldSpaceUI.map.uiPlayers.remove(uiUniqueIndex, player);
+        }
+    }
+
+    public void syncUILocation(UI ui)
+    {
+        for (EntityPlayerMP player : WorldSpaceUI.map.uiPlayers.get(ui.uniqueId))
+        {
+            sendTo(new SyncUILocationPacket(ui.uniqueId, ui.location), player);
+        }
+    }
+
+    public void syncUITarget(UI ui)
+    {
+        for (EntityPlayerMP player : WorldSpaceUI.map.uiPlayers.get(ui.uniqueId))
+        {
+            sendTo(new SyncUITargetPacket(ui.uniqueId, ui.target), player);
+        }
+    }
+
+    public void syncUITransform(UI ui)
+    {
+        for (EntityPlayerMP player : WorldSpaceUI.map.uiPlayers.get(ui.uniqueId))
+        {
+            sendTo(new SyncUITransformPacket(ui.uniqueId, ui.transform), player);
         }
     }
 }

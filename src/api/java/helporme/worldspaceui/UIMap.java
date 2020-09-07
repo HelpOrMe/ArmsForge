@@ -13,7 +13,9 @@ import java.util.Map;
 
 public class UIMap
 {
+    protected int lastUniqueUIId = -1;
     protected int lastUIid = -1;
+
     public Map<Integer, String> uiIdToUIClassName = new HashMap<>();
     public Map<String, Integer> uiClassToUIid = new HashMap<>();
 
@@ -23,7 +25,7 @@ public class UIMap
     public Map<Integer, UI> clientUIUpdatePool = new HashMap<>();
 
     @SideOnly(Side.SERVER)
-    public Multimap<UILocation, UI> uiLocations = HashMultimap.create();
+    public Multimap<UILocation, Integer> locationToUISet = HashMultimap.create();
     @SideOnly(Side.SERVER)
     public Multimap<Integer, EntityPlayerMP> uiPlayers = HashMultimap.create();
     @SideOnly(Side.SERVER)
@@ -34,5 +36,11 @@ public class UIMap
         lastUIid++;
         uiIdToUIClassName.put(lastUIid, UIClassName);
         uiClassToUIid.put(UIClassName, lastUIid);
+    }
+
+    public int getNextUniqueUIId()
+    {
+        lastUniqueUIId++;
+        return lastUniqueUIId;
     }
 }

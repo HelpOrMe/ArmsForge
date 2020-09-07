@@ -1,6 +1,8 @@
 package helporme.worldspaceui.ui;
 
-import helporme.worldspaceui.types.Transform;
+import helporme.worldspaceui.ui.Transform;
+import helporme.worldspaceui.ui.UI;
+import helporme.worldspaceui.ui.UICallMode;
 
 public abstract class UIModule
 {

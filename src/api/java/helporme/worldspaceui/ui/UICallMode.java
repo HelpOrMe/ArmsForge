@@ -1,9 +1,9 @@
 package helporme.worldspaceui.ui;
 
-public enum UILayoutMode
+public enum UICallMode
 {
     NONE,
-    CLIENT_TICK,
     SERVER_TICK,
+    CLIENT_TICK,
     RENDER
 }

@@ -1,17 +1,18 @@
 package helporme.worldspaceui.ui;
 
-import cpw.mods.fml.relauncher.Side;
+import helporme.worldspaceui.types.Transform;
 
 public abstract class UI
 {
-    public UILocation location;
+    public final UILocation location;
+    public final Transform transform = new Transform();
 
     public UI(UILocation location)
     {
         this.location = location;
     }
 
-    public void onUI(Side side) { }
+    public void onUI(UICallMode mode) { }
 
     public abstract int getUniqueId();
 }

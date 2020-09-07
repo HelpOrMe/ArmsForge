@@ -7,6 +7,7 @@ import helporme.worldspaceui.WorldSpaceUI;
 import helporme.worldspaceui.ui.UI;
 import helporme.worldspaceui.ui.UILocation;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.nbt.NBTTagCompound;
 
 import java.lang.reflect.Constructor;
 
@@ -26,6 +27,7 @@ public class OpenUIPacket implements IMessage, IMessageHandler<OpenUIPacket, IMe
         buf.writeInt(ui.location.chunkX);
         buf.writeInt(ui.location.chunkZ);
         buf.writeInt(ui.location.dimension);
+        NBTTagCompound nbt = new NBTTagCompound();
     }
 
     @Override

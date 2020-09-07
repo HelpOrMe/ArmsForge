@@ -2,7 +2,7 @@ package helporme.worldspaceui.network;
 
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
-import helporme.worldspaceui.ITargetFilter;
+import helporme.worldspaceui.TargetFilter;
 import helporme.worldspaceui.WorldSpaceUI;
 import helporme.worldspaceui.ui.UI;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -25,7 +25,7 @@ public class UINetwork extends SimpleNetworkWrapper
         registerMessage(CloseUIPacket.class, CloseUIPacket.class, lastId++, Side.CLIENT);
     }
 
-    public void sendUIOpen(UI ui, ITargetFilter targetFilter)
+    public void sendUIOpen(UI ui, TargetFilter targetFilter)
     {
         WorldServer world = DimensionManager.getWorld(ui.location.dimension);
         double range = targetFilter.getRange();
@@ -42,7 +42,7 @@ public class UINetwork extends SimpleNetworkWrapper
         }
     }
 
-    public void sendUIClose(int uiUniqueIndex, ITargetFilter targetFilter)
+    public void sendUIClose(int uiUniqueIndex, TargetFilter targetFilter)
     {
         EntityPlayerMP[] uiPlayers = WorldSpaceUI.map.uiPlayers.get(uiUniqueIndex).toArray(new EntityPlayerMP[0]);
         for (EntityPlayerMP player : uiPlayers)

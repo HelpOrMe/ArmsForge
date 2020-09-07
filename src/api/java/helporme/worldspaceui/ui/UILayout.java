@@ -4,10 +4,10 @@ import helporme.worldspaceui.WorldSpaceUI;
 
 public final class UILayout
 {
-    private static UILayoutMode mode;
+    private static UICallMode mode;
     private static UI ui;
 
-    public static void beginUICalls(UI ui, UILayoutMode mode)
+    public static void beginUICalls(UI ui, UICallMode mode)
     {
         if (UILayout.ui != null)
         {
@@ -25,6 +25,6 @@ public final class UILayout
     public static void endUICalls()
     {
         ui = null;
-        mode = UILayoutMode.NONE;
+        mode = UICallMode.NONE;
     }
 }

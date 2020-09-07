@@ -4,6 +4,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.worldspaceui.event.TickHandler;
+import helporme.worldspaceui.event.WorldRenderHandler;
 import helporme.worldspaceui.network.UINetwork;
 import helporme.worldspaceui.ui.UI;
 import net.minecraftforge.common.MinecraftForge;
@@ -13,14 +14,16 @@ import org.apache.logging.log4j.Logger;
 
 public class WorldSpaceUI
 {
-    public static Logger logger = LogManager.getLogger("WorldSpaceUI");
-    public static UIMap map = new UIMap();
+    public static final Logger logger = LogManager.getLogger("WorldSpaceUI");
+    public static final UIMap map = new UIMap();
+
     @SideOnly(Side.SERVER)
-    public static UINetwork network = new UINetwork();
+    public static final UINetwork network = new UINetwork();
 
     public static void register()
     {
-       FMLCommonHandler.instance().bus().register(new TickHandler());
+        FMLCommonHandler.instance().bus().register(new TickHandler());
+        MinecraftForge.EVENT_BUS.register(new WorldRenderHandler());
     }
 
     public static void registerUI(String uiClassName)
@@ -29,7 +32,7 @@ public class WorldSpaceUI
     }
 
     @SideOnly(Side.SERVER)
-    public static void openUI(UI ui, ITargetFilter targetFilter, boolean updateOnServer)
+    public static void openUI(UI ui, TargetFilter targetFilter, boolean updateOnServer)
     {
         network.sendUIOpen(ui, targetFilter);
         map.uiLocations.put(ui.location, ui);
@@ -40,7 +43,7 @@ public class WorldSpaceUI
     }
 
     @SideOnly(Side.SERVER)
-    public static void closeUI(int uiUniqueId, ITargetFilter targetFilter)
+    public static void closeUI(int uiUniqueId, TargetFilter targetFilter)
     {
         network.sendUIClose(uiUniqueId, targetFilter);
         map.serverUIUpdatePool.remove(uiUniqueId);

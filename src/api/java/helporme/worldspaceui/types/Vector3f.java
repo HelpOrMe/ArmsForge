@@ -41,7 +41,7 @@ public class Vector3f
 
     public String toString()
     {
-        return "Vector3(" + x + ", " + y + ", " + z + ")";
+        return "Vector3f(" + x + ", " + y + ", " + z + ")";
     }
 
     public Vector3f copy()

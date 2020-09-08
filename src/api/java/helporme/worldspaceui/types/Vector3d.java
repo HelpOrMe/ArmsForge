@@ -1,9 +1,5 @@
 package helporme.worldspaceui.types;
 
-import net.minecraft.util.MathHelper;
-
-import java.util.Random;
-
 public class Vector3d
 {
     public double x;
@@ -41,7 +37,7 @@ public class Vector3d
 
     public String toString()
     {
-        return "Vector3(" + x + ", " + y + ", " + z + ")";
+        return "Vector3d(" + x + ", " + y + ", " + z + ")";
     }
 
     public Vector3d copy()

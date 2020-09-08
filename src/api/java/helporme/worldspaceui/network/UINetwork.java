@@ -2,13 +2,14 @@ package helporme.worldspaceui.network;
 
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
-import helporme.worldspaceui.ITargetFilter;
 import helporme.worldspaceui.WorldSpaceUI;
 import helporme.worldspaceui.ui.UI;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
+
+import java.util.List;
 
 public class UINetwork extends SimpleNetworkWrapper
 {
@@ -33,14 +34,17 @@ public class UINetwork extends SimpleNetworkWrapper
         double range = targetFilter.getRange();
         AxisAlignedBB boundingBox =  AxisAlignedBB.getBoundingBox(-range, -range, -range, range, range, range);
 
-        for (Object obj : world.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox))
+        List BBEntities = world.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox);
+        EntityPlayerMP[] players = (EntityPlayerMP[])BBEntities.toArray(new EntityPlayerMP[0]);
+        sendUIOpen(ui, players);
+    }
+
+    public void sendUIOpen(UI ui, EntityPlayerMP... players)
+    {
+        for (EntityPlayerMP player : players)
         {
-            EntityPlayerMP player = (EntityPlayerMP)obj;
-            if (targetFilter.canSendTo(player))
-            {
-                sendTo(new OpenUIPacket(ui), player);
-                WorldSpaceUI.map.uiPlayers.put(ui.uniqueId, player);
-            }
+            sendTo(new OpenUIPacket(ui), player);
+            WorldSpaceUI.map.uiPlayers.put(ui.uniqueId, player);
         }
     }
 

@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import helporme.worldspaceui.event.TickHandler;
 import helporme.worldspaceui.event.WorldRenderHandler;
+import helporme.worldspaceui.network.ITargetFilter;
 import helporme.worldspaceui.network.UINetwork;
 import helporme.worldspaceui.ui.UI;
 import net.minecraftforge.common.MinecraftForge;

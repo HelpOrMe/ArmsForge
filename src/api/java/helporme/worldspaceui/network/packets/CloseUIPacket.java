@@ -1,4 +1,4 @@
-package helporme.worldspaceui.network;
+package helporme.worldspaceui.network.packets;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -7,6 +7,8 @@ import helporme.worldspaceui.WorldSpaceUI;
 
 public class CloseUIPacket extends UIPacket implements IMessageHandler<CloseUIPacket, IMessage>
 {
+    public CloseUIPacket() { }
+
     public CloseUIPacket(int uniqueUIId)
     {
         super(uniqueUIId);

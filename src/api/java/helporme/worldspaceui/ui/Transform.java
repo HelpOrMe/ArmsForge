@@ -7,18 +7,11 @@ import io.netty.buffer.ByteBuf;
 
 public class Transform implements IMessage
 {
-    public Vector3d position = new Vector3d();
-    public Vector3f scale = new Vector3f();
-    public Vector3f rotation = new Vector3f();
+    public final Vector3d position = new Vector3d();
+    public final Vector3f scale = new Vector3f();
+    public final Vector3f rotation = new Vector3f();
 
     public Transform() {  }
-
-    public Transform(Vector3d position, Vector3f scale, Vector3f rotation)
-    {
-        this.position = position;
-        this.scale = scale;
-        this.rotation = rotation;
-    }
 
     @Override
     public void toBytes(ByteBuf buf)
@@ -54,8 +47,8 @@ public class Transform implements IMessage
 
     public void copyValues(Transform transform)
     {
-        position = transform.position.copy();
-        scale = transform.scale.copy();
-        rotation = transform.rotation.copy();
+        position.copyValues(transform.position);
+        scale.copyValues(transform.scale);
+        rotation.copyValues(transform.rotation);
     }
 }

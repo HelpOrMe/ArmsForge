@@ -1,9 +1,5 @@
 package helporme.worldspaceui.types;
 
-import net.minecraft.util.MathHelper;
-
-import java.util.Random;
-
 public class Vector3f
 {
     public float x;
@@ -44,9 +40,11 @@ public class Vector3f
         return "Vector3f(" + x + ", " + y + ", " + z + ")";
     }
 
-    public Vector3f copy()
+    public void copyValues(Vector3f vector)
     {
-        return new Vector3f(x, y, z);
+        x = vector.x;
+        y = vector.y;
+        z = vector.z;
     }
 
     @Override

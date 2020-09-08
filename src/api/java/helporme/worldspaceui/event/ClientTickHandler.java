@@ -1,16 +1,16 @@
 package helporme.worldspaceui.event;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import helporme.worldspaceui.WorldSpaceUI;
 import helporme.worldspaceui.ui.UICallMode;
 import helporme.worldspaceui.ui.UILayout;
-import net.minecraftforge.client.event.RenderWorldEvent;
 
-public class WorldRenderHandler
+public class ClientTickHandler
 {
     @SubscribeEvent
-    public void onWorldRender(RenderWorldEvent.Post event)
+    public void onClientTick(TickEvent.ClientTickEvent event)
     {
-        UILayout.tick(WorldSpaceUI.map.uiUpdatePool.values(), UICallMode.RENDER);
+        UILayout.tick(WorldSpaceUI.map.uiUpdatePool.values(), UICallMode.CLIENT_TICK);
     }
 }

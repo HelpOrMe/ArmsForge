@@ -1,43 +1,46 @@
 package helporme.worldspaceui.ui;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import helporme.worldspaceui.types.Vector3i;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.world.chunk.Chunk;
 
 public class UILocation implements IMessage
 {
-    public int chunkX;
-    public int chunkZ;
+    public Vector3i chunkPosition;
     public int dimension;
 
     public UILocation() { }
 
-    public UILocation(int chunkX, int chunkZ, int dimension)
+    public UILocation(Chunk chunk)
     {
-        this.chunkX = chunkX;
-        this.chunkZ = chunkZ;
+        this(new Vector3i(chunk.xPosition, 0, chunk.zPosition), chunk.worldObj.provider.dimensionId);
+    }
+
+    public UILocation(Vector3i chunkPosition, int dimension)
+    {
+        this.chunkPosition = chunkPosition;
         this.dimension = dimension;
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
-        buf.writeInt(chunkX);
-        buf.writeInt(chunkZ);
+        buf.writeInt(chunkPosition.x);
+        buf.writeInt(chunkPosition.z);
         buf.writeInt(dimension);
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
-        chunkX = buf.readInt();
-        chunkZ = buf.readInt();
+        chunkPosition = new Vector3i(buf.readInt(), 0, buf.readInt());
         dimension = buf.readInt();
     }
 
     public void copyValues(UILocation location)
     {
-        chunkX = location.chunkX;
-        chunkZ = location.chunkZ;
+        chunkPosition = location.chunkPosition;
         dimension = location.dimension;
     }
 
@@ -48,12 +51,12 @@ public class UILocation implements IMessage
         if (!(object instanceof UILocation)) return false;
 
         UILocation location = (UILocation)object;
-        return chunkX == location.chunkX && chunkZ == location.chunkZ && dimension == location.dimension;
+        return chunkPosition == location.chunkPosition && dimension == location.dimension;
     }
 
     @Override
     public int hashCode()
     {
-        return chunkX ^ chunkZ << 2 ^ dimension >> 2;
+        return chunkPosition.x ^ chunkPosition.z << 2 ^ dimension >> 2;
     }
 }

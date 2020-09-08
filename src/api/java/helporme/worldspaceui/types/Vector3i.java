@@ -40,9 +40,11 @@ public class Vector3i
         return "Vector3i(" + x + ", " + y + ", " + z + ")";
     }
 
-    public Vector3i copy()
+    public void copyValues(Vector3i vector)
     {
-        return new Vector3i(x, y, z);
+        x = vector.x;
+        y = vector.y;
+        z = vector.z;
     }
 
     @Override

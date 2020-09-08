@@ -6,6 +6,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import helporme.armsforge.client.render.fx.engine.IParticleFxEngine;
 import helporme.armsforge.client.render.fx.engine.ParticleEngine;
 import helporme.armsforge.common.core.network.PacketHandler;
@@ -38,6 +39,12 @@ public class ArmsForge
     public void init(FMLInitializationEvent event)
     {
         proxy.init(event);
+    }
+
+    @EventHandler
+    public void serverInit(FMLServerStartingEvent event)
+    {
+        proxy.serverInit(event);
     }
 
     @EventHandler

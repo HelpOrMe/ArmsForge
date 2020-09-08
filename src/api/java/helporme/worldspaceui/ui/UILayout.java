@@ -2,10 +2,22 @@ package helporme.worldspaceui.ui;
 
 import helporme.worldspaceui.WorldSpaceUI;
 
+import java.util.Collection;
+
 public final class UILayout
 {
     private static UI ui;
     private static UICallMode mode;
+
+    public static void tick(Collection<UI> pool, UICallMode mode)
+    {
+        for (UI ui : pool)
+        {
+            UILayout.beginUICalls(ui, mode);
+            ui.onUI(mode);
+            UILayout.endUICalls();
+        }
+    }
 
     public static void beginUICalls(UI ui, UICallMode mode)
     {

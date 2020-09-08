@@ -1,8 +1,7 @@
 package helporme.worldspaceui.ui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import helporme.worldspaceui.WorldSpaceUI;
+import helporme.worldspaceui.WorldSpaceUIServer;
 
 public abstract class UI
 {
@@ -30,21 +29,18 @@ public abstract class UI
 
     public void onUI(UICallMode mode) { }
 
-    @SideOnly(Side.SERVER)
     public void syncLocation()
     {
-        WorldSpaceUI.network.syncUILocation(this);
+        WorldSpaceUIServer.network.syncUILocation(this);
     }
 
-    @SideOnly(Side.SERVER)
     public void syncTarget()
     {
-        WorldSpaceUI.network.syncUITarget(this);
+        WorldSpaceUIServer.network.syncUITarget(this);
     }
 
-    @SideOnly(Side.SERVER)
     public void syncTransform()
     {
-        WorldSpaceUI.network.syncUITransform(this);
+        WorldSpaceUIServer.network.syncUITransform(this);
     }
 }

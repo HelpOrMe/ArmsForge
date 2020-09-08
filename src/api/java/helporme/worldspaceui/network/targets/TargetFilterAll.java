@@ -1,8 +1,7 @@
-package helporme.worldspaceui.network.commimp;
+package helporme.worldspaceui.network.targets;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import helporme.worldspaceui.network.ITargetFilter;
 import net.minecraft.entity.player.EntityPlayer;
 
 @SideOnly(Side.SERVER)

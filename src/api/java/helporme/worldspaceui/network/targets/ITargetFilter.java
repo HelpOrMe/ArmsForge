@@ -1,4 +1,4 @@
-package helporme.worldspaceui.network;
+package helporme.worldspaceui.network.targets;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

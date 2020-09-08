@@ -1,4 +1,4 @@
-package helporme.worldspaceui.network;
+package helporme.worldspaceui.network.packets;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -11,6 +11,8 @@ import io.netty.buffer.ByteBuf;
 public class SyncUITransformPacket extends UIPacket implements IMessageHandler<SyncUITransformPacket, IMessage>
 {
     public Transform transform;
+
+    public SyncUITransformPacket() { }
 
     public SyncUITransformPacket(int uniqueUIId, Transform transform)
     {
@@ -38,7 +40,7 @@ public class SyncUITransformPacket extends UIPacket implements IMessageHandler<S
     {
         if (validate())
         {
-            UI ui = WorldSpaceUI.map.clientUIUpdatePool.get(message.uniqueUIId);
+            UI ui = WorldSpaceUI.map.uiUpdatePool.get(message.uniqueUIId);
             ui.transform.copyValues(message.transform);
         }
         return null;

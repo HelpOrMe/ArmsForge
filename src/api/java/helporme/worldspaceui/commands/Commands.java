@@ -1,27 +1,38 @@
 package helporme.worldspaceui.commands;
 
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import helporme.worldspaceui.commands.actions.UIListAction;
 import helporme.worldspaceui.ui.UITargetBlock;
-import net.minecraft.command.ICommand;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public final class Commands
 {
-    public final ICommand[] commands = new ICommand[] { new CreateUICommand(), new ListUICommand() };
-    public final Map<String, String> cachedUITargetClasses = new HashMap<>();
+    protected final UICommandAction[] defaultActions = new UICommandAction[] { new UIListAction() };
+    protected final Class<? extends ICommandSupported>[] defaultSupportClasses = new Class[] { UITargetBlock.class };
+
+    public final Map<String, UICommandAction> actions = new HashMap<>();
+    public final Map<String, String> supportedClasses = new HashMap<>();
 
     public void register(FMLServerStartingEvent event)
     {
-        for (ICommand command : commands)
+        event.registerServerCommand(new UICommand());
+
+        for (UICommandAction action : defaultActions) addAction(action);
+        for (Class<? extends ICommandSupported> cls : defaultSupportClasses) addSupportedClass(cls);
+    }
+
+    public void addAction(UICommandAction action)
+    {
+        for (String name : action.getNames())
         {
-            event.registerServerCommand(command);
+            actions.put(name, action);
         }
     }
 
-    public void cacheDefaultUITargets()
+    public void addSupportedClass(Class<? extends ICommandSupported> cls)
     {
-        cachedUITargetClasses.put("block", UITargetBlock.class.getName());
+        supportedClasses.put(cls.getTypeName(), cls.getSimpleName());
     }
 }

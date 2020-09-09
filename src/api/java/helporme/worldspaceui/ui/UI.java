@@ -43,4 +43,6 @@ public abstract class UI
     {
         WorldSpaceUIServer.network.syncUITransform(this);
     }
+
+    public abstract boolean isValid();
 }

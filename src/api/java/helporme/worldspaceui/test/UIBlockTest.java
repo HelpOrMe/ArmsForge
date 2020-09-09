@@ -13,12 +13,12 @@ public class UIBlockTest extends UI
 {
     public UIBlockTest(World world, Vector3i blockPos)
     {
-        this(world.getBlock(blockPos.x, blockPos.y, blockPos.z), world.provider.dimensionId, blockPos);
+        this(world.provider.dimensionId, blockPos);
     }
 
-    public UIBlockTest(Block block, int dimension, Vector3i blockPos)
+    public UIBlockTest(int dimension, Vector3i blockPos)
     {
-        super(new UILocation(blockPos, dimension), new UITargetBlock(block, blockPos, dimension));
+        super(new UILocation(blockPos, dimension), new UITargetBlock(blockPos, dimension));
         WorldSpaceUI.logger.debug("Construct UIBlockTest");
     }
 
@@ -26,5 +26,11 @@ public class UIBlockTest extends UI
     public void onUI(UICallMode mode)
     {
         WorldSpaceUI.logger.debug("onUI call with mode: " + mode);
+    }
+
+    @Override
+    public boolean isValid()
+    {
+        return true;
     }
 }

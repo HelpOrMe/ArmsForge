@@ -35,7 +35,6 @@ public class CommonProxy implements IProxy
     public void serverInit(FMLServerStartingEvent event)
     {
         WorldSpaceUIServer.commands.register(event);
-        WorldSpaceUIServer.commands.cacheDefaultUITargets();
     }
 
     public void postInit(FMLPostInitializationEvent event)

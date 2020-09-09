@@ -7,17 +7,17 @@ import helporme.worldspaceui.ui.UITargetBlock;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class Commands
+public final class UICommands
 {
     protected final UICommandAction[] defaultActions = new UICommandAction[] { new UIListAction() };
     protected final Class<? extends ICommandSupported>[] defaultSupportClasses = new Class[] { UITargetBlock.class };
 
-    public final Map<String, UICommandAction> actions = new HashMap<>();
+    protected final Map<String, UICommandAction> actions = new HashMap<>();
     public final Map<String, String> supportedClasses = new HashMap<>();
 
     public void register(FMLServerStartingEvent event)
     {
-        event.registerServerCommand(new UICommand());
+        event.registerServerCommand(new UIMainCommand());
 
         for (UICommandAction action : defaultActions) addAction(action);
         for (Class<? extends ICommandSupported> cls : defaultSupportClasses) addSupportedClass(cls);
@@ -31,8 +31,18 @@ public final class Commands
         }
     }
 
+    public boolean isActionExists(String actionName)
+    {
+        return actions.containsKey(actionName);
+    }
+
     public void addSupportedClass(Class<? extends ICommandSupported> cls)
     {
         supportedClasses.put(cls.getTypeName(), cls.getSimpleName());
+    }
+
+    public boolean isSupportedClassExists(Class<? extends ICommandSupported> cls)
+    {
+        return supportedClasses.containsKey(cls.getSimpleName());
     }
 }

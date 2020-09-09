@@ -1,7 +1,7 @@
 package helporme.worldspaceui;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import helporme.worldspaceui.commands.Commands;
+import helporme.worldspaceui.commands.UICommands;
 import helporme.worldspaceui.event.ServerTickHandler;
 import helporme.worldspaceui.network.UINetwork;
 import helporme.worldspaceui.network.targets.ITargetFilter;
@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 public class WorldSpaceUIServer
 {
     public static final Logger logger = LogManager.getLogger("WorldSpaceUIServer");
-    public static final Commands commands = new Commands();
+    public static final UICommands commands = new UICommands();
     public static final UIMapServer map = new UIMapServer();
     public static final UINetwork network = new UINetwork();
 

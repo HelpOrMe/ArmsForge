@@ -7,6 +7,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public final class UIMainCommand extends CommandBase
@@ -40,20 +41,19 @@ public final class UIMainCommand extends CommandBase
     {
         UICommandAction action = WorldSpaceUIServer.commands.actions.get(actionName);
 
-        if (action.getMinArgumentsCount() > args.length)
+        int minArgsCount = action.getMinArgumentsCount();
+        if (minArgsCount > args.length)
         {
             String actionHelpMessage = action.getHelpString();
-            if (!actionHelpMessage.isEmpty())
-            {
-                print(sender, actionHelpMessage);
-            }
-            printError(sender, "Invalid arguments count");
+            printError(sender, actionHelpMessage.isEmpty() ? "Invalid arguments count" : actionHelpMessage);
             return;
         }
 
         Class<?>[] requiredClasses = action.getRequiredArgumentTypes();
-        CommandParser parser = new CommandParser(sender, args, requiredClasses);
+        int minArgsSize = Math.min(args.length, requiredClasses.length);
+        requiredClasses = Arrays.copyOf(action.getRequiredArgumentTypes(), minArgsSize);
 
+        CommandParser parser = new CommandParser(sender, args, requiredClasses);
         try
         {
             action.doAction(sender, parser.parse());
@@ -66,7 +66,7 @@ public final class UIMainCommand extends CommandBase
 
     private void printHelpMessage(ICommandSender sender)
     {
-        print(sender,"~HelpMessage~");
+        print(sender, "~HelpMessage~");
     }
 
     private void printError(ICommandSender sender, String text)

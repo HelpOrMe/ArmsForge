@@ -7,6 +7,8 @@ import helporme.worldspaceui.network.UINetwork;
 import helporme.worldspaceui.network.targets.ITargetFilter;
 import helporme.worldspaceui.test.UIBlockTest;
 import helporme.worldspaceui.ui.UI;
+import helporme.worldspaceui.ui.UILocation;
+import helporme.worldspaceui.ui.synced.UISyncedCache;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -49,23 +51,26 @@ public class WorldSpaceUIServer
     /**
      * Add UI to update pool and open UI on the target clients.
      * @param ui UI
+     * @param location Chunk location,
      * @param targetFilter Target filter
      */
-    public static void openUI(UI ui, ITargetFilter targetFilter)
+    public static void openUI(UI ui, UILocation location, ITargetFilter targetFilter)
     {
-        network.sendUIOpen(ui, targetFilter);
-        network.syncUILocation(ui);
-        network.syncUITarget(ui);
-        network.syncUITransform(ui);
-
-        map.locationToUISet.put(ui.location, ui.uniqueId);
+        network.sendUIOpen(ui, location, targetFilter);
+        map.addLocation(ui.uniqueId, location);
         map.uiUpdatePool.put(ui.uniqueId, ui);
     }
 
+    /**
+     * Remove UI from the server
+     * @param uiUniqueId Target UI.uniqueId
+     * @param targetFilter Target filter
+     */
     public static void closeUI(int uiUniqueId, ITargetFilter targetFilter)
     {
         network.sendUIClose(uiUniqueId, targetFilter);
-        map.locationToUISet.remove(map.uiUpdatePool.get(uiUniqueId).location, uiUniqueId);
+
+        map.removeLocation(uiUniqueId);
         map.uiUpdatePool.remove(uiUniqueId);
     }
 }

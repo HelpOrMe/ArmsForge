@@ -18,7 +18,17 @@ public abstract class UICommandAction
 
     public String getHelpString()
     {
-        return "";
+        StringBuilder stringBuilder = new StringBuilder("/ui " + getNames()[0]);
+        Class<?>[] classes = getRequiredArgumentTypes();
+        int min = getMinArgumentsCount();
+
+        for (int i = 0; i < classes.length; i++)
+        {
+            String leftChar = i < min ? " <" : " [";
+            String rightChar = i < min ? ">" : "]";
+            stringBuilder.append(leftChar).append(classes[i].getSimpleName()).append(rightChar);
+        }
+        return stringBuilder.toString();
     }
 
     public abstract void doAction(ICommandSender sender, Object[] args);

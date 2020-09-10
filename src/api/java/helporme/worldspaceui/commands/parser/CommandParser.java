@@ -34,22 +34,23 @@ public class CommandParser
 
     public Object[] parse() throws ParseException
     {
-        Object[] parsedArgs = new Object[args.length];
+        Object[] parsedArgs = new Object[targetTypes.length];
         for (int i = 0; i < targetTypes.length; i++)
         {
+            int lastPointer = argumentPointer;
             try
             {
                 parsedArgs[i] = parseNextArgument(targetTypes[i]);
-                if (argumentPointer >= args.length)
-                {
-                    throw new ParseException("Unexpected argument \"" + args[args.length - 1] + "\"");
-                }
             }
             catch (Exception e)
             {
                 throw new ParseException(
-                        "Unable to cast \"" + parsedArgs[argumentPointer] +
+                        "Unable to cast \"" + args[lastPointer] +
                         "\" to \"" + targetTypes[i].getSimpleName() + "\"");
+            }
+            if (argumentPointer > args.length)
+            {
+                throw new ParseException("Unexpected argument \"" + args[args.length - 1] + "\"");
             }
         }
 
@@ -97,14 +98,17 @@ public class CommandParser
     {
         EntityPlayerMP player = CommandBase.getCommandSenderAsPlayer(sender);
 
-        double[] playerPos = new double[] {player.posX, player.posY, player.posZ};
-        double[] parsedArgs = new double[3];
+        double[] position = new double[] {player.posX, player.posY, player.posZ};
         for (int i = 0; i < 3; i++)
         {
-            parsedArgs[i] = Double.parseDouble(args[argumentPointer + i]) + playerPos[i];
+            String clearNumber = args[argumentPointer + i].replaceAll(" ", "").replaceAll("~", "");
+            if (!clearNumber.isEmpty())
+            {
+                position[i] += Double.parseDouble(clearNumber);
+            }
         }
         argumentPointer += 3;
-        return new Vector3d(parsedArgs[0], parsedArgs[1], parsedArgs[2]);
+        return new Vector3d(position[0], position[1], position[2]);
     }
 
     private EntityPlayerMP[] parseNextPlayerArgument()

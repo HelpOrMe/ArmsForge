@@ -8,6 +8,7 @@ import helporme.worldspaceui.network.packets.OpenUIPacket;
 import helporme.worldspaceui.network.targets.ITargetFilter;
 import helporme.worldspaceui.ui.UI;
 import helporme.worldspaceui.ui.UILocation;
+import helporme.worldspaceui.ui.synced.UISynced;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.WorldServer;
@@ -64,11 +65,11 @@ public class UINetwork extends SimpleNetworkWrapper
         }
     }
 
-//    public void syncUILocation(UI ui)
-//    {
-//        for (EntityPlayerMP player : WorldSpaceUIServer.map.uiPlayers.get(ui.uniqueId))
-//        {
+    public void syncUI(UISynced ui)
+    {
+        for (EntityPlayerMP player : WorldSpaceUIServer.map.uiPlayers.get(ui.uniqueId))
+        {
 //            sendTo(new SyncUILocationPacket(ui.uniqueId, ui.location), player);
-//        }
-//    }
+        }
+    }
 }

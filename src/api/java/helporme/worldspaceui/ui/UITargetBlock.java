@@ -1,15 +1,11 @@
 package helporme.worldspaceui.ui;
 
-import helporme.worldspaceui.commands.ICommandSupported;
+import helporme.worldspaceui.commands.ICommandSupportedObj;
 import helporme.worldspaceui.types.Vector3i;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
-import net.minecraft.world.World;
 
-public class UITargetBlock extends UITarget implements ICommandSupported
+public class UITargetBlock extends UITarget implements ICommandSupportedObj
 {
     public Vector3i position;
     public int dimension;
@@ -45,28 +41,15 @@ public class UITargetBlock extends UITarget implements ICommandSupported
     }
 
     @Override
-    public void initFromCommand(ICommandSender sender, String arg)
+    public Class<?>[] getRequiredArgumentTypes()
     {
-        World world = sender.getEntityWorld();
-        if (world != null)
-        {
-            EntityPlayer player = world.getPlayerEntityByName(sender.getCommandSenderName());
-            if (player != null)
-            {
-                Vec3 playerPos = Vec3.createVectorHelper(player.posX, player.posY, player.posZ);
-                MovingObjectPosition hit = world.rayTraceBlocks(playerPos, player.getLookVec());
-                if (hit.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-                {
-                    position = new Vector3i(hit.blockX, hit.blockY, hit.blockZ);
-                    dimension = world.provider.dimensionId;
-                }
-            }
-        }
+        return new Class<?>[] { Vector3i.class };
     }
 
     @Override
-    public void initFromCommand(String... args)
+    public void initFromCommand(ICommandSender sender, Object[] args)
     {
-
+        position = (Vector3i)args[0];
+        dimension = sender.getEntityWorld().provider.dimensionId;
     }
 }

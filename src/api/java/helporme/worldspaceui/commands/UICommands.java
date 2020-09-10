@@ -10,7 +10,7 @@ import java.util.Map;
 public final class UICommands
 {
     protected final UICommandAction[] defaultActions = new UICommandAction[] { new UIListAction() };
-    protected final Class<? extends ICommandSupported>[] defaultSupportClasses = new Class[] { UITargetBlock.class };
+    protected final Class<? extends ICommandSupportedObj>[] defaultSupportClasses = new Class[] { UITargetBlock.class };
 
     protected final Map<String, UICommandAction> actions = new HashMap<>();
     public final Map<String, String> supportedClasses = new HashMap<>();
@@ -20,7 +20,7 @@ public final class UICommands
         event.registerServerCommand(new UIMainCommand());
 
         for (UICommandAction action : defaultActions) addAction(action);
-        for (Class<? extends ICommandSupported> cls : defaultSupportClasses) addSupportedClass(cls);
+        for (Class<? extends ICommandSupportedObj> cls : defaultSupportClasses) addSupportedClass(cls);
     }
 
     public void addAction(UICommandAction action)
@@ -36,13 +36,8 @@ public final class UICommands
         return actions.containsKey(actionName);
     }
 
-    public void addSupportedClass(Class<? extends ICommandSupported> cls)
+    public void addSupportedClass(Class<? extends ICommandSupportedObj> cls)
     {
         supportedClasses.put(cls.getTypeName(), cls.getSimpleName());
-    }
-
-    public boolean isSupportedClassExists(Class<? extends ICommandSupported> cls)
-    {
-        return supportedClasses.containsKey(cls.getSimpleName());
     }
 }

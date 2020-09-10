@@ -1,15 +1,18 @@
 package helporme.worldspaceui.commands;
 
 import helporme.worldspaceui.WorldSpaceUIServer;
+import helporme.worldspaceui.commands.parser.CommandParser;
+import helporme.worldspaceui.commands.parser.ParseException;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 
 import java.util.Arrays;
-import java.util.List;
 
 public final class UIMainCommand extends CommandBase
 {
+    public final String[] specialPrefixes = new String[] {"~"};
+
     @Override
     public String getCommandName()
     {
@@ -41,60 +44,36 @@ public final class UIMainCommand extends CommandBase
 
         if (action.getMinArgumentsCount() > args.length)
         {
-            printActionArgumentsError(sender, action);
+            String actionHelpMessage = action.getHelpString();
+            if (!actionHelpMessage.isEmpty())
+            {
+                print(sender, actionHelpMessage);
+            }
+            printError(sender, "Invalid arguments count");
             return;
         }
 
         Class<?>[] requiredClasses = action.getRequiredArgumentTypes();
-        Object[] objects = new Object[args.length - 1];
+        CommandParser parser = new CommandParser(sender, args, requiredClasses);
 
-        for (int i = 1; i < requiredClasses.length; i++)
+        try
         {
-            String arg = args[i];
-            Object obj = parsePrimalClass(requiredClasses[i], arg);
-            if (obj == null && !WorldSpaceUIServer.commands.supportedClasses.containsKey(arg))
-            {
-                print(sender, "Unable to resolve \"" + arg + "\"");
-                return;
-            }
-            objects[i] = obj;
+            action.doAction(sender, parser.parse());
         }
-
-        action.doAction(sender, objects);
-    }
-
-    private boolean parseArguments(List<Object> parsedArgs, String[] args, Class<?>[] types)
-    {
-        int argsToParseCount = Math.min(args.length, types.length);
-        for (int i = 0; i < argsToParseCount; i++)
+        catch (ParseException e)
         {
-            if (types[i].isPrimitive())
-            {
-                parsePrimitiveClass(types[i], args[i]);
-            }
+            printError(sender, e.getMessage());
         }
-    }
-
-    private Object parsePrimitiveClass(Class<?> cls, String value)
-    {
-        if (Boolean.class == cls ) return Boolean.parseBoolean( value );
-        if (Byte.class == cls ) return Byte.parseByte(value);
-        if (Short.class == cls ) return Short.parseShort(value);
-        if (Integer.class == cls ) return Integer.parseInt(value);
-        if (Long.class == cls ) return Long.parseLong(value);
-        if (Float.class == cls ) return Float.parseFloat(value);
-        if (Double.class == cls ) return Double.parseDouble(value);
-        return value;
     }
 
     private void printHelpMessage(ICommandSender sender)
     {
-        //
+        print(sender,"~HelpMessage~");
     }
 
-    private void printActionArgumentsError(ICommandSender sender, UICommandAction action, String... targetArguments)
+    private void printError(ICommandSender sender, String text)
     {
-        //
+        print(sender, "§c" + text);
     }
 
     private void print(ICommandSender sender, String text)

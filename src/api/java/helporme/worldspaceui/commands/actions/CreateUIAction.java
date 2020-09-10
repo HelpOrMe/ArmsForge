@@ -1,6 +1,7 @@
 package helporme.worldspaceui.commands.actions;
 
 import helporme.worldspaceui.commands.UICommandAction;
+import helporme.worldspaceui.ui.UITargetBlock;
 import net.minecraft.command.ICommandSender;
 
 public class CreateUIAction extends UICommandAction
@@ -14,7 +15,7 @@ public class CreateUIAction extends UICommandAction
     @Override
     public Class<?>[] getRequiredArgumentTypes()
     {
-        return new Class[] { int.class };
+        return new Class[] { int.class, UITargetBlock.class, String.class};
     }
 
     @Override

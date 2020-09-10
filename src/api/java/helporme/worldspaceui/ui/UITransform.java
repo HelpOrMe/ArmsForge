@@ -5,13 +5,13 @@ import helporme.worldspaceui.types.Vector3d;
 import helporme.worldspaceui.types.Vector3f;
 import io.netty.buffer.ByteBuf;
 
-public class Transform implements IMessage
+public class UITransform implements IMessage
 {
     public final Vector3d position = new Vector3d();
     public final Vector3f scale = new Vector3f();
     public final Vector3f rotation = new Vector3f();
 
-    public Transform() {  }
+    public UITransform() {  }
 
     @Override
     public void toBytes(ByteBuf buf)
@@ -45,7 +45,7 @@ public class Transform implements IMessage
         rotation.z = buf.readFloat();
     }
 
-    public void copyValues(Transform transform)
+    public void copyValues(UITransform transform)
     {
         position.copyValues(transform.position);
         scale.copyValues(transform.scale);

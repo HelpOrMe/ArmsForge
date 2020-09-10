@@ -2,12 +2,12 @@ package helporme.worldspaceui.network;
 
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import helporme.worldspaceui.WorldSpaceUI;
 import helporme.worldspaceui.WorldSpaceUIServer;
-import helporme.worldspaceui.network.packets.*;
+import helporme.worldspaceui.network.packets.CloseUIPacket;
+import helporme.worldspaceui.network.packets.OpenUIPacket;
 import helporme.worldspaceui.network.targets.ITargetFilter;
 import helporme.worldspaceui.ui.UI;
+import helporme.worldspaceui.ui.UILocation;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.WorldServer;
@@ -28,15 +28,14 @@ public class UINetwork extends SimpleNetworkWrapper
     {
         registerMessage(OpenUIPacket.class, OpenUIPacket.class, lastId++, Side.CLIENT);
         registerMessage(CloseUIPacket.class, CloseUIPacket.class, lastId++, Side.CLIENT);
-        registerMessage(SyncUILocationPacket.class, SyncUILocationPacket.class, lastId++, Side.CLIENT);
-        registerMessage(SyncUITargetPacket.class, SyncUITargetPacket.class, lastId++, Side.CLIENT);
     }
 
-    public void sendUIOpen(UI ui, ITargetFilter targetFilter)
+    public void sendUIOpen(UI ui, UILocation location, ITargetFilter targetFilter)
     {
-        WorldServer world = DimensionManager.getWorld(ui.location.dimension);
+        WorldServer world = DimensionManager.getWorld(location.dimension);
+
         double range = targetFilter.getRange();
-        AxisAlignedBB boundingBox =  AxisAlignedBB.getBoundingBox(-range, -range, -range, range, range, range);
+        AxisAlignedBB boundingBox = AxisAlignedBB.getBoundingBox(-range, -range, -range, range, range, range);
 
         List BBEntities = world.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox);
         EntityPlayerMP[] players = (EntityPlayerMP[])BBEntities.toArray(new EntityPlayerMP[0]);
@@ -65,27 +64,11 @@ public class UINetwork extends SimpleNetworkWrapper
         }
     }
 
-    public void syncUILocation(UI ui)
-    {
-        for (EntityPlayerMP player : WorldSpaceUIServer.map.uiPlayers.get(ui.uniqueId))
-        {
-            sendTo(new SyncUILocationPacket(ui.uniqueId, ui.location), player);
-        }
-    }
-
-    public void syncUITarget(UI ui)
-    {
-        for (EntityPlayerMP player : WorldSpaceUIServer.map.uiPlayers.get(ui.uniqueId))
-        {
-            sendTo(new SyncUITargetPacket(ui.uniqueId, ui.target), player);
-        }
-    }
-
-    public void syncUITransform(UI ui)
-    {
-        for (EntityPlayerMP player : WorldSpaceUIServer.map.uiPlayers.get(ui.uniqueId))
-        {
-            sendTo(new SyncUITransformPacket(ui.uniqueId, ui.transform), player);
-        }
-    }
+//    public void syncUILocation(UI ui)
+//    {
+//        for (EntityPlayerMP player : WorldSpaceUIServer.map.uiPlayers.get(ui.uniqueId))
+//        {
+//            sendTo(new SyncUILocationPacket(ui.uniqueId, ui.location), player);
+//        }
+//    }
 }

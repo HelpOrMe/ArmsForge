@@ -11,8 +11,6 @@ import java.util.Arrays;
 
 public final class UIMainCommand extends CommandBase
 {
-    public final String[] specialPrefixes = new String[] {"~"};
-
     @Override
     public String getCommandName()
     {
@@ -28,7 +26,7 @@ public final class UIMainCommand extends CommandBase
     public void processCommand(ICommandSender sender, String[] args)
     {
         if (args.length == 0 || args[0].equalsIgnoreCase("help") ||
-            !WorldSpaceUIServer.commands.actions.containsKey(args[0]))
+            !WorldSpaceUIServer.commands.isActionExists(args[0]))
         {
             printHelpMessage(sender);
             return;

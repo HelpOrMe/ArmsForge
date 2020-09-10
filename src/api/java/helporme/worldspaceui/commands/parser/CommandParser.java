@@ -12,6 +12,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -153,10 +154,7 @@ public class CommandParser
 
     private String[] popNextArgs(int length)
     {
-        String[] splitArgs = new String[length];
-        if (length > 0) System.arraycopy(args, argumentPointer, splitArgs, argumentPointer + length, length);
-        argumentPointer += length;
-        return splitArgs;
+        return Arrays.copyOfRange(args, argumentPointer, length);
     }
 
     private Object parseNextPrimitive(Class<?> cls)

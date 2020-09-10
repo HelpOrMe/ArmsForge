@@ -14,7 +14,7 @@ public class UIListAction extends UICommandAction
     }
 
     @Override
-    public void doAction(ICommandSender sender, Object args)
+    public void doAction(ICommandSender sender, Object[] args)
     {
         for (int uiId : WorldSpaceUIServer.map.uiIdToUIClassName.keySet())
         {

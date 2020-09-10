@@ -7,16 +7,16 @@ import net.minecraft.util.ChatComponentText;
 
 import java.util.Map;
 
-public class UITargetListAction extends UICommandAction
+public class UISupportedListAction extends UICommandAction
 {
     @Override
     public String[] getNames()
     {
-        return new String[] { "targetList", "tl" };
+        return new String[] { "supObjectsList", "sol", "sl", "ol" };
     }
 
     @Override
-    public void doAction(ICommandSender sender, Object args)
+    public void doAction(ICommandSender sender, Object[] args)
     {
         for (Map.Entry<String, String> entry : WorldSpaceUIServer.commands.supportedClasses.entrySet())
         {

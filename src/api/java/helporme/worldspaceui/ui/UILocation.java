@@ -1,46 +1,41 @@
 package helporme.worldspaceui.ui;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import helporme.worldspaceui.types.Vector3i;
+import helporme.worldspaceui.types.Vector3d;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.world.chunk.Chunk;
 
 public class UILocation implements IMessage
 {
-    public Vector3i chunkPosition;
+    public Vector3d position;
     public int dimension;
 
     public UILocation() { }
 
-    public UILocation(Chunk chunk)
+    public UILocation(Vector3d position, int dimension)
     {
-        this(new Vector3i(chunk.xPosition, 0, chunk.zPosition), chunk.worldObj.provider.dimensionId);
-    }
-
-    public UILocation(Vector3i chunkPosition, int dimension)
-    {
-        this.chunkPosition = chunkPosition;
+        this.position = position;
         this.dimension = dimension;
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
-        buf.writeInt(chunkPosition.x);
-        buf.writeInt(chunkPosition.z);
+        buf.writeDouble(position.x);
+        buf.writeDouble(position.y);
+        buf.writeDouble(position.z);
         buf.writeInt(dimension);
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
-        chunkPosition = new Vector3i(buf.readInt(), 0, buf.readInt());
+        position = new Vector3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
         dimension = buf.readInt();
     }
 
     public void copyValues(UILocation location)
     {
-        chunkPosition = location.chunkPosition;
+        position = location.position;
         dimension = location.dimension;
     }
 
@@ -51,12 +46,12 @@ public class UILocation implements IMessage
         if (!(object instanceof UILocation)) return false;
 
         UILocation location = (UILocation)object;
-        return chunkPosition == location.chunkPosition && dimension == location.dimension;
+        return position == location.position && dimension == location.dimension;
     }
 
     @Override
     public int hashCode()
     {
-        return chunkPosition.x ^ chunkPosition.z << 2 ^ dimension >> 2;
+        return position.hashCode() ^ dimension << 2;
     }
 }

@@ -21,5 +21,5 @@ public abstract class UICommandAction
         return "";
     }
 
-    public abstract void doAction(ICommandSender sender, Object args);
+    public abstract void doAction(ICommandSender sender, Object[] args);
 }

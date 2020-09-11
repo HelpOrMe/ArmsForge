@@ -1,13 +1,12 @@
 package helporme.worldspaceui.commands;
 
 import helporme.worldspaceui.WorldSpaceUIServer;
+import helporme.worldspaceui.commands.helper.ChatHelper;
 import helporme.worldspaceui.commands.parser.CommandParser;
 import helporme.worldspaceui.commands.parser.ParseException;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.ChatComponentText;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public final class UIMainCommand extends CommandBase
@@ -45,7 +44,7 @@ public final class UIMainCommand extends CommandBase
         if (minArgsCount > args.length)
         {
             String actionHelpMessage = action.getHelpString();
-            printError(sender, actionHelpMessage.isEmpty() ? "Invalid arguments count" : actionHelpMessage);
+            ChatHelper.printError(sender, actionHelpMessage.isEmpty() ? "Invalid arguments count" : actionHelpMessage);
             return;
         }
 
@@ -56,26 +55,16 @@ public final class UIMainCommand extends CommandBase
         CommandParser parser = new CommandParser(sender, args, requiredClasses);
         try
         {
-            action.doAction(sender, parser.parse());
+            action.doAction(sender, parser.parse(), args);
         }
         catch (ParseException e)
         {
-            printError(sender, e.getMessage());
+            ChatHelper.printError(sender, e.getMessage());
         }
     }
 
     private void printHelpMessage(ICommandSender sender)
     {
-        print(sender, "~HelpMessage~");
-    }
-
-    private void printError(ICommandSender sender, String text)
-    {
-        print(sender, "§c" + text);
-    }
-
-    private void print(ICommandSender sender, String text)
-    {
-        sender.addChatMessage(new ChatComponentText(text));
+        ChatHelper.print(sender, "~HelpMessage~");
     }
 }

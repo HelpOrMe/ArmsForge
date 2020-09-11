@@ -1,12 +1,9 @@
 package helporme.worldspaceui.network.targets;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.player.EntityPlayer;
+import helporme.worldspaceui.ui.UI;
+import net.minecraft.entity.player.EntityPlayerMP;
 
-@SideOnly(Side.SERVER)
 public interface ITargetFilter
 {
-    double getRange();
-    boolean canSendTo(EntityPlayer player);
+    EntityPlayerMP[] filterPlayers(UI ui, EntityPlayerMP... players);
 }

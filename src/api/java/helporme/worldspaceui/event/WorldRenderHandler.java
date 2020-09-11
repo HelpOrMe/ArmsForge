@@ -11,6 +11,6 @@ public class WorldRenderHandler
     @SubscribeEvent
     public void onWorldRender(RenderWorldEvent.Post event)
     {
-        UILayout.tick(WorldSpaceUI.map.uiUpdatePool.values(), UICallMode.RENDER);
+        UILayout.tick(WorldSpaceUI.map.uiPool.values(), UICallMode.RENDER);
     }
 }

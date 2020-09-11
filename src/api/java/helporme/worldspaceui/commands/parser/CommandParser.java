@@ -1,6 +1,5 @@
 package helporme.worldspaceui.commands.parser;
 
-import helporme.worldspaceui.commands.ICommandSupportedObj;
 import helporme.worldspaceui.types.Vector3d;
 import helporme.worldspaceui.types.Vector3i;
 import net.minecraft.block.Block;
@@ -19,9 +18,9 @@ import java.util.Random;
 
 public class CommandParser
 {
-    public ICommandSender sender;
-    public String[] args;
-    public Class<?>[] targetTypes;
+    public final ICommandSender sender;
+    public final String[] args;
+    public final Class<?>[] targetTypes;
 
     private int argumentPointer = 0;
 
@@ -80,10 +79,6 @@ public class CommandParser
         {
             argumentPointer++;
             return CommandBase.getItemByText(sender, args[argumentPointer]);
-        }
-        if (cls.isAssignableFrom(ICommandSupportedObj.class))
-        {
-            return parseNextSupportedObj(cls);
         }
         return parseNextPrimitive(cls);
     }
@@ -145,15 +140,6 @@ public class CommandParser
             }
         }
         return allPlayers;
-    }
-
-    private ICommandSupportedObj parseNextSupportedObj(Class<?> cls) throws Exception
-    {
-        ICommandSupportedObj supportedObject = (ICommandSupportedObj)cls.newInstance();
-        Class<?>[] requiredTypes = supportedObject.getRequiredArgumentTypes();
-        CommandParser parser = new CommandParser(sender, popNextArgs(requiredTypes.length), requiredTypes);
-        supportedObject.initFromCommand(sender, parser.parse());
-        return supportedObject;
     }
 
     private String[] popNextArgs(int length)

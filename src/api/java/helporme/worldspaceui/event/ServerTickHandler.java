@@ -11,6 +11,6 @@ public class ServerTickHandler
     @SubscribeEvent
     public void onServerTick(TickEvent.ServerTickEvent event)
     {
-        UILayout.tick(WorldSpaceUI.map.uiUpdatePool.values(), UICallMode.SERVER_TICK);
+        UILayout.tick(WorldSpaceUI.map.uiPool.values(), UICallMode.SERVER_TICK);
     }
 }

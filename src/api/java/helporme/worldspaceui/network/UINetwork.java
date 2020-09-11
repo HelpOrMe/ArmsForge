@@ -1,14 +1,17 @@
 package helporme.worldspaceui.network;
 
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import helporme.worldspaceui.WorldSpaceUIServer;
 import helporme.worldspaceui.network.packets.CloseUIPacket;
 import helporme.worldspaceui.network.packets.OpenUIPacket;
+import helporme.worldspaceui.network.packets.UISyncPacket;
 import helporme.worldspaceui.network.targets.ITargetFilter;
+import helporme.worldspaceui.types.Vector3d;
 import helporme.worldspaceui.ui.UI;
 import helporme.worldspaceui.ui.UILocation;
-import helporme.worldspaceui.ui.synced.UISynced;
+import helporme.worldspaceui.ui.UISyncedCache;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.WorldServer;
@@ -31,15 +34,18 @@ public class UINetwork extends SimpleNetworkWrapper
         registerMessage(CloseUIPacket.class, CloseUIPacket.class, lastId++, Side.CLIENT);
     }
 
-    public void sendUIOpen(UI ui, UILocation location, ITargetFilter targetFilter)
+    public void sendUIOpen(UI ui, UILocation location, double range, ITargetFilter targetFilter)
     {
         WorldServer world = DimensionManager.getWorld(location.dimension);
 
-        double range = targetFilter.getRange();
-        AxisAlignedBB boundingBox = AxisAlignedBB.getBoundingBox(-range, -range, -range, range, range, range);
+        Vector3d pos = location.position;
+        AxisAlignedBB boundingBox = AxisAlignedBB.getBoundingBox(
+                pos.x - range, 255, pos.z - range,
+                pos.x + range, 0, pos.z + range);
 
         List BBEntities = world.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox);
         EntityPlayerMP[] players = (EntityPlayerMP[])BBEntities.toArray(new EntityPlayerMP[0]);
+        players = targetFilter.filterPlayers(ui, players);
         sendUIOpen(ui, players);
     }
 
@@ -52,24 +58,55 @@ public class UINetwork extends SimpleNetworkWrapper
         }
     }
 
+    public void sendUIOpen(UI ui, UILocation location, double range)
+    {
+        Vector3d position = location.position;
+        sendToAllAround(new OpenUIPacket(ui),
+                new NetworkRegistry.TargetPoint(location.dimension, position.x, position.y, position.z, range));
+    }
+
+
     public void sendUIClose(int uiUniqueIndex, ITargetFilter targetFilter)
     {
-        EntityPlayerMP[] uiPlayers = WorldSpaceUIServer.map.uiPlayers.get(uiUniqueIndex).toArray(new EntityPlayerMP[0]);
-        for (EntityPlayerMP player : uiPlayers)
+        EntityPlayerMP[] players = WorldSpaceUIServer.map.uiPlayers.get(uiUniqueIndex).toArray(new EntityPlayerMP[0]);
+        players = targetFilter.filterPlayers(WorldSpaceUIServer.map.uiPool.get(uiUniqueIndex), players);
+        sendUIClose(uiUniqueIndex, players);
+    }
+
+    public void sendUIClose(int uiUniqueIndex)
+    {
+        EntityPlayerMP[] players = WorldSpaceUIServer.map.uiPlayers.get(uiUniqueIndex).toArray(new EntityPlayerMP[0]);
+        sendUIClose(uiUniqueIndex, players);
+    }
+
+    public void sendUIClose(int uiUniqueIndex, EntityPlayerMP... players)
+    {
+        for (EntityPlayerMP player : players)
         {
-            if (targetFilter.canSendTo(player))
+            if (WorldSpaceUIServer.map.uiPlayers.containsEntry(uiUniqueIndex, player))
             {
                 sendTo(new CloseUIPacket(uiUniqueIndex), player);
+                WorldSpaceUIServer.map.uiPlayers.remove(uiUniqueIndex, player);
             }
-            WorldSpaceUIServer.map.uiPlayers.remove(uiUniqueIndex, player);
+            else
+            {
+                WorldSpaceUIServer.logger.error("UI don't open at client" + player);
+            }
         }
     }
 
-    public void syncUI(UISynced ui)
+    public void syncUI(UI ui)
     {
-        for (EntityPlayerMP player : WorldSpaceUIServer.map.uiPlayers.get(ui.uniqueId))
+        if (UISyncedCache.getSyncFields(ui).size() > 0 )
         {
-//            sendTo(new SyncUILocationPacket(ui.uniqueId, ui.location), player);
+            for (EntityPlayerMP player : WorldSpaceUIServer.map.uiPlayers.get(ui.uniqueId))
+            {
+                sendTo(new UISyncPacket(ui), player);
+            }
+        }
+        else
+        {
+            WorldSpaceUIServer.logger.warn("Trying to sync UI without `@Sync` fields. " + ui.getClass().getName());
         }
     }
 }

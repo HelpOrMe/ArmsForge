@@ -1,10 +1,9 @@
-package helporme.worldspaceui.ui.synced;
+package helporme.worldspaceui.ui;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import helporme.worldspaceui.WorldSpaceUIServer;
-import helporme.worldspaceui.ui.UI;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

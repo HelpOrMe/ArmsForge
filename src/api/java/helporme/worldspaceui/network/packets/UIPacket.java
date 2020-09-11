@@ -29,7 +29,7 @@ public class UIPacket implements IMessage
 
     protected boolean validate()
     {
-        if (!WorldSpaceUI.map.uiUpdatePool.containsKey(uniqueUIId))
+        if (!WorldSpaceUI.map.uiPool.containsKey(uniqueUIId))
         {
             WorldSpaceUI.logger.error("Unable to find requested ui " + uniqueUIId);
             return false;

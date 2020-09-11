@@ -7,8 +7,6 @@ import helporme.worldspaceui.WorldSpaceUI;
 import helporme.worldspaceui.ui.UI;
 import io.netty.buffer.ByteBuf;
 
-import java.lang.reflect.Constructor;
-
 public class OpenUIPacket implements IMessage, IMessageHandler<OpenUIPacket, IMessage>
 {
     public UI ui;
@@ -32,10 +30,10 @@ public class OpenUIPacket implements IMessage, IMessageHandler<OpenUIPacket, IMe
     {
         try
         {
-            String uiClassName = WorldSpaceUI.map.uiIdToUIClassName.get(buf.readInt());
-            Class<?> UIClass = Class.forName(uiClassName);
-            Constructor<?> UIConstructor = UIClass.getConstructor(Integer.class);
-            ui = (UI)UIConstructor.newInstance(buf.readInt());
+            String clsName = WorldSpaceUI.map.uiIdToUIClassName.get(buf.readInt());
+            Class<?> cls = Class.forName(clsName);
+            ui = (UI)cls.newInstance();
+            ui.uniqueId = buf.readInt();
         }
         catch (ReflectiveOperationException e)
         {

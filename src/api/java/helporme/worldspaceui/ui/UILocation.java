@@ -33,12 +33,6 @@ public class UILocation implements IMessage
         dimension = buf.readInt();
     }
 
-    public void copyValues(UILocation location)
-    {
-        position = location.position;
-        dimension = location.dimension;
-    }
-
     @Override
     public boolean equals(Object object)
     {

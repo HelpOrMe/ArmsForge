@@ -14,7 +14,7 @@ public final class UILayout
         for (UI ui : pool)
         {
             UILayout.beginUICalls(ui, mode);
-            ui.onUI(mode);
+            ui.onUI();
             UILayout.endUICalls();
         }
     }

@@ -1,4 +1,4 @@
-package helporme.worldspaceui.ui.synced;
+package helporme.worldspaceui.ui;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;

@@ -11,6 +11,6 @@ public class ClientTickHandler
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event)
     {
-        UILayout.tick(WorldSpaceUI.map.uiUpdatePool.values(), UICallMode.CLIENT_TICK);
+        UILayout.tick(WorldSpaceUI.map.uiPool.values(), UICallMode.CLIENT_TICK);
     }
 }

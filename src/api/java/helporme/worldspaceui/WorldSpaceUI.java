@@ -18,10 +18,10 @@ import org.apache.logging.log4j.Logger;
 public class WorldSpaceUI
 {
     public static final Logger logger = LogManager.getLogger("WorldSpaceUI");
-    public static final UIMapClient map = new UIMapClient();
+    public static final UIMap map = new UIMap();
 
     /**
-     * Register a client side events handlers.
+     * Register a client side event handlers.
      */
     public static void register()
     {
@@ -38,7 +38,7 @@ public class WorldSpaceUI
     }
 
     /**
-     * Register UI on the client side. You can get UIid from `WorldSpaceUI.map`
+     * Register UI on the client side
      * @param uiClass Target UI class
      */
     public static void registerUI(Class<? extends UI> uiClass)
@@ -47,22 +47,21 @@ public class WorldSpaceUI
     }
 
     /**
-     * Create UI on the client world. You can close it with WorldSpaceUI.close()
+     * Create an UI in the client world.
+     * You can close it with WorldSpaceUI.closeUI()
      * @param ui Target UI
      */
     public static void openUI(UI ui)
     {
-        map.renderPool.put(ui.uniqueId, ui);
-        map.uiUpdatePool.put(ui.uniqueId, ui);
+        map.uiPool.put(ui.uniqueId, ui);
     }
 
     /**
-     * Remove UI from the client world.
+     * Remove UI from the client world
      * @param uiUniqueId Target UI.uniqueId
      */
     public static void closeUI(int uiUniqueId)
     {
-        map.renderPool.remove(uiUniqueId);
-        map.uiUpdatePool.remove(uiUniqueId);
+        map.uiPool.remove(uiUniqueId);
     }
 }

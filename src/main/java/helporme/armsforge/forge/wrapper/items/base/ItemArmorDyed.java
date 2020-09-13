@@ -11,7 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class ItemArmorDyed extends ItemArmorBase
 {
-    public ItemArmorDyed(ArmorMaterial material, String name, int renderIndex, int armorType) {
+    public ItemArmorDyed(ArmorMaterial material, String name, int renderIndex, int armorType)
+    {
         super(material, name, renderIndex, armorType);
     }
 
@@ -53,7 +54,6 @@ public class ItemArmorDyed extends ItemArmorBase
         {
             displayTagCompound.setInteger("Color", color);
         }
-//        else throw new IllegalArgumentException("Unable to set color from " + stack.toString());
     }
 
     protected NBTTagCompound getDisplayTag(ItemStack stack)

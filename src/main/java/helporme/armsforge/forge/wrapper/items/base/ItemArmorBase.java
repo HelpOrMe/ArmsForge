@@ -25,14 +25,24 @@ public class ItemArmorBase extends ItemArmor implements INamed
         super(material, renderIndex, armorType);
         this.name = name;
 
-        String pathToItem = "items/armor/" + name;
-
-        modelInfo = new ModelInfo(pathToItem, pathToItem);
+        modelInfo = new ModelInfo(getTexturePath(), getModelPath());
         modelBiped = getModelBiped(armorType);
 
         setCreativeTab(ArmsForge.tab);
-        setTextureName(Version.modid + ":" + pathToItem);
+        setTextureName(Version.modid + ":" + getTexturePath());
         setUnlocalizedName(getName());
+    }
+
+    @SideOnly(Side.CLIENT)
+    public String getModelPath()
+    {
+        return "items/armor/" + name;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public String getTexturePath()
+    {
+        return "items/armor/" + name;
     }
 
     @SideOnly(Side.CLIENT)

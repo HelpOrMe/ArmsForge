@@ -1,8 +1,6 @@
 package helporme.worldspaceui;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import helporme.worldspaceui.commands.UICommands;
 import helporme.worldspaceui.event.ServerTickHandler;
 import helporme.worldspaceui.network.UINetwork;
@@ -16,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 /**
  * Server side UI manager
  */
-@SideOnly(Side.SERVER)
 public class WorldSpaceUIServer
 {
     public static final Logger logger = LogManager.getLogger("WorldSpaceUIServer");
@@ -51,7 +48,7 @@ public class WorldSpaceUIServer
      */
     public static void registerUI(Class<? extends UI> uiClass)
     {
-        map.attachUIid(uiClass.getName());
+        map.registerUI(uiClass);
     }
 
     /**
@@ -59,7 +56,7 @@ public class WorldSpaceUIServer
      * @param ui UI
      * @param location UI location, used to resend UI to new users
      * @param range Packet send range
-     * @param targetFilter Target filter
+     * @param targetFilter Client players filter
      */
     public static void openUI(UI ui, UILocation location, int range, ITargetFilter targetFilter)
     {
@@ -81,10 +78,11 @@ public class WorldSpaceUIServer
     }
 
     /**
-     * Add UI to the update pool, but don't open it on the clients
+     * Add UI to the update pool and set unique id, but don't open it on the clients
      */
     protected static void addUI(UI ui, UILocation location)
     {
+        ui.uniqueId = map.getNextUniqueUIid();
         map.addLocation(ui.uniqueId, location);
         map.uiPool.put(ui.uniqueId, ui);
     }
@@ -92,7 +90,7 @@ public class WorldSpaceUIServer
     /**
      * Remove UI from the server and close it on target clients
      * @param uiUniqueId Target UI.uniqueId
-     * @param targetFilter Target filter
+     * @param targetFilter Client players filter
      */
     public static void closeUI(int uiUniqueId, ITargetFilter targetFilter)
     {

@@ -36,7 +36,7 @@ public class OpenUIAction extends UICommandAction
     @Override
     public String getHelpString()
     {
-        return "/ui open <UIid> <x> <y> <z> <constructor index> [Arguments] Use /ui list to get more info";
+        return "/ui open <UIid> <x> <y> <z> <constructor index> [Arguments] Use /ui list to get info about existing UIes";
     }
 
     @Override
@@ -45,7 +45,8 @@ public class OpenUIAction extends UICommandAction
         int uiId = (int)args[0];
         if (!WorldSpaceUIServer.map.uiIdToUIClassName.containsKey(uiId))
         {
-            ChatHelper.printError(sender, "Invalid UIid. Use /ui list to get list of UIid");
+            ChatHelper.printError(sender, "Invalid UIid. Use /ui list to get UIid list");
+            return;
         }
 
         UILocation location = new UILocation((Vector3d)args[1], sender.getEntityWorld().provider.dimensionId);
@@ -56,7 +57,9 @@ public class OpenUIAction extends UICommandAction
             String[] constructorArgs = Arrays.copyOfRange(rawArgs, 5, rawArgs.length);
             CommandParser parser = new CommandParser(sender, constructorArgs, constructor.getParameterTypes());
             UI ui = (UI)constructor.newInstance(parser.parse());
+            ChatHelper.print(sender, "UI constructed");
             WorldSpaceUIServer.openUI(ui, location, 30);
+            ChatHelper.print(sender, "UI opened in range 30 with uniqueId §a" + ui.uniqueId);
         }
         catch (ParseException e)
         {

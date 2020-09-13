@@ -48,4 +48,10 @@ public class UILocation implements IMessage
     {
         return position.hashCode() ^ dimension << 2;
     }
+
+    @Override
+    public String toString()
+    {
+        return position.toString() + "#" + dimension;
+    }
 }

@@ -34,6 +34,7 @@ public class OpenUIPacket implements IMessage, IMessageHandler<OpenUIPacket, IMe
             Class<?> cls = Class.forName(clsName);
             ui = (UI)cls.newInstance();
             ui.uniqueId = buf.readInt();
+
         }
         catch (ReflectiveOperationException e)
         {

@@ -3,6 +3,7 @@ package helporme.worldspaceui.commands;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import helporme.worldspaceui.commands.actions.OpenUIAction;
 import helporme.worldspaceui.commands.actions.UIListAction;
+import helporme.worldspaceui.commands.actions.UIMapAction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Map;
 public final class UICommands
 {
     protected final UICommandAction[] defaultActions = new UICommandAction[] {
-            new UIListAction(), new OpenUIAction() };
+            new UIListAction(), new OpenUIAction(), new UIMapAction() };
 
     protected final Map<String, UICommandAction> actions = new HashMap<>();
 

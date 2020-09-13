@@ -43,7 +43,7 @@ public class WorldSpaceUI
      */
     public static void registerUI(Class<? extends UI> uiClass)
     {
-        map.attachUIid(uiClass.getName());
+        map.registerUI(uiClass);
     }
 
     /**

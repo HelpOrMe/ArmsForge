@@ -36,17 +36,26 @@ public class UINetwork extends SimpleNetworkWrapper
 
     public void sendUIOpen(UI ui, UILocation location, double range, ITargetFilter targetFilter)
     {
+        sendUIOpen(ui, targetFilter.filterPlayers(location, getPlayersInRange(location, range)));
+    }
+
+    public void sendUIOpen(UI ui, UILocation location, double range)
+    {
+        sendUIOpen(ui, getPlayersInRange(location, range));
+    }
+
+    protected EntityPlayerMP[] getPlayersInRange(UILocation location, double range)
+    {
         WorldServer world = DimensionManager.getWorld(location.dimension);
 
         Vector3d pos = location.position;
         AxisAlignedBB boundingBox = AxisAlignedBB.getBoundingBox(
-                pos.x - range, 255, pos.z - range,
-                pos.x + range, 0, pos.z + range);
+                pos.x - range, 0, pos.z - range,
+                pos.x + range, 255, pos.z + range);
 
         List BBEntities = world.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox);
         EntityPlayerMP[] players = (EntityPlayerMP[])BBEntities.toArray(new EntityPlayerMP[0]);
-        players = targetFilter.filterPlayers(ui, players);
-        sendUIOpen(ui, players);
+        return players;
     }
 
     public void sendUIOpen(UI ui, EntityPlayerMP... players)
@@ -58,18 +67,10 @@ public class UINetwork extends SimpleNetworkWrapper
         }
     }
 
-    public void sendUIOpen(UI ui, UILocation location, double range)
-    {
-        Vector3d position = location.position;
-        sendToAllAround(new OpenUIPacket(ui),
-                new NetworkRegistry.TargetPoint(location.dimension, position.x, position.y, position.z, range));
-    }
-
-
     public void sendUIClose(int uiUniqueIndex, ITargetFilter targetFilter)
     {
         EntityPlayerMP[] players = WorldSpaceUIServer.map.uiPlayers.get(uiUniqueIndex).toArray(new EntityPlayerMP[0]);
-        players = targetFilter.filterPlayers(WorldSpaceUIServer.map.uiPool.get(uiUniqueIndex), players);
+        players = targetFilter.filterPlayers(WorldSpaceUIServer.map.uiToLocation.get(uiUniqueIndex), players);
         sendUIClose(uiUniqueIndex, players);
     }
 

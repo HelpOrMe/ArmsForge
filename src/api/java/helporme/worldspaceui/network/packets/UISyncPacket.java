@@ -4,7 +4,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import helporme.worldspaceui.WorldSpaceUI;
-import helporme.worldspaceui.network.ObjectBytesConverter;
+import helporme.worldspaceui.network.utils.ObjectBytesConverter;
 import helporme.worldspaceui.ui.UI;
 import helporme.worldspaceui.ui.UISyncedCache;
 import io.netty.buffer.ByteBuf;

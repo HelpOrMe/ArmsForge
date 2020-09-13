@@ -30,10 +30,7 @@ public class UIListAction extends UICommandAction
             int uiId = entries.get(i).getKey();
             Class<?> cls = entries.get(i).getValue();
 
-            if (i > 0)
-            {
-                ChatHelper.printSep(sender);
-            }
+            ChatHelper.printSep(sender);
             ChatHelper.print(sender, "§o" + cls.getName() + " §aUIid#" + uiId);
             ChatHelper.print(sender, "Constructors: ");
             printConstructors(sender, cls);
@@ -71,7 +68,8 @@ public class UIListAction extends UICommandAction
                 {
                     paramNames[j] = params[j].getType().getSimpleName() + "#" + params[j].getName();
                 }
-                ChatHelper.print(sender, "§7" + i + ".§r " + cls.getSimpleName() + "(" + String.join(", ", paramNames) + ")");
+                String constructorString = cls.getSimpleName() + "(" + String.join(", ", paramNames) + ")";
+                ChatHelper.print(sender, "§7" + i + ".§r " + constructorString);
             }
         }
     }

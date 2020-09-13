@@ -1,11 +1,13 @@
 package helporme.worldspaceui.ui;
 
-import helporme.worldspaceui.WorldSpaceUI;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Collection;
 
 public final class UILayout
 {
+    private static final Logger logger = LogManager.getLogger();
     private static UI ui;
     private static UICallMode mode;
 
@@ -21,15 +23,6 @@ public final class UILayout
 
     public static void beginUICalls(UI ui, UICallMode mode)
     {
-        if (UILayout.ui != null)
-        {
-            WorldSpaceUI.logger.error(
-                    "Illegal access to beginUICalls. Current UI is \"" +
-                    UILayout.ui.getClass().getName() + ":" + ui.uniqueId +
-                    "\" with mode \"" + UILayout.mode + "\"");
-            return;
-        }
-
         UILayout.ui = ui;
         UILayout.mode = mode;
     }

@@ -37,7 +37,10 @@ public class Vector3d
 
     public String toString()
     {
-        return "Vector3d(" + x + ", " + y + ", " + z + ")";
+        return "(" +
+                Math.round(x * 100d) / 100d + ", " +
+                Math.round(y * 100d) / 100d + ", " +
+                Math.round(z * 100d) / 100d + ")";
     }
 
     public void copyValues(Vector3d vector)

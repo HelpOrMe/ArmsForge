@@ -1,4 +1,4 @@
-package helporme.worldspaceui.network;
+package helporme.worldspaceui.network.utils;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import helporme.worldspaceui.WorldSpaceUIServer;

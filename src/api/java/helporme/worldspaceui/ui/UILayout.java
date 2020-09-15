@@ -1,13 +1,9 @@
 package helporme.worldspaceui.ui;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.Collection;
 
 public final class UILayout
 {
-    private static final Logger logger = LogManager.getLogger();
     private static UI ui;
     private static UICallMode mode;
 

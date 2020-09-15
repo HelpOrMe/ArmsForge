@@ -6,7 +6,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import helporme.worldspaceui.WorldSpaceUI;
 import helporme.worldspaceui.network.utils.ObjectBytesConverter;
 import helporme.worldspaceui.ui.UI;
-import helporme.worldspaceui.ui.UISyncedCache;
+import helporme.worldspaceui.ui.UISynced;
 import io.netty.buffer.ByteBuf;
 
 import java.lang.reflect.Field;
@@ -16,10 +16,12 @@ public class UISyncPacket extends UIPacket implements IMessageHandler<UISyncPack
     public Object[] objects;
     public Field[] fields;
 
-    public UISyncPacket(UI ui)
+    public UISyncPacket() { }
+
+    public UISyncPacket(UISynced ui)
     {
         super(ui.uniqueId);
-        objects = UISyncedCache.getSyncObjects(ui).toArray();
+        objects = ui.getSyncObjects().toArray();
     }
 
     @Override
@@ -35,8 +37,8 @@ public class UISyncPacket extends UIPacket implements IMessageHandler<UISyncPack
     {
         super.fromBytes(buf);
 
-        UI ui = WorldSpaceUI.map.uiPool.get(uniqueUIId);
-        fields = UISyncedCache.getSyncFields(ui).toArray(new Field[0]);
+        UISynced ui = (UISynced)WorldSpaceUI.map.uiPool.get(uniqueUIId);
+        fields = ui.getSyncFields().toArray(new Field[0]);
 
         objects = new Object[buf.readByte()];
         for (int i = 0; i < objects.length; i++)

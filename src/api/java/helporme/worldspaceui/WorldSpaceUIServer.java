@@ -7,6 +7,8 @@ import helporme.worldspaceui.network.UINetwork;
 import helporme.worldspaceui.network.targets.ITargetFilter;
 import helporme.worldspaceui.test.UIBlockTest;
 import helporme.worldspaceui.ui.UI;
+import helporme.worldspaceui.ui.UICallMode;
+import helporme.worldspaceui.ui.UILayout;
 import helporme.worldspaceui.ui.UILocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,7 +54,7 @@ public class WorldSpaceUIServer
     }
 
     /**
-     * Add UI to the update pool, open and sync it on the target clients
+     * Add UI to the update pool and open it on the target clients
      * @param ui UI
      * @param location UI location, used to resend UI to new users
      * @param range Packet send range
@@ -60,9 +62,8 @@ public class WorldSpaceUIServer
      */
     public static void openUI(UI ui, UILocation location, int range, ITargetFilter targetFilter)
     {
-        network.sendUIOpen(ui, location, range, targetFilter);
         addUI(ui, location);
-        network.syncUI(ui);
+        network.sendUIOpen(ui, location, range, targetFilter);
     }
 
     /**
@@ -73,18 +74,22 @@ public class WorldSpaceUIServer
      */
     public static void openUI(UI ui, UILocation location, int range)
     {
-        network.sendUIOpen(ui, location, range);
         addUI(ui, location);
+        network.sendUIOpen(ui, location, range);
     }
 
     /**
-     * Add UI to the update pool and set unique id, but don't open it on the clients
+     * Add UI to the UI pool, trigger onOpen() and set unique id
      */
     protected static void addUI(UI ui, UILocation location)
     {
         ui.uniqueId = map.getNextUniqueUIid();
         map.addLocation(ui.uniqueId, location);
         map.uiPool.put(ui.uniqueId, ui);
+
+        UILayout.beginUICalls(ui, UICallMode.SERVER_OPEN);
+        ui.onOpen();
+        UILayout.endUICalls();
     }
 
     /**
@@ -109,11 +114,16 @@ public class WorldSpaceUIServer
     }
 
     /**
-     * Remove UI from the update pool, but don't close it on the clients
+     * Remove UI from the UI pool,location pool and trigger onClose()
      * @param uiUniqueId Target UI.uniqueId
      */
     protected static void removeUI(int uiUniqueId)
     {
+        UI ui = map.uiPool.get(uiUniqueId);
+        UILayout.beginUICalls(ui, UICallMode.SERVER_CLOSE);
+        ui.onClose();
+        UILayout.endUICalls();
+
         map.removeLocation(uiUniqueId);
         map.uiPool.remove(uiUniqueId);
     }

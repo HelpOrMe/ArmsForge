@@ -8,7 +8,9 @@ import helporme.worldspaceui.ui.UILocation;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 
 public class UIMapAction extends UICommandAction
 {

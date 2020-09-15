@@ -13,7 +13,7 @@ public class UIMap
     protected int lastUIid = -1;
 
     public final Map<Integer, String> uiIdToUIClassName = new HashMap<>();
-    public final Map<String, Integer> uiClassToUIid = new HashMap<>();
+    public final Map<String, Integer> uiClassNameToUIid = new HashMap<>();
     public final Map<Integer, UI> uiPool = new HashMap<>();
 
     public void registerUI(Class<? extends UI> uiClass)
@@ -26,7 +26,7 @@ public class UIMap
         String uiClassName = uiClass.getName();
         lastUIid++;
         uiIdToUIClassName.put(lastUIid, uiClassName);
-        uiClassToUIid.put(uiClassName, lastUIid);
+        uiClassNameToUIid.put(uiClassName, lastUIid);
     }
 
     public boolean hasEmptyConstructor(Class<? extends UI> uiClass)

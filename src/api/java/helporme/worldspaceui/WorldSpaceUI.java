@@ -7,6 +7,8 @@ import helporme.worldspaceui.event.ClientTickHandler;
 import helporme.worldspaceui.event.WorldRenderHandler;
 import helporme.worldspaceui.test.UIBlockTest;
 import helporme.worldspaceui.ui.UI;
+import helporme.worldspaceui.ui.UICallMode;
+import helporme.worldspaceui.ui.UILayout;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +23,7 @@ public class WorldSpaceUI
     public static final UIMap map = new UIMap();
 
     /**
-     * Register a client side event handlers.
+     * Register client side event handlers.
      */
     public static void register()
     {
@@ -54,6 +56,10 @@ public class WorldSpaceUI
     public static void openUI(UI ui)
     {
         map.uiPool.put(ui.uniqueId, ui);
+
+        UILayout.beginUICalls(ui, UICallMode.CLIENT_OPEN);
+        ui.onOpen();
+        UILayout.endUICalls();
     }
 
     /**
@@ -62,6 +68,11 @@ public class WorldSpaceUI
      */
     public static void closeUI(int uiUniqueId)
     {
+        UI ui = map.uiPool.get(uiUniqueId);
+        UILayout.beginUICalls(ui, UICallMode.CLIENT_CLOSE);
+        ui.onClose();
+        UILayout.endUICalls();
+
         map.uiPool.remove(uiUniqueId);
     }
 }

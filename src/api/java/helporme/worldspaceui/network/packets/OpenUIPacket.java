@@ -21,7 +21,7 @@ public class OpenUIPacket implements IMessage, IMessageHandler<OpenUIPacket, IMe
     @Override
     public void toBytes(ByteBuf buf)
     {
-        buf.writeInt(WorldSpaceUI.map.uiClassToUIid.get(ui.getClass().getName()));
+        buf.writeInt(WorldSpaceUI.map.uiClassNameToUIid.get(ui.getClass().getName()));
         buf.writeInt(ui.uniqueId);
     }
 

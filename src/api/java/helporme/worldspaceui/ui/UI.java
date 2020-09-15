@@ -10,36 +10,27 @@ public abstract class UI
     protected final Logger logger = LogManager.getLogger();
     public int uniqueId;
 
+    public void onOpen() {}
+
     public void onUI() { }
 
-    protected void sync()
-    {
-        if (UILayout.getCurrentUI() == this)
-        {
-            if (UILayout.getCurrentMode() == UICallMode.SERVER_TICK)
-            {
-                WorldSpaceUIServer.network.syncUI(this);
-            }
-            return;
-        }
-        logger.error("UI.sync() can be called only from onUI method! Use `WorldSpaceUIServer.network.syncUI()`");
-    }
+    public void onClose() { }
 
     protected void close()
     {
         if (UILayout.getCurrentUI() == this)
         {
-            switch (UILayout.getCurrentMode())
+            if (UILayout.getCurrentMode().isServer())
             {
-                case SERVER_TICK:
-                    WorldSpaceUIServer.closeUI(uniqueId);
-                    return;
-                case CLIENT_TICK:
-                case RENDER:
-                    WorldSpaceUI.closeUI(uniqueId);
-                    return;
+                WorldSpaceUIServer.closeUI(uniqueId);
+                return;
+            }
+            if (UILayout.getCurrentMode().isClient())
+            {
+                WorldSpaceUI.closeUI(uniqueId);
+                return;
             }
         }
-        logger.error("UI.close() can be called only from onUI method! Use `WorldSpaceUI|Server.closeUI()`");
+        logger.error("UI.close() can be called only from UI class! Use `WorldSpaceUI|Server.closeUI()`");
     }
 }

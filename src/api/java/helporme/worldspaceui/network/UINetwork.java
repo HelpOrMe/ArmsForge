@@ -1,6 +1,5 @@
 package helporme.worldspaceui.network;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import helporme.worldspaceui.WorldSpaceUIServer;
@@ -11,11 +10,12 @@ import helporme.worldspaceui.network.targets.ITargetFilter;
 import helporme.worldspaceui.types.Vector3d;
 import helporme.worldspaceui.ui.UI;
 import helporme.worldspaceui.ui.UILocation;
-import helporme.worldspaceui.ui.UISyncedCache;
+import helporme.worldspaceui.ui.UISynced;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.List;
 
@@ -32,6 +32,7 @@ public class UINetwork extends SimpleNetworkWrapper
     {
         registerMessage(OpenUIPacket.class, OpenUIPacket.class, lastId++, Side.CLIENT);
         registerMessage(CloseUIPacket.class, CloseUIPacket.class, lastId++, Side.CLIENT);
+        registerMessage(UISyncPacket.class, UISyncPacket.class, lastId++, Side.CLIENT);
     }
 
     public void sendUIOpen(UI ui, UILocation location, double range, ITargetFilter targetFilter)
@@ -44,7 +45,7 @@ public class UINetwork extends SimpleNetworkWrapper
         sendUIOpen(ui, getPlayersInRange(location, range));
     }
 
-    protected EntityPlayerMP[] getPlayersInRange(UILocation location, double range)
+    private EntityPlayerMP[] getPlayersInRange(UILocation location, double range)
     {
         WorldServer world = DimensionManager.getWorld(location.dimension);
 
@@ -60,9 +61,11 @@ public class UINetwork extends SimpleNetworkWrapper
 
     public void sendUIOpen(UI ui, EntityPlayerMP... players)
     {
+        LogManager.getLogger().info("Send ui open " + players.length);
         for (EntityPlayerMP player : players)
         {
             sendTo(new OpenUIPacket(ui), player);
+            LogManager.getLogger().info("Add ui player to " + ui.uniqueId);
             WorldSpaceUIServer.map.uiPlayers.put(ui.uniqueId, player);
         }
     }
@@ -91,23 +94,21 @@ public class UINetwork extends SimpleNetworkWrapper
             }
             else
             {
-                WorldSpaceUIServer.logger.error("UI don't open at client" + player);
+                WorldSpaceUIServer.logger.error("Unable to close UI on client " + player);
             }
         }
     }
 
-    public void syncUI(UI ui)
+    public void syncUI(UISynced ui)
     {
-        if (UISyncedCache.getSyncFields(ui).size() > 0 )
+        if (ui.getSyncFields().size() > 0)
         {
             for (EntityPlayerMP player : WorldSpaceUIServer.map.uiPlayers.get(ui.uniqueId))
             {
                 sendTo(new UISyncPacket(ui), player);
             }
+            return;
         }
-        else
-        {
-            WorldSpaceUIServer.logger.warn("Trying to sync UI without `@Sync` fields. " + ui.getClass().getName());
-        }
+        WorldSpaceUIServer.logger.warn("Trying to sync UI without `@Sync` fields; " + ui.getClass().getName());
     }
 }

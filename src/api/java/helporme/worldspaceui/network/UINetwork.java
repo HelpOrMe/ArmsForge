@@ -14,7 +14,6 @@ import helporme.worldspaceui.ui.UISynced;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.DimensionManager;
 import org.apache.logging.log4j.LogManager;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class UINetwork extends SimpleNetworkWrapper
 
     private EntityPlayerMP[] getPlayersInRange(UILocation location, double range)
     {
-        WorldServer world = DimensionManager.getWorld(location.dimension);
+        WorldServer world = location.getWorld();
 
         Vector3d pos = location.position;
         AxisAlignedBB boundingBox = AxisAlignedBB.getBoundingBox(

@@ -54,11 +54,11 @@ public class WorldSpaceUIServer
     }
 
     /**
-     * Add UI to the update pool and open it on the target clients
+     * Add UI to the UI pool and open it on the target clients
      * @param ui UI
      * @param location UI location, used to resend UI to new users
      * @param range Packet send range
-     * @param targetFilter Client players filter
+     * @param targetFilter Players filter
      */
     public static void openUI(UI ui, UILocation location, int range, ITargetFilter targetFilter)
     {
@@ -67,7 +67,7 @@ public class WorldSpaceUIServer
     }
 
     /**
-     * Add UI to the update pool, open and sync it on the target clients
+     * Add UI to the UI pool and open it on the target clients
      * @param ui UI
      * @param location UI location, used to resend UI to new users
      * @param range Send packet range
@@ -84,6 +84,7 @@ public class WorldSpaceUIServer
     protected static void addUI(UI ui, UILocation location)
     {
         ui.uniqueId = map.getNextUniqueUIid();
+        ui.location = location;
         map.addLocation(ui.uniqueId, location);
         map.uiPool.put(ui.uniqueId, ui);
 

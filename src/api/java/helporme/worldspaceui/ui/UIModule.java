@@ -2,7 +2,5 @@ package helporme.worldspaceui.ui;
 
 public abstract class UIModule
 {
-    public final UITransform transform = new UITransform();
-
-    public abstract void update(UI ui, UICallMode mode);
+    public abstract void onUI(UI ui, UICallMode mode);
 }

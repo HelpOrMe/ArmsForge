@@ -3,6 +3,8 @@ package helporme.worldspaceui.ui;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import helporme.worldspaceui.types.Vector3d;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.DimensionManager;
 
 public class UILocation implements IMessage
 {
@@ -15,6 +17,11 @@ public class UILocation implements IMessage
     {
         this.position = position;
         this.dimension = dimension;
+    }
+
+    public WorldServer getWorld()
+    {
+        return DimensionManager.getWorld(dimension);
     }
 
     @Override

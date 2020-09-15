@@ -9,6 +9,7 @@ public abstract class UI
 {
     protected final Logger logger = LogManager.getLogger();
     public int uniqueId;
+    public UILocation location;
 
     public void onOpen() {}
 

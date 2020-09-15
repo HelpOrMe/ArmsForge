@@ -5,6 +5,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import helporme.worldspaceui.WorldSpaceUI;
 import helporme.worldspaceui.ui.UI;
+import helporme.worldspaceui.ui.UILocation;
 import io.netty.buffer.ByteBuf;
 
 public class OpenUIPacket implements IMessage, IMessageHandler<OpenUIPacket, IMessage>
@@ -23,6 +24,7 @@ public class OpenUIPacket implements IMessage, IMessageHandler<OpenUIPacket, IMe
     {
         buf.writeInt(WorldSpaceUI.map.uiClassNameToUIid.get(ui.getClass().getName()));
         buf.writeInt(ui.uniqueId);
+        ui.location.toBytes(buf);
     }
 
     @Override
@@ -35,6 +37,9 @@ public class OpenUIPacket implements IMessage, IMessageHandler<OpenUIPacket, IMe
             ui = (UI)cls.newInstance();
             ui.uniqueId = buf.readInt();
 
+            UILocation location = new UILocation();
+            location.fromBytes(buf);
+            ui.location = location;
         }
         catch (ReflectiveOperationException e)
         {

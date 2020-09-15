@@ -21,7 +21,7 @@ public abstract class UISynced extends UI
             }
             return;
         }
-        logger.error("UI.sync() can be called only from onUI method! Use `WorldSpaceUIServer.network.syncUI()`");
+        logger.error("UI.sync() can be called only from UI class! Use `WorldSpaceUIServer.network.syncUI()`");
     }
 
     public List<Object> getSyncObjects()
@@ -63,9 +63,8 @@ public abstract class UISynced extends UI
                     if (isValidSyncFieldClass(field.getType()))
                     {
                         cachedSyncFields.add(field);
-                        break;
                     }
-                    printFieldError("Invalid object type. Must be a primitive, string, or implement IMessage; ",
+                    else printFieldError("Invalid object type. Must be a primitive, string, or implement IMessage; ",
                             field);
                     break;
                 }
